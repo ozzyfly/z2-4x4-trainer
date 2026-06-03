@@ -35,7 +35,8 @@ Legend: `[ ]` todo · `[~]` in progress (進行中) · `[x]` done + verified (�
 - [x] Workout detail (Zone 2 + 4×4 personalised HR bands + interval breakdown)
 - [x] Settings (override maxHR, activity, change goal)
 - [x] manual workout entry
-- [ ] **build + run in simulator** — blocked on iOS SDK download (in progress)
+- [x] **build + run in simulator** — BUILD SUCCEEDED, app launches, onboarding + Today verified
+      (iOS 26.5 sim; zones/targets match SharedCore tests). `-seedProfile` launch arg seeds a test profile.
 
 ## Phase 3 — HealthKit integration
 - [ ] `HealthService` (read HR, active energy, resting HR, body mass, workouts)
