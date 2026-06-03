@@ -13,7 +13,7 @@ Legend: `[ ]` todo · `[~]` in progress (進行中) · `[x]` done + verified (�
 - [x] push to private GitHub repo → https://github.com/ozzyfly/z2-4x4-trainer
 - [x] `project.yml` (xcodegen) for iOS app target — generates valid project, package graph resolves
 - [x] HealthKit entitlement + Info.plist usage strings (in `project.yml`)
-- [ ] Spectra project registered (`config.yaml`: 專案說明 + 產出規則) + one 規格 per phase — **user action in Spectra app**
+- [x] Spectra connected: `openspec/config.yaml` context+rules filled, `spectra validate` clean, instruction files updated
 - [ ] **BLOCKER for Phase 2+:** iOS platform SDK not installed. Run `xcodebuild -downloadPlatform iOS`
       (multi-GB) before any app build/run. SharedCore (Mac) is unaffected.
 - [ ] watchOS app target → added in Phase 4 (needs hardware to verify)

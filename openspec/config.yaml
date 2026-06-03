@@ -1,20 +1,34 @@
 schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
+# Project context — shown to the AI whenever Spectra creates an artifact.
+context: |
+  Z2/4×4 Trainer — a local-only iPhone + Apple Watch cardio app. It prescribes daily and
+  weekly Zone 2 (60–70% max HR) and Norwegian 4×4 (warmup → 4×[4 min @85–95% / 3 min recovery]
+  → cooldown, 43 min) workouts, and weekly health-maintenance / weight-loss targets. Inputs come
+  from manual entry or Apple Health. maxHR = 220 − age (user override-able). No backend, no login;
+  data stays on device.
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+  Tech stack: Swift 6, SwiftUI, SwiftData, HealthKit, Swift Charts. iOS 18+ / watchOS 11+.
+  The Xcode project is generated from project.yml via xcodegen — never hand-edit the .xcodeproj.
+  All training math lives in the SharedCore Swift package (no UI, no HealthKit), unit-tested with
+  Swift Testing: `cd SharedCore && swift test`. HealthKit sits behind the HealthProviding protocol
+  so the app stays testable. App build:
+  `xcodebuild build -project Z24x4Trainer.xcodeproj -scheme Z24x4Trainer \
+   -destination 'platform=iOS Simulator,name=iPhone 17 Pro' -derivedDataPath build`.
+
+  The developer is a Swift beginner and has not yet enrolled in the Apple Developer Program.
+  Repo: https://github.com/ozzyfly/z2-4x4-trainer (private). Progress is tracked in PROGRESS.md.
+
+  Status: Phases 0–3 done and verified on the iOS 26.5 simulator. Phase 4 (watchOS app) code is
+  written but the watchOS SDK is not installed locally, so it is not yet compiled. Phase 5
+  (App Store) has draft docs + a placeholder icon; submission awaits the developer account.
+
+# Per-artifact rules.
+rules:
+  proposal:
+    - Name the phase/area the change touches and keep scope to one capability.
+    - Note anything that can only be verified on physical hardware (Apple Watch HR + haptics).
+  tasks:
+    - Put domain logic in SharedCore and write it test-first; keep `swift test` green before UI work.
+    - Make additive, minimal edits to existing SwiftUI views; one type per file.
+    - After implementing, update PROGRESS.md and verify (swift test + xcodebuild) before archiving.
