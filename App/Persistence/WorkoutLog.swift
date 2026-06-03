@@ -10,19 +10,23 @@ final class WorkoutLog {
     var durationMin: Int
     var activeEnergyKcal: Int?
     var note: String?
+    /// Apple Health workout UUID when imported from HealthKit; nil for manual entries.
+    var healthUUID: String?
 
     init(
         date: Date = .now,
         type: SessionType,
         durationMin: Int,
         activeEnergyKcal: Int? = nil,
-        note: String? = nil
+        note: String? = nil,
+        healthUUID: String? = nil
     ) {
         self.date = date
         self.typeRaw = type.rawValue
         self.durationMin = durationMin
         self.activeEnergyKcal = activeEnergyKcal
         self.note = note
+        self.healthUUID = healthUUID
     }
 
     var type: SessionType {

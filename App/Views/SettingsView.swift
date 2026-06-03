@@ -5,9 +5,12 @@ import SharedCore
 /// Edit the profile: max-HR override, goal, weight, activity. Writes straight to the record.
 struct SettingsView: View {
     @Bindable var profile: ProfileRecord
+    let health: HealthStore
+    @Environment(\.modelContext) private var context
 
-    init(profile: ProfileRecord) {
+    init(profile: ProfileRecord, health: HealthStore) {
         self.profile = profile
+        self.health = health
     }
 
     private var hasOverride: Binding<Bool> {
@@ -50,6 +53,22 @@ struct SettingsView: View {
                     if profile.goalIsLose {
                         Stepper("Rate: \(profile.loseRateKgPerWeek, specifier: "%.2f") kg/week",
                                 value: $profile.loseRateKgPerWeek, in: 0.25...1.0, step: 0.25)
+                    }
+                }
+
+                Section("Apple Health") {
+                    if health.authorized {
+                        Label("Connected", systemImage: "checkmark.circle.fill")
+                            .foregroundStyle(.green)
+                    } else {
+                        Button {
+                            Task {
+                                await health.connect()
+                                await health.refresh(context: context)
+                            }
+                        } label: {
+                            Label("Connect Apple Health", systemImage: "heart.fill")
+                        }
                     }
                 }
             }

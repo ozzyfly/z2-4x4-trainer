@@ -5,6 +5,8 @@ import SharedCore
 /// Today's prescribed workout, personalised zones, and progress toward the daily target.
 struct TodayView: View {
     let profile: ProfileRecord
+    let health: HealthStore
+    @Environment(\.modelContext) private var context
     @Query(sort: \WorkoutLog.date, order: .reverse) private var logs: [WorkoutLog]
 
     var body: some View {
@@ -43,6 +45,9 @@ struct TodayView: View {
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
+                    if health.todayEnergy > 0 {
+                        LabeledContent("Active energy today", value: "\(health.todayEnergy) kcal")
+                    }
                 }
 
                 Section {
@@ -54,6 +59,11 @@ struct TodayView: View {
                 }
             }
             .navigationTitle("Today")
+        }
+        .task {
+            if health.authorized {
+                await health.refresh(context: context)
+            }
         }
     }
 

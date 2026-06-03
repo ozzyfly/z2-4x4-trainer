@@ -38,10 +38,12 @@ Legend: `[ ]` todo · `[~]` in progress (進行中) · `[x]` done + verified (�
 - [x] **build + run in simulator** — BUILD SUCCEEDED, app launches, onboarding + Today verified
       (iOS 26.5 sim; zones/targets match SharedCore tests). `-seedProfile` launch arg seeds a test profile.
 
-## Phase 3 — HealthKit integration
-- [ ] `HealthService` (read HR, active energy, resting HR, body mass, workouts)
-- [ ] progress vs daily/weekly targets from real data
-- [ ] history + Swift Charts
+## Phase 3 — HealthKit integration — code done, builds; live Health unverified in sim
+- [x] `HealthProviding` protocol + `HealthKitService` (HR, active energy, resting HR, body mass, workouts) + `PreviewHealthService` mock
+- [x] `HealthStore` (@Observable): auth, today energy, weight series, imports workouts → `WorkoutLog` deduped by `healthUUID`
+- [x] progress vs targets uses real active energy; "Connect Apple Health" in Settings
+- [x] History tab + Swift Charts (weekly minutes bars + weight trend) — verified rendering with `-seedWorkouts`
+- [ ] verify real Health read/import on a physical device (sim Health DB is empty)
 
 ## Phase 4 — Apple Watch app
 - [ ] workout list mirrored from phone
@@ -50,10 +52,11 @@ Legend: `[ ]` todo · `[~]` in progress (進行中) · `[x]` done + verified (�
 - [ ] save `HKWorkout` + sync to phone
 - [ ] tested on physical Apple Watch
 
-## Phase 5 — App Store readiness
-- [ ] app icon + launch screen + accessibility
-- [ ] App Privacy label + privacy policy
-- [ ] screenshots + metadata
-- [ ] enroll Apple Developer Program ($99/yr)
-- [ ] TestFlight internal test
-- [ ] submit for review
+## Phase 5 — App Store readiness — docs + icon drafted; submission pending dev account
+- [x] app icon (1024² placeholder in `App/Assets.xcassets/AppIcon.appiconset`) — replace art before release
+- [x] App Privacy label + privacy policy (`docs/app-store/`) — privacy policy must be hosted at a real URL
+- [x] metadata draft + screenshot size guide (`docs/app-store/METADATA.md`, `SUBMISSION_CHECKLIST.md`)
+- [ ] take real screenshots (iPhone 6.9"/6.5" + Watch)
+- [ ] enroll Apple Developer Program ($99/yr) — **user action**
+- [ ] TestFlight internal test — **user action**
+- [ ] submit for review — **user action**
