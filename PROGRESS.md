@@ -10,11 +10,13 @@ Legend: `[ ]` todo · `[~]` in progress (進行中) · `[x]` done + verified (�
 - [x] `.gitignore`, `PROGRESS.md`, `README.md`
 - [x] tooling verified: Swift 6.3.2, Xcode, xcodegen 2.45.4, gh (authed: ozzyfly), brew
 - [x] `SharedCore` Swift package scaffolded
-- [~] push to private GitHub repo
-- [ ] `project.yml` (xcodegen) for iOS + watchOS app targets
-- [ ] HealthKit capability + Info.plist usage strings
-- [ ] Spectra project registered (`config.yaml`: 專案說明 + 產出規則) + one 規格 per phase
-- [ ] **blocker for Phase 2:** download iOS + watchOS simulator runtimes (`xcodebuild -downloadPlatform iOS`)
+- [x] push to private GitHub repo → https://github.com/ozzyfly/z2-4x4-trainer
+- [x] `project.yml` (xcodegen) for iOS app target — generates valid project, package graph resolves
+- [x] HealthKit entitlement + Info.plist usage strings (in `project.yml`)
+- [ ] Spectra project registered (`config.yaml`: 專案說明 + 產出規則) + one 規格 per phase — **user action in Spectra app**
+- [ ] **BLOCKER for Phase 2+:** iOS platform SDK not installed. Run `xcodebuild -downloadPlatform iOS`
+      (multi-GB) before any app build/run. SharedCore (Mac) is unaffected.
+- [ ] watchOS app target → added in Phase 4 (needs hardware to verify)
 
 ## Phase 1 — Domain core (TDD, no UI) — runs on Mac via `swift test` ✅
 - [x] `UserProfile`
