@@ -22,3 +22,5 @@ Package.resolved
 *.mobileprovision
 *.p12
 ExportOptions.plist
+.spectra/
+openspec/.vector-search.db*
