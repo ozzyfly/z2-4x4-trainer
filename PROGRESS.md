@@ -45,12 +45,15 @@ Legend: `[ ]` todo · `[~]` in progress (進行中) · `[x]` done + verified (�
 - [x] History tab + Swift Charts (weekly minutes bars + weight trend) — verified rendering with `-seedWorkouts`
 - [ ] verify real Health read/import on a physical device (sim Health DB is empty)
 
-## Phase 4 — Apple Watch app
-- [ ] workout list mirrored from phone
-- [ ] live `HKWorkoutSession` (real-time HR, zone, Zone 2 alerts)
-- [ ] 4×4 interval engine + haptics
-- [ ] save `HKWorkout` + sync to phone
-- [ ] tested on physical Apple Watch
+## Phase 4 — Apple Watch app — code written; cannot build (watchOS SDK not installed)
+- [x] `Z24x4TrainerWatch` target added to `project.yml` (companion, HealthKit)
+- [x] workout list (`WorkoutListView`)
+- [x] live `HKWorkoutSession` + `HKLiveWorkoutBuilder` (`WorkoutSessionManager`): real-time HR + zone
+- [x] 4×4 interval engine + haptics (`IntervalEngine`)
+- [x] save `HKWorkout` (WatchConnectivity phone sync left as TODO)
+- [ ] **BLOCKER:** watchOS 26.5 SDK not installed → can't compile watch target. Run `xcodebuild -downloadPlatform watchOS` before building.
+- [ ] phone⇄watch sync (WatchConnectivity)
+- [ ] tested on physical Apple Watch (live HR + haptics need real hardware)
 
 ## Phase 5 — App Store readiness — docs + icon drafted; submission pending dev account
 - [x] app icon (1024² placeholder in `App/Assets.xcassets/AppIcon.appiconset`) — replace art before release
