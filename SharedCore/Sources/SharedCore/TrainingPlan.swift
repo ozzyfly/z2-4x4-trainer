@@ -59,6 +59,21 @@ public struct TrainingPlan: Sendable, Equatable {
         }
     }
 
+    /// The session prescribed for a given weekday (1 = Monday … 7 = Sunday).
+    /// Returns a rest session if the plan has no entry for that day.
+    public func session(onWeekday weekday: Int) -> PlannedSession {
+        sessions.first { $0.day == weekday }
+            ?? PlannedSession(day: weekday, type: .rest, durationMin: 0)
+    }
+
+    /// The session prescribed for a calendar date, using the user's calendar.
+    public func session(on date: Date, calendar: Calendar = .current) -> PlannedSession {
+        // Calendar weekday: 1 = Sunday … 7 = Saturday → map to 1 = Monday … 7 = Sunday.
+        let cw = calendar.component(.weekday, from: date)
+        let weekday = ((cw + 5) % 7) + 1
+        return session(onWeekday: weekday)
+    }
+
     public var weeklyZone2Minutes: Int {
         sessions.filter { $0.type == .zone2 }.reduce(0) { $0 + $1.durationMin }
     }

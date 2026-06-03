@@ -27,13 +27,15 @@ Legend: `[ ]` todo · `[~]` in progress (進行中) · `[x]` done + verified (�
 - [x] `EnergyCalculator` (Mifflin–St Jeor BMR → TDEE → kcal deficit)
 - [x] all unit tests green — **20/20 passing**
 
-## Phase 2 — iOS app (manual input path)
-- [ ] onboarding (profile + goal + HealthKit permission)
-- [ ] Today screen (prescribed workout + progress ring)
-- [ ] Week screen (plan + weekly target progress)
-- [ ] Workout detail (Zone 2 + 4×4 personalised HR bands)
-- [ ] Settings (override maxHR/resting HR, change goal)
-- [ ] manual workout entry
+## Phase 2 — iOS app (manual input path) — code written, build pending iOS SDK
+- [x] SwiftData persistence (`ProfileRecord`, `WorkoutLog`)
+- [x] onboarding (profile + goal) — HealthKit permission deferred to Phase 3
+- [x] Today screen (today's session + zones + daily target progress)
+- [x] Week screen (plan + weekly target progress)
+- [x] Workout detail (Zone 2 + 4×4 personalised HR bands + interval breakdown)
+- [x] Settings (override maxHR, activity, change goal)
+- [x] manual workout entry
+- [ ] **build + run in simulator** — blocked on iOS SDK download (in progress)
 
 ## Phase 3 — HealthKit integration
 - [ ] `HealthService` (read HR, active energy, resting HR, body mass, workouts)

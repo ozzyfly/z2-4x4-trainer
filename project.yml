@@ -1,0 +1,36 @@
+name: Z24x4Trainer
+options:
+  bundleIdPrefix: ca.logolo.z24x4
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+
+packages:
+  SharedCore:
+    path: SharedCore
+
+targets:
+  Z24x4Trainer:
+    type: application
+    platform: iOS
+    sources:
+      - App
+    dependencies:
+      - package: SharedCore
+    entitlements:
+      path: App/Z24x4Trainer.entitlements
+      properties:
+        com.apple.developer.healthkit: true
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        PRODUCT_BUNDLE_IDENTIFIER: ca.logolo.z24x4.Z24x4Trainer
+        INFOPLIST_KEY_CFBundleDisplayName: "Z2/4×4 Trainer"
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_NSHealthShareUsageDescription: "Reads your heart rate, workouts, active energy, resting heart rate and body weight to calculate your training zones and weekly targets."
+        INFOPLIST_KEY_NSHealthUpdateUsageDescription: "Saves your Zone 2 and Norwegian 4×4 workouts to Apple Health."
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SWIFT_VERSION: "6.0"
