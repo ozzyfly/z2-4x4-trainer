@@ -2,9 +2,9 @@
 
 ## 1. Watch 端傳送完成的訓練 (Requirement: Completed Watch workout syncs to the iPhone)
 
-- [ ] 1.1 在 `Watch/WorkoutSessionManager.swift` 以 `WCSession` 取代 `// TODO: WatchConnectivity` 標記：訓練結束時將 session（date、type、durationMin、activeEnergyKcal、healthUUID）編碼送出。
+- [x] 1.1 在 `Watch/WorkoutSessionManager.swift` 以 `WCSession` 取代 `// TODO: WatchConnectivity` 標記：訓練結束時將 session（date、type、durationMin、activeEnergyKcal、healthUUID）編碼送出。
   行為：session 結束後 `WCSession.default` 觸發一次傳送（Requirement: Completed Watch workout syncs to the iPhone）。驗證：在 manager 加入單元測試，斷言結束流程呼叫了傳送（以 protocol 模擬 `WCSession`）。
-- [ ] 1.2 手機無法連線時改用 `transferUserInfo` 背景佇列，不遺失資料。
+- [x] 1.2 手機無法連線時改用 `transferUserInfo` 背景佇列，不遺失資料。
   行為：`isReachable == false` 時 session 進入背景傳送佇列。驗證：以模擬的不可達 session 測試走背景路徑。
 
 ## 2. iPhone 端接收並儲存
@@ -21,7 +21,7 @@
 
 ## 4. 編譯 watch target (Requirement: Watch target compiles and runs)
 
-- [ ] 4.1 安裝 watchOS SDK（`xcodebuild -downloadPlatform watchOS`）後編譯 `Z24x4TrainerWatch`。
+- [x] 4.1 安裝 watchOS SDK（`xcodebuild -downloadPlatform watchOS`）後編譯 `Z24x4TrainerWatch`。
   行為：watch target 成功建置（Requirement: Watch target compiles and runs）。驗證：`xcodebuild build -scheme Z24x4TrainerWatch -destination 'platform=watchOS Simulator,name=Apple Watch ...'` 輸出 `** BUILD SUCCEEDED **`。
 
 ## 5. 實機驗證（需 Apple Watch 硬體）
