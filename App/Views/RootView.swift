@@ -58,17 +58,29 @@ struct RootView: View {
 struct MainTabView: View {
     let profile: ProfileRecord
     let health: HealthStore
+    /// Honors `-startTab <n>` for deterministic UI screenshots (0=Today…3=Settings).
+    @State private var selection: Int = {
+        let args = ProcessInfo.processInfo.arguments
+        if let i = args.firstIndex(of: "-startTab"), i + 1 < args.count, let n = Int(args[i + 1]) {
+            return n
+        }
+        return 0
+    }()
 
     var body: some View {
-        TabView {
+        TabView(selection: $selection) {
             TodayView(profile: profile, health: health)
                 .tabItem { Label("Today", systemImage: "flame.fill") }
+                .tag(0)
             WeekView(profile: profile)
                 .tabItem { Label("Week", systemImage: "calendar") }
+                .tag(1)
             HistoryView(health: health)
                 .tabItem { Label("History", systemImage: "chart.bar.fill") }
+                .tag(2)
             SettingsView(profile: profile, health: health)
                 .tabItem { Label("Settings", systemImage: "gearshape.fill") }
+                .tag(3)
         }
     }
 }
