@@ -58,11 +58,16 @@ Legend: `[ ]` todo · `[~]` in progress (進行中) · `[x]` done + verified (�
 
 Tracked as Spectra change `watch-phone-sync` (`spectra status`).
 
-## Phase 5 — App Store readiness — docs + icon drafted; submission pending dev account
-- [x] app icon (1024² placeholder in `App/Assets.xcassets/AppIcon.appiconset`) — replace art before release
-- [x] App Privacy label + privacy policy (`docs/app-store/`) — privacy policy must be hosted at a real URL
-- [x] metadata draft + screenshot size guide (`docs/app-store/METADATA.md`, `SUBMISSION_CHECKLIST.md`)
-- [ ] take real screenshots (iPhone 6.9"/6.5" + Watch)
-- [ ] enroll Apple Developer Program ($99/yr) — **user action**
-- [ ] TestFlight internal test — **user action**
-- [ ] submit for review — **user action**
+## Phase 5 — App Store readiness — release config done; submission pending dev account
+- [x] app icon (1024² placeholder) — replace art before release
+- [x] App Privacy label + privacy policy (`docs/app-store/`) + hostable `docs/privacy-policy.html`
+- [x] metadata draft (`docs/app-store/METADATA.md`)
+- [x] real App Store screenshots captured @ 1320×2868 (6.9") → `docs/app-store/screenshots/`
+- [x] release config: version → 1.0.0, `CODE_SIGN_STYLE: Automatic`, `scripts/archive-and-export.sh`, `docs/app-store/ExportOptions.plist`; Release config compiles for device
+- [ ] **enroll Apple Developer Program ($99/yr)** — user action; then provide Team ID
+- [ ] archive + upload (`DEVELOPMENT_TEAM=… scripts/archive-and-export.sh`) — needs Team ID
+- [ ] host privacy policy (enable GitHub Pages on `/docs`) — needs push
+- [ ] enter metadata + privacy label in App Store Connect — user action
+- [ ] TestFlight internal test → submit for review — user action
+
+Tracked as Spectra change `app-store-submission` (`spectra status`).

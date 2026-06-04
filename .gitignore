@@ -21,6 +21,6 @@ Package.resolved
 # Secrets / signing
 *.mobileprovision
 *.p12
-ExportOptions.plist
+/ExportOptions.plist
 .spectra/
 openspec/.vector-search.db*
