@@ -9,14 +9,14 @@
 
 ## 2. iPhone 端接收並儲存
 
-- [ ] 2.1 新增 `App/Sync/PhoneSessionReceiver.swift`，實作 `WCSessionDelegate` 接收 session 並插入 SwiftData `WorkoutLog`。
+- [x] 2.1 新增 `App/Sync/PhoneSessionReceiver.swift`，實作 `WCSessionDelegate` 接收 session 並插入 SwiftData `WorkoutLog`。
   行為：收到 payload 後 store 多出一筆對應的 `WorkoutLog`。驗證：以樣本 payload 呼叫 receiver，斷言 `WorkoutLog` 數量 +1 且欄位相符。
-- [ ] 2.2 在 `App/Z24x4TrainerApp.swift` 啟用並 activate `WCSession`，注入共用的 `modelContext`。
+- [x] 2.2 在 `App/Z24x4TrainerApp.swift` 啟用並 activate `WCSession`，注入共用的 `modelContext`。
   行為：App 啟動後 `WCSession` 為 activated 狀態。驗證：模擬器啟動 App，log 顯示 activationState == .activated，無 crash。
 
 ## 3. 去除重複 (Requirement: Synced workouts are not duplicated)
 
-- [ ] 3.1 接收時以 `healthUUID` 去重：已存在則略過。
+- [x] 3.1 接收時以 `healthUUID` 去重：已存在則略過。
   行為：相同 `healthUUID` 的 session 第二次送達不會新增記錄（Requirement: Synced workouts are not duplicated）。驗證：對應 spec 場景「Same session delivered twice」的單元測試，送兩次後 `WorkoutLog` 數量不變。
 
 ## 4. 編譯 watch target (Requirement: Watch target compiles and runs)
