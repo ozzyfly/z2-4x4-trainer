@@ -45,15 +45,16 @@ Legend: `[ ]` todo · `[~]` in progress (進行中) · `[x]` done + verified (�
 - [x] History tab + Swift Charts (weekly minutes bars + weight trend) — verified rendering with `-seedWorkouts`
 - [ ] verify real Health read/import on a physical device (sim Health DB is empty)
 
-## Phase 4 — Apple Watch app — code written; cannot build (watchOS SDK not installed)
+## Phase 4 — Apple Watch app — builds + runs on watchOS 26.5 sim
 - [x] `Z24x4TrainerWatch` target added to `project.yml` (companion, HealthKit)
+- [x] **watch target BUILD SUCCEEDED** (watchOS SDK installed); app launches on sim, workout list renders
 - [x] workout list (`WorkoutListView`)
 - [x] live `HKWorkoutSession` + `HKLiveWorkoutBuilder` (`WorkoutSessionManager`): real-time HR + zone
 - [x] 4×4 interval engine + haptics (`IntervalEngine`)
 - [x] save `HKWorkout` + send to phone (`Watch/WorkoutSync.swift`, WCSession message + transferUserInfo fallback)
 - [x] phone⇄watch sync code: `App/Sync/PhoneSessionReceiver.swift` (WCSessionDelegate → dedupe by `healthUUID` → `WorkoutLog`), activated in app. iOS builds; dedupe + transfer round-trip unit-tested (32/32 green)
-- [ ] **BLOCKER:** watchOS 26.5 SDK not installed → can't compile watch target. Run `xcodebuild -downloadPlatform watchOS` before building.
-- [ ] tested on physical Apple Watch (live HR + haptics + end-to-end sync need real hardware)
+- [x] watchOS 26.5 SDK installed; `Z24x4TrainerWatch` compiles for device + simulator
+- [ ] tested on physical Apple Watch (live HR + haptics + end-to-end phone sync need real hardware)
 
 Tracked as Spectra change `watch-phone-sync` (`spectra status`).
 

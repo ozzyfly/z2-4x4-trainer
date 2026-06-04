@@ -5,7 +5,7 @@ import SharedCore
 /// Sends a completed workout from the Watch to the paired iPhone over WatchConnectivity.
 /// Uses an immediate message when the phone is reachable, otherwise the guaranteed
 /// background `transferUserInfo` queue so nothing is lost.
-final class WatchWorkoutSender: NSObject, WCSessionDelegate {
+final class WatchWorkoutSender: NSObject, WCSessionDelegate, @unchecked Sendable {
     static let shared = WatchWorkoutSender()
 
     private override init() {
