@@ -50,10 +50,12 @@ Legend: `[ ]` todo · `[~]` in progress (進行中) · `[x]` done + verified (�
 - [x] workout list (`WorkoutListView`)
 - [x] live `HKWorkoutSession` + `HKLiveWorkoutBuilder` (`WorkoutSessionManager`): real-time HR + zone
 - [x] 4×4 interval engine + haptics (`IntervalEngine`)
-- [x] save `HKWorkout` (WatchConnectivity phone sync left as TODO)
+- [x] save `HKWorkout` + send to phone (`Watch/WorkoutSync.swift`, WCSession message + transferUserInfo fallback)
+- [x] phone⇄watch sync code: `App/Sync/PhoneSessionReceiver.swift` (WCSessionDelegate → dedupe by `healthUUID` → `WorkoutLog`), activated in app. iOS builds; dedupe + transfer round-trip unit-tested (32/32 green)
 - [ ] **BLOCKER:** watchOS 26.5 SDK not installed → can't compile watch target. Run `xcodebuild -downloadPlatform watchOS` before building.
-- [ ] phone⇄watch sync (WatchConnectivity)
-- [ ] tested on physical Apple Watch (live HR + haptics need real hardware)
+- [ ] tested on physical Apple Watch (live HR + haptics + end-to-end sync need real hardware)
+
+Tracked as Spectra change `watch-phone-sync` (`spectra status`).
 
 ## Phase 5 — App Store readiness — docs + icon drafted; submission pending dev account
 - [x] app icon (1024² placeholder in `App/Assets.xcassets/AppIcon.appiconset`) — replace art before release

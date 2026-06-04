@@ -129,13 +129,26 @@ final class WorkoutSessionManager: NSObject, @unchecked Sendable {
         guard let builder else { return }
         let endDate = Date()
         builder.endCollection(withEnd: endDate) { [weak self] _, _ in
-            builder.finishWorkout { _, _ in
-                // `workout` (HKWorkout?) is now persisted to Health.
-                // TODO: WatchConnectivity sync to phone
+            builder.finishWorkout { workout, _ in
+                // `workout` (HKWorkout?) is now persisted to Health. Forward it to the iPhone.
+                let energyKcal = builder.statistics(for: HKQuantityType(.activeEnergyBurned))?
+                    .sumQuantity()?.doubleValue(for: .kilocalorie())
                 Task { @MainActor in
-                    self?.isRunning = false
-                    self?.session = nil
-                    self?.builder = nil
+                    guard let self else { return }
+                    if let workout {
+                        let type: SessionType = self.kind == .fourByFour ? .norwegian4x4 : .zone2
+                        let transfer = WorkoutTransfer(
+                            healthUUID: workout.uuid.uuidString,
+                            date: workout.startDate,
+                            type: type,
+                            durationMin: Int((workout.duration / 60).rounded()),
+                            energyKcal: energyKcal.map { Int($0.rounded()) }
+                        )
+                        WatchWorkoutSender.shared.send(transfer)
+                    }
+                    self.isRunning = false
+                    self.session = nil
+                    self.builder = nil
                 }
             }
         }
