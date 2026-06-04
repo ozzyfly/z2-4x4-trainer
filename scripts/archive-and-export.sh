@@ -59,6 +59,10 @@ xcodebuild -exportArchive \
 echo "✓ Exported: ${IPA}"
 
 if [ "${1:-}" = "--upload" ]; then
+  # altool locates the key by ID in a known dir; place a copy there.
+  KEYDIR="$HOME/.appstoreconnect/private_keys"
+  mkdir -p "$KEYDIR"
+  cp "$ASC_KEY_PATH" "$KEYDIR/AuthKey_${ASC_KEY_ID}.p8"
   echo "▶︎ Validating…"
   xcrun altool --validate-app -f "${IPA}" -t ios \
     --apiKey "${ASC_KEY_ID}" --apiIssuer "${ASC_ISSUER_ID}"
