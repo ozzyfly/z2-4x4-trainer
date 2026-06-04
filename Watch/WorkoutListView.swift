@@ -4,6 +4,8 @@ import SharedCore
 /// Entry screen: pick a session to start.
 struct WorkoutListView: View {
     @State private var manager: WorkoutSessionManager
+    /// Honors `-autostart4x4` to auto-open the 4×4 live screen for UI screenshots.
+    @State private var autoStart4x4 = ProcessInfo.processInfo.arguments.contains("-autostart4x4")
 
     init() {
         // A sensible default profile; on a real device this would come from
@@ -31,6 +33,9 @@ struct WorkoutListView: View {
                 }
             }
             .navigationTitle("Train")
+            .navigationDestination(isPresented: $autoStart4x4) {
+                LiveWorkoutView(manager: manager, kind: .fourByFour)
+            }
             .task {
                 try? await manager.requestAuthorization()
             }
