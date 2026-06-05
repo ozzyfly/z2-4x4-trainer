@@ -1,5 +1,9 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-06-05: v1.0 SUBMITTED to the App Store — state WAITING_FOR_REVIEW.** App id 6776864990,
+> team 2NXQLV6CJH, build 2 (real icon). All metadata/screenshots/age-rating/pricing(Free)/privacy
+> set headlessly via the App Store Connect API. Awaiting Apple review.
+
 Single source of truth for build progress. Read on Mac (Spectra + terminal) and iPhone
 (GitHub app + claude.ai/code web). Update + commit at the end of every work session.
 
