@@ -4,9 +4,9 @@
 
 ## 1. 帳號與簽章 (Requirement: Distributable signed build)
 
-- [ ] 1.1 加入 Apple Developer Program（$99/年），於 portal 註冊 App ID `ca.logolo.z24x4.Z24x4Trainer` 並啟用 HealthKit capability。
+- [x] 1.1 加入 Apple Developer Program（$99/年），於 portal 註冊 App ID `ca.logolo.z24x4.Z24x4Trainer` 並啟用 HealthKit capability。
   行為：開發者團隊下存在啟用 HealthKit 的 App ID。驗證：Apple Developer portal 顯示該 App ID 與 capability。
-- [ ] 1.2 在 Xcode 開啟 automatic signing，產生 `Z24x4Trainer` 的 distribution archive 並上傳 App Store Connect。
+- [x] 1.2 在 Xcode 開啟 automatic signing，產生 `Z24x4Trainer` 的 distribution archive 並上傳 App Store Connect。
   行為：archive 通過驗證並上傳，無簽章/capability 錯誤。驗證：對應 spec 場景「Archive uploads to App Store Connect」，App Store Connect 出現該 build。
 
 ## 2. 隱私合規 (Requirement: Privacy compliance for HealthKit)
