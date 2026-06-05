@@ -26,7 +26,7 @@ targets:
       base:
         GENERATE_INFOPLIST_FILE: YES
         MARKETING_VERSION: "1.0.0"
-        CURRENT_PROJECT_VERSION: "1"
+        CURRENT_PROJECT_VERSION: "2"
         PRODUCT_BUNDLE_IDENTIFIER: ca.logolo.z24x4.Z24x4Trainer
         INFOPLIST_KEY_CFBundleDisplayName: "Z2/4×4 Trainer"
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
@@ -55,7 +55,7 @@ targets:
       base:
         GENERATE_INFOPLIST_FILE: YES
         MARKETING_VERSION: "1.0.0"
-        CURRENT_PROJECT_VERSION: "1"
+        CURRENT_PROJECT_VERSION: "2"
         PRODUCT_BUNDLE_IDENTIFIER: ca.logolo.z24x4.Z24x4Trainer.watchkitapp
         INFOPLIST_KEY_CFBundleDisplayName: "Z2/4×4 Trainer"
         INFOPLIST_KEY_WKApplication: YES

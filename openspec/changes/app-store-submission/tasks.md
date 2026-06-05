@@ -20,7 +20,7 @@
 
 - [ ] 3.1 以最終美術取代 `App/Assets.xcassets/AppIcon.appiconset` 的 1024² 佔位圖示。
   行為：App icon 為正式美術（非佔位）。驗證：`sips -g pixelWidth -g pixelHeight` 為 1024×1024 且 hasAlpha=no，並非佔位漸層。
-- [ ] 3.2 擷取 iPhone 6.9"/6.5" 截圖；依 `docs/app-store/METADATA.md` 填入名稱/副標/描述/關鍵字/分類。
+- [x] 3.2 擷取 iPhone 6.9"/6.5" 截圖；依 `docs/app-store/METADATA.md` 填入名稱/副標/描述/關鍵字/分類。
   行為：上架頁面資訊完整、截圖齊備。驗證：對應 spec 場景「Listing is complete」，App Store Connect 必填欄位皆綠。
 
 ## 4. 測試與送審 (Requirement: TestFlight build passes before submission)
