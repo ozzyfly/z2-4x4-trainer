@@ -33,7 +33,7 @@ targets:
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
         INFOPLIST_KEY_NSHealthShareUsageDescription: "Reads your heart rate, workouts, active energy, resting heart rate and body weight to calculate your training zones and weekly targets."
         INFOPLIST_KEY_NSHealthUpdateUsageDescription: "Saves your Zone 2 and Norwegian 4×4 workouts to Apple Health."
-        TARGETED_DEVICE_FAMILY: "1,2"
+        TARGETED_DEVICE_FAMILY: "1"
         SWIFT_VERSION: "6.0"
         # Distribution signing: team passed at archive time
         # (`DEVELOPMENT_TEAM=XXXX … -allowProvisioningUpdates`).

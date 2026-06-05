@@ -64,10 +64,11 @@ Tracked as Spectra change `watch-phone-sync` (`spectra status`).
 - [x] metadata draft (`docs/app-store/METADATA.md`)
 - [x] real App Store screenshots captured @ 1320×2868 (6.9") → `docs/app-store/screenshots/`
 - [x] release config: version → 1.0.0, `CODE_SIGN_STYLE: Automatic`, `scripts/archive-and-export.sh`, `docs/app-store/ExportOptions.plist`; Release config compiles for device
-- [ ] **enroll Apple Developer Program ($99/yr)** — user action; then provide Team ID
-- [ ] archive + upload (`DEVELOPMENT_TEAM=… scripts/archive-and-export.sh`) — needs Team ID
+- [x] enrolled Apple Developer Program — **real Team ID `2NXQLV6CJH`** (not HF6XYU9Y2N)
+- [x] **signed + archived + uploaded to App Store Connect** (build delivered, UUID f8e45007-…) — headless via ASC API: created distribution cert + bundle id (HealthKit) + App Store profile, manual-signed archive, `altool` upload. App is **iPhone-only** (`TARGETED_DEVICE_FAMILY: "1"`).
 - [ ] host privacy policy (enable GitHub Pages on `/docs`) — needs push
-- [ ] enter metadata + privacy label in App Store Connect — user action
+- [ ] enter metadata + privacy label + screenshots in App Store Connect — user action (drafts/screenshots ready in `docs/app-store/`)
+- [ ] replace placeholder app icon with final art
 - [ ] TestFlight internal test → submit for review — user action
 
 Tracked as Spectra change `app-store-submission` (`spectra status`).
