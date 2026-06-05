@@ -66,3 +66,25 @@ targets:
         TARGETED_DEVICE_FAMILY: "4"
         SWIFT_VERSION: "6.0"
         CODE_SIGN_STYLE: Automatic
+
+  Z24x4TrainerTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests
+    dependencies:
+      - target: Z24x4Trainer
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        SWIFT_VERSION: "6.0"
+
+schemes:
+  Z24x4Trainer:
+    build:
+      targets:
+        Z24x4Trainer: all
+        Z24x4TrainerTests: [test]
+    test:
+      targets:
+        - Z24x4TrainerTests
