@@ -3,6 +3,12 @@
 > **2026-06-05: v1.0 SUBMITTED to the App Store — state WAITING_FOR_REVIEW.** App id 6776864990,
 > team 2NXQLV6CJH, build 2 (real icon). All metadata/screenshots/age-rating/pricing(Free)/privacy
 > set headlessly via the App Store Connect API. Awaiting Apple review.
+>
+> **2026-06-05: UI/UX refresh done (Spectra `ui-ux-refresh` [6/6]).** Shared design system
+> (`App/DesignSystem/`: Theme + AccentColor, Card/SectionHeader/TargetBar/PrimaryButton/ZoneChip,
+> ZoneStyle) + all screens restyled clean/minimal card-led, light+dark, motion + haptics + a11y.
+> Built by 3 agents (1 foundation + 2 parallel), integrated + verified (iOS build, 32+3 tests,
+> watch build, every screen screenshotted both modes). Presentation-only — targets the NEXT version.
 
 Single source of truth for build progress. Read on Mac (Spectra + terminal) and iPhone
 (GitHub app + claude.ai/code web). Update + commit at the end of every work session.

@@ -46,14 +46,21 @@ struct WorkoutListView: View {
 private struct WorkoutRow: View {
     let kind: WatchWorkoutKind
 
+    private var tint: Color { kind == .zone2 ? .green : .orange }
+
     var body: some View {
-        HStack {
+        HStack(spacing: 10) {
             Image(systemName: kind == .zone2 ? "heart.fill" : "bolt.heart.fill")
-                .foregroundStyle(kind == .zone2 ? .green : .orange)
+                .font(.system(size: 15, weight: .semibold))
+                .foregroundStyle(tint)
+                .frame(width: 30, height: 30)
+                .background(tint.opacity(0.18), in: Circle())
             Text(kind.title)
                 .font(.headline)
+                .fontWeight(.semibold)
+            Spacer(minLength: 0)
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 6)
     }
 }
 

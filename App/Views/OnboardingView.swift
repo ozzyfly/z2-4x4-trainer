@@ -13,52 +13,108 @@ struct OnboardingView: View {
     @State private var activity: ActivityLevel = .moderate
     @State private var goalIsLose = false
     @State private var loseRate = 0.5
+    @State private var didSave = false
 
     var body: some View {
         NavigationStack {
-            Form {
-                Section("About you") {
+            ScrollView {
+                VStack(alignment: .leading, spacing: Spacing.xl) {
+                    header
+
+                    aboutSection
+
+                    activitySection
+
+                    goalSection
+
+                    Button(action: save) {
+                        Label("Get started", systemImage: "arrow.right.circle.fill")
+                    }
+                    .buttonStyle(PrimaryButton())
+                }
+                .padding(Spacing.lg)
+            }
+            .background(Theme.background)
+            .navigationBarTitleDisplayMode(.inline)
+        }
+        .tint(Theme.accent)
+        .sensoryFeedback(.success, trigger: didSave)
+    }
+
+    // MARK: - Sections
+
+    private var header: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            Image(systemName: "bolt.heart.fill")
+                .font(.title)
+                .foregroundStyle(Theme.accent)
+                .frame(width: 52, height: 52)
+                .background(Theme.accent.opacity(0.12), in: RoundedRectangle(cornerRadius: Radius.md, style: .continuous))
+            Text("Z2 / 4×4 Trainer")
+                .font(.rounded(.largeTitle, weight: .bold))
+                .foregroundStyle(Theme.label)
+            Text("Personalised heart-rate zones for Zone 2 base and Norwegian 4×4 sessions.")
+                .font(.subheadline)
+                .foregroundStyle(Theme.secondaryLabel)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    private var aboutSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("About you")
+            Card {
+                VStack(spacing: Spacing.md) {
                     Stepper("Age: \(age)", value: $age, in: 12...100)
+                    Divider()
                     Picker("Sex", selection: $sex) {
                         ForEach(BiologicalSex.allCases, id: \.self) {
                             Text($0.rawValue.capitalized).tag($0)
                         }
                     }
+                    Divider()
                     LabeledContent("Weight (kg)") {
                         TextField("kg", value: $weightKg, format: .number)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
                     }
+                    Divider()
                     LabeledContent("Height (cm)") {
                         TextField("cm", value: $heightCm, format: .number)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
                     }
                 }
+            }
+        }
+    }
 
-                Section("Daily activity") {
-                    Picker("Activity", selection: $activity) {
-                        ForEach(ActivityLevel.allCases, id: \.self) {
-                            Text($0.rawValue).tag($0)
-                        }
+    private var activitySection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("Daily activity")
+            Card {
+                Picker("Activity", selection: $activity) {
+                    ForEach(ActivityLevel.allCases, id: \.self) {
+                        Text($0.rawValue).tag($0)
                     }
                 }
+            }
+        }
+    }
 
-                Section("Goal") {
+    private var goalSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("Goal")
+            Card {
+                VStack(spacing: Spacing.md) {
                     Toggle("Lose weight", isOn: $goalIsLose)
                     if goalIsLose {
+                        Divider()
                         Stepper("Rate: \(loseRate, specifier: "%.2f") kg/week",
                                 value: $loseRate, in: 0.25...1.0, step: 0.25)
                     }
                 }
-
-                Section {
-                    Button("Get started", action: save)
-                        .frame(maxWidth: .infinity)
-                        .bold()
-                }
             }
-            .navigationTitle("Welcome")
         }
     }
 
@@ -68,5 +124,6 @@ struct OnboardingView: View {
             activity: activity, goalIsLose: goalIsLose, loseRateKgPerWeek: loseRate
         )
         context.insert(record)
+        didSave = true
     }
 }

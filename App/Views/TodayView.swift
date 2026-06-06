@@ -16,50 +16,28 @@ struct TodayView: View {
         let today = plan.session(on: .now)
         let daily = TargetsCalculator.daily(profile: p, plan: plan)
         let progress = TargetProgress(done: todaysMinutes, target: daily.trainingMinutes)
+        let isRest = today.type == .rest
 
         NavigationStack {
-            List {
-                Section("Today's session") {
-                    if today.type == .rest {
-                        Label("Rest day — recover well.", systemImage: "moon.zzz.fill")
-                    } else {
-                        NavigationLink {
-                            WorkoutDetailView(type: today.type, calc: calc)
-                        } label: {
-                            SessionRow(type: today.type, durationMin: today.durationMin)
-                        }
-                    }
-                }
+            ScrollView {
+                VStack(alignment: .leading, spacing: Spacing.xl) {
+                    header
 
-                Section("Your zones") {
-                    ZoneRow(title: "Zone 2 (aerobic)", range: calc.zone2)
-                    ZoneRow(title: "4×4 hard", range: calc.fourByFourHard)
-                    LabeledContent("Max HR", value: "\(calc.maxHR) bpm")
-                }
+                    sessionSection(today: today, calc: calc, isRest: isRest)
 
-                Section("Daily target") {
-                    VStack(alignment: .leading, spacing: 6) {
-                        ProgressView(value: progress.fraction)
-                        Text("\(progress.done) / \(progress.target) min"
-                             + (progress.isMet ? " ✓" : " · \(progress.remaining) to go"))
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                    if health.todayEnergy > 0 {
-                        LabeledContent("Active energy today", value: "\(health.todayEnergy) kcal")
-                    }
-                }
+                    zonesSection(calc: calc)
 
-                Section {
-                    NavigationLink {
-                        ManualEntryView(defaultType: today.type == .rest ? .zone2 : today.type)
-                    } label: {
-                        Label("Log a workout", systemImage: "plus.circle.fill")
-                    }
+                    targetSection(progress: progress)
+
+                    actionsSection(today: today, calc: calc, isRest: isRest)
                 }
+                .padding(Spacing.lg)
             }
+            .background(Theme.background)
             .navigationTitle("Today")
         }
+        .tint(Theme.accent)
+        .sensoryFeedback(.success, trigger: progress.isMet)
         .task {
             if health.authorized {
                 await health.refresh(context: context)
@@ -67,10 +45,156 @@ struct TodayView: View {
         }
     }
 
+    // MARK: - Sections
+
+    private var header: some View {
+        Text(Self.dateFormatter.string(from: .now))
+            .font(.rounded(.headline, weight: .medium))
+            .foregroundStyle(Theme.secondaryLabel)
+    }
+
+    @ViewBuilder
+    private func sessionSection(today: PlannedSession, calc: HRZoneCalculator, isRest: Bool) -> some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("Today's session")
+
+            if isRest {
+                Card {
+                    HStack(spacing: Spacing.md) {
+                        Image(systemName: today.type.systemImage)
+                            .font(.title2)
+                            .foregroundStyle(Theme.accent)
+                            .frame(width: 44, height: 44)
+                            .background(Theme.accent.opacity(0.12), in: Circle())
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Rest day")
+                                .font(.rounded(.title3, weight: .semibold))
+                                .foregroundStyle(Theme.label)
+                            Text("Recover well.")
+                                .font(.subheadline)
+                                .foregroundStyle(Theme.secondaryLabel)
+                        }
+                        Spacer()
+                    }
+                }
+            } else {
+                NavigationLink {
+                    WorkoutDetailView(type: today.type, calc: calc)
+                } label: {
+                    HStack(spacing: Spacing.md) {
+                        Image(systemName: today.type.systemImage)
+                            .font(.title2)
+                            .foregroundStyle(Theme.accent)
+                            .frame(width: 44, height: 44)
+                            .background(Theme.accent.opacity(0.12), in: Circle())
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(today.type.displayName)
+                                .font(.rounded(.title3, weight: .semibold))
+                                .foregroundStyle(Theme.label)
+                            Text("\(today.durationMin) min")
+                                .numericStyle(.subheadline)
+                                .foregroundStyle(Theme.secondaryLabel)
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(Theme.secondaryLabel)
+                    }
+                    .card()
+                }
+                .buttonStyle(.plain)
+            }
+        }
+    }
+
+    private func zonesSection(calc: HRZoneCalculator) -> some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("Your zones")
+            Card {
+                VStack(alignment: .leading, spacing: Spacing.md) {
+                    HStack(spacing: Spacing.sm) {
+                        ZoneChip(title: "Zone 2", range: rangeText(calc.zone2), color: HRZone.zone2.color)
+                        ZoneChip(title: "4×4 hard", range: rangeText(calc.fourByFourHard), color: HRZone.zone4.color)
+                    }
+                    ZoneChip(title: "Max HR", range: "\(calc.maxHR) bpm", color: HRZone.zone5.color)
+                }
+            }
+        }
+    }
+
+    private func targetSection(progress: TargetProgress) -> some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("Daily target")
+            Card {
+                VStack(alignment: .leading, spacing: Spacing.md) {
+                    TargetBar(done: progress.done, target: progress.target)
+                    if health.todayEnergy > 0 {
+                        Divider()
+                        HStack {
+                            Label {
+                                Text("Active energy")
+                                    .font(.subheadline)
+                                    .foregroundStyle(Theme.secondaryLabel)
+                            } icon: {
+                                Image(systemName: "flame.fill")
+                                    .foregroundStyle(.orange)
+                            }
+                            Spacer()
+                            Text("\(health.todayEnergy) kcal")
+                                .numericStyle(.subheadline.weight(.semibold))
+                                .foregroundStyle(Theme.label)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func actionsSection(today: PlannedSession, calc: HRZoneCalculator, isRest: Bool) -> some View {
+        VStack(spacing: Spacing.md) {
+            if !isRest {
+                NavigationLink {
+                    WorkoutDetailView(type: today.type, calc: calc)
+                } label: {
+                    Label("Start workout", systemImage: "play.fill")
+                }
+                .buttonStyle(PrimaryButton())
+            }
+
+            NavigationLink {
+                ManualEntryView(defaultType: isRest ? .zone2 : today.type)
+            } label: {
+                Label("Log a workout", systemImage: "plus.circle.fill")
+                    .font(.headline)
+                    .foregroundStyle(Theme.accent)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, Spacing.md)
+                    .background(
+                        RoundedRectangle(cornerRadius: Radius.md, style: .continuous)
+                            .fill(Theme.accent.opacity(0.12))
+                    )
+            }
+            .buttonStyle(.plain)
+        }
+    }
+
+    // MARK: - Helpers
+
+    private func rangeText(_ range: HRRange) -> String {
+        "\(range.lower)–\(range.upper)"
+    }
+
     private var todaysMinutes: Int {
         let cal = Calendar.current
         return logs.filter { cal.isDateInToday($0.date) }.reduce(0) { $0 + $1.durationMin }
     }
+
+    private static let dateFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "EEEE, MMM d"
+        return f
+    }()
 }
 
 /// Display helpers shared by the workout screens.
@@ -115,4 +239,15 @@ struct ZoneRow: View {
     var body: some View {
         LabeledContent(title, value: "\(range.lower)–\(range.upper) bpm")
     }
+}
+
+#Preview {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: ProfileRecord.self, WorkoutLog.self, configurations: config)
+    let profile = ProfileRecord(age: 30, sex: .male, weightKg: 80, heightCm: 180)
+    container.mainContext.insert(profile)
+    container.mainContext.insert(WorkoutLog(type: .zone2, durationMin: 20, activeEnergyKcal: 180))
+    let health = HealthStore(provider: PreviewHealthService())
+    return TodayView(profile: profile, health: health)
+        .modelContainer(container)
 }

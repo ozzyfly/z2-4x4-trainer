@@ -40,51 +40,74 @@ struct HistoryView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                Section("This week's training minutes") {
-                    if hasTrainingData {
-                        Chart(weeklyByWeekday) { day in
-                            BarMark(
-                                x: .value("Day", day.label),
-                                y: .value("Minutes", day.minutes)
-                            )
-                            .foregroundStyle(.tint)
-                        }
-                        .frame(height: 200)
-                    } else {
-                        ContentUnavailableView(
-                            "No workouts yet",
-                            systemImage: "chart.bar.fill",
-                            description: Text("Log a workout or connect Apple Health to see your week.")
-                        )
-                    }
+            ScrollView {
+                VStack(alignment: .leading, spacing: Spacing.xl) {
+                    minutesSection
+                    weightSection
                 }
+                .padding(Spacing.lg)
+            }
+            .background(Theme.background)
+            .navigationTitle("History")
+        }
+        .tint(Theme.accent)
+    }
 
-                Section("Body weight trend") {
-                    if weightPoints.count > 1 {
-                        Chart(weightPoints) { point in
-                            LineMark(
-                                x: .value("Date", point.date),
-                                y: .value("Weight (kg)", point.kg)
-                            )
-                            .interpolationMethod(.catmullRom)
-                            PointMark(
-                                x: .value("Date", point.date),
-                                y: .value("Weight (kg)", point.kg)
-                            )
-                        }
-                        .chartYScale(domain: .automatic(includesZero: false))
-                        .frame(height: 200)
-                    } else {
-                        ContentUnavailableView(
-                            "No weight data",
-                            systemImage: "scalemass.fill",
-                            description: Text("Connect Apple Health in Settings to track your weight.")
+    // MARK: - Sections
+
+    private var minutesSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("This week's training minutes")
+            Card {
+                if hasTrainingData {
+                    Chart(weeklyByWeekday) { day in
+                        BarMark(
+                            x: .value("Day", day.label),
+                            y: .value("Minutes", day.minutes)
                         )
+                        .foregroundStyle(Theme.accent)
+                        .cornerRadius(Radius.sm)
                     }
+                    .frame(height: 200)
+                } else {
+                    ContentUnavailableView(
+                        "No workouts yet",
+                        systemImage: "chart.bar.fill",
+                        description: Text("Log a workout or connect Apple Health to see your week.")
+                    )
                 }
             }
-            .navigationTitle("History")
+        }
+    }
+
+    private var weightSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("Body weight trend")
+            Card {
+                if weightPoints.count > 1 {
+                    Chart(weightPoints) { point in
+                        LineMark(
+                            x: .value("Date", point.date),
+                            y: .value("Weight (kg)", point.kg)
+                        )
+                        .foregroundStyle(HRZone.zone2.color)
+                        .interpolationMethod(.catmullRom)
+                        PointMark(
+                            x: .value("Date", point.date),
+                            y: .value("Weight (kg)", point.kg)
+                        )
+                        .foregroundStyle(HRZone.zone2.color)
+                    }
+                    .chartYScale(domain: .automatic(includesZero: false))
+                    .frame(height: 200)
+                } else {
+                    ContentUnavailableView(
+                        "No weight data",
+                        systemImage: "scalemass.fill",
+                        description: Text("Connect Apple Health in Settings to track your weight.")
+                    )
+                }
+            }
         }
     }
 }

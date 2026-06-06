@@ -82,5 +82,6 @@ struct MainTabView: View {
                 .tabItem { Label("Settings", systemImage: "gearshape.fill") }
                 .tag(3)
         }
+        .tint(Theme.accent)
     }
 }

@@ -14,40 +14,113 @@ struct WeekView: View {
         let calc = HRZoneCalculator(profile: p)
         let plan = TrainingPlan.weekly(for: p.goal)
         let weekly = TargetsCalculator.weekly(profile: p, plan: plan)
-        let minutesProgress = TargetProgress(done: weekMinutes, target: weekly.trainingMinutes)
+        let sessions = plan.sessions.sorted { $0.day < $1.day }
 
         NavigationStack {
-            List {
-                Section("This week's plan") {
-                    ForEach(plan.sessions.sorted { $0.day < $1.day }, id: \.day) { s in
-                        if s.type == .rest {
-                            LabeledContent(Self.weekdayNames[s.day - 1], value: "Rest")
-                                .foregroundStyle(.secondary)
-                        } else {
-                            NavigationLink {
-                                WorkoutDetailView(type: s.type, calc: calc)
-                            } label: {
-                                LabeledContent("\(Self.weekdayNames[s.day - 1])  ·  \(s.type.displayName)",
-                                               value: "\(s.durationMin) min")
-                            }
+            ScrollView {
+                VStack(alignment: .leading, spacing: Spacing.xl) {
+                    planSection(sessions: sessions, calc: calc)
+                    targetSection(weekly: weekly)
+                }
+                .padding(Spacing.lg)
+            }
+            .background(Theme.background)
+            .navigationTitle("Week")
+        }
+        .tint(Theme.accent)
+    }
+
+    // MARK: - Sections
+
+    private func planSection(sessions: [PlannedSession], calc: HRZoneCalculator) -> some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("This week's plan")
+            Card(padding: Spacing.xs) {
+                VStack(spacing: 0) {
+                    ForEach(Array(sessions.enumerated()), id: \.element.day) { index, s in
+                        dayRow(session: s, calc: calc)
+                        if index < sessions.count - 1 {
+                            Divider()
+                                .padding(.leading, Spacing.md)
                         }
                     }
                 }
+            }
+        }
+    }
 
-                Section("Weekly target") {
-                    VStack(alignment: .leading, spacing: 6) {
-                        ProgressView(value: minutesProgress.fraction)
-                        Text("\(minutesProgress.done) / \(minutesProgress.target) min")
-                            .font(.caption).foregroundStyle(.secondary)
-                    }
-                    LabeledContent("Hard (4×4) sessions", value: "\(weekly.hardSessions)/week")
+    @ViewBuilder
+    private func dayRow(session s: PlannedSession, calc: HRZoneCalculator) -> some View {
+        let weekday = Self.weekdayNames[s.day - 1]
+        if s.type == .rest {
+            DayRow(weekday: weekday, title: "Rest", detail: nil, isRest: true, showsChevron: false)
+        } else {
+            NavigationLink {
+                WorkoutDetailView(type: s.type, calc: calc)
+            } label: {
+                DayRow(
+                    weekday: weekday,
+                    title: s.type.displayName,
+                    detail: "\(s.durationMin) min",
+                    isRest: false,
+                    showsChevron: true
+                )
+            }
+            .buttonStyle(.plain)
+        }
+    }
+
+    private func targetSection(weekly: WeeklyTargets) -> some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("Weekly target")
+            Card {
+                VStack(alignment: .leading, spacing: Spacing.md) {
+                    TargetBar(
+                        done: weekMinutes,
+                        target: weekly.trainingMinutes,
+                        label: "Weekly target"
+                    )
+
+                    Divider()
+
+                    statRow(
+                        icon: "bolt.heart.fill",
+                        iconColor: HRZone.zone4.color,
+                        title: "Hard (4×4) sessions",
+                        value: "\(weekly.hardSessions)/week"
+                    )
+
                     if let energy = weekly.activeEnergyKcal {
-                        LabeledContent("Exercise energy", value: "\(energy) kcal/week")
+                        Divider()
+                        statRow(
+                            icon: "flame.fill",
+                            iconColor: .orange,
+                            title: "Exercise energy",
+                            value: "\(energy) kcal/week"
+                        )
                     }
                 }
             }
-            .navigationTitle("Week")
         }
+    }
+
+    private func statRow(icon: String, iconColor: Color, title: String, value: String) -> some View {
+        HStack {
+            Label {
+                Text(title)
+                    .font(.subheadline)
+                    .foregroundStyle(Theme.secondaryLabel)
+            } icon: {
+                Image(systemName: icon)
+                    .foregroundStyle(iconColor)
+            }
+            Spacer()
+            Text(value)
+                .numericStyle(.subheadline.weight(.semibold))
+                .foregroundStyle(Theme.label)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(title), \(value)")
     }
 
     private var weekMinutes: Int {
@@ -55,5 +128,53 @@ struct WeekView: View {
         return logs
             .filter { cal.isDate($0.date, equalTo: .now, toGranularity: .weekOfYear) }
             .reduce(0) { $0 + $1.durationMin }
+    }
+}
+
+/// A single weekday row in the plan card.
+private struct DayRow: View {
+    let weekday: String
+    let title: String
+    let detail: String?
+    let isRest: Bool
+    let showsChevron: Bool
+
+    var body: some View {
+        HStack(spacing: Spacing.md) {
+            Text(weekday)
+                .font(.rounded(.subheadline, weight: .semibold))
+                .foregroundStyle(isRest ? Theme.secondaryLabel : Theme.label)
+                .frame(width: 40, alignment: .leading)
+
+            Text(title)
+                .font(.subheadline)
+                .foregroundStyle(isRest ? Theme.secondaryLabel : Theme.label)
+
+            Spacer()
+
+            if let detail {
+                Text(detail)
+                    .numericStyle(.subheadline)
+                    .foregroundStyle(Theme.secondaryLabel)
+            }
+
+            if showsChevron {
+                Image(systemName: "chevron.right")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(Theme.secondaryLabel)
+            }
+        }
+        .padding(.horizontal, Spacing.md)
+        .padding(.vertical, Spacing.md)
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(accessibilityText)
+    }
+
+    private var accessibilityText: String {
+        if let detail {
+            return "\(weekday), \(title), \(detail)"
+        }
+        return "\(weekday), \(title)"
     }
 }
