@@ -1,4 +1,5 @@
 import Foundation
+import SharedCore
 
 /// A workout summary pulled from Apple Health (source-agnostic).
 struct HealthWorkout {
@@ -27,4 +28,7 @@ protocol HealthProviding: Sendable {
 
     /// Workouts completed in the last `days` days.
     func recentWorkouts(days: Int) async -> [HealthWorkout]
+
+    /// VO2max samples over the last `days` days, oldest first.
+    func vo2MaxSeries(days: Int) async -> [VO2MaxSample]
 }

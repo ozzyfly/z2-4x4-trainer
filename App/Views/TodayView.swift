@@ -18,10 +18,22 @@ struct TodayView: View {
         let progress = TargetProgress(done: todaysMinutes, target: daily.trainingMinutes)
         let isRest = today.type == .rest
 
+        let history = logs.map {
+            WorkoutRecord(date: $0.date, type: $0.type, durationMin: $0.durationMin, energyKcal: $0.activeEnergyKcal)
+        }
+        let adapted = PlanProgression.adjust(base: plan, history: history, profile: p)
+
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: Spacing.xl) {
                     header
+
+                    StreakBanner(
+                        currentWeeks: StreakCalculator.currentWeeks(in: history),
+                        longestWeeks: StreakCalculator.longestWeeks(in: history)
+                    )
+
+                    coachSection(base: plan, adapted: adapted)
 
                     sessionSection(today: today, calc: calc, isRest: isRest)
 
@@ -51,6 +63,48 @@ struct TodayView: View {
         Text(Self.dateFormatter.string(from: .now))
             .font(.rounded(.headline, weight: .medium))
             .foregroundStyle(Theme.secondaryLabel)
+    }
+
+    private func coachSection(base: TrainingPlan, adapted: TrainingPlan) -> some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("Your coach")
+            Card {
+                HStack(alignment: .top, spacing: Spacing.md) {
+                    Image(systemName: "figure.run.circle.fill")
+                        .font(.title2)
+                        .foregroundStyle(Theme.accent)
+                        .frame(width: 44, height: 44)
+                        .background(Theme.accent.opacity(0.12), in: Circle())
+                    VStack(alignment: .leading, spacing: Spacing.xs) {
+                        Text(weekSummary(for: adapted))
+                            .font(.rounded(.headline, weight: .semibold))
+                            .foregroundStyle(Theme.label)
+                        Text(coachingTip(base: base, adapted: adapted))
+                            .font(.subheadline)
+                            .foregroundStyle(Theme.secondaryLabel)
+                    }
+                    Spacer(minLength: 0)
+                }
+            }
+        }
+    }
+
+    private func weekSummary(for plan: TrainingPlan) -> String {
+        let zone2Count = plan.sessions.filter { $0.type == .zone2 }.count
+        let hardCount = plan.weeklyHardSessions
+        return "This week: \(zone2Count) Zone 2 + \(hardCount) × 4×4, ~\(plan.weeklyTrainingMinutes) min"
+    }
+
+    private func coachingTip(base: TrainingPlan, adapted: TrainingPlan) -> String {
+        let baseMin = base.weeklyTrainingMinutes
+        let adaptedMin = adapted.weeklyTrainingMinutes
+        if adaptedMin > baseMin {
+            return "Progressing — nice consistency!"
+        } else if adaptedMin < baseMin {
+            return "Deload week — keep it easy."
+        } else {
+            return "Holding steady — finish this week strong."
+        }
     }
 
     @ViewBuilder

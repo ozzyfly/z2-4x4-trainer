@@ -10,7 +10,7 @@ public enum HRZone: Int, CaseIterable, Sendable {
 }
 
 /// Inclusive heart-rate band in beats per minute.
-public struct HRRange: Equatable, Sendable {
+public struct HRRange: Equatable, Sendable, Codable {
     public let lower: Int
     public let upper: Int
     public init(lower: Int, upper: Int) {
@@ -22,18 +22,31 @@ public struct HRRange: Equatable, Sendable {
 
 /// Derives personalised heart-rate zones from a profile.
 ///
-/// Uses the age-based estimate maxHR = 220 − age unless the user supplies an override.
-/// Karvonen (heart-rate-reserve) is intentionally not used yet; `restingHR` is captured
-/// on the profile so it can be added without changing call sites.
+/// The estimate maxHR = 220 − age is used unless the user supplies an override. The
+/// `zoneMethod` selects how the bands are derived:
+/// - `.ageMax`: percent of maxHR (the original behaviour).
+/// - `.karvonen`: heart-rate reserve, resting + pct·(max − resting); falls back to age-max
+///   when no resting HR is available.
+/// - `.custom`: user-supplied bands indexed by zone; falls back to age-max when a band is
+///   missing.
 public struct HRZoneCalculator: Sendable {
     public let maxHR: Int
+    private let method: ZoneMethod
+    private let restingHR: Int?
+    private let customZones: [HRRange]?
 
     public init(maxHR: Int) {
         self.maxHR = maxHR
+        self.method = .ageMax
+        self.restingHR = nil
+        self.customZones = nil
     }
 
     public init(profile: UserProfile) {
         self.maxHR = profile.maxHROverride ?? (220 - profile.age)
+        self.method = profile.zoneMethod
+        self.restingHR = profile.restingHR
+        self.customZones = profile.customZones
     }
 
     private func bpm(_ percent: Double) -> Int {
@@ -51,17 +64,57 @@ public struct HRZoneCalculator: Sendable {
         }
     }
 
-    public func range(for zone: HRZone) -> HRRange {
+    /// Age-max band for a zone (percent of maxHR). This is the fallback for every method.
+    private func ageMaxRange(for zone: HRZone) -> HRRange {
         let b = bounds(for: zone)
         return HRRange(lower: bpm(b.lower), upper: bpm(b.upper))
+    }
+
+    /// Karvonen / heart-rate-reserve band: resting + pct·(max − resting).
+    private func karvonenRange(for zone: HRZone, resting: Int) -> HRRange {
+        let reserve = Double(maxHR - resting)
+        let b = bounds(for: zone)
+        let lower = Double(resting) + b.lower * reserve
+        let upper = Double(resting) + b.upper * reserve
+        return HRRange(lower: Int(lower.rounded()), upper: Int(upper.rounded()))
+    }
+
+    public func range(for zone: HRZone) -> HRRange {
+        switch method {
+        case .ageMax:
+            return ageMaxRange(for: zone)
+        case .karvonen:
+            guard let resting = restingHR else { return ageMaxRange(for: zone) }
+            return karvonenRange(for: zone, resting: resting)
+        case .custom:
+            let index = zone.rawValue - 1
+            if let zones = customZones, customZones?.indices.contains(index) == true {
+                return zones[index]
+            }
+            return ageMaxRange(for: zone)
+        }
     }
 
     /// The aerobic-base target band.
     public var zone2: HRRange { range(for: .zone2) }
 
-    /// The hard-interval band for Norwegian 4×4 (85–95% maxHR).
+    /// The hard-interval band for Norwegian 4×4 (85–95% maxHR / reserve / custom-derived).
     public var fourByFourHard: HRRange {
-        HRRange(lower: bpm(0.85), upper: bpm(0.95))
+        switch method {
+        case .ageMax:
+            return HRRange(lower: bpm(0.85), upper: bpm(0.95))
+        case .karvonen:
+            guard let resting = restingHR else {
+                return HRRange(lower: bpm(0.85), upper: bpm(0.95))
+            }
+            let reserve = Double(maxHR - resting)
+            let lower = Double(resting) + 0.85 * reserve
+            let upper = Double(resting) + 0.95 * reserve
+            return HRRange(lower: Int(lower.rounded()), upper: Int(upper.rounded()))
+        case .custom:
+            // No dedicated custom 4×4 band; treat it as the top of the custom range.
+            return HRRange(lower: bpm(0.85), upper: bpm(0.95))
+        }
     }
 
     /// Classifies a live heart-rate sample into a zone, or nil if below zone 1.

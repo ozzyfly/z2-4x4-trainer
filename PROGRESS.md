@@ -4,6 +4,15 @@
 > team 2NXQLV6CJH, build 2 (real icon). All metadata/screenshots/age-rating/pricing(Free)/privacy
 > set headlessly via the App Store Connect API. Awaiting Apple review.
 >
+> **2026-06-06: "Powerful & Attractive" Round 1 done — 3 epics, agent-built.**
+> `precision-zones` [3/3] (Karvonen/HRR + custom zones + Settings picker), `smart-coach` [5/5]
+> (adaptive `PlanProgression`, VO2max `FitnessTrend`, Today Coach card, History trend), `streaks-achievements`
+> [4/4] (StreakCalculator, Achievement catalog, Awards tab, celebration). SharedCore **52 tests**;
+> built by 1 domain agent + 3 UI agents, integrated + verified (Today Coach+streak, Awards badges,
+> Settings Zones all render light/dark; receiver tests + watch build green). Roadmap epics queued on
+> the Spectra board: readiness-hrv, guided-player-audio, widgets-complication, smart-reminders,
+> shareable-cards, localization. Ship as build 3 (after v1.0 review).
+>
 > **2026-06-05: UI/UX refresh done (Spectra `ui-ux-refresh` [6/6]).** Shared design system
 > (`App/DesignSystem/`: Theme + AccentColor, Card/SectionHeader/TargetBar/PrimaryButton/ZoneChip,
 > ZoneStyle) + all screens restyled clean/minimal card-led, light+dark, motion + haptics + a11y.

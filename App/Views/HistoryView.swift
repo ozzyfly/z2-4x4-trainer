@@ -20,6 +20,12 @@ struct HistoryView: View {
         let kg: Double
     }
 
+    private struct FitnessPoint: Identifiable {
+        let id = UUID()
+        let date: Date
+        let value: Double
+    }
+
     private static let weekdayLabels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
     private var weeklyByWeekday: [DayMinutes] {
@@ -43,6 +49,7 @@ struct HistoryView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: Spacing.xl) {
                     minutesSection
+                    fitnessSection
                     weightSection
                 }
                 .padding(Spacing.lg)
@@ -74,6 +81,54 @@ struct HistoryView: View {
                         "No workouts yet",
                         systemImage: "chart.bar.fill",
                         description: Text("Log a workout or connect Apple Health to see your week.")
+                    )
+                }
+            }
+        }
+    }
+
+    private var fitnessSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("VO2 max trend")
+            Card {
+                if let trend = health.fitness {
+                    let points = trend.samples.map { FitnessPoint(date: $0.date, value: $0.value) }
+                    VStack(alignment: .leading, spacing: Spacing.md) {
+                        Chart(points) { point in
+                            LineMark(
+                                x: .value("Date", point.date),
+                                y: .value("VO2 max", point.value)
+                            )
+                            .foregroundStyle(Theme.accent)
+                            .interpolationMethod(.catmullRom)
+                            PointMark(
+                                x: .value("Date", point.date),
+                                y: .value("VO2 max", point.value)
+                            )
+                            .foregroundStyle(Theme.accent)
+                        }
+                        .chartYScale(domain: .automatic(includesZero: false))
+                        .frame(height: 200)
+
+                        HStack(spacing: Spacing.xs) {
+                            Text("Latest \(trend.latest, format: .number.precision(.fractionLength(1)))")
+                                .numericStyle(.subheadline.weight(.semibold))
+                                .foregroundStyle(Theme.label)
+                            Text("·")
+                                .foregroundStyle(Theme.secondaryLabel)
+                            Image(systemName: trend.deltaFromFirst >= 0 ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
+                                .font(.caption2)
+                                .foregroundStyle(trend.deltaFromFirst >= 0 ? Theme.accent : .orange)
+                            Text(abs(trend.deltaFromFirst), format: .number.precision(.fractionLength(1)))
+                                .numericStyle(.subheadline)
+                                .foregroundStyle(Theme.secondaryLabel)
+                        }
+                    }
+                } else {
+                    ContentUnavailableView(
+                        "No fitness data",
+                        systemImage: "heart.text.square.fill",
+                        description: Text("Connect Apple Health to see your fitness trend.")
                     )
                 }
             }

@@ -1,5 +1,6 @@
 import Foundation
 import HealthKit
+import SharedCore
 
 /// Concrete `HealthProviding` backed by HealthKit. Reads only — never writes.
 final class HealthKitService: HealthProviding, @unchecked Sendable {
@@ -18,6 +19,9 @@ final class HealthKitService: HealthProviding, @unchecked Sendable {
         }
         if let hr = HKQuantityType.quantityType(forIdentifier: .heartRate) {
             types.insert(hr)
+        }
+        if let vo2 = HKQuantityType.quantityType(forIdentifier: .vo2Max) {
+            types.insert(vo2)
         }
         types.insert(HKObjectType.workoutType())
         return types
@@ -107,6 +111,31 @@ final class HealthKitService: HealthProviding, @unchecked Sendable {
                     )
                 }
                 continuation.resume(returning: workouts)
+            }
+            store.execute(query)
+        }
+    }
+
+    func vo2MaxSeries(days: Int) async -> [VO2MaxSample] {
+        guard HKHealthStore.isHealthDataAvailable(),
+              let type = HKQuantityType.quantityType(forIdentifier: .vo2Max) else {
+            return []
+        }
+        let unit = HKUnit(from: "ml/kg*min")
+        let start = Calendar.current.date(byAdding: .day, value: -days, to: .now) ?? .now
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: .now)
+        let sort = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
+        return await withCheckedContinuation { continuation in
+            let query = HKSampleQuery(
+                sampleType: type,
+                predicate: predicate,
+                limit: HKObjectQueryNoLimit,
+                sortDescriptors: [sort]
+            ) { _, samples, _ in
+                let series: [VO2MaxSample] = (samples as? [HKQuantitySample] ?? []).map {
+                    VO2MaxSample(date: $0.startDate, value: $0.quantity.doubleValue(for: unit))
+                }
+                continuation.resume(returning: series)
             }
             store.execute(query)
         }

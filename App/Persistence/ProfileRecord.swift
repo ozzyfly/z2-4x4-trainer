@@ -15,6 +15,12 @@ final class ProfileRecord {
     var goalIsLose: Bool
     var loseRateKgPerWeek: Double
 
+    /// Persisted zone-derivation method. Defaults to age-max for older records/data.
+    var zoneMethodRaw: String = ZoneMethod.ageMax.rawValue
+    /// Persisted custom-zone bands, stored as parallel scalar arrays (index = zone − 1).
+    var customZoneLowers: [Int]?
+    var customZoneUppers: [Int]?
+
     init(
         age: Int,
         sex: BiologicalSex,
@@ -24,7 +30,9 @@ final class ProfileRecord {
         maxHROverride: Int? = nil,
         activity: ActivityLevel = .moderate,
         goalIsLose: Bool = false,
-        loseRateKgPerWeek: Double = 0.5
+        loseRateKgPerWeek: Double = 0.5,
+        zoneMethod: ZoneMethod = .ageMax,
+        customZones: [HRRange]? = nil
     ) {
         self.age = age
         self.sexRaw = sex.rawValue
@@ -35,6 +43,9 @@ final class ProfileRecord {
         self.activityRaw = activity.rawValue
         self.goalIsLose = goalIsLose
         self.loseRateKgPerWeek = loseRateKgPerWeek
+        self.zoneMethodRaw = zoneMethod.rawValue
+        self.customZoneLowers = customZones?.map(\.lower)
+        self.customZoneUppers = customZones?.map(\.upper)
     }
 
     var sex: BiologicalSex {
@@ -47,6 +58,24 @@ final class ProfileRecord {
         set { activityRaw = newValue.rawValue }
     }
 
+    var zoneMethod: ZoneMethod {
+        get { ZoneMethod(rawValue: zoneMethodRaw) ?? .ageMax }
+        set { zoneMethodRaw = newValue.rawValue }
+    }
+
+    /// User-supplied zone bands, reassembled from the parallel scalar arrays.
+    var customZones: [HRRange]? {
+        get {
+            guard let lowers = customZoneLowers, let uppers = customZoneUppers,
+                  lowers.count == uppers.count else { return nil }
+            return zip(lowers, uppers).map { HRRange(lower: $0, upper: $1) }
+        }
+        set {
+            customZoneLowers = newValue?.map(\.lower)
+            customZoneUppers = newValue?.map(\.upper)
+        }
+    }
+
     /// The pure-domain value used by all calculators.
     var domain: UserProfile {
         UserProfile(
@@ -57,7 +86,9 @@ final class ProfileRecord {
             restingHR: restingHR,
             maxHROverride: maxHROverride,
             activityLevel: activity,
-            goal: goalIsLose ? .loseWeight(rateKgPerWeek: loseRateKgPerWeek) : .maintainHealth
+            goal: goalIsLose ? .loseWeight(rateKgPerWeek: loseRateKgPerWeek) : .maintainHealth,
+            zoneMethod: zoneMethod,
+            customZones: customZones
         )
     }
 }

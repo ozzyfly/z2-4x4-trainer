@@ -20,6 +20,50 @@ struct SettingsView: View {
         )
     }
 
+    /// Resting HR for the Karvonen control: nil means "not set", surfaced as a Bool toggle.
+    private var hasRestingHR: Binding<Bool> {
+        Binding(
+            get: { profile.restingHR != nil },
+            set: { profile.restingHR = $0 ? (profile.restingHR ?? 60) : nil }
+        )
+    }
+
+    private var restingHRValue: Binding<Int> {
+        Binding(
+            get: { profile.restingHR ?? 60 },
+            set: { profile.restingHR = $0 }
+        )
+    }
+
+    /// Age-max-derived defaults seed the custom bands the first time the user edits them.
+    private var defaultCustomZones: [HRRange] {
+        let calc = HRZoneCalculator(maxHR: profile.maxHROverride ?? (220 - profile.age))
+        return HRZone.allCases.map { calc.range(for: $0) }
+    }
+
+    /// Read-or-seed the custom bands, then read/write a single zone's bound.
+    private func customBound(zone: HRZone, isLower: Bool) -> Binding<Int> {
+        Binding(
+            get: {
+                let zones = profile.customZones ?? defaultCustomZones
+                let range = zones.indices.contains(zone.rawValue - 1)
+                    ? zones[zone.rawValue - 1]
+                    : defaultCustomZones[zone.rawValue - 1]
+                return isLower ? range.lower : range.upper
+            },
+            set: { newValue in
+                var zones = profile.customZones ?? defaultCustomZones
+                if zones.count < HRZone.allCases.count { zones = defaultCustomZones }
+                let i = zone.rawValue - 1
+                let current = zones[i]
+                zones[i] = isLower
+                    ? HRRange(lower: newValue, upper: max(newValue, current.upper))
+                    : HRRange(lower: min(current.lower, newValue), upper: newValue)
+                profile.customZones = zones
+            }
+        )
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -27,6 +71,8 @@ struct SettingsView: View {
                     profileSection
 
                     heartRateSection
+
+                    zonesSection
 
                     goalSection
 
@@ -85,6 +131,67 @@ struct SettingsView: View {
                     }
                 }
             }
+        }
+    }
+
+    private var zonesSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("Zones")
+            Card {
+                VStack(alignment: .leading, spacing: Spacing.md) {
+                    Picker("Method", selection: $profile.zoneMethod) {
+                        Text("Age-based").tag(ZoneMethod.ageMax)
+                        Text("Heart-rate reserve").tag(ZoneMethod.karvonen)
+                        Text("Custom").tag(ZoneMethod.custom)
+                    }
+
+                    switch profile.zoneMethod {
+                    case .ageMax:
+                        EmptyView()
+                    case .karvonen:
+                        Divider()
+                        Toggle("Set resting HR", isOn: hasRestingHR)
+                        if profile.restingHR != nil {
+                            Stepper("Resting HR: \(restingHRValue.wrappedValue)",
+                                    value: restingHRValue, in: 30...100)
+                        } else {
+                            Text("Resting HR is required for heart-rate-reserve zones. Without it, zones fall back to age-based.")
+                                .font(.caption)
+                                .foregroundStyle(Theme.secondaryLabel)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                    case .custom:
+                        Divider()
+                        customBandEditor(title: "Zone 2", zone: .zone2)
+                        Divider()
+                        customBandEditor(title: "Zone 4 (4×4)", zone: .zone4)
+                        Text("Other zones use age-based defaults until edited.")
+                            .font(.caption)
+                            .foregroundStyle(Theme.secondaryLabel)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+
+                    Divider()
+                    LabeledContent("Zone 2 preview") {
+                        let z2 = HRZoneCalculator(profile: profile.domain).zone2
+                        Text("\(z2.lower)–\(z2.upper) bpm")
+                            .numericStyle(.body)
+                            .foregroundStyle(Theme.secondaryLabel)
+                    }
+                }
+            }
+        }
+    }
+
+    private func customBandEditor(title: String, zone: HRZone) -> some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            Text(title)
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(Theme.label)
+            Stepper("Lower: \(customBound(zone: zone, isLower: true).wrappedValue) bpm",
+                    value: customBound(zone: zone, isLower: true), in: 60...220)
+            Stepper("Upper: \(customBound(zone: zone, isLower: false).wrappedValue) bpm",
+                    value: customBound(zone: zone, isLower: false), in: 60...220)
         }
     }
 

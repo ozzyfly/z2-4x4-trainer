@@ -1,0 +1,68 @@
+import SwiftUI
+import SharedCore
+
+/// Compact card showing the user's current weekly training streak and their best ever.
+/// When there is no active streak it nudges the user to start one this week.
+struct StreakBanner: View {
+    let currentWeeks: Int
+    let longestWeeks: Int
+
+    private var hasStreak: Bool { currentWeeks > 0 }
+
+    var body: some View {
+        Card {
+            HStack(spacing: Spacing.md) {
+                Image(systemName: hasStreak ? "flame.fill" : "flame")
+                    .font(.title)
+                    .foregroundStyle(Theme.accent)
+                    .frame(width: 44, height: 44)
+                    .background(Theme.accent.opacity(0.12), in: Circle())
+
+                if hasStreak {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("\(currentWeeks)-week streak")
+                            .font(.rounded(.title2, weight: .bold))
+                            .foregroundStyle(Theme.label)
+                        Text("Longest: \(longestWeeks)")
+                            .font(.subheadline)
+                            .foregroundStyle(Theme.secondaryLabel)
+                    }
+                } else {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Start a streak this week")
+                            .font(.rounded(.title3, weight: .semibold))
+                            .foregroundStyle(Theme.label)
+                        Text(longestWeeks > 0 ? "Your best: \(longestWeeks) weeks" : "Log a workout to begin.")
+                            .font(.subheadline)
+                            .foregroundStyle(Theme.secondaryLabel)
+                    }
+                }
+
+                Spacer(minLength: 0)
+            }
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilityText)
+    }
+
+    private var accessibilityText: String {
+        if hasStreak {
+            let weekWord = currentWeeks == 1 ? "week" : "weeks"
+            return "Current streak \(currentWeeks) \(weekWord). Longest streak \(longestWeeks) weeks."
+        } else if longestWeeks > 0 {
+            return "No active streak. Start one this week. Your longest streak was \(longestWeeks) weeks."
+        } else {
+            return "No active streak. Log a workout to start one this week."
+        }
+    }
+}
+
+#Preview {
+    VStack(spacing: Spacing.lg) {
+        StreakBanner(currentWeeks: 4, longestWeeks: 7)
+        StreakBanner(currentWeeks: 0, longestWeeks: 3)
+        StreakBanner(currentWeeks: 0, longestWeeks: 0)
+    }
+    .padding(Spacing.lg)
+    .background(Theme.background)
+}

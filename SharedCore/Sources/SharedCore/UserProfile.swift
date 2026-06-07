@@ -44,6 +44,11 @@ public struct UserProfile: Codable, Sendable, Equatable {
     public var maxHROverride: Int?
     public var activityLevel: ActivityLevel
     public var goal: TrainingGoal
+    /// Which method `HRZoneCalculator` uses to derive zones. Defaults to age-max.
+    public var zoneMethod: ZoneMethod
+    /// User-supplied zone bands, indexed by zone (1 = Zone 1 … 5 = Zone 5). Used when
+    /// `zoneMethod` is `.custom`; ignored otherwise.
+    public var customZones: [HRRange]?
 
     public init(
         age: Int,
@@ -53,7 +58,9 @@ public struct UserProfile: Codable, Sendable, Equatable {
         restingHR: Int? = nil,
         maxHROverride: Int? = nil,
         activityLevel: ActivityLevel = .moderate,
-        goal: TrainingGoal = .maintainHealth
+        goal: TrainingGoal = .maintainHealth,
+        zoneMethod: ZoneMethod = .ageMax,
+        customZones: [HRRange]? = nil
     ) {
         self.age = age
         self.sex = sex
@@ -63,5 +70,23 @@ public struct UserProfile: Codable, Sendable, Equatable {
         self.maxHROverride = maxHROverride
         self.activityLevel = activityLevel
         self.goal = goal
+        self.zoneMethod = zoneMethod
+        self.customZones = customZones
+    }
+
+    // Backwards-compatible decoding: profiles persisted before precision-zones
+    // omit `zoneMethod`/`customZones`, so default them when absent.
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        age = try c.decode(Int.self, forKey: .age)
+        sex = try c.decode(BiologicalSex.self, forKey: .sex)
+        weightKg = try c.decode(Double.self, forKey: .weightKg)
+        heightCm = try c.decode(Double.self, forKey: .heightCm)
+        restingHR = try c.decodeIfPresent(Int.self, forKey: .restingHR)
+        maxHROverride = try c.decodeIfPresent(Int.self, forKey: .maxHROverride)
+        activityLevel = try c.decode(ActivityLevel.self, forKey: .activityLevel)
+        goal = try c.decode(TrainingGoal.self, forKey: .goal)
+        zoneMethod = try c.decodeIfPresent(ZoneMethod.self, forKey: .zoneMethod) ?? .ageMax
+        customZones = try c.decodeIfPresent([HRRange].self, forKey: .customZones)
     }
 }

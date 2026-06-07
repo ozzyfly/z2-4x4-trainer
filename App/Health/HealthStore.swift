@@ -12,6 +12,7 @@ final class HealthStore {
     var todayEnergy = 0
     var latestWeightKg: Double?
     var weightSeries: [(date: Date, kg: Double)] = []
+    private(set) var fitness: FitnessTrend?
 
     init(provider: HealthProviding) {
         self.provider = provider
@@ -41,6 +42,7 @@ final class HealthStore {
         todayEnergy = await provider.todayActiveEnergyKcal()
         latestWeightKg = await provider.latestBodyMassKg()
         weightSeries = await provider.bodyMassSeries(days: 30)
+        fitness = FitnessTrend.from(await provider.vo2MaxSeries(days: 180))
     }
 
     @MainActor

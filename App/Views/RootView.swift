@@ -28,6 +28,7 @@ struct RootView: View {
         if args.contains("-seedWorkouts") {
             seedSampleWorkouts()
         }
+        try? context.save()
     }
 
     /// Inserts a handful of sample workouts spread across the current week (UI smoke tests).
@@ -78,9 +79,12 @@ struct MainTabView: View {
             HistoryView(health: health)
                 .tabItem { Label("History", systemImage: "chart.bar.fill") }
                 .tag(2)
+            AchievementsView(profile: profile, health: health)
+                .tabItem { Label("Awards", systemImage: "trophy.fill") }
+                .tag(3)
             SettingsView(profile: profile, health: health)
                 .tabItem { Label("Settings", systemImage: "gearshape.fill") }
-                .tag(3)
+                .tag(4)
         }
         .tint(Theme.accent)
     }

@@ -1,4 +1,5 @@
 import Foundation
+import SharedCore
 
 /// Canned `HealthProviding` for SwiftUI previews and tests — no HealthKit access.
 struct PreviewHealthService: HealthProviding {
@@ -37,5 +38,17 @@ struct PreviewHealthService: HealthProviding {
                 energyKcal: 300
             )
         ]
+    }
+
+    func vo2MaxSeries(days: Int) async -> [VO2MaxSample] {
+        let cal = Calendar.current
+        let values: [Double] = [41.2, 42.0, 42.8, 43.5, 44.1, 45.0]
+        return values.enumerated().compactMap { offset, value in
+            let weeksAgo = values.count - 1 - offset
+            guard let date = cal.date(byAdding: .weekOfYear, value: -weeksAgo * 4, to: .now) else {
+                return nil
+            }
+            return VO2MaxSample(date: date, value: value)
+        }
     }
 }
