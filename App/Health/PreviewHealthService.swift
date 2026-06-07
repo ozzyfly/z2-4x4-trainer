@@ -51,4 +51,25 @@ struct PreviewHealthService: HealthProviding {
             return VO2MaxSample(date: date, value: value)
         }
     }
+
+    func hrvSeries(days: Int) async -> [MetricSample] {
+        let cal = Calendar.current
+        // Baseline ~50ms with today rising above it → an upbeat "go hard" reading in previews.
+        let values: [Double] = [48, 50, 49, 51, 50, 52, 50, 49, 51, 50, 67]
+        return values.enumerated().compactMap { offset, value in
+            let daysAgo = values.count - 1 - offset
+            guard let date = cal.date(byAdding: .day, value: -daysAgo, to: .now) else { return nil }
+            return MetricSample(date: date, value: value)
+        }
+    }
+
+    func restingHeartRateSeries(days: Int) async -> [MetricSample] {
+        let cal = Calendar.current
+        let values: [Double] = [55, 54, 55, 56, 54, 55, 55, 54, 56, 55, 53]
+        return values.enumerated().compactMap { offset, value in
+            let daysAgo = values.count - 1 - offset
+            guard let date = cal.date(byAdding: .day, value: -daysAgo, to: .now) else { return nil }
+            return MetricSample(date: date, value: value)
+        }
+    }
 }

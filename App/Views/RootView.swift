@@ -6,7 +6,10 @@ import SharedCore
 struct RootView: View {
     @Environment(\.modelContext) private var context
     @Query private var profiles: [ProfileRecord]
-    @State private var health = HealthStore(provider: HealthKitService())
+    @State private var health = HealthStore(
+        provider: ProcessInfo.processInfo.arguments.contains("-mockHealth")
+            ? PreviewHealthService() : HealthKitService()
+    )
 
     var body: some View {
         Group {
@@ -16,7 +19,13 @@ struct RootView: View {
                 OnboardingView()
             }
         }
-        .task { seedForUITestingIfRequested() }
+        .task {
+            seedForUITestingIfRequested()
+            // Populate Health-derived UI (readiness, VO2max trend) with canned data for UI smoke tests.
+            if ProcessInfo.processInfo.arguments.contains("-mockHealth") {
+                await health.connect()
+            }
+        }
     }
 
     /// Inserts a default profile when launched with `-seedProfile` (used by UI smoke tests).

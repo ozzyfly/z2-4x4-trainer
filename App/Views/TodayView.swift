@@ -28,6 +28,10 @@ struct TodayView: View {
                 VStack(alignment: .leading, spacing: Spacing.xl) {
                     header
 
+                    if let readiness = health.readiness {
+                        readinessSection(readiness)
+                    }
+
                     StreakBanner(
                         currentWeeks: StreakCalculator.currentWeeks(in: history),
                         longestWeeks: StreakCalculator.longestWeeks(in: history)
@@ -63,6 +67,50 @@ struct TodayView: View {
         Text(Self.dateFormatter.string(from: .now))
             .font(.rounded(.headline, weight: .medium))
             .foregroundStyle(Theme.secondaryLabel)
+    }
+
+    private func readinessSection(_ readiness: ReadinessScore) -> some View {
+        let color = readinessColor(readiness.label)
+        return VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("Readiness")
+            Card {
+                HStack(alignment: .center, spacing: Spacing.md) {
+                    ZStack {
+                        Circle()
+                            .fill(color.opacity(0.12))
+                            .frame(width: 56, height: 56)
+                        Text("\(readiness.value)")
+                            .numericStyle(.title2.weight(.bold))
+                            .foregroundStyle(color)
+                    }
+                    VStack(alignment: .leading, spacing: Spacing.xs) {
+                        Text(readinessTitle(readiness.label))
+                            .font(.rounded(.headline, weight: .semibold))
+                            .foregroundStyle(Theme.label)
+                        Text(readiness.label.recommendation)
+                            .font(.subheadline)
+                            .foregroundStyle(Theme.secondaryLabel)
+                    }
+                    Spacer(minLength: 0)
+                }
+            }
+        }
+    }
+
+    private func readinessTitle(_ label: ReadinessLabel) -> String {
+        switch label {
+        case .goHard: return "Go hard"
+        case .steady: return "Steady"
+        case .easy:   return "Take it easy"
+        }
+    }
+
+    private func readinessColor(_ label: ReadinessLabel) -> Color {
+        switch label {
+        case .goHard: return .green
+        case .steady: return .blue
+        case .easy:   return .orange
+        }
     }
 
     private func coachSection(base: TrainingPlan, adapted: TrainingPlan) -> some View {

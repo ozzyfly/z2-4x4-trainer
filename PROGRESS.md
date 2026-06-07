@@ -4,6 +4,13 @@
 > team 2NXQLV6CJH, build 2 (real icon). All metadata/screenshots/age-rating/pricing(Free)/privacy
 > set headlessly via the App Store Connect API. Awaiting Apple review.
 >
+> **2026-06-07: Round 2 done — 3 more epics, agent-built.** `readiness-hrv` [3/3]
+> (HRV+RHR `ReadinessCalculator`, Today readiness card — verified "100 · Go hard"), `smart-reminders`
+> [2/2] (`ReminderScheduler` local notifications + Settings opt-in), `shareable-cards` [2/2] (`ShareCard`
+> + `ImageRenderer`/`ShareLink` on History). SharedCore **58 tests**. Added `-mockHealth` launch arg
+> (canned Health data for UI smoke tests). Remaining roadmap: guided-player-audio, widgets-complication,
+> localization.
+>
 > **2026-06-06: "Powerful & Attractive" Round 1 done — 3 epics, agent-built.**
 > `precision-zones` [3/3] (Karvonen/HRR + custom zones + Settings picker), `smart-coach` [5/5]
 > (adaptive `PlanProgression`, VO2max `FitnessTrend`, Today Coach card, History trend), `streaks-achievements`

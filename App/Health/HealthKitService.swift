@@ -23,6 +23,9 @@ final class HealthKitService: HealthProviding, @unchecked Sendable {
         if let vo2 = HKQuantityType.quantityType(forIdentifier: .vo2Max) {
             types.insert(vo2)
         }
+        if let hrv = HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN) {
+            types.insert(hrv)
+        }
         types.insert(HKObjectType.workoutType())
         return types
     }
@@ -141,7 +144,43 @@ final class HealthKitService: HealthProviding, @unchecked Sendable {
         }
     }
 
+    func hrvSeries(days: Int) async -> [MetricSample] {
+        guard let type = HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN) else {
+            return []
+        }
+        return await metricSeries(of: type, unit: .secondUnit(with: .milli), days: days)
+    }
+
+    func restingHeartRateSeries(days: Int) async -> [MetricSample] {
+        guard let type = HKQuantityType.quantityType(forIdentifier: .restingHeartRate) else {
+            return []
+        }
+        let unit = HKUnit.count().unitDivided(by: .minute())
+        return await metricSeries(of: type, unit: unit, days: days)
+    }
+
     // MARK: - Helpers
+
+    private func metricSeries(of type: HKQuantityType, unit: HKUnit, days: Int) async -> [MetricSample] {
+        guard HKHealthStore.isHealthDataAvailable() else { return [] }
+        let start = Calendar.current.date(byAdding: .day, value: -days, to: .now) ?? .now
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: .now)
+        let sort = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
+        return await withCheckedContinuation { continuation in
+            let query = HKSampleQuery(
+                sampleType: type,
+                predicate: predicate,
+                limit: HKObjectQueryNoLimit,
+                sortDescriptors: [sort]
+            ) { _, samples, _ in
+                let series: [MetricSample] = (samples as? [HKQuantitySample] ?? []).map {
+                    MetricSample(date: $0.startDate, value: $0.quantity.doubleValue(for: unit))
+                }
+                continuation.resume(returning: series)
+            }
+            store.execute(query)
+        }
+    }
 
     private func latestQuantity(of type: HKQuantityType, unit: HKUnit) async -> Double? {
         guard HKHealthStore.isHealthDataAvailable() else { return nil }

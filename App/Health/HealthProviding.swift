@@ -31,4 +31,10 @@ protocol HealthProviding: Sendable {
 
     /// VO2max samples over the last `days` days, oldest first.
     func vo2MaxSeries(days: Int) async -> [VO2MaxSample]
+
+    /// Heart-rate variability (SDNN, ms) samples over the last `days` days, oldest first.
+    func hrvSeries(days: Int) async -> [MetricSample]
+
+    /// Resting heart-rate (bpm) samples over the last `days` days, oldest first.
+    func restingHeartRateSeries(days: Int) async -> [MetricSample]
 }

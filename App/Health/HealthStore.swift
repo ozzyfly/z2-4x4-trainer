@@ -13,6 +13,7 @@ final class HealthStore {
     var latestWeightKg: Double?
     var weightSeries: [(date: Date, kg: Double)] = []
     private(set) var fitness: FitnessTrend?
+    private(set) var readiness: ReadinessScore?
 
     init(provider: HealthProviding) {
         self.provider = provider
@@ -43,6 +44,10 @@ final class HealthStore {
         latestWeightKg = await provider.latestBodyMassKg()
         weightSeries = await provider.bodyMassSeries(days: 30)
         fitness = FitnessTrend.from(await provider.vo2MaxSeries(days: 180))
+
+        let hrv = await provider.hrvSeries(days: 30)
+        let restingHR = await provider.restingHeartRateSeries(days: 30)
+        readiness = ReadinessCalculator.score(hrv: hrv, restingHR: restingHR)
     }
 
     @MainActor

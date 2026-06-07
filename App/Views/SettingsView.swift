@@ -8,9 +8,37 @@ struct SettingsView: View {
     let health: HealthStore
     @Environment(\.modelContext) private var context
 
+    @AppStorage("remindersEnabled") private var remindersEnabled = false
+    @AppStorage("reminderHour") private var reminderHour = 18
+    @AppStorage("reminderMinute") private var reminderMinute = 0
+
     init(profile: ProfileRecord, health: HealthStore) {
         self.profile = profile
         self.health = health
+    }
+
+    /// Bridges the stored hour/minute to a `Date` for the `DatePicker`.
+    private var reminderTime: Binding<Date> {
+        Binding(
+            get: {
+                Calendar.current.date(
+                    from: DateComponents(hour: reminderHour, minute: reminderMinute)
+                ) ?? Date()
+            },
+            set: { newValue in
+                let c = Calendar.current.dateComponents([.hour, .minute], from: newValue)
+                reminderHour = c.hour ?? 18
+                reminderMinute = c.minute ?? 0
+            }
+        )
+    }
+
+    private func scheduleReminders() {
+        ReminderScheduler.reschedule(
+            plan: TrainingPlan.weekly(for: profile.domain.goal),
+            hour: reminderHour,
+            minute: reminderMinute
+        )
     }
 
     private var hasOverride: Binding<Bool> {
@@ -75,6 +103,8 @@ struct SettingsView: View {
                     zonesSection
 
                     goalSection
+
+                    remindersSection
 
                     healthSection
                 }
@@ -208,6 +238,47 @@ struct SettingsView: View {
                     }
                 }
             }
+        }
+    }
+
+    private var remindersSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("Reminders")
+            Card {
+                VStack(spacing: Spacing.md) {
+                    Toggle("Training reminders", isOn: $remindersEnabled)
+                    if remindersEnabled {
+                        Divider()
+                        DatePicker(
+                            "Time",
+                            selection: reminderTime,
+                            displayedComponents: .hourAndMinute
+                        )
+                    }
+                }
+            }
+        }
+        .onChange(of: remindersEnabled) { _, isOn in
+            if isOn {
+                Task {
+                    if await ReminderScheduler.requestAuthorization() {
+                        scheduleReminders()
+                    } else {
+                        remindersEnabled = false
+                    }
+                }
+            } else {
+                ReminderScheduler.cancelAll()
+            }
+        }
+        .onChange(of: reminderHour) { _, _ in
+            if remindersEnabled { scheduleReminders() }
+        }
+        .onChange(of: reminderMinute) { _, _ in
+            if remindersEnabled { scheduleReminders() }
+        }
+        .onChange(of: profile.goalIsLose) { _, _ in
+            if remindersEnabled { scheduleReminders() }
         }
     }
 
