@@ -32,6 +32,8 @@ final class WorkoutSessionManager: NSObject, @unchecked Sendable {
     @MainActor private(set) var currentZone: HRZone?
     @MainActor private(set) var isRunning = false
     @MainActor private(set) var kind: WatchWorkoutKind = .zone2
+    /// Session start time, for showing elapsed time on open-ended (Zone 2) sessions.
+    @MainActor private(set) var startDate: Date?
 
     /// Drives the structured timeline when running a 4×4. Nil for Zone 2.
     @MainActor private(set) var intervalEngine: IntervalEngine?
@@ -106,6 +108,7 @@ final class WorkoutSessionManager: NSObject, @unchecked Sendable {
             }
 
             let startDate = Date()
+            self.startDate = startDate
             session.startActivity(with: startDate)
             builder.beginCollection(withStart: startDate) { _, _ in }
             isRunning = true

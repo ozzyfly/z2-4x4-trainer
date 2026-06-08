@@ -55,12 +55,15 @@ private struct WorkoutRow: View {
                 .foregroundStyle(tint)
                 .frame(width: 30, height: 30)
                 .background(tint.opacity(0.18), in: Circle())
+                .accessibilityHidden(true)
             Text(kind.title)
                 .font(.headline)
                 .fontWeight(.semibold)
             Spacer(minLength: 0)
         }
         .padding(.vertical, 6)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(kind.title) workout")
     }
 }
 

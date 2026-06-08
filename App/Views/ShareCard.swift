@@ -47,6 +47,11 @@ struct ShareCard: View {
         .frame(width: Self.size.width, height: Self.size.height, alignment: .topLeading)
         .background(backgroundGradient)
         .environment(\.colorScheme, .dark)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(
+            "This week on Z2/4×4 Trainer: \(minutes) \(minutes == 1 ? "minute" : "minutes") trained across "
+            + "\(sessions) \(sessions == 1 ? "session" : "sessions"), \(streakWeeks)-week streak"
+        )
     }
 
     // MARK: - Pieces
@@ -65,6 +70,8 @@ struct ShareCard: View {
                 Text("Z2/4×4 Trainer")
                     .font(.rounded(.largeTitle, weight: .heavy))
                     .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
             }
 
             Text(weekRange.uppercased())

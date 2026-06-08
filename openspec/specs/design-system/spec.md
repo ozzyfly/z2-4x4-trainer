@@ -7,62 +7,35 @@ TBD - created by archiving change 'ui-ux-refresh'. Update Purpose after archive.
 ## Requirements
 
 ### Requirement: Shared design system
-The app SHALL provide reusable theme tokens and components (`Card`, `SectionHeader`, `TargetBar`,
-`PrimaryButton`, `ZoneChip`, accent color, `HRZone` color map) that every screen uses.
+The app SHALL provide reusable theme tokens and components (`Card`, `SectionHeader`, `TargetBar`, `PrimaryButton`, `SecondaryButton`, `ZoneChip`, accent color) that every screen uses. The HR-zone and interval-kind visual tokens (color and SF-Symbol glyph) SHALL be defined once in `SharedCore` so the iOS and watchOS targets share a single source rather than duplicating them.
 
 #### Scenario: Components render consistently
 - **WHEN** any restyled screen is shown
 - **THEN** it uses the shared card, header, accent, and progress components rather than default `Form` styling
 
+#### Scenario: Zone and interval tokens have one definition
+- **WHEN** the iOS app or the watchOS app renders an HR-zone color, an HR-zone name, or an interval-kind color
+- **THEN** it resolves the value from the `SharedCore` token definitions, and no target redefines those tokens locally
+
 
 <!-- @trace
-source: ui-ux-refresh
+source: shared-visual-tokens
 updated: 2026-06-07
 code:
-  - App/DesignSystem/Motion.swift
-  - App/Views/ShareCard.swift
-  - Watch/WorkoutListView.swift
-  - App/DesignSystem/AccessibleControls.swift
-  - SharedCore/Tests/SharedCoreTests/StreaksAchievementsTests.swift
-  - SharedCore/Sources/SharedCore/AchievementEvaluator.swift
-  - App/Views/HistoryView.swift
-  - SharedCore/Sources/SharedCore/Readiness.swift
-  - SharedCore/Sources/SharedCore/MetricSample.swift
-  - App/Assets.xcassets/AccentColor.colorset/Contents.json
-  - SharedCore/Sources/SharedCore/StreakCalculator.swift
-  - App/Views/StreakBanner.swift
-  - App/DesignSystem/Theme.swift
-  - SharedCore/Tests/SharedCoreTests/PrecisionZonesTests.swift
-  - SharedCore/Tests/SharedCoreTests/ReadinessTests.swift
-  - App/DesignSystem/Buttons.swift
-  - SharedCore/Sources/SharedCore/HRZoneCalculator.swift
-  - App/DesignSystem/Components.swift
-  - SharedCore/Sources/SharedCore/WorkoutRecord.swift
-  - App/Views/RootView.swift
-  - App/Views/WeekView.swift
-  - App/Views/TodayView.swift
-  - SharedCore/Sources/SharedCore/UserProfile.swift
-  - App/Persistence/ProfileRecord.swift
-  - App/Views/OnboardingView.swift
-  - App/Views/Celebration.swift
-  - App/Health/HealthKitService.swift
-  - App/Views/ManualEntryView.swift
-  - SharedCore/Sources/SharedCore/FitnessTrend.swift
-  - App/Persistence/AchievementRecord.swift
-  - App/Health/PreviewHealthService.swift
-  - App/Views/SettingsView.swift
-  - App/Health/HealthStore.swift
   - App/Views/WorkoutDetailView.swift
-  - App/Z24x4TrainerApp.swift
-  - SharedCore/Sources/SharedCore/ZoneMethod.swift
-  - App/Notifications/ReminderScheduler.swift
+  - App/Views/Celebration.swift
+  - App/Views/ShareCard.swift
+  - SharedCore/Sources/SharedCore/HRZone+UI.swift
+  - Watch/WorkoutSessionManager.swift
+  - Watch/LiveWorkoutView.swift
+  - SharedCore/Sources/SharedCore/IntervalKind+UI.swift
+  - App/Views/SettingsView.swift
+  - Watch/WorkoutListView.swift
   - App/DesignSystem/ZoneStyle.swift
-  - App/Health/HealthProviding.swift
-  - PROGRESS.md
-  - SharedCore/Sources/SharedCore/Achievement.swift
-  - SharedCore/Tests/SharedCoreTests/SmartCoachTests.swift
-  - App/Views/AchievementsView.swift
-  - SharedCore/Sources/SharedCore/PlanProgression.swift
+  - App/DesignSystem/Components.swift
+  - App/Views/OnboardingView.swift
+  - App/DesignSystem/Buttons.swift
+  - App/Views/HistoryView.swift
 -->
 
 ---
@@ -190,61 +163,35 @@ code:
 
 ---
 ### Requirement: Motion and haptics
-Key actions SHALL give subtle motion and haptic feedback without harming usability.
+Key actions SHALL give subtle motion and haptic feedback without harming usability. Every animation in the design system and screens SHALL respect the system Reduce Motion setting: when Reduce Motion is enabled, animated transitions SHALL degrade to an immediate state change while non-motion feedback (haptics) MAY still fire.
 
 #### Scenario: Target fill animates; actions confirm
 - **WHEN** a progress target updates, or the user saves a workout / connects Health
 - **THEN** the progress bar animates and a `.sensoryFeedback` haptic fires
 
+#### Scenario: Animations degrade under Reduce Motion
+- **WHEN** Reduce Motion is enabled and the daily/weekly target bar appears or updates, a primary or secondary button is pressed, a goal toggle reveals its rate field, or an achievement celebration plays
+- **THEN** the affected views reach their final state without an animated transition, and any associated haptic still fires
+
 
 <!-- @trace
-source: ui-ux-refresh
+source: reduce-motion-completion
 updated: 2026-06-07
 code:
-  - App/DesignSystem/Motion.swift
   - App/Views/ShareCard.swift
-  - Watch/WorkoutListView.swift
-  - App/DesignSystem/AccessibleControls.swift
-  - SharedCore/Tests/SharedCoreTests/StreaksAchievementsTests.swift
-  - SharedCore/Sources/SharedCore/AchievementEvaluator.swift
-  - App/Views/HistoryView.swift
-  - SharedCore/Sources/SharedCore/Readiness.swift
-  - SharedCore/Sources/SharedCore/MetricSample.swift
-  - App/Assets.xcassets/AccentColor.colorset/Contents.json
-  - SharedCore/Sources/SharedCore/StreakCalculator.swift
-  - App/Views/StreakBanner.swift
-  - App/DesignSystem/Theme.swift
-  - SharedCore/Tests/SharedCoreTests/PrecisionZonesTests.swift
-  - SharedCore/Tests/SharedCoreTests/ReadinessTests.swift
-  - App/DesignSystem/Buttons.swift
-  - SharedCore/Sources/SharedCore/HRZoneCalculator.swift
-  - App/DesignSystem/Components.swift
-  - SharedCore/Sources/SharedCore/WorkoutRecord.swift
-  - App/Views/RootView.swift
-  - App/Views/WeekView.swift
-  - App/Views/TodayView.swift
-  - SharedCore/Sources/SharedCore/UserProfile.swift
-  - App/Persistence/ProfileRecord.swift
-  - App/Views/OnboardingView.swift
   - App/Views/Celebration.swift
-  - App/Health/HealthKitService.swift
-  - App/Views/ManualEntryView.swift
-  - SharedCore/Sources/SharedCore/FitnessTrend.swift
-  - App/Persistence/AchievementRecord.swift
-  - App/Health/PreviewHealthService.swift
-  - App/Views/SettingsView.swift
-  - App/Health/HealthStore.swift
-  - App/Views/WorkoutDetailView.swift
-  - App/Z24x4TrainerApp.swift
-  - SharedCore/Sources/SharedCore/ZoneMethod.swift
-  - App/Notifications/ReminderScheduler.swift
+  - SharedCore/Sources/SharedCore/HRZone+UI.swift
   - App/DesignSystem/ZoneStyle.swift
-  - App/Health/HealthProviding.swift
-  - PROGRESS.md
-  - SharedCore/Sources/SharedCore/Achievement.swift
-  - SharedCore/Tests/SharedCoreTests/SmartCoachTests.swift
-  - App/Views/AchievementsView.swift
-  - SharedCore/Sources/SharedCore/PlanProgression.swift
+  - Watch/LiveWorkoutView.swift
+  - App/DesignSystem/Buttons.swift
+  - Watch/WorkoutSessionManager.swift
+  - App/DesignSystem/Components.swift
+  - SharedCore/Sources/SharedCore/IntervalKind+UI.swift
+  - Watch/WorkoutListView.swift
+  - App/Views/HistoryView.swift
+  - App/Views/OnboardingView.swift
+  - App/Views/SettingsView.swift
+  - App/Views/WorkoutDetailView.swift
 -->
 
 ---
@@ -464,4 +411,197 @@ code:
   - App/DesignSystem/Theme.swift
   - App/Views/HistoryView.swift
   - App/Views/OnboardingView.swift
+-->
+
+---
+### Requirement: Non-color token signal
+Each HR-zone and each interval-kind SHALL expose a non-color signal (an SF-Symbol glyph) alongside its color, so that adopting screens can convey the state without relying on color alone.
+
+#### Scenario: Every zone and interval kind has a glyph
+- **WHEN** code requests the glyph for any `HRZone` case or any `IntervalKind` case
+- **THEN** a non-empty SF-Symbol name is returned that is distinct per case
+
+##### Example: zone glyphs
+| Case | Color | Glyph |
+| ---- | ----- | ----- |
+| zone1 | gray | 1.circle.fill |
+| zone2 | green | 2.circle.fill |
+| zone3 | blue | 3.circle.fill |
+| zone4 | orange | 4.circle.fill |
+| zone5 | red | 5.circle.fill |
+
+##### Example: interval-kind glyphs
+| Case | Color | Glyph |
+| ---- | ----- | ----- |
+| warmup | blue | figure.walk |
+| hard | red | bolt.fill |
+| recovery | green | arrow.down.heart.fill |
+| cooldown | teal | wind |
+
+
+<!-- @trace
+source: shared-visual-tokens
+updated: 2026-06-07
+code:
+  - App/Views/WorkoutDetailView.swift
+  - App/Views/Celebration.swift
+  - App/Views/ShareCard.swift
+  - SharedCore/Sources/SharedCore/HRZone+UI.swift
+  - Watch/WorkoutSessionManager.swift
+  - Watch/LiveWorkoutView.swift
+  - SharedCore/Sources/SharedCore/IntervalKind+UI.swift
+  - App/Views/SettingsView.swift
+  - Watch/WorkoutListView.swift
+  - App/DesignSystem/ZoneStyle.swift
+  - App/DesignSystem/Components.swift
+  - App/Views/OnboardingView.swift
+  - App/DesignSystem/Buttons.swift
+  - App/Views/HistoryView.swift
+-->
+
+---
+### Requirement: Zone colors preserved across the move
+Moving the tokens into `SharedCore` SHALL NOT change any existing color value. The zone color mapping (zone1 gray, zone2 green, zone3 blue, zone4 orange, zone5 red) and the interval mapping (warmup blue, hard red, recovery green, cooldown teal) SHALL stay identical to the pre-move iOS and watch definitions.
+
+#### Scenario: Visuals unchanged after refactor
+- **WHEN** a screen that previously rendered a zone or interval color is shown after the tokens move to `SharedCore`
+- **THEN** the rendered color is identical to before the move
+
+<!-- @trace
+source: shared-visual-tokens
+updated: 2026-06-07
+code:
+  - App/Views/WorkoutDetailView.swift
+  - App/Views/Celebration.swift
+  - App/Views/ShareCard.swift
+  - SharedCore/Sources/SharedCore/HRZone+UI.swift
+  - Watch/WorkoutSessionManager.swift
+  - Watch/LiveWorkoutView.swift
+  - SharedCore/Sources/SharedCore/IntervalKind+UI.swift
+  - App/Views/SettingsView.swift
+  - Watch/WorkoutListView.swift
+  - App/DesignSystem/ZoneStyle.swift
+  - App/DesignSystem/Components.swift
+  - App/Views/OnboardingView.swift
+  - App/DesignSystem/Buttons.swift
+  - App/Views/HistoryView.swift
+-->
+
+---
+### Requirement: Interval rows convey kind without color
+An interval row SHALL convey the interval kind with a non-color signal (the interval-kind glyph) in addition to its colored bar, so the kind is distinguishable without color perception.
+
+#### Scenario: Interval kind shown with glyph
+- **WHEN** an interval row for a Norwegian 4×4 structure is shown
+- **THEN** the interval kind is conveyed by a glyph (and text) alongside the colored bar, not by color alone
+
+
+<!-- @trace
+source: ios-detail-polish
+updated: 2026-06-07
+code:
+  - Watch/LiveWorkoutView.swift
+  - App/Views/ShareCard.swift
+  - App/Views/WorkoutDetailView.swift
+  - App/DesignSystem/Components.swift
+  - App/Views/OnboardingView.swift
+  - SharedCore/Sources/SharedCore/HRZone+UI.swift
+  - Watch/WorkoutSessionManager.swift
+  - App/Views/Celebration.swift
+  - App/DesignSystem/Buttons.swift
+  - App/DesignSystem/ZoneStyle.swift
+  - App/Views/SettingsView.swift
+  - SharedCore/Sources/SharedCore/IntervalKind+UI.swift
+  - App/Views/HistoryView.swift
+  - Watch/WorkoutListView.swift
+-->
+
+---
+### Requirement: Share card is accessible
+The shareable summary card SHALL expose a single combined accessibility element summarizing its content (week minutes, sessions, streak), and its title SHALL not overflow its fixed-width layout.
+
+#### Scenario: Share card has an accessibility summary
+- **WHEN** VoiceOver focuses the share card
+- **THEN** it announces a summary including the week's minutes, session count, and streak
+
+#### Scenario: Title fits the card
+- **WHEN** the share card renders its title
+- **THEN** the title stays on one line within the fixed card width, scaling down if needed rather than wrapping or clipping
+
+
+<!-- @trace
+source: ios-detail-polish
+updated: 2026-06-07
+code:
+  - Watch/LiveWorkoutView.swift
+  - App/Views/ShareCard.swift
+  - App/Views/WorkoutDetailView.swift
+  - App/DesignSystem/Components.swift
+  - App/Views/OnboardingView.swift
+  - SharedCore/Sources/SharedCore/HRZone+UI.swift
+  - Watch/WorkoutSessionManager.swift
+  - App/Views/Celebration.swift
+  - App/DesignSystem/Buttons.swift
+  - App/DesignSystem/ZoneStyle.swift
+  - App/Views/SettingsView.swift
+  - SharedCore/Sources/SharedCore/IntervalKind+UI.swift
+  - App/Views/HistoryView.swift
+  - Watch/WorkoutListView.swift
+-->
+
+---
+### Requirement: Charts label their axes and units
+History charts SHALL show Y-axis scale marks and state the metric/unit, so a value can be read without external context.
+
+#### Scenario: Chart shows axis and unit
+- **WHEN** a History chart with data is shown
+- **THEN** it displays Y-axis scale marks and a caption naming the metric and unit
+
+
+<!-- @trace
+source: ios-detail-polish
+updated: 2026-06-07
+code:
+  - Watch/LiveWorkoutView.swift
+  - App/Views/ShareCard.swift
+  - App/Views/WorkoutDetailView.swift
+  - App/DesignSystem/Components.swift
+  - App/Views/OnboardingView.swift
+  - SharedCore/Sources/SharedCore/HRZone+UI.swift
+  - Watch/WorkoutSessionManager.swift
+  - App/Views/Celebration.swift
+  - App/DesignSystem/Buttons.swift
+  - App/DesignSystem/ZoneStyle.swift
+  - App/Views/SettingsView.swift
+  - SharedCore/Sources/SharedCore/IntervalKind+UI.swift
+  - App/Views/HistoryView.swift
+  - Watch/WorkoutListView.swift
+-->
+
+---
+### Requirement: Zone colors are not reused for non-zone metrics
+HR-zone colors SHALL be reserved for HR-zone contexts; a non-zone metric chart SHALL use a neutral/accent color rather than an HR-zone color.
+
+#### Scenario: Weight chart uses a non-zone color
+- **WHEN** the body-weight trend chart is shown
+- **THEN** its line uses the accent (or a neutral metric) color, not an HR-zone color
+
+<!-- @trace
+source: ios-detail-polish
+updated: 2026-06-07
+code:
+  - Watch/LiveWorkoutView.swift
+  - App/Views/ShareCard.swift
+  - App/Views/WorkoutDetailView.swift
+  - App/DesignSystem/Components.swift
+  - App/Views/OnboardingView.swift
+  - SharedCore/Sources/SharedCore/HRZone+UI.swift
+  - Watch/WorkoutSessionManager.swift
+  - App/Views/Celebration.swift
+  - App/DesignSystem/Buttons.swift
+  - App/DesignSystem/ZoneStyle.swift
+  - App/Views/SettingsView.swift
+  - SharedCore/Sources/SharedCore/IntervalKind+UI.swift
+  - App/Views/HistoryView.swift
+  - Watch/WorkoutListView.swift
 -->

@@ -1,5 +1,19 @@
 import SwiftUI
 
+// MARK: - Press animation
+
+/// Applies the press scale/opacity animation — but disables it under Reduce
+/// Motion. Lives as a `ViewModifier` (not inline `.animation`) so it can read
+/// the environment, which a `ButtonStyle` struct cannot do directly.
+struct PressAnimation: ViewModifier {
+    let isPressed: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    func body(content: Content) -> some View {
+        content.animation(reduceMotion ? nil : .easeOut(duration: 0.15), value: isPressed)
+    }
+}
+
 // MARK: - SecondaryButton
 
 /// Subordinate counterpart to `PrimaryButton`: same size and full-width layout,
@@ -25,7 +39,7 @@ struct SecondaryButton: ButtonStyle {
             )
             .opacity(configuration.isPressed ? 0.8 : 1)
             .scaleEffect(configuration.isPressed ? 0.98 : 1)
-            .animation(.easeOut(duration: 0.15), value: configuration.isPressed)
+            .modifier(PressAnimation(isPressed: configuration.isPressed))
             .sensoryFeedback(.selection, trigger: configuration.isPressed)
     }
 }

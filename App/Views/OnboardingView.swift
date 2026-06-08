@@ -5,6 +5,7 @@ import SharedCore
 /// First-run form that captures the profile + goal and creates the `ProfileRecord`.
 struct OnboardingView: View {
     @Environment(\.modelContext) private var context
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var age = 30
     @State private var sex: BiologicalSex = .male
@@ -115,7 +116,7 @@ struct OnboardingView: View {
             SectionHeader("Goal")
             Card {
                 VStack(spacing: Spacing.md) {
-                    Toggle("Lose weight", isOn: $goalIsLose.animation(.easeInOut(duration: 0.25)))
+                    Toggle("Lose weight", isOn: $goalIsLose.animation(reduceMotion ? nil : .easeInOut(duration: 0.25)))
                     if goalIsLose {
                         VStack(spacing: Spacing.md) {
                             Divider()

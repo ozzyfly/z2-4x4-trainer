@@ -141,22 +141,33 @@ struct HistoryView: View {
 
     // MARK: - Sections
 
+    /// Small metric/unit caption shown above a chart so a value can be read in context.
+    private func chartCaption(_ text: String) -> some View {
+        Text(text)
+            .font(.caption2)
+            .foregroundStyle(Theme.secondaryLabel)
+    }
+
     private var minutesSection: some View {
         VStack(alignment: .leading, spacing: Spacing.sm) {
             SectionHeader("This week's training minutes")
             Card {
                 if hasTrainingData {
-                    Chart(weeklyByWeekday) { day in
-                        BarMark(
-                            x: .value("Day", day.label),
-                            y: .value("Minutes", day.minutes)
-                        )
-                        .foregroundStyle(Theme.accent)
-                        .cornerRadius(Radius.sm)
-                        .accessibilityLabel(day.label)
-                        .accessibilityValue("\(day.minutes) minutes")
+                    VStack(alignment: .leading, spacing: Spacing.xs) {
+                        chartCaption("Minutes per day")
+                        Chart(weeklyByWeekday) { day in
+                            BarMark(
+                                x: .value("Day", day.label),
+                                y: .value("Minutes", day.minutes)
+                            )
+                            .foregroundStyle(Theme.accent)
+                            .cornerRadius(Radius.sm)
+                            .accessibilityLabel(day.label)
+                            .accessibilityValue("\(day.minutes) minutes")
+                        }
+                        .chartYAxis { AxisMarks(position: .leading) }
+                        .frame(height: chartHeight)
                     }
-                    .frame(height: chartHeight)
                 } else {
                     ContentUnavailableView {
                         Label("No workouts yet", systemImage: "chart.bar.fill")
@@ -182,6 +193,7 @@ struct HistoryView: View {
                 if let trend = health.fitness {
                     let points = trend.samples.map { FitnessPoint(date: $0.date, value: $0.value) }
                     VStack(alignment: .leading, spacing: Spacing.md) {
+                        chartCaption("VO2 max (ml·kg⁻¹·min⁻¹)")
                         Chart(points) { point in
                             LineMark(
                                 x: .value("Date", point.date),
@@ -196,6 +208,7 @@ struct HistoryView: View {
                             .foregroundStyle(Theme.accent)
                         }
                         .chartYScale(domain: .automatic(includesZero: false))
+                        .chartYAxis { AxisMarks(position: .leading) }
                         .frame(height: chartHeight)
 
                         let improving = trend.deltaFromFirst >= 0
@@ -238,21 +251,25 @@ struct HistoryView: View {
             SectionHeader("Body weight trend")
             Card {
                 if weightPoints.count > 1 {
-                    Chart(weightPoints) { point in
-                        LineMark(
-                            x: .value("Date", point.date),
-                            y: .value("Weight (kg)", point.kg)
-                        )
-                        .foregroundStyle(HRZone.zone2.color)
-                        .interpolationMethod(.catmullRom)
-                        PointMark(
-                            x: .value("Date", point.date),
-                            y: .value("Weight (kg)", point.kg)
-                        )
-                        .foregroundStyle(HRZone.zone2.color)
+                    VStack(alignment: .leading, spacing: Spacing.xs) {
+                        chartCaption("Weight (kg)")
+                        Chart(weightPoints) { point in
+                            LineMark(
+                                x: .value("Date", point.date),
+                                y: .value("Weight (kg)", point.kg)
+                            )
+                            .foregroundStyle(Theme.accent)
+                            .interpolationMethod(.catmullRom)
+                            PointMark(
+                                x: .value("Date", point.date),
+                                y: .value("Weight (kg)", point.kg)
+                            )
+                            .foregroundStyle(Theme.accent)
+                        }
+                        .chartYScale(domain: .automatic(includesZero: false))
+                        .chartYAxis { AxisMarks(position: .leading) }
+                        .frame(height: chartHeight)
                     }
-                    .chartYScale(domain: .automatic(includesZero: false))
-                    .frame(height: chartHeight)
                 } else {
                     ContentUnavailableView(
                         "No weight data",

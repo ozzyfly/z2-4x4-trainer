@@ -12,7 +12,7 @@ private struct CelebrationModifier: ViewModifier {
             .overlay {
                 // Confetti is pure motion — skip it entirely under Reduce Motion.
                 if isActive && !reduceMotion {
-                    ConfettiBurst()
+                    ConfettiBurst(reduceMotion: reduceMotion)
                         .allowsHitTesting(false)
                         .transition(.opacity)
                 }
@@ -51,6 +51,7 @@ private let confettiSymbols = ["star.fill", "sparkle", "party.popper.fill", "fla
 private let confettiPalette: [Color] = [.yellow, .orange, .pink, Theme.accent, .green, .purple]
 
 private struct ConfettiBurst: View {
+    var reduceMotion: Bool = false
 
     private let pieces: [Piece] = (0..<18).map { _ in Piece() }
 
@@ -73,7 +74,9 @@ private struct ConfettiBurst: View {
                 }
             }
             .onAppear {
-                withAnimation(.easeOut(duration: 1.3)) {
+                // Belt-and-braces: the overlay is already gated on reduceMotion,
+                // but guard the internal animation too so the burst never animates.
+                withMotion(.easeOut(duration: 1.3), reduceMotion: reduceMotion) {
                     animate = true
                 }
             }

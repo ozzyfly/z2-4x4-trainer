@@ -137,6 +137,13 @@ struct IntervalRow: View {
                 .frame(width: 4)
                 .frame(maxHeight: .infinity)
 
+            // Glyph conveys the interval kind by shape, not color alone.
+            Image(systemName: interval.kind.glyph)
+                .font(.subheadline)
+                .foregroundStyle(interval.kind.bannerColor)
+                .frame(width: 22)
+                .accessibilityHidden(true)
+
             VStack(alignment: .leading, spacing: 2) {
                 Text(interval.kind.rawValue.capitalized)
                     .font(.rounded(.subheadline, weight: .semibold))
@@ -164,17 +171,5 @@ struct IntervalRow: View {
     private var rangeText: String {
         guard let r = interval.targetHR else { return "—" }
         return "\(r.lower)–\(r.upper) bpm"
-    }
-}
-
-/// iOS-target interval colors, mirroring `Watch/LiveWorkoutView.swift`'s `IntervalKind.bannerColor`.
-extension IntervalKind {
-    var bannerColor: Color {
-        switch self {
-        case .warmup: return .blue
-        case .hard: return .red
-        case .recovery: return .green
-        case .cooldown: return .teal
-        }
     }
 }

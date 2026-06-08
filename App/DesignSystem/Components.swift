@@ -71,6 +71,7 @@ struct TargetBar: View {
     var label: String = "Daily target"
 
     @State private var animatedFraction: Double = 0
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private var fraction: Double {
         guard target > 0 else { return 1 }
@@ -113,12 +114,12 @@ struct TargetBar: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(accessibilityText)
         .onAppear {
-            withAnimation(.spring(response: 0.6, dampingFraction: 0.85)) {
+            withMotion(.spring(response: 0.6, dampingFraction: 0.85), reduceMotion: reduceMotion) {
                 animatedFraction = fraction
             }
         }
         .onChange(of: fraction) { _, newValue in
-            withAnimation(.spring(response: 0.6, dampingFraction: 0.85)) {
+            withMotion(.spring(response: 0.6, dampingFraction: 0.85), reduceMotion: reduceMotion) {
                 animatedFraction = newValue
             }
         }
@@ -146,7 +147,7 @@ struct PrimaryButton: ButtonStyle {
             )
             .opacity(configuration.isPressed ? 0.8 : 1)
             .scaleEffect(configuration.isPressed ? 0.98 : 1)
-            .animation(.easeOut(duration: 0.15), value: configuration.isPressed)
+            .modifier(PressAnimation(isPressed: configuration.isPressed))
     }
 }
 

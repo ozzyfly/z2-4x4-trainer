@@ -7,6 +7,7 @@ struct SettingsView: View {
     @Bindable var profile: ProfileRecord
     let health: HealthStore
     @Environment(\.modelContext) private var context
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @AppStorage("remindersEnabled") private var remindersEnabled = false
     @AppStorage("reminderHour") private var reminderHour = 18
@@ -244,7 +245,7 @@ struct SettingsView: View {
             SectionHeader("Goal")
             Card {
                 VStack(spacing: Spacing.md) {
-                    Toggle("Lose weight", isOn: $profile.goalIsLose.animation(.easeInOut(duration: 0.25)))
+                    Toggle("Lose weight", isOn: $profile.goalIsLose.animation(reduceMotion ? nil : .easeInOut(duration: 0.25)))
                     if profile.goalIsLose {
                         VStack(spacing: Spacing.md) {
                             Divider()
