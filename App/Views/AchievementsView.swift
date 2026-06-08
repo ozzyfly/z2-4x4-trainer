@@ -116,11 +116,15 @@ private struct BadgeCard: View {
                         )
 
                     if !isUnlocked {
+                        // Lock glyph is the non-color signal for locked state.
+                        // `plainBackground` on a `label` circle gives max contrast
+                        // (black-on-white in light, white-on-black in dark) — no
+                        // opacity dimming needed to read "locked".
                         Image(systemName: "lock.fill")
-                            .font(.caption)
-                            .foregroundStyle(.white)
+                            .font(.caption.weight(.bold))
+                            .foregroundStyle(Theme.plainBackground)
                             .padding(5)
-                            .background(Theme.secondaryLabel, in: Circle())
+                            .background(Theme.label, in: Circle())
                     }
                 }
 
@@ -134,9 +138,9 @@ private struct BadgeCard: View {
                     .foregroundStyle(Theme.secondaryLabel)
                     .multilineTextAlignment(.center)
             }
-            .frame(maxWidth: .infinity)
-            .opacity(isUnlocked ? 1 : 0.6)
+            .frame(maxWidth: .infinity, minHeight: 44)
         }
+        .contentShape(Rectangle())
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(
             "\(achievement.title), \(isUnlocked ? "unlocked" : "locked"). \(achievement.detail)"

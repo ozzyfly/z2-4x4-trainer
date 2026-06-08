@@ -5,11 +5,13 @@ import SwiftUI
 private struct CelebrationModifier: ViewModifier {
     @Binding var isActive: Bool
     @State private var trigger = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     func body(content: Content) -> some View {
         content
             .overlay {
-                if isActive {
+                // Confetti is pure motion — skip it entirely under Reduce Motion.
+                if isActive && !reduceMotion {
                     ConfettiBurst()
                         .allowsHitTesting(false)
                         .transition(.opacity)
@@ -18,11 +20,16 @@ private struct CelebrationModifier: ViewModifier {
             .sensoryFeedback(.success, trigger: trigger)
             .onChange(of: isActive) { _, active in
                 guard active else { return }
-                trigger.toggle()
-                // Auto-dismiss after the burst plays out.
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    withAnimation(.easeOut(duration: 0.3)) {
-                        isActive = false
+                trigger.toggle()  // haptic still fires; it isn't motion
+                if reduceMotion {
+                    // Reach the final state immediately, no animated transition.
+                    isActive = false
+                } else {
+                    // Auto-dismiss after the burst plays out.
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        withMotion(.easeOut(duration: 0.3), reduceMotion: reduceMotion) {
+                            isActive = false
+                        }
                     }
                 }
             }

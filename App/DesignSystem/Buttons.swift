@@ -1,0 +1,42 @@
+import SwiftUI
+
+// MARK: - SecondaryButton
+
+/// Subordinate counterpart to `PrimaryButton`: same size and full-width layout,
+/// but a tinted (not filled) accent style so it reads as the lower-priority
+/// action. Keeps a ≥44pt tap target and fires a selection haptic on press.
+///
+/// Use for secondary actions placed alongside a `PrimaryButton`
+/// (e.g. "Log a workout" beside "Start workout").
+struct SecondaryButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.headline)
+            .foregroundStyle(Theme.accent)
+            .frame(maxWidth: .infinity, minHeight: 44)
+            .padding(.vertical, Spacing.sm)
+            .background(
+                RoundedRectangle(cornerRadius: Radius.md, style: .continuous)
+                    .fill(Theme.accent.opacity(0.12))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: Radius.md, style: .continuous)
+                    .strokeBorder(Theme.accent.opacity(0.25), lineWidth: 1)
+            )
+            .opacity(configuration.isPressed ? 0.8 : 1)
+            .scaleEffect(configuration.isPressed ? 0.98 : 1)
+            .animation(.easeOut(duration: 0.15), value: configuration.isPressed)
+            .sensoryFeedback(.selection, trigger: configuration.isPressed)
+    }
+}
+
+#Preview("Primary + Secondary") {
+    VStack(spacing: Spacing.md) {
+        Button("Start workout") {}
+            .buttonStyle(PrimaryButton())
+        Button("Log a workout") {}
+            .buttonStyle(SecondaryButton())
+    }
+    .padding(Spacing.lg)
+    .background(Theme.background)
+}

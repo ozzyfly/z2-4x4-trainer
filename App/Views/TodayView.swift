@@ -84,15 +84,25 @@ struct TodayView: View {
                             .foregroundStyle(color)
                     }
                     VStack(alignment: .leading, spacing: Spacing.xs) {
-                        Text(readinessTitle(readiness.label))
-                            .font(.rounded(.headline, weight: .semibold))
-                            .foregroundStyle(Theme.label)
+                        HStack(spacing: Spacing.xs) {
+                            // Glyph + text carry the state without relying on color.
+                            Image(systemName: readinessGlyph(readiness.label))
+                                .font(.subheadline.weight(.bold))
+                                .foregroundStyle(color)
+                            Text(readinessTitle(readiness.label))
+                                .font(.rounded(.headline, weight: .semibold))
+                                .foregroundStyle(Theme.label)
+                        }
                         Text(readiness.label.recommendation)
                             .font(.subheadline)
                             .foregroundStyle(Theme.secondaryLabel)
                     }
                     Spacer(minLength: 0)
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(
+                    "Readiness \(readiness.value), \(readinessTitle(readiness.label)), \(readiness.label.recommendation)"
+                )
             }
         }
     }
@@ -107,9 +117,17 @@ struct TodayView: View {
 
     private func readinessColor(_ label: ReadinessLabel) -> Color {
         switch label {
-        case .goHard: return .green
-        case .steady: return .blue
-        case .easy:   return .orange
+        case .goHard: return Theme.success
+        case .steady: return Theme.info
+        case .easy:   return Theme.warning
+        }
+    }
+
+    private func readinessGlyph(_ label: ReadinessLabel) -> String {
+        switch label {
+        case .goHard: return "bolt.fill"
+        case .steady: return "equal.circle.fill"
+        case .easy:   return "moon.fill"
         }
     }
 
@@ -268,16 +286,8 @@ struct TodayView: View {
                 ManualEntryView(defaultType: isRest ? .zone2 : today.type)
             } label: {
                 Label("Log a workout", systemImage: "plus.circle.fill")
-                    .font(.headline)
-                    .foregroundStyle(Theme.accent)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, Spacing.md)
-                    .background(
-                        RoundedRectangle(cornerRadius: Radius.md, style: .continuous)
-                            .fill(Theme.accent.opacity(0.12))
-                    )
             }
-            .buttonStyle(.plain)
+            .buttonStyle(SecondaryButton())
         }
     }
 

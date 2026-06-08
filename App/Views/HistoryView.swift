@@ -8,6 +8,11 @@ struct HistoryView: View {
     let health: HealthStore
     @Query(sort: \WorkoutLog.date, order: .reverse) private var logs: [WorkoutLog]
 
+    /// Chart height scales with Dynamic Type but is clamped so large accessibility
+    /// sizes don't blow the charts up off-screen (or shrink them away).
+    @ScaledMetric(relativeTo: .body) private var scaledChartHeight: CGFloat = 200
+    private var chartHeight: CGFloat { min(max(scaledChartHeight, 160), 280) }
+
     private struct DayMinutes: Identifiable {
         let id: Int          // 0 = Mon … 6 = Sun
         let label: String
@@ -148,14 +153,23 @@ struct HistoryView: View {
                         )
                         .foregroundStyle(Theme.accent)
                         .cornerRadius(Radius.sm)
+                        .accessibilityLabel(day.label)
+                        .accessibilityValue("\(day.minutes) minutes")
                     }
-                    .frame(height: 200)
+                    .frame(height: chartHeight)
                 } else {
-                    ContentUnavailableView(
-                        "No workouts yet",
-                        systemImage: "chart.bar.fill",
-                        description: Text("Log a workout or connect Apple Health to see your week.")
-                    )
+                    ContentUnavailableView {
+                        Label("No workouts yet", systemImage: "chart.bar.fill")
+                    } description: {
+                        Text("Log a workout or connect Apple Health to see your week.")
+                    } actions: {
+                        NavigationLink {
+                            ManualEntryView()
+                        } label: {
+                            Text("Log a workout")
+                        }
+                        .buttonStyle(SecondaryButton())
+                    }
                 }
             }
         }
@@ -182,21 +196,31 @@ struct HistoryView: View {
                             .foregroundStyle(Theme.accent)
                         }
                         .chartYScale(domain: .automatic(includesZero: false))
-                        .frame(height: 200)
+                        .frame(height: chartHeight)
 
+                        let improving = trend.deltaFromFirst >= 0
+                        // Pre-format to keep the view body cheap for the type-checker.
+                        let oneDP = FloatingPointFormatStyle<Double>.number.precision(.fractionLength(1))
+                        let latestText = trend.latest.formatted(oneDP)
+                        let deltaSignedText = trend.deltaFromFirst.formatted(oneDP.sign(strategy: .always()))
+                        let deltaAbsText = abs(trend.deltaFromFirst).formatted(oneDP)
+                        let trendA11y = "Latest VO2 max \(latestText), \(improving ? "improved" : "declined") by \(deltaAbsText)"
                         HStack(spacing: Spacing.xs) {
-                            Text("Latest \(trend.latest, format: .number.precision(.fractionLength(1)))")
+                            Text("Latest \(latestText)")
                                 .numericStyle(.subheadline.weight(.semibold))
                                 .foregroundStyle(Theme.label)
                             Text("·")
                                 .foregroundStyle(Theme.secondaryLabel)
-                            Image(systemName: trend.deltaFromFirst >= 0 ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
+                            // Triangle glyph + explicit +/- sign convey direction without color.
+                            Image(systemName: improving ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
                                 .font(.caption2)
-                                .foregroundStyle(trend.deltaFromFirst >= 0 ? Theme.accent : .orange)
-                            Text(abs(trend.deltaFromFirst), format: .number.precision(.fractionLength(1)))
+                                .foregroundStyle(improving ? Theme.success : Theme.danger)
+                            Text(deltaSignedText)
                                 .numericStyle(.subheadline)
-                                .foregroundStyle(Theme.secondaryLabel)
+                                .foregroundStyle(improving ? Theme.success : Theme.danger)
                         }
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel(trendA11y)
                     }
                 } else {
                     ContentUnavailableView(
@@ -228,7 +252,7 @@ struct HistoryView: View {
                         .foregroundStyle(HRZone.zone2.color)
                     }
                     .chartYScale(domain: .automatic(includesZero: false))
-                    .frame(height: 200)
+                    .frame(height: chartHeight)
                 } else {
                     ContentUnavailableView(
                         "No weight data",

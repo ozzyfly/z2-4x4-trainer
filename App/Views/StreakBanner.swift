@@ -10,39 +10,64 @@ struct StreakBanner: View {
     private var hasStreak: Bool { currentWeeks > 0 }
 
     var body: some View {
+        if hasStreak {
+            activeCard
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(accessibilityText)
+        } else {
+            // Keep children accessible so the CTA button is reachable by VoiceOver.
+            emptyCard
+        }
+    }
+
+    private var activeCard: some View {
         Card {
             HStack(spacing: Spacing.md) {
-                Image(systemName: hasStreak ? "flame.fill" : "flame")
-                    .font(.title)
-                    .foregroundStyle(Theme.accent)
-                    .frame(width: 44, height: 44)
-                    .background(Theme.accent.opacity(0.12), in: Circle())
-
-                if hasStreak {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("\(currentWeeks)-week streak")
-                            .font(.rounded(.title2, weight: .bold))
-                            .foregroundStyle(Theme.label)
-                        Text("Longest: \(longestWeeks)")
-                            .font(.subheadline)
-                            .foregroundStyle(Theme.secondaryLabel)
-                    }
-                } else {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Start a streak this week")
-                            .font(.rounded(.title3, weight: .semibold))
-                            .foregroundStyle(Theme.label)
-                        Text(longestWeeks > 0 ? "Your best: \(longestWeeks) weeks" : "Log a workout to begin.")
-                            .font(.subheadline)
-                            .foregroundStyle(Theme.secondaryLabel)
-                    }
+                streakIcon
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("\(currentWeeks)-week streak")
+                        .font(.rounded(.title2, weight: .bold))
+                        .foregroundStyle(Theme.label)
+                    Text("Longest: \(longestWeeks)")
+                        .font(.subheadline)
+                        .foregroundStyle(Theme.secondaryLabel)
                 }
-
                 Spacer(minLength: 0)
             }
         }
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(accessibilityText)
+    }
+
+    private var emptyCard: some View {
+        Card {
+            HStack(spacing: Spacing.md) {
+                streakIcon
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Start a streak this week")
+                        .font(.rounded(.title3, weight: .semibold))
+                        .foregroundStyle(Theme.label)
+                    Text(longestWeeks > 0 ? "Your best: \(longestWeeks) weeks" : "Log a workout to begin.")
+                        .font(.subheadline)
+                        .foregroundStyle(Theme.secondaryLabel)
+                }
+                Spacer(minLength: 0)
+                NavigationLink {
+                    ManualEntryView()
+                } label: {
+                    Text("Log")
+                        .font(.subheadline.weight(.semibold))
+                }
+                .buttonStyle(.bordered)
+                .tint(Theme.accent)
+            }
+        }
+    }
+
+    private var streakIcon: some View {
+        Image(systemName: hasStreak ? "flame.fill" : "flame")
+            .font(.title)
+            .foregroundStyle(Theme.accent)
+            .frame(width: 44, height: 44)
+            .background(Theme.accent.opacity(0.12), in: Circle())
     }
 
     private var accessibilityText: String {

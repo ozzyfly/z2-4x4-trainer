@@ -31,6 +31,7 @@ struct OnboardingView: View {
                         Label("Get started", systemImage: "arrow.right.circle.fill")
                     }
                     .buttonStyle(PrimaryButton())
+                    .disabled(!isValid)
                 }
                 .padding(Spacing.lg)
             }
@@ -53,7 +54,7 @@ struct OnboardingView: View {
             Text("Z2 / 4×4 Trainer")
                 .font(.rounded(.largeTitle, weight: .bold))
                 .foregroundStyle(Theme.label)
-            Text("Personalised heart-rate zones for Zone 2 base and Norwegian 4×4 sessions.")
+            Text("Build your aerobic base and lift your fitness with workouts tuned to you — Zone 2 easy days and Norwegian 4×4 intervals.")
                 .font(.subheadline)
                 .foregroundStyle(Theme.secondaryLabel)
                 .fixedSize(horizontal: false, vertical: true)
@@ -63,9 +64,14 @@ struct OnboardingView: View {
     private var aboutSection: some View {
         VStack(alignment: .leading, spacing: Spacing.sm) {
             SectionHeader("About you")
+            Text("We use these to calculate your personal heart-rate zones and weekly targets.")
+                .font(.caption)
+                .foregroundStyle(Theme.secondaryLabel)
+                .fixedSize(horizontal: false, vertical: true)
             Card {
                 VStack(spacing: Spacing.md) {
-                    Stepper("Age: \(age)", value: $age, in: 12...100)
+                    AccessibleStepper(title: "Age", value: $age, range: 12...100,
+                                      valueText: "\(age)")
                     Divider()
                     Picker("Sex", selection: $sex) {
                         ForEach(BiologicalSex.allCases, id: \.self) {
@@ -77,12 +83,14 @@ struct OnboardingView: View {
                         TextField("kg", value: $weightKg, format: .number)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
+                            .accessibilityLabel("Weight in kilograms")
                     }
                     Divider()
                     LabeledContent("Height (cm)") {
                         TextField("cm", value: $heightCm, format: .number)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
+                            .accessibilityLabel("Height in centimetres")
                     }
                 }
             }
@@ -107,16 +115,24 @@ struct OnboardingView: View {
             SectionHeader("Goal")
             Card {
                 VStack(spacing: Spacing.md) {
-                    Toggle("Lose weight", isOn: $goalIsLose)
+                    Toggle("Lose weight", isOn: $goalIsLose.animation(.easeInOut(duration: 0.25)))
                     if goalIsLose {
-                        Divider()
-                        Stepper("Rate: \(loseRate, specifier: "%.2f") kg/week",
-                                value: $loseRate, in: 0.25...1.0, step: 0.25)
+                        VStack(spacing: Spacing.md) {
+                            Divider()
+                            AccessibleStepper(
+                                title: "Rate", value: $loseRate, range: 0.25...1.0, step: 0.25,
+                                valueText: String(format: "%.2f kg/week", loseRate)
+                            )
+                        }
+                        .transition(.opacity.combined(with: .move(edge: .top)))
                     }
                 }
             }
         }
     }
+
+    /// Block profile creation until body metrics are positive.
+    private var isValid: Bool { weightKg > 0 && heightCm > 0 }
 
     private func save() {
         let record = ProfileRecord(

@@ -49,7 +49,10 @@ struct SectionHeader: View {
     init(_ title: String) { self.title = title }
 
     var body: some View {
-        Text(title.uppercased())
+        // `.textCase(.uppercase)` (not `title.uppercased()`) so VoiceOver keeps
+        // the underlying casing and pronounces terms like "VO2max" naturally.
+        Text(title)
+            .textCase(.uppercase)
             .font(.caption.weight(.semibold))
             .tracking(0.8)
             .foregroundStyle(Theme.secondaryLabel)
@@ -86,6 +89,8 @@ struct TargetBar: View {
                 if isMet {
                     Image(systemName: "checkmark.circle.fill")
                         .foregroundStyle(Theme.accent)
+                        .frame(minWidth: 44, minHeight: 44)
+                        .contentShape(Rectangle())
                         .transition(.scale.combined(with: .opacity))
                 } else {
                     Text("\(max(target - done, 0)) to go")
@@ -158,6 +163,7 @@ struct ZoneChip: View {
             Circle()
                 .fill(color)
                 .frame(width: 7, height: 7)
+                .accessibilityHidden(true)  // decorative; zone identity is in the text label
             Text(title)
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(Theme.label)

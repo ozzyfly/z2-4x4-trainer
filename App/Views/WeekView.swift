@@ -144,7 +144,10 @@ private struct DayRow: View {
             Text(weekday)
                 .font(.rounded(.subheadline, weight: .semibold))
                 .foregroundStyle(isRest ? Theme.secondaryLabel : Theme.label)
-                .frame(width: 40, alignment: .leading)
+                // No hard width cap: let it scale with Dynamic Type instead of clipping.
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+                .frame(minWidth: 40, alignment: .leading)
 
             Text(title)
                 .font(.subheadline)

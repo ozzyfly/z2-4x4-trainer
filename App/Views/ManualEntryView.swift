@@ -25,7 +25,7 @@ struct ManualEntryView: View {
             VStack(alignment: .leading, spacing: Spacing.xl) {
                 detailsSection
 
-                Button("Save") { save() }
+                Button("Log workout") { save() }
                     .buttonStyle(PrimaryButton())
             }
             .padding(Spacing.lg)
@@ -47,14 +47,23 @@ struct ManualEntryView: View {
                         Text(SessionType.norwegian4x4.displayName).tag(SessionType.norwegian4x4)
                     }
                     Divider()
-                    DatePicker("When", selection: $date)
+                    DatePicker("When", selection: $date, in: ...Date.now)
+                        .accessibilityLabel("Workout date and time")
+                        .accessibilityHint("Select when you completed this workout")
                     Divider()
                     Stepper("Duration: \(durationMin) min", value: $durationMin, in: 5...240, step: 5)
                     Divider()
                     LabeledContent("Active energy (kcal)") {
-                        TextField("optional", text: $energy)
+                        TextField("Leave blank if not tracked", text: $energy)
                             .keyboardType(.numberPad)
                             .multilineTextAlignment(.trailing)
+                            .accessibilityLabel("Active energy in kilocalories")
+                            .accessibilityHint("Optional")
+                            .onChange(of: energy) { _, new in
+                                // Keep only digits so a stray paste can't be saved as garbage.
+                                let digits = new.filter(\.isNumber)
+                                if digits != new { energy = digits }
+                            }
                     }
                 }
             }

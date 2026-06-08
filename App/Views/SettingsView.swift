@@ -123,7 +123,8 @@ struct SettingsView: View {
             SectionHeader("Profile")
             Card {
                 VStack(spacing: Spacing.md) {
-                    Stepper("Age: \(profile.age)", value: $profile.age, in: 12...100)
+                    AccessibleStepper(title: "Age", value: $profile.age, range: 12...100,
+                                      valueText: "\(profile.age)")
                     Divider()
                     LabeledContent("Weight (kg)") {
                         TextField("kg", value: $profile.weightKg, format: .number)
@@ -147,11 +148,15 @@ struct SettingsView: View {
                     Toggle("Override max HR", isOn: hasOverride)
                     Divider()
                     if profile.maxHROverride != nil {
-                        Stepper("Max HR: \(profile.maxHROverride ?? 0)",
-                                value: Binding(
-                                    get: { profile.maxHROverride ?? (220 - profile.age) },
-                                    set: { profile.maxHROverride = $0 }
-                                ), in: 120...220)
+                        AccessibleStepper(
+                            title: "Max HR",
+                            value: Binding(
+                                get: { profile.maxHROverride ?? (220 - profile.age) },
+                                set: { profile.maxHROverride = $0 }
+                            ),
+                            range: 120...220,
+                            valueText: "\(profile.maxHROverride ?? 0) bpm"
+                        )
                     } else {
                         LabeledContent("Estimated max HR") {
                             Text("\(220 - profile.age) bpm")
@@ -182,13 +187,20 @@ struct SettingsView: View {
                         Divider()
                         Toggle("Set resting HR", isOn: hasRestingHR)
                         if profile.restingHR != nil {
-                            Stepper("Resting HR: \(restingHRValue.wrappedValue)",
-                                    value: restingHRValue, in: 30...100)
+                            AccessibleStepper(title: "Resting HR", value: restingHRValue,
+                                              range: 30...100,
+                                              valueText: "\(restingHRValue.wrappedValue) bpm")
                         } else {
-                            Text("Resting HR is required for heart-rate-reserve zones. Without it, zones fall back to age-based.")
-                                .font(.caption)
-                                .foregroundStyle(Theme.secondaryLabel)
-                                .fixedSize(horizontal: false, vertical: true)
+                            Label {
+                                Text("Resting HR is required for heart-rate-reserve zones. Without it, zones fall back to age-based.")
+                                    .font(.subheadline.weight(.semibold))
+                                    .foregroundStyle(Theme.warning)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            } icon: {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundStyle(Theme.warning)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     case .custom:
                         Divider()
@@ -218,10 +230,12 @@ struct SettingsView: View {
             Text(title)
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(Theme.label)
-            Stepper("Lower: \(customBound(zone: zone, isLower: true).wrappedValue) bpm",
-                    value: customBound(zone: zone, isLower: true), in: 60...220)
-            Stepper("Upper: \(customBound(zone: zone, isLower: false).wrappedValue) bpm",
-                    value: customBound(zone: zone, isLower: false), in: 60...220)
+            AccessibleStepper(title: "\(title) lower",
+                              value: customBound(zone: zone, isLower: true), range: 60...220,
+                              valueText: "\(customBound(zone: zone, isLower: true).wrappedValue) bpm")
+            AccessibleStepper(title: "\(title) upper",
+                              value: customBound(zone: zone, isLower: false), range: 60...220,
+                              valueText: "\(customBound(zone: zone, isLower: false).wrappedValue) bpm")
         }
     }
 
@@ -230,11 +244,17 @@ struct SettingsView: View {
             SectionHeader("Goal")
             Card {
                 VStack(spacing: Spacing.md) {
-                    Toggle("Lose weight", isOn: $profile.goalIsLose)
+                    Toggle("Lose weight", isOn: $profile.goalIsLose.animation(.easeInOut(duration: 0.25)))
                     if profile.goalIsLose {
-                        Divider()
-                        Stepper("Rate: \(profile.loseRateKgPerWeek, specifier: "%.2f") kg/week",
-                                value: $profile.loseRateKgPerWeek, in: 0.25...1.0, step: 0.25)
+                        VStack(spacing: Spacing.md) {
+                            Divider()
+                            AccessibleStepper(
+                                title: "Rate", value: $profile.loseRateKgPerWeek,
+                                range: 0.25...1.0, step: 0.25,
+                                valueText: String(format: "%.2f kg/week", profile.loseRateKgPerWeek)
+                            )
+                        }
+                        .transition(.opacity.combined(with: .move(edge: .top)))
                     }
                 }
             }
@@ -287,13 +307,19 @@ struct SettingsView: View {
             SectionHeader("Apple Health")
             Card {
                 if health.authorized {
-                    HStack(spacing: Spacing.sm) {
-                        Image(systemName: "checkmark.circle.fill")
-                            .foregroundStyle(.green)
-                        Text("Connected")
-                            .font(.headline)
-                            .foregroundStyle(Theme.label)
-                        Spacer()
+                    VStack(alignment: .leading, spacing: Spacing.sm) {
+                        HStack(spacing: Spacing.sm) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundStyle(Theme.success)
+                            Text("Connected")
+                                .font(.headline)
+                                .foregroundStyle(Theme.label)
+                            Spacer()
+                        }
+                        Text("Syncing: Workouts · Active energy · Heart rate · VO2 max · Body weight")
+                            .font(.caption)
+                            .foregroundStyle(Theme.secondaryLabel)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 } else {
                     VStack(alignment: .leading, spacing: Spacing.md) {
