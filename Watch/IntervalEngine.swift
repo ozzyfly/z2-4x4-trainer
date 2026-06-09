@@ -113,13 +113,5 @@ final class IntervalEngine {
     }
 }
 
-extension IntervalKind {
-    var displayName: String {
-        switch self {
-        case .warmup: return "Warm Up"
-        case .hard: return "Hard"
-        case .recovery: return "Recovery"
-        case .cooldown: return "Cool Down"
-        }
-    }
-}
+// IntervalKind.displayName now lives in SharedCore (IntervalKind+UI.swift),
+// shared by the watch engine and the iPhone guided player.

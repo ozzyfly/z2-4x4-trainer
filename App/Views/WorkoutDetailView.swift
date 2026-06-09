@@ -41,6 +41,8 @@ struct WorkoutDetailView: View {
                     ZoneChip(title: "Target HR", range: rangeText(calc.zone2), color: HRZone.zone2.color)
                 }
             }
+
+            guidedSessionButton
         }
     }
 
@@ -77,7 +79,19 @@ struct WorkoutDetailView: View {
                     }
                 }
             }
+
+            guidedSessionButton
         }
+    }
+
+    /// Starts the on-iPhone guided player for this workout.
+    private var guidedSessionButton: some View {
+        NavigationLink {
+            GuidedPlayerView(type: type, calc: calc)
+        } label: {
+            Label("Start guided session", systemImage: "play.circle.fill")
+        }
+        .buttonStyle(PrimaryButton())
     }
 
     // MARK: - Rest

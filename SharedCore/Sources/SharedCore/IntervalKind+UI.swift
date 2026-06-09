@@ -27,4 +27,14 @@ public extension IntervalKind {
         case .cooldown: return "wind"
         }
     }
+
+    /// Human-readable interval name, e.g. "Cool Down".
+    var displayName: String {
+        switch self {
+        case .warmup: return "Warm Up"
+        case .hard: return "Hard"
+        case .recovery: return "Recovery"
+        case .cooldown: return "Cool Down"
+        }
+    }
 }
