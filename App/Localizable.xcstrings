@@ -1,0 +1,278 @@
+{
+  "sourceLanguage" : "en",
+  "version" : "1.0",
+  "strings" : {
+    "About you" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "關於你" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Sobre ti" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "あなたについて" } }
+      }
+    },
+    "Achievements" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "成就" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Logros" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "達成項目" } }
+      }
+    },
+    "Awards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "成就" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Logros" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "アワード" } }
+      }
+    },
+    "Badges" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "徽章" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Insignias" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "バッジ" } }
+      }
+    },
+    "Connect Apple Health" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "連結 Apple Health" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Conectar Apple Health" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "Apple Healthと連携" } }
+      }
+    },
+    "Connected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "已連結" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Conectado" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "連携済み" } }
+      }
+    },
+    "Daily activity" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "日常活動" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Actividad diaria" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "日常の活動" } }
+      }
+    },
+    "Daily target" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "每日目標" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Objetivo diario" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "1日の目標" } }
+      }
+    },
+    "End" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "結束" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Finalizar" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "終了" } }
+      }
+    },
+    "Get started" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "開始使用" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Comenzar" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "はじめる" } }
+      }
+    },
+    "Goal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "目標" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Objetivo" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "目標" } }
+      }
+    },
+    "Heart rate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "心率" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Frecuencia cardíaca" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "心拍数" } }
+      }
+    },
+    "History" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "紀錄" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Historial" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "履歴" } }
+      }
+    },
+    "Log a workout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "記錄一次訓練" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Registrar un entreno" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ワークアウトを記録" } }
+      }
+    },
+    "Log workout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "記錄訓練" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Registrar entreno" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ワークアウトを記録" } }
+      }
+    },
+    "Lose weight" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "減重" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Perder peso" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "減量" } }
+      }
+    },
+    "Profile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "個人資料" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Perfil" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "プロフィール" } }
+      }
+    },
+    "Readiness" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "狀態" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Preparación" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "コンディション" } }
+      }
+    },
+    "Reminders" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "提醒" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Recordatorios" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "リマインダー" } }
+      }
+    },
+    "Rest day" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "休息日" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Día de descanso" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "休養日" } }
+      }
+    },
+    "Settings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "設定" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Ajustes" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "設定" } }
+      }
+    },
+    "Share" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "分享" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Compartir" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "共有" } }
+      }
+    },
+    "Start guided session" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "開始引導訓練" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Sesión guiada" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ガイドを開始" } }
+      }
+    },
+    "Start workout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "開始訓練" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Empezar entreno" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ワークアウトを開始" } }
+      }
+    },
+    "This week's plan" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "本週計畫" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Plan de la semana" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "今週のプラン" } }
+      }
+    },
+    "Today" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "今天" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Hoy" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "今日" } }
+      }
+    },
+    "Today's session" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "今日課表" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Sesión de hoy" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "今日のセッション" } }
+      }
+    },
+    "Training reminders" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "訓練提醒" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Recordatorios de entreno" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "トレーニングのリマインダー" } }
+      }
+    },
+    "Week" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "本週" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Semana" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "週" } }
+      }
+    },
+    "Weekly target" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "每週目標" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Objetivo semanal" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "週間目標" } }
+      }
+    },
+    "Workout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "訓練" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Entreno" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ワークアウト" } }
+      }
+    },
+    "Your coach" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "你的教練" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Tu entrenador" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "あなたのコーチ" } }
+      }
+    },
+    "Your zones" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "你的區間" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Tus zonas" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "あなたのゾーン" } }
+      }
+    },
+    "Zones" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "區間" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Zonas" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ゾーン" } }
+      }
+    }
+  }
+}

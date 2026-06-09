@@ -122,7 +122,7 @@ struct WorkoutDetailView: View {
 
     // MARK: - Helpers
 
-    private func instructionSection(_ title: String, _ body: String) -> some View {
+    private func instructionSection(_ title: LocalizedStringKey, _ body: LocalizedStringKey) -> some View {
         VStack(alignment: .leading, spacing: Spacing.sm) {
             SectionHeader(title)
             Card {

@@ -1,6 +1,12 @@
 name: Z24x4Trainer
 options:
   bundleIdPrefix: ca.logolo.z24x4
+  developmentLanguage: en
+  knownRegions:
+    - en
+    - zh-Hant
+    - es
+    - ja
   deploymentTarget:
     iOS: "18.0"
     watchOS: "11.0"

@@ -44,9 +44,9 @@ struct Card<Content: View>: View {
 
 /// Uppercase, tracked, secondary-colored section label.
 struct SectionHeader: View {
-    let title: String
+    let title: LocalizedStringKey
 
-    init(_ title: String) { self.title = title }
+    init(_ title: LocalizedStringKey) { self.title = title }
 
     var body: some View {
         // `.textCase(.uppercase)` (not `title.uppercased()`) so VoiceOver keeps
