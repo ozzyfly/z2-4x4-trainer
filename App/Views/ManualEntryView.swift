@@ -78,6 +78,7 @@ struct ManualEntryView: View {
             activeEnergyKcal: Int(energy)
         )
         context.insert(log)
+        WidgetSnapshotWriter.update(context: context)
         didSave = true
         dismiss()
     }

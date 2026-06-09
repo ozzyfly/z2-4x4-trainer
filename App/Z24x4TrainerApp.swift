@@ -7,6 +7,7 @@ struct Z24x4TrainerApp: App {
         try! ModelContainer(for: ProfileRecord.self, WorkoutLog.self, AchievementRecord.self)
     }()
     @State private var receiver: PhoneSessionReceiver?
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
@@ -18,5 +19,10 @@ struct Z24x4TrainerApp: App {
                 }
         }
         .modelContainer(container)
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active {
+                WidgetSnapshotWriter.update(context: container.mainContext)
+            }
+        }
     }
 }

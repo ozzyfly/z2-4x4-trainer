@@ -18,10 +18,13 @@ targets:
       - App
     dependencies:
       - package: SharedCore
+      - target: Z24x4Widgets
     entitlements:
       path: App/Z24x4Trainer.entitlements
       properties:
         com.apple.developer.healthkit: true
+        com.apple.security.application-groups:
+          - group.ca.logolo.z24x4
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
@@ -47,6 +50,7 @@ targets:
       - Watch
     dependencies:
       - package: SharedCore
+      - target: Z24x4WatchComplications
     entitlements:
       path: Watch/Z24x4TrainerWatch.entitlements
       properties:
@@ -66,6 +70,52 @@ targets:
         TARGETED_DEVICE_FAMILY: "4"
         SWIFT_VERSION: "6.0"
         CODE_SIGN_STYLE: Automatic
+
+  Z24x4Widgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - Widgets
+    dependencies:
+      - package: SharedCore
+    entitlements:
+      path: Widgets/Z24x4Widgets.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.ca.logolo.z24x4
+    info:
+      path: Widgets/Info.plist
+      properties:
+        CFBundleDisplayName: "Z2/4×4"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ca.logolo.z24x4.Z24x4Trainer.Widgets
+        SWIFT_VERSION: "6.0"
+        CODE_SIGN_STYLE: Automatic
+        TARGETED_DEVICE_FAMILY: "1"
+
+  Z24x4WatchComplications:
+    type: app-extension
+    platform: watchOS
+    deploymentTarget: "11.0"
+    sources:
+      - WatchComplications
+    dependencies:
+      - package: SharedCore
+    info:
+      path: WatchComplications/Info.plist
+      properties:
+        CFBundleDisplayName: "Z2/4×4"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ca.logolo.z24x4.Z24x4Trainer.watchkitapp.Complications
+        SWIFT_VERSION: "6.0"
+        CODE_SIGN_STYLE: Automatic
+        TARGETED_DEVICE_FAMILY: "4"
 
   Z24x4TrainerTests:
     type: bundle.unit-test

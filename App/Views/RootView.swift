@@ -96,5 +96,9 @@ struct MainTabView: View {
                 .tag(4)
         }
         .tint(Theme.accent)
+        // Widgets deep-link here: z24x4://today opens the Today tab.
+        .onOpenURL { url in
+            if url.host == "today" { selection = 0 }
+        }
     }
 }
