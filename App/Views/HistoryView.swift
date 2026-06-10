@@ -86,7 +86,7 @@ struct HistoryView: View {
     }
 
     private var textSummary: String {
-        "Z2/4×4 Trainer — this week: \(thisWeekMinutes) min across \(thisWeekSessions) session(s), \(streakWeeks)-week streak."
+        String(localized: "Z2/4×4 Trainer — this week: \(thisWeekMinutes) min across \(thisWeekSessions) session(s), \(streakWeeks)-week streak.")
     }
 
     /// Renders the share card to a `UIImage` on the main actor. `ImageRenderer`

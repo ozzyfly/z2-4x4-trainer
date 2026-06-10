@@ -25,10 +25,10 @@ struct StreakBanner: View {
             HStack(spacing: Spacing.md) {
                 streakIcon
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("\(currentWeeks)-week streak")
+                    Text(String(localized: "\(currentWeeks)-week streak"))
                         .font(.rounded(.title2, weight: .bold))
                         .foregroundStyle(Theme.label)
-                    Text("Longest: \(longestWeeks)")
+                    Text(String(localized: "Longest: \(longestWeeks)"))
                         .font(.subheadline)
                         .foregroundStyle(Theme.secondaryLabel)
                 }
@@ -45,7 +45,7 @@ struct StreakBanner: View {
                     Text("Start a streak this week")
                         .font(.rounded(.title3, weight: .semibold))
                         .foregroundStyle(Theme.label)
-                    Text(longestWeeks > 0 ? "Your best: \(longestWeeks) weeks" : "Log a workout to begin.")
+                    Text(longestWeeks > 0 ? String(localized: "Your best: \(longestWeeks) weeks") : "Log a workout to begin.")
                         .font(.subheadline)
                         .foregroundStyle(Theme.secondaryLabel)
                 }
@@ -72,12 +72,12 @@ struct StreakBanner: View {
 
     private var accessibilityText: String {
         if hasStreak {
-            let weekWord = currentWeeks == 1 ? "week" : "weeks"
-            return "Current streak \(currentWeeks) \(weekWord). Longest streak \(longestWeeks) weeks."
+            let weekWord = currentWeeks == 1 ? String(localized: "week") : String(localized: "weeks")
+            return String(localized: "Current streak \(currentWeeks) \(weekWord). Longest streak \(longestWeeks) weeks.")
         } else if longestWeeks > 0 {
-            return "No active streak. Start one this week. Your longest streak was \(longestWeeks) weeks."
+            return String(localized: "No active streak. Start one this week. Your longest streak was \(longestWeeks) weeks.")
         } else {
-            return "No active streak. Log a workout to start one this week."
+            return String(localized: "No active streak. Log a workout to start one this week.")
         }
     }
 }

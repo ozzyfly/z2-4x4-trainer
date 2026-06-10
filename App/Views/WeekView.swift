@@ -104,7 +104,7 @@ struct WeekView: View {
         }
     }
 
-    private func statRow(icon: String, iconColor: Color, title: String, value: String) -> some View {
+    private func statRow(icon: String, iconColor: Color, title: LocalizedStringKey, value: String) -> some View {
         HStack {
             Label {
                 Text(title)
@@ -120,7 +120,7 @@ struct WeekView: View {
                 .foregroundStyle(Theme.label)
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(title), \(value)")
+        .accessibilityLabel(Text(title) + Text(", \(value)"))
     }
 
     private var weekMinutes: Int {

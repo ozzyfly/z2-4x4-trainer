@@ -1,366 +1,2995 @@
 {
-  "sourceLanguage" : "en",
-  "version" : "1.0",
-  "strings" : {
-    "Deload week — keep it easy." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "減量週 — 保持輕鬆。" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Semana de descarga — tómalo con calma." } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "軽負荷週 — 無理せず。" } }
+  "sourceLanguage": "en",
+  "strings": {
+    "%1$@, %2$lld minutes, %3$@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$@, %2$lld minutos, %3$@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%1$@、%2$lld 分、%3$@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@，%2$lld 分鐘，%3$@"
+          }
+        }
       }
     },
-    "Go hard" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "全力衝" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "A tope" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "全力で" } }
+    "%lld min": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%lld min"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%lld 分"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分鐘"
+          }
+        }
       }
     },
-    "Holding steady — finish this week strong." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "維持中 — 把本週收好。" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Manteniendo — termina fuerte la semana." } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "維持 — 今週を強く締めくくろう。" } }
+    "%lld-week streak": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Racha de %lld semanas"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%lld週連続"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連續 %lld 週"
+          }
+        }
       }
     },
-    "Norwegian 4×4" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "挪威 4×4" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Noruego 4×4" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ノルウェー式4×4" } }
+    "%lld–%lld bpm": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%lld–%lld ppm"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%lld–%lld bpm"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld–%lld bpm"
+          }
+        }
       }
     },
-    "Progressing — nice consistency!" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "進步中 — 保持得很好！" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "¡Progresando, buena constancia!" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "順調 — 良い継続です！" } }
+    "About you": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sobre ti"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "あなたについて"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "關於你"
+          }
+        }
       }
     },
-    "Recover well." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "好好恢復。" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Recupérate bien." } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "しっかり回復を。" } }
+    "Achievements": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Logros"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "達成項目"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "成就"
+          }
+        }
       }
     },
-    "Rest" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "休息" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Descanso" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "休養" } }
+    "Active energy (kcal)": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Energía activa (kcal)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "アクティブエネルギー（kcal）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "動態能量（大卡）"
+          }
+        }
       }
     },
-    "Steady" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "穩定" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Constante" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "安定" } }
+    "Active energy in kilocalories": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Energía activa en kilocalorías"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "キロカロリー単位のアクティブエネルギー"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以千卡為單位的動態能量"
+          }
+        }
       }
     },
-    "Take it easy" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "放輕鬆" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Con calma" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "軽めに" } }
+    "Activity": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Actividad"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "活動量"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "活動量"
+          }
+        }
       }
     },
-    "This week: %lld Zone 2 + %lld × 4×4, ~%lld min" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "本週：%lld 次 Zone 2 + %lld × 4×4，約 %lld 分鐘" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Esta semana: %lld Zone 2 + %lld × 4×4, ~%lld min" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "今週：Zone 2 %lld回 + 4×4 %lld回、約%lld分" } }
+    "Age-based": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Según la edad"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "年齢ベース"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "依年齡推算"
+          }
+        }
       }
     },
-    "Zone 2" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "Zone 2" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Zona 2" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ゾーン2" } }
+    "Awards": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Logros"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "アワード"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "成就"
+          }
+        }
       }
     },
-    "About you" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "關於你" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Sobre ti" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "あなたについて" } }
+    "Badges": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Insignias"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "バッジ"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "徽章"
+          }
+        }
       }
     },
-    "Achievements" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "成就" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Logros" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "達成項目" } }
+    "Body weight trend": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tendencia de peso corporal"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "体重の推移"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "體重趨勢"
+          }
+        }
       }
     },
-    "Awards" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "成就" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Logros" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "アワード" } }
+    "Build your aerobic base and lift your fitness with workouts tuned to you — Zone 2 easy days and Norwegian 4×4 intervals.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Desarrolla tu base aeróbica y mejora tu forma física con entrenamientos a tu medida: días suaves de Zona 2 e intervalos noruegos 4×4."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "あなたに合わせたワークアウトで有酸素ベースを築き、体力を高めましょう——Zone 2 のイージーデイとノルウェー式 4×4 インターバル。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用為你量身打造的訓練建立有氧基礎、提升體能——Zone 2 輕鬆日與挪威式 4×4 間歇。"
+          }
+        }
       }
     },
-    "Badges" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "徽章" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Insignias" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "バッジ" } }
+    "Connect Apple Health": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conectar Apple Health"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Apple Healthと連携"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連結 Apple Health"
+          }
+        }
       }
     },
-    "Connect Apple Health" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "連結 Apple Health" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Conectar Apple Health" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "Apple Healthと連携" } }
+    "Connect Apple Health in Settings to track your weight.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conecta Apple Salud en Ajustes para seguir tu peso."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "設定でAppleヘルスケアを接続して体重を記録しましょう。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在「設定」中連接 Apple 健康以追蹤你的體重。"
+          }
+        }
       }
     },
-    "Connected" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "已連結" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Conectado" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "連携済み" } }
+    "Connect Apple Health to see your fitness trend.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conecta Apple Salud para ver tu tendencia de forma física."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Appleヘルスケアを接続してフィットネスの推移を確認しましょう。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連接 Apple 健康以查看你的體能趨勢。"
+          }
+        }
       }
     },
-    "Daily activity" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "日常活動" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Actividad diaria" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "日常の活動" } }
+    "Connected": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conectado"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "連携済み"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已連結"
+          }
+        }
       }
     },
-    "Daily target" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "每日目標" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Objetivo diario" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "1日の目標" } }
+    "Current streak %lld %@. Longest streak %lld weeks.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Racha actual %lld %@. Racha más larga %lld semanas."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "現在の連続記録 %lld %@。最長連続記録 %lld 週間。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目前連續 %lld %@。最長連續 %lld 週。"
+          }
+        }
       }
     },
-    "End" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "結束" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Finalizar" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "終了" } }
+    "Custom": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Personalizado"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "カスタム"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自訂"
+          }
+        }
       }
     },
-    "Get started" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "開始使用" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Comenzar" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "はじめる" } }
+    "Daily activity": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Actividad diaria"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "日常の活動"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日常活動"
+          }
+        }
       }
     },
-    "Goal" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "目標" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Objetivo" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "目標" } }
+    "Daily target": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Objetivo diario"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "1日の目標"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每日目標"
+          }
+        }
       }
     },
-    "Heart rate" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "心率" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Frecuencia cardíaca" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "心拍数" } }
+    "Deload week — keep it easy.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Semana de descarga — tómalo con calma."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "軽負荷週 — 無理せず。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "減量週 — 保持輕鬆。"
+          }
+        }
       }
     },
-    "History" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "紀錄" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Historial" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "履歴" } }
+    "Duration: %lld min": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Duración: %lld min"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "時間：%lld 分"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "時長：%lld 分鐘"
+          }
+        }
       }
     },
-    "Log a workout" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "記錄一次訓練" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Registrar un entreno" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ワークアウトを記録" } }
+    "Elapsed time": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tiempo transcurrido"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "経過時間"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已用時間"
+          }
+        }
       }
     },
-    "Log workout" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "記錄訓練" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Registrar entreno" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ワークアウトを記録" } }
+    "End": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Finalizar"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "終了"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "結束"
+          }
+        }
       }
     },
-    "Lose weight" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "減重" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Perder peso" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "減量" } }
+    "Estimated max HR": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "FC máxima estimada"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "推定最大心拍数"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "估計最大心率"
+          }
+        }
       }
     },
-    "Profile" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "個人資料" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Perfil" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "プロフィール" } }
+    "Exercise energy": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Energía de ejercicio"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "運動エネルギー"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "運動消耗熱量"
+          }
+        }
       }
     },
-    "Readiness" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "狀態" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Preparación" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "コンディション" } }
+    "Four 4-minute hard intervals at 85–95% max HR, each followed by 3 minutes of easy recovery. Warm up and cool down properly.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cuatro intervalos intensos de 4 minutos al 85–95% de la FC máxima, cada uno seguido de 3 minutos de recuperación suave. Calienta y enfría adecuadamente."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "最大心拍数の 85〜95% で 4 分間のきついインターバルを 4 本、それぞれの後に 3 分間のイージーリカバリーを行います。ウォームアップとクールダウンをしっかり行いましょう。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "四組 4 分鐘的高強度間歇，強度為最大心率的 85–95%，每組後接 3 分鐘的輕鬆恢復。請確實做好暖身與緩和。"
+          }
+        }
       }
     },
-    "Reminders" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "提醒" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Recordatorios" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "リマインダー" } }
+    "Get started": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Comenzar"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "はじめる"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始使用"
+          }
+        }
       }
     },
-    "Rest day" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "休息日" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Día de descanso" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "休養日" } }
+    "Go hard": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A tope"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "全力で"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全力衝"
+          }
+        }
       }
     },
-    "Settings" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "設定" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Ajustes" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "設定" } }
+    "Goal": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Objetivo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "目標"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標"
+          }
+        }
       }
     },
-    "Share" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "分享" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Compartir" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "共有" } }
+    "Hard (4×4) sessions": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sesiones intensas (4×4)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "高強度（4×4）セッション"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高強度（4×4）課程"
+          }
+        }
       }
     },
-    "Start guided session" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "開始引導訓練" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Sesión guiada" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ガイドを開始" } }
+    "Hard band": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Banda intensa"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ハードバンド"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高強度區間"
+          }
+        }
       }
     },
-    "Start workout" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "開始訓練" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Empezar entreno" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ワークアウトを開始" } }
+    "Heart rate": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Frecuencia cardíaca"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "心拍数"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心率"
+          }
+        }
       }
     },
-    "This week's plan" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "本週計畫" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Plan de la semana" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "今週のプラン" } }
+    "Heart-rate reserve": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Reserva de frecuencia cardíaca"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "心拍予備能"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心率儲備"
+          }
+        }
       }
     },
-    "Today" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "今天" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Hoy" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "今日" } }
+    "Height (cm)": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Altura (cm)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "身長（cm）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身高（公分）"
+          }
+        }
       }
     },
-    "Today's session" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "今日課表" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Sesión de hoy" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "今日のセッション" } }
+    "History": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Historial"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "履歴"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "紀錄"
+          }
+        }
       }
     },
-    "Training reminders" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "訓練提醒" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Recordatorios de entreno" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "トレーニングのリマインダー" } }
+    "Hold a steady, conversational effort. Stay in your Zone 2 band for the whole session.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mantén un esfuerzo constante en el que puedas conversar. Permanece en tu banda de Zona 2 durante toda la sesión."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "会話できる程度の一定の強度を保ちます。セッション中はずっと Zone 2 の範囲内にとどまりましょう。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保持穩定、能正常對話的強度。整個訓練都待在你的 Zone 2 區間內。"
+          }
+        }
       }
     },
-    "Week" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "本週" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Semana" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "週" } }
+    "Holding steady — finish this week strong.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Manteniendo — termina fuerte la semana."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "維持 — 今週を強く締めくくろう。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "維持中 — 把本週收好。"
+          }
+        }
       }
     },
-    "Weekly target" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "每週目標" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Objetivo semanal" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "週間目標" } }
+    "Keep it conversational": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mantén un ritmo en el que puedas conversar"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "会話できる程度の強度を保ちましょう"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保持能輕鬆對話的強度"
+          }
+        }
       }
     },
-    "Workout" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "訓練" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Entreno" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ワークアウト" } }
+    "Leave blank if not tracked": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Déjalo en blanco si no se registró"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "記録がない場合は空欄のままにしてください"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "若未追蹤可留空"
+          }
+        }
       }
     },
-    "Your coach" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "你的教練" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Tu entrenador" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "あなたのコーチ" } }
+    "Log": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Registrar"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "記録"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "記錄"
+          }
+        }
       }
     },
-    "Your zones" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "你的區間" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Tus zonas" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "あなたのゾーン" } }
+    "Log a workout": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Registrar un entreno"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ワークアウトを記録"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "記錄一次訓練"
+          }
+        }
       }
     },
-    "Zones" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "區間" } },
-        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Zonas" } },
-        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ゾーン" } }
+    "Log a workout or connect Apple Health to see your week.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Registra un entrenamiento o conecta Apple Salud para ver tu semana."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ワークアウトを記録するか、Appleヘルスケアを接続して今週の状況を確認しましょう。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "記錄訓練或連接 Apple 健康以查看你的一週。"
+          }
+        }
+      }
+    },
+    "Log a workout to begin.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Registra un entrenamiento para empezar."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ワークアウトを記録して始めましょう。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "記錄一次訓練即可開始。"
+          }
+        }
+      }
+    },
+    "Log workout": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Registrar entreno"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ワークアウトを記録"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "記錄訓練"
+          }
+        }
+      }
+    },
+    "Longest: %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Más larga: %lld"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "最長：%lld"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最長：%lld"
+          }
+        }
+      }
+    },
+    "Lose weight": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Perder peso"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "減量"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "減重"
+          }
+        }
+      }
+    },
+    "Max HR": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "FC máxima"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "最大心拍数"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最大心率"
+          }
+        }
+      }
+    },
+    "Method": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Método"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "計算方法"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "計算方式"
+          }
+        }
+      }
+    },
+    "Next: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Siguiente: %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "次：%@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下一個：%@"
+          }
+        }
+      }
+    },
+    "No active streak. Log a workout to start one this week.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sin racha activa. Registra un entrenamiento para empezar una esta semana."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "現在の連続記録はありません。今週ワークアウトを記録して始めましょう。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目前沒有連續紀錄。本週記錄一次訓練即可開始。"
+          }
+        }
+      }
+    },
+    "No active streak. Start one this week. Your longest streak was %lld weeks.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sin racha activa. Empieza una esta semana. Tu racha más larga fue de %lld semanas."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "現在の連続記録はありません。今週始めましょう。最長連続記録は %lld 週間でした。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目前沒有連續紀錄。本週開始一次吧。你最長的連續紀錄是 %lld 週。"
+          }
+        }
+      }
+    },
+    "No fitness data": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sin datos de forma física"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "フィットネスデータがありません"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "沒有體能資料"
+          }
+        }
+      }
+    },
+    "No weight data": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sin datos de peso"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "体重データがありません"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "沒有體重資料"
+          }
+        }
+      }
+    },
+    "No workouts yet": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aún no hay entrenamientos"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "まだワークアウトがありません"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "尚無訓練記錄"
+          }
+        }
+      }
+    },
+    "Norwegian 4×4": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Noruego 4×4"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ノルウェー式4×4"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "挪威 4×4"
+          }
+        }
+      }
+    },
+    "Optional": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Opcional"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "任意"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選填"
+          }
+        }
+      }
+    },
+    "Other zones use age-based defaults until edited.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Las demás zonas usan valores según la edad hasta que se editen."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "他のゾーンは編集するまで年齢ベースの既定値を使用します。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "其他區間在編輯前會使用依年齡推算的預設值。"
+          }
+        }
+      }
+    },
+    "Override max HR": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Anular FC máxima"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "最大心拍数を上書き"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "覆寫最大心率"
+          }
+        }
+      }
+    },
+    "Profile": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Perfil"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "プロフィール"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "個人資料"
+          }
+        }
+      }
+    },
+    "Progressing — nice consistency!": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "¡Progresando, buena constancia!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "順調 — 良い継続です！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "進步中 — 保持得很好！"
+          }
+        }
+      }
+    },
+    "Rate": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ritmo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ペース"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "速率"
+          }
+        }
+      }
+    },
+    "Readiness": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Preparación"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "コンディション"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "狀態"
+          }
+        }
+      }
+    },
+    "Recover well.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Recupérate bien."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "しっかり回復を。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "好好恢復。"
+          }
+        }
+      }
+    },
+    "Recovery band": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Banda de recuperación"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "リカバリーバンド"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "恢復區間"
+          }
+        }
+      }
+    },
+    "Reminders": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Recordatorios"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "リマインダー"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "提醒"
+          }
+        }
+      }
+    },
+    "Rest": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Descanso"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "休養"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "休息"
+          }
+        }
+      }
+    },
+    "Rest day": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Día de descanso"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "休養日"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "休息日"
+          }
+        }
+      }
+    },
+    "Resting HR is required for heart-rate-reserve zones. Without it, zones fall back to age-based.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Las zonas de reserva de frecuencia cardíaca requieren la FC en reposo. Sin ella, las zonas vuelven al cálculo según la edad."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "心拍予備能ゾーンには安静時心拍数が必要です。設定されていない場合、ゾーンは年齢ベースに戻ります。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心率儲備區間需要靜止心率。若未設定，區間將改用依年齡推算的預設值。"
+          }
+        }
+      }
+    },
+    "Select when you completed this workout": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Selecciona cuándo completaste este entrenamiento"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "このワークアウトを完了した日時を選択"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇你完成這次訓練的時間"
+          }
+        }
+      }
+    },
+    "Session": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sesión"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "セッション"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "次訓練"
+          }
+        }
+      }
+    },
+    "Session complete": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sesión completada"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "セッション完了"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "訓練完成"
+          }
+        }
+      }
+    },
+    "Sessions": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sesiones"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "セッション"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "次訓練"
+          }
+        }
+      }
+    },
+    "Set resting HR": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Definir FC en reposo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "安静時心拍数を設定"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定靜止心率"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ajustes"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "設定"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定"
+          }
+        }
+      }
+    },
+    "Sex": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sexo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "性別"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "生理性別"
+          }
+        }
+      }
+    },
+    "Share": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Compartir"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "共有"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分享"
+          }
+        }
+      }
+    },
+    "Start a streak this week": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Empieza una racha esta semana"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "今週から連続記録を始めましょう"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本週開始一段連續紀錄"
+          }
+        }
+      }
+    },
+    "Start guided session": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sesión guiada"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ガイドを開始"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始引導訓練"
+          }
+        }
+      }
+    },
+    "Start workout": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Empezar entreno"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ワークアウトを開始"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始訓練"
+          }
+        }
+      }
+    },
+    "Steady": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Constante"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "安定"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "穩定"
+          }
+        }
+      }
+    },
+    "Structure": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Estructura"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "構成"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "結構"
+          }
+        }
+      }
+    },
+    "Sync workouts and active energy from Apple Health.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sincroniza entrenamientos y energía activa desde Apple Salud."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Appleヘルスからワークアウトとアクティブエネルギーを同期します。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "從 Apple 健康同步運動與活動消耗。"
+          }
+        }
+      }
+    },
+    "Syncing: Workouts · Active energy · Heart rate · VO2 max · Body weight": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sincronizando: Entrenamientos · Energía activa · Frecuencia cardíaca · VO2 máx. · Peso corporal"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "同期中：ワークアウト · アクティブエネルギー · 心拍数 · 最大酸素摂取量 · 体重"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "同步中：運動 · 活動消耗 · 心率 · 最大攝氧量 · 體重"
+          }
+        }
+      }
+    },
+    "Take it easy": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Con calma"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "軽めに"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "放輕鬆"
+          }
+        }
+      }
+    },
+    "Target HR": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "FC objetivo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "目標心拍数"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標心率"
+          }
+        }
+      }
+    },
+    "Target band": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Banda objetivo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "目標バンド"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標區間"
+          }
+        }
+      }
+    },
+    "Target bands": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bandas objetivo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "目標バンド"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標區間"
+          }
+        }
+      }
+    },
+    "This week on Z2/4×4 Trainer": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Esta semana en Z2/4×4 Trainer"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "今週のZ2/4×4 Trainer"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本週的 Z2/4×4 Trainer"
+          }
+        }
+      }
+    },
+    "This week on Z2/4×4 Trainer: %lld %@ trained across %lld %@, %lld-week streak": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Esta semana en Z2/4×4 Trainer: %lld %@ entrenados en %lld %@, racha de %lld semanas"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "今週のZ2/4×4 Trainer：%lld %@のトレーニングを%lld %@実施、連続%lld週間"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本週的 Z2/4×4 Trainer：訓練 %lld %@，共 %lld %@，連續 %lld 週"
+          }
+        }
+      }
+    },
+    "This week's plan": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Plan de la semana"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "今週のプラン"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本週計畫"
+          }
+        }
+      }
+    },
+    "This week's training minutes": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Minutos de entrenamiento de esta semana"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "今週のトレーニング時間"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本週訓練分鐘數"
+          }
+        }
+      }
+    },
+    "This week: %lld Zone 2 + %lld × 4×4, ~%lld min": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Esta semana: %lld Zone 2 + %lld × 4×4, ~%lld min"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "今週：Zone 2 %lld回 + 4×4 %lld回、約%lld分"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本週：%lld 次 Zone 2 + %lld × 4×4，約 %lld 分鐘"
+          }
+        }
+      }
+    },
+    "Time": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hora"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "時刻"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "時間"
+          }
+        }
+      }
+    },
+    "Time remaining": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tiempo restante"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "残り時間"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "剩餘時間"
+          }
+        }
+      }
+    },
+    "Today": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hoy"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "今日"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天"
+          }
+        }
+      }
+    },
+    "Today's session": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sesión de hoy"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "今日のセッション"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日課表"
+          }
+        }
+      }
+    },
+    "Trained this week": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Entrenado esta semana"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "今週のトレーニング"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本週訓練"
+          }
+        }
+      }
+    },
+    "Training reminders": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Recordatorios de entreno"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "トレーニングのリマインダー"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "訓練提醒"
+          }
+        }
+      }
+    },
+    "Type": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tipo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "種類"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "類型"
+          }
+        }
+      }
+    },
+    "VO2 max trend": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tendencia de VO2 máx"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "最大酸素摂取量の推移"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最大攝氧量趨勢"
+          }
+        }
+      }
+    },
+    "We use these to calculate your personal heart-rate zones and weekly targets.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Usamos estos datos para calcular tus zonas de frecuencia cardíaca personales y tus objetivos semanales."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "これらをもとに、あなた個人の心拍ゾーンと週間目標を計算します。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我們會用這些資料計算你的個人心率區間與每週目標。"
+          }
+        }
+      }
+    },
+    "Week": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Semana"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "週"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本週"
+          }
+        }
+      }
+    },
+    "Week streak": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Semana de racha"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "週連続"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週連續"
+          }
+        }
+      }
+    },
+    "Weekly target": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Objetivo semanal"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "週間目標"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每週目標"
+          }
+        }
+      }
+    },
+    "Weeks streak": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Semanas de racha"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "週連続"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週連續"
+          }
+        }
+      }
+    },
+    "Weight (kg)": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Peso (kg)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "体重（kg）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "體重（公斤）"
+          }
+        }
+      }
+    },
+    "When": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cuándo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "日時"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "時間"
+          }
+        }
+      }
+    },
+    "Workout": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Entreno"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ワークアウト"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "訓練"
+          }
+        }
+      }
+    },
+    "Workout date and time": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fecha y hora del entrenamiento"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ワークアウトの日時"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "訓練日期與時間"
+          }
+        }
+      }
+    },
+    "Your best: %lld weeks": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tu mejor marca: %lld semanas"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "自己ベスト：%lld 週間"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的最佳：%lld 週"
+          }
+        }
+      }
+    },
+    "Your coach": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tu entrenador"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "あなたのコーチ"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的教練"
+          }
+        }
+      }
+    },
+    "Your zones": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tus zonas"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "あなたのゾーン"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的區間"
+          }
+        }
+      }
+    },
+    "Z2 / 4×4 Trainer": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Entrenador Z2 / 4×4"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Z2 / 4×4 トレーナー"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z2 / 4×4 Trainer"
+          }
+        }
+      }
+    },
+    "Z2/4×4 Trainer": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Z2/4×4 Trainer"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Z2/4×4 Trainer"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z2/4×4 Trainer"
+          }
+        }
+      }
+    },
+    "Z2/4×4 Trainer — this week: %lld min across %lld session(s), %lld-week streak.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Z2/4×4 Trainer — esta semana: %lld min en %lld sesión(es), racha de %lld semanas."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Z2/4×4 Trainer — 今週：%lld 分、%lld 回のセッション、連続 %lld 週間。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z2/4×4 Trainer — 本週：%lld 分鐘，共 %lld 次訓練，連續 %lld 週。"
+          }
+        }
+      }
+    },
+    "Zone 2": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zona 2"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ゾーン2"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zone 2"
+          }
+        }
+      }
+    },
+    "Zone 2 preview": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vista previa de la zona 2"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ゾーン2プレビュー"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "區間 2 預覽"
+          }
+        }
+      }
+    },
+    "Zone 2 · Norwegian 4×4": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zona 2 · Noruego 4×4"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ゾーン2 · ノルウェー式4×4"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zone 2 · 挪威式 4×4"
+          }
+        }
+      }
+    },
+    "Zone 2 — aerobic base": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zona 2: base aeróbica"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zone 2——有酸素ベース"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zone 2——有氧基礎"
+          }
+        }
+      }
+    },
+    "Zones": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zonas"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ゾーン"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "區間"
+          }
+        }
+      }
+    },
+    "cm": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "cm"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "cm"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "公分"
+          }
+        }
+      }
+    },
+    "kg": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "kg"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "kg"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "公斤"
+          }
+        }
+      }
+    },
+    "minute": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "minuto"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "分"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分鐘"
+          }
+        }
+      }
+    },
+    "minutes": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "minutos"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "分"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分鐘"
+          }
+        }
+      }
+    },
+    "week": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "semana"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "週間"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週"
+          }
+        }
+      }
+    },
+    "weeks": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "semanas"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "週間"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週"
+          }
+        }
+      }
+    },
+    "—": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "—"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "—"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "—"
+          }
+        }
       }
     }
-  }
+  },
+  "version": "1.0"
 }

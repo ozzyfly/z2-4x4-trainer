@@ -51,7 +51,7 @@ struct ManualEntryView: View {
                         .accessibilityLabel("Workout date and time")
                         .accessibilityHint("Select when you completed this workout")
                     Divider()
-                    Stepper("Duration: \(durationMin) min", value: $durationMin, in: 5...240, step: 5)
+                    Stepper(String(localized: "Duration: \(durationMin) min"), value: $durationMin, in: 5...240, step: 5)
                     Divider()
                     LabeledContent("Active energy (kcal)") {
                         TextField("Leave blank if not tracked", text: $energy)

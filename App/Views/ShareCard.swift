@@ -49,8 +49,7 @@ struct ShareCard: View {
         .environment(\.colorScheme, .dark)
         .accessibilityElement(children: .combine)
         .accessibilityLabel(
-            "This week on Z2/4×4 Trainer: \(minutes) \(minutes == 1 ? "minute" : "minutes") trained across "
-            + "\(sessions) \(sessions == 1 ? "session" : "sessions"), \(streakWeeks)-week streak"
+            String(localized: "This week on Z2/4×4 Trainer: \(minutes) \(minutes == 1 ? String(localized: "minute") : String(localized: "minutes")) trained across \(sessions) \(sessions == 1 ? String(localized: "session") : String(localized: "sessions")), \(streakWeeks)-week streak")
         )
     }
 
@@ -83,11 +82,11 @@ struct ShareCard: View {
 
     private var statsBlock: some View {
         VStack(alignment: .leading, spacing: 56) {
-            bigStat(value: "\(minutes)", unit: minutes == 1 ? "minute" : "minutes", caption: "Trained this week")
+            bigStat(value: "\(minutes)", unit: minutes == 1 ? String(localized: "minute") : String(localized: "minutes"), caption: String(localized: "Trained this week"))
 
             HStack(spacing: 64) {
-                smallStat(value: "\(sessions)", label: sessions == 1 ? "Session" : "Sessions")
-                smallStat(value: "\(streakWeeks)", label: streakWeeks == 1 ? "Week streak" : "Weeks streak")
+                smallStat(value: "\(sessions)", label: sessions == 1 ? String(localized: "Session") : String(localized: "Sessions"))
+                smallStat(value: "\(streakWeeks)", label: streakWeeks == 1 ? String(localized: "Week streak") : String(localized: "Weeks streak"))
             }
         }
     }

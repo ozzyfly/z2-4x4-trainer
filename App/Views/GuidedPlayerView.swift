@@ -32,7 +32,7 @@ struct GuidedPlayerView: View {
                         .foregroundStyle(Theme.secondaryLabel)
                 }
                 if let next = engine.nextInterval {
-                    Text("Next: \(next.kind.displayName)")
+                    Text(String(localized: "Next: \(next.kind.displayName)"))
                         .font(.subheadline)
                         .foregroundStyle(Theme.secondaryLabel)
                 } else if engine.isFinished {

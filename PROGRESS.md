@@ -1,5 +1,13 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-06-10: `localization-sweep` archived [7/7] — full-app l10n coverage done.** ~80 remaining
+> user-visible strings localized across Week/Settings/History/Achievements/StreakBanner/ShareCard/
+> Onboarding/ManualEntry/WorkoutDetail/GuidedPlayer + SharedCore (Achievement titles, readiness
+> recommendations via `String(localized:bundle:.module)`). App catalog 130 keys, SharedCore 13.
+> zh-Hant translated; es/ja drafted (needs_review). Verified: SharedCore **62 tests**, iOS + watch
+> builds green, zh-Hant simulator smoke (readiness/coach/streak cards localized). **Round 4 planned**
+> (4 Spectra changes): `watch-parity-widgets`, `health-writeback-robustness`, `units-export`, `ux-polish`.
+>
 > **2026-06-05: v1.0 SUBMITTED to the App Store — state WAITING_FOR_REVIEW.** App id 6776864990,
 > team 2NXQLV6CJH, build 2 (real icon). All metadata/screenshots/age-rating/pricing(Free)/privacy
 > set headlessly via the App Store Connect API. Awaiting Apple review.

@@ -9,9 +9,9 @@ public enum ReadinessLabel: Sendable {
     /// A short, one-line training recommendation for the day.
     public var recommendation: String {
         switch self {
-        case .goHard: return "Great day for a hard 4×4."
-        case .steady: return "Steady aerobic work today."
-        case .easy:   return "Prioritise recovery — keep it easy or rest."
+        case .goHard: return String(localized: "Great day for a hard 4×4.", bundle: .module)
+        case .steady: return String(localized: "Steady aerobic work today.", bundle: .module)
+        case .easy:   return String(localized: "Prioritise recovery — keep it easy or rest.", bundle: .module)
         }
     }
 }

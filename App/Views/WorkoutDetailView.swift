@@ -136,7 +136,7 @@ struct WorkoutDetailView: View {
     }
 
     private func rangeText(_ range: HRRange) -> String {
-        "\(range.lower)–\(range.upper) bpm"
+        String(localized: "\(range.lower)–\(range.upper) bpm")
     }
 }
 
@@ -162,7 +162,7 @@ struct IntervalRow: View {
                 Text(interval.kind.rawValue.capitalized)
                     .font(.rounded(.subheadline, weight: .semibold))
                     .foregroundStyle(Theme.label)
-                Text("\(interval.durationSec / 60) min")
+                Text(String(localized: "\(interval.durationSec / 60) min"))
                     .numericStyle(.caption)
                     .foregroundStyle(Theme.secondaryLabel)
             }
@@ -179,11 +179,11 @@ struct IntervalRow: View {
         .fixedSize(horizontal: false, vertical: true)
         .contentShape(Rectangle())
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(interval.kind.rawValue.capitalized), \(interval.durationSec / 60) minutes, \(rangeText)")
+        .accessibilityLabel(String(localized: "\(interval.kind.rawValue.capitalized), \(interval.durationSec / 60) minutes, \(rangeText)"))
     }
 
     private var rangeText: String {
-        guard let r = interval.targetHR else { return "—" }
-        return "\(r.lower)–\(r.upper) bpm"
+        guard let r = interval.targetHR else { return String(localized: "—") }
+        return String(localized: "\(r.lower)–\(r.upper) bpm")
     }
 }
