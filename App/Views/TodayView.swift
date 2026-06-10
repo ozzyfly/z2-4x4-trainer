@@ -109,9 +109,9 @@ struct TodayView: View {
 
     private func readinessTitle(_ label: ReadinessLabel) -> String {
         switch label {
-        case .goHard: return "Go hard"
-        case .steady: return "Steady"
-        case .easy:   return "Take it easy"
+        case .goHard: return String(localized: "Go hard")
+        case .steady: return String(localized: "Steady")
+        case .easy:   return String(localized: "Take it easy")
         }
     }
 
@@ -158,18 +158,18 @@ struct TodayView: View {
     private func weekSummary(for plan: TrainingPlan) -> String {
         let zone2Count = plan.sessions.filter { $0.type == .zone2 }.count
         let hardCount = plan.weeklyHardSessions
-        return "This week: \(zone2Count) Zone 2 + \(hardCount) × 4×4, ~\(plan.weeklyTrainingMinutes) min"
+        return String(localized: "This week: \(zone2Count) Zone 2 + \(hardCount) × 4×4, ~\(plan.weeklyTrainingMinutes) min")
     }
 
     private func coachingTip(base: TrainingPlan, adapted: TrainingPlan) -> String {
         let baseMin = base.weeklyTrainingMinutes
         let adaptedMin = adapted.weeklyTrainingMinutes
         if adaptedMin > baseMin {
-            return "Progressing — nice consistency!"
+            return String(localized: "Progressing — nice consistency!")
         } else if adaptedMin < baseMin {
-            return "Deload week — keep it easy."
+            return String(localized: "Deload week — keep it easy.")
         } else {
-            return "Holding steady — finish this week strong."
+            return String(localized: "Holding steady — finish this week strong.")
         }
     }
 
@@ -313,9 +313,9 @@ struct TodayView: View {
 extension SessionType {
     var displayName: String {
         switch self {
-        case .zone2: return "Zone 2"
-        case .norwegian4x4: return "Norwegian 4×4"
-        case .rest: return "Rest"
+        case .zone2: return String(localized: "Zone 2")
+        case .norwegian4x4: return String(localized: "Norwegian 4×4")
+        case .rest: return String(localized: "Rest")
         }
     }
 

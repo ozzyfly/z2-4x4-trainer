@@ -2,6 +2,94 @@
   "sourceLanguage" : "en",
   "version" : "1.0",
   "strings" : {
+    "Deload week — keep it easy." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "減量週 — 保持輕鬆。" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Semana de descarga — tómalo con calma." } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "軽負荷週 — 無理せず。" } }
+      }
+    },
+    "Go hard" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "全力衝" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "A tope" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "全力で" } }
+      }
+    },
+    "Holding steady — finish this week strong." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "維持中 — 把本週收好。" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Manteniendo — termina fuerte la semana." } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "維持 — 今週を強く締めくくろう。" } }
+      }
+    },
+    "Norwegian 4×4" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "挪威 4×4" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Noruego 4×4" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ノルウェー式4×4" } }
+      }
+    },
+    "Progressing — nice consistency!" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "進步中 — 保持得很好！" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "¡Progresando, buena constancia!" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "順調 — 良い継続です！" } }
+      }
+    },
+    "Recover well." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "好好恢復。" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Recupérate bien." } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "しっかり回復を。" } }
+      }
+    },
+    "Rest" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "休息" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Descanso" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "休養" } }
+      }
+    },
+    "Steady" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "穩定" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Constante" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "安定" } }
+      }
+    },
+    "Take it easy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "放輕鬆" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Con calma" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "軽めに" } }
+      }
+    },
+    "This week: %lld Zone 2 + %lld × 4×4, ~%lld min" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "本週：%lld 次 Zone 2 + %lld × 4×4，約 %lld 分鐘" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Esta semana: %lld Zone 2 + %lld × 4×4, ~%lld min" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "今週：Zone 2 %lld回 + 4×4 %lld回、約%lld分" } }
+      }
+    },
+    "Zone 2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "Zone 2" } },
+        "es" : { "stringUnit" : { "state" : "needs_review", "value" : "Zona 2" } },
+        "ja" : { "stringUnit" : { "state" : "needs_review", "value" : "ゾーン2" } }
+      }
+    },
     "About you" : {
       "extractionState" : "manual",
       "localizations" : {
