@@ -1,7 +1,8 @@
 import Foundation
 
 /// How hard the body looks ready to train today.
-public enum ReadinessLabel: Sendable {
+/// String raw values keep the label codec-stable for widget snapshots and sync payloads.
+public enum ReadinessLabel: String, Codable, Sendable, CaseIterable {
     case goHard
     case steady
     case easy

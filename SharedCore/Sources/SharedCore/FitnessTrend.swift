@@ -29,10 +29,10 @@ public struct FitnessTrend: Sendable, Equatable {
     /// Builds a trend from raw samples, sorting by date. Returns nil when there are none,
     /// so callers can show a friendly empty state instead of an empty chart.
     public static func from(_ samples: [VO2MaxSample]) -> FitnessTrend? {
-        guard !samples.isEmpty else { return nil }
         let sorted = samples.sorted { $0.date < $1.date }
-        let earliest = sorted.first!.value
-        let latest = sorted.last!.value
+        guard let earliest = sorted.first?.value, let latest = sorted.last?.value else {
+            return nil
+        }
         return FitnessTrend(
             latest: latest,
             deltaFromFirst: latest - earliest,

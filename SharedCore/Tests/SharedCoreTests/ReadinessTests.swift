@@ -75,4 +75,13 @@ struct ReadinessTests {
         #expect(ReadinessLabel.goHard.recommendation != ReadinessLabel.steady.recommendation)
         #expect(ReadinessLabel.steady.recommendation != ReadinessLabel.easy.recommendation)
     }
+
+    @Test("ReadinessLabel encodes and decodes by raw value")
+    func labelCodableRoundTrip() throws {
+        for label in ReadinessLabel.allCases {
+            let data = try JSONEncoder().encode([label])
+            let decoded = try JSONDecoder().decode([ReadinessLabel].self, from: data)
+            #expect(decoded == [label])
+        }
+    }
 }

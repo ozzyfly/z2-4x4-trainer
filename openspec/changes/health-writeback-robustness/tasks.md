@@ -1,6 +1,6 @@
 ## 1. SharedCore 強化（TDD，Mac 上 swift test）
 
-- [ ] 1.1 `FitnessTrend`：先在 SharedCore/Tests/SharedCoreTests/SmartCoachTests.swift 加空集合與單一樣本測試（期望：回傳無趨勢、不 crash），再以 guard let 改寫 SharedCore/Sources/SharedCore/FitnessTrend.swift 的 sorted.first! / sorted.last!。完成條件：swift test 全綠（驗證需求：Trend math is total）。
+- [x] 1.1 `FitnessTrend`：先在 SharedCore/Tests/SharedCoreTests/SmartCoachTests.swift 加空集合與單一樣本測試（期望：回傳無趨勢、不 crash），再以 guard let 改寫 SharedCore/Sources/SharedCore/FitnessTrend.swift 的 sorted.first! / sorted.last!。完成條件：swift test 全綠（驗證需求：Trend math is total）。
 
 ## 2. Health 寫回
 

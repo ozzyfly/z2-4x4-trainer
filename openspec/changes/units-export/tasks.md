@@ -1,8 +1,8 @@
 ## 1. SharedCore 純函式（TDD，Mac 上 swift test）
 
-- [ ] 1.1 新增 SharedCore/Sources/SharedCore/UnitPreference.swift：public enum UnitPreference: String, Codable, Sendable { case metric, imperial }，static func defaultValue(for locale: Locale) -> UnitPreference（locale.measurementSystem == .us 時 imperial，否則 metric）。先寫測試：en_US → imperial、zh_TW/de_DE → metric。swift test 全綠（驗證需求：Unit preference with metric storage）。
-- [ ] 1.2 新增 SharedCore/Sources/SharedCore/UnitConvert.swift 純函式：kgToLb/lbToKg、cmToFeetInches(_:) -> (feet: Int, inches: Int)（四捨五入到整吋）、feetInchesToCm。先寫測試：75kg↔165.35lb（±0.01 kg round-trip）、180cm→5ft 11in、5ft 11in→180±1cm、0 與負值行為。swift test 全綠（驗證需求：Imperial body-metric entry）。
-- [ ] 1.3 新增 SharedCore/Sources/SharedCore/WorkoutExport.swift：輸入列 struct（date、type、durationMin、energyKcal、note、source）；csv() -> String（表頭 + ISO8601 日期 + RFC-4180：欄位含逗號/引號/換行時加引號、內部引號加倍）；json() -> Data（同列陣列）。先寫測試：含逗號/引號/換行 note 的跳脫、空清單只有表頭/空陣列、固定日期的 ISO8601 輸出。測試集中在新檔 SharedCore/Tests/SharedCoreTests/UnitsExportTests.swift（驗證需求：Workout history export）。
+- [x] 1.1 新增 SharedCore/Sources/SharedCore/UnitPreference.swift：public enum UnitPreference: String, Codable, Sendable { case metric, imperial }，static func defaultValue(for locale: Locale) -> UnitPreference（locale.measurementSystem == .us 時 imperial，否則 metric）。先寫測試：en_US → imperial、zh_TW/de_DE → metric。swift test 全綠（驗證需求：Unit preference with metric storage）。
+- [x] 1.2 新增 SharedCore/Sources/SharedCore/UnitConvert.swift 純函式：kgToLb/lbToKg、cmToFeetInches(_:) -> (feet: Int, inches: Int)（四捨五入到整吋）、feetInchesToCm。先寫測試：75kg↔165.35lb（±0.01 kg round-trip）、180cm→5ft 11in、5ft 11in→180±1cm、0 與負值行為。swift test 全綠（驗證需求：Imperial body-metric entry）。
+- [x] 1.3 新增 SharedCore/Sources/SharedCore/WorkoutExport.swift：輸入列 struct（date、type、durationMin、energyKcal、note、source）；csv() -> String（表頭 + ISO8601 日期 + RFC-4180：欄位含逗號/引號/換行時加引號、內部引號加倍）；json() -> Data（同列陣列）。先寫測試：含逗號/引號/換行 note 的跳脫、空清單只有表頭/空陣列、固定日期的 ISO8601 輸出。測試集中在新檔 SharedCore/Tests/SharedCoreTests/UnitsExportTests.swift（驗證需求：Workout history export）。
 
 ## 2. 單位偏好落地
 

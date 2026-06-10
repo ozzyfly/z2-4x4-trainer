@@ -17,6 +17,13 @@ public struct WidgetSnapshot: Codable, Sendable, Equatable {
     public let hardTarget: Int
     /// When this snapshot was produced.
     public let generatedAt: Date
+    /// Today's readiness score (0...100), when one could be computed. Nil in
+    /// snapshots written by app versions that predate this field.
+    public let readinessValue: Int?
+    /// Qualitative label paired with `readinessValue`. Nil when absent.
+    public let readinessLabel: ReadinessLabel?
+    /// Current consecutive weeks meeting the weekly target. Nil when unknown.
+    public let streakWeeks: Int?
 
     public init(
         todayType: SessionType,
@@ -25,7 +32,10 @@ public struct WidgetSnapshot: Codable, Sendable, Equatable {
         weekTargetMinutes: Int,
         hardDone: Int,
         hardTarget: Int,
-        generatedAt: Date
+        generatedAt: Date,
+        readinessValue: Int? = nil,
+        readinessLabel: ReadinessLabel? = nil,
+        streakWeeks: Int? = nil
     ) {
         self.todayType = todayType
         self.todayMinutes = todayMinutes
@@ -34,6 +44,9 @@ public struct WidgetSnapshot: Codable, Sendable, Equatable {
         self.hardDone = hardDone
         self.hardTarget = hardTarget
         self.generatedAt = generatedAt
+        self.readinessValue = readinessValue
+        self.readinessLabel = readinessLabel
+        self.streakWeeks = streakWeeks
     }
 
     /// Fraction of the weekly minutes target completed, clamped to 0...1.

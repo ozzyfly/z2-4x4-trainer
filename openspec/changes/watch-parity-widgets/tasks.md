@@ -1,7 +1,7 @@
 ## 1. SharedCore 快照 v2（TDD，Mac 上 swift test）
 
-- [ ] 1.1 `ReadinessLabel` 改為 `String` raw-value 並採用 `Codable`（SharedCore/Sources/SharedCore/Readiness.swift）。完成條件：encode→decode round-trip 測試通過，且既有 Readiness 測試不變綠。
-- [ ] 1.2 `WidgetSnapshot` 新增 optional 欄位 `readinessValue: Int?`、`readinessLabel: ReadinessLabel?`、`streakWeeks: Int?`（SharedCore/Sources/SharedCore/WidgetSnapshot.swift）。先寫測試：(a) 含新欄位 round-trip 相等；(b) 不含新欄位的舊版 JSON 字串可解碼且新欄位為 nil；(c) placeholder 快照新欄位為 nil。測試加在 SharedCore/Tests/SharedCoreTests/WidgetSnapshotTests.swift，`swift test` 全綠。（驗證需求：Shared widget snapshot）
+- [x] 1.1 `ReadinessLabel` 改為 `String` raw-value 並採用 `Codable`（SharedCore/Sources/SharedCore/Readiness.swift）。完成條件：encode→decode round-trip 測試通過，且既有 Readiness 測試不變綠。
+- [x] 1.2 `WidgetSnapshot` 新增 optional 欄位 `readinessValue: Int?`、`readinessLabel: ReadinessLabel?`、`streakWeeks: Int?`（SharedCore/Sources/SharedCore/WidgetSnapshot.swift）。先寫測試：(a) 含新欄位 round-trip 相等；(b) 不含新欄位的舊版 JSON 字串可解碼且新欄位為 nil；(c) placeholder 快照新欄位為 nil。測試加在 SharedCore/Tests/SharedCoreTests/WidgetSnapshotTests.swift，`swift test` 全綠。（驗證需求：Shared widget snapshot）
 
 ## 2. 手機端：快照計算與推送
 

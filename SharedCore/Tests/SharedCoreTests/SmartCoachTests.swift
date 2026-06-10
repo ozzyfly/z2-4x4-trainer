@@ -81,4 +81,12 @@ struct SmartCoachTests {
     func fitnessTrendEmpty() {
         #expect(FitnessTrend.from([]) == nil)
     }
+
+    @Test("FitnessTrend from a single sample has no slope and does not crash")
+    func fitnessTrendSingleSample() throws {
+        let trend = try #require(FitnessTrend.from([VO2MaxSample(date: now, value: 42)]))
+        #expect(trend.latest == 42)
+        #expect(trend.deltaFromFirst == 0) // one point: no slope to classify
+        #expect(trend.samples.count == 1)
+    }
 }
