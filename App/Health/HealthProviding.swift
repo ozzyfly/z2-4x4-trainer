@@ -11,8 +11,16 @@ struct HealthWorkout {
 
 /// Abstraction over Apple Health so the UI can be driven by a mock in previews/tests.
 protocol HealthProviding: Sendable {
-    /// Requests read authorization for the health types we consume.
+    /// Requests read authorization for the health types we consume, plus share
+    /// authorization for the workout samples we write back.
     func requestAuthorization() async throws
+
+    /// Whether the app currently holds share authorization to save workouts.
+    func workoutWriteAuthorized() async -> Bool
+
+    /// Saves a completed workout to Apple Health and returns the HKWorkout UUID
+    /// string, so the local log can be stamped for import deduplication.
+    func saveWorkout(type: SessionType, start: Date, durationMin: Int, energyKcal: Int?) async throws -> String
 
     /// Active energy burned so far today, in kilocalories.
     func todayActiveEnergyKcal() async -> Int

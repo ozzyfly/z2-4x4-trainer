@@ -2,8 +2,15 @@ import Foundation
 import HealthKit
 import SharedCore
 
-/// Concrete `HealthProviding` backed by HealthKit. Reads only — never writes.
+/// Concrete `HealthProviding` backed by HealthKit. Reads metrics and writes
+/// back manually logged workouts (workout sample + active energy).
 final class HealthKitService: HealthProviding, @unchecked Sendable {
+    /// Why a Health write could not be performed.
+    enum WriteError: Error {
+        case healthDataUnavailable
+        case finishFailed
+    }
+
     private let store = HKHealthStore()
 
     private var readTypes: Set<HKObjectType> {
@@ -30,9 +37,52 @@ final class HealthKitService: HealthProviding, @unchecked Sendable {
         return types
     }
 
+    private var shareTypes: Set<HKSampleType> {
+        var types = Set<HKSampleType>()
+        types.insert(HKObjectType.workoutType())
+        if let energy = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) {
+            types.insert(energy)
+        }
+        return types
+    }
+
     func requestAuthorization() async throws {
         guard HKHealthStore.isHealthDataAvailable() else { return }
-        try await store.requestAuthorization(toShare: [], read: readTypes)
+        try await store.requestAuthorization(toShare: shareTypes, read: readTypes)
+    }
+
+    func workoutWriteAuthorized() async -> Bool {
+        guard HKHealthStore.isHealthDataAvailable() else { return false }
+        return store.authorizationStatus(for: HKObjectType.workoutType()) == .sharingAuthorized
+    }
+
+    /// Builds and finishes an `HKWorkout` covering `start ..< start + duration`,
+    /// attaching an active-energy sample when provided. Uses `.running`, matching
+    /// how watch sessions are recorded; imports dedupe purely on the returned UUID.
+    func saveWorkout(type: SessionType, start: Date, durationMin: Int, energyKcal: Int?) async throws -> String {
+        guard HKHealthStore.isHealthDataAvailable() else { throw WriteError.healthDataUnavailable }
+
+        let end = start.addingTimeInterval(TimeInterval(durationMin) * 60)
+        let configuration = HKWorkoutConfiguration()
+        configuration.activityType = .running
+
+        let builder = HKWorkoutBuilder(healthStore: store, configuration: configuration, device: .local())
+        try await builder.beginCollection(at: start)
+
+        if let kcal = energyKcal, kcal > 0,
+           let energyType = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) {
+            let sample = HKQuantitySample(
+                type: energyType,
+                quantity: HKQuantity(unit: .kilocalorie(), doubleValue: Double(kcal)),
+                start: start,
+                end: end
+            )
+            try await builder.addSamples([sample])
+        }
+
+        try await builder.endCollection(at: end)
+        guard let workout = try await builder.finishWorkout() else { throw WriteError.finishFailed }
+        return workout.uuid.uuidString
     }
 
     func todayActiveEnergyKcal() async -> Int {

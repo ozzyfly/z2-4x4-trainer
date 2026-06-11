@@ -8,6 +8,8 @@ import SharedCore
 struct Z24x4WidgetBundle: WidgetBundle {
     var body: some Widget {
         TodayWidget()
+        StreakWidget()
+        ReadinessWidget()
     }
 }
 
@@ -146,5 +148,178 @@ struct Z24x4WidgetView: View {
             Text("\(Int(s.weekFraction * 100))")
         }
         .gaugeStyle(.accessoryCircularCapacity)
+    }
+}
+
+// MARK: - Streak widget
+
+struct StreakWidget: Widget {
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: "Z24x4Streak", provider: Provider()) { entry in
+            StreakWidgetView(entry: entry)
+                .widgetURL(URL(string: "z24x4://today"))
+                .containerBackground(.fill.tertiary, for: .widget)
+        }
+        .configurationDisplayName("Streak")
+        .description("Your current weekly training streak.")
+        .supportedFamilies([.systemSmall, .accessoryCircular, .accessoryInline])
+    }
+}
+
+struct StreakWidgetView: View {
+    @Environment(\.widgetFamily) private var family
+    let entry: SnapshotEntry
+    private var weeks: Int? { entry.snapshot.streakWeeks }
+
+    var body: some View {
+        switch family {
+        case .accessoryCircular: circular
+        case .accessoryInline: inline
+        default: small
+        }
+    }
+
+    private var small: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Label("Streak", systemImage: (weeks ?? 0) > 0 ? "flame.fill" : "flame")
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(.secondary)
+            Spacer(minLength: 0)
+            if let weeks, weeks > 0 {
+                Text("\(weeks)")
+                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                    .monospacedDigit()
+                    .foregroundStyle(.orange)
+                Text(weeks == 1 ? "week" : "weeks")
+                    .font(.subheadline).foregroundStyle(.secondary)
+            } else {
+                Text("—")
+                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                    .foregroundStyle(.secondary)
+                Text("No streak yet")
+                    .font(.subheadline).foregroundStyle(.secondary)
+            }
+        }
+    }
+
+    private var circular: some View {
+        VStack(spacing: 1) {
+            Image(systemName: (weeks ?? 0) > 0 ? "flame.fill" : "flame")
+                .font(.title3)
+            Text(weeks.map { "\($0)" } ?? "—")
+                .font(.caption2.weight(.semibold)).monospacedDigit()
+        }
+    }
+
+    private var inline: some View {
+        Label {
+            if let weeks, weeks > 0 {
+                Text("\(weeks)-week streak")
+            } else {
+                Text("No streak yet")
+            }
+        } icon: {
+            Image(systemName: "flame.fill")
+        }
+    }
+}
+
+// MARK: - Readiness widget
+
+struct ReadinessWidget: Widget {
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: "Z24x4Readiness", provider: Provider()) { entry in
+            ReadinessWidgetView(entry: entry)
+                .widgetURL(URL(string: "z24x4://today"))
+                .containerBackground(.fill.tertiary, for: .widget)
+        }
+        .configurationDisplayName("Readiness")
+        .description("Today's readiness score and recommendation.")
+        .supportedFamilies([.systemSmall, .accessoryCircular, .accessoryRectangular])
+    }
+}
+
+struct ReadinessWidgetView: View {
+    @Environment(\.widgetFamily) private var family
+    let entry: SnapshotEntry
+    private var value: Int? { entry.snapshot.readinessValue }
+    private var label: ReadinessLabel? { entry.snapshot.readinessLabel }
+
+    var body: some View {
+        switch family {
+        case .accessoryCircular: circular
+        case .accessoryRectangular: rectangular
+        default: small
+        }
+    }
+
+    private var small: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Label("Readiness", systemImage: label?.widgetGlyph ?? "bolt.heart")
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(.secondary)
+            Spacer(minLength: 0)
+            if let value, let label {
+                Text("\(value)")
+                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                    .monospacedDigit()
+                    .foregroundStyle(label.widgetTint)
+                Text(label.widgetTitle)
+                    .font(.subheadline).foregroundStyle(.secondary)
+            } else {
+                Text("—")
+                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                    .foregroundStyle(.secondary)
+                Text("No score yet")
+                    .font(.subheadline).foregroundStyle(.secondary)
+            }
+        }
+    }
+
+    private var circular: some View {
+        Gauge(value: Double(value ?? 0), in: 0...100) {
+            Image(systemName: label?.widgetGlyph ?? "bolt.heart")
+        } currentValueLabel: {
+            Text(value.map { "\($0)" } ?? "—")
+        }
+        .gaugeStyle(.accessoryCircularCapacity)
+    }
+
+    private var rectangular: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Label("Readiness", systemImage: label?.widgetGlyph ?? "bolt.heart")
+                .font(.headline)
+            if let value, let label {
+                Text("\(value) · \(label.widgetTitle)")
+                    .font(.caption2).foregroundStyle(.secondary)
+            } else {
+                Text("No score yet")
+                    .font(.caption2).foregroundStyle(.secondary)
+            }
+        }
+    }
+}
+
+private extension ReadinessLabel {
+    var widgetTitle: String {
+        switch self {
+        case .goHard: return "Go hard"
+        case .steady: return "Steady"
+        case .easy:   return "Take it easy"
+        }
+    }
+    var widgetGlyph: String {
+        switch self {
+        case .goHard: return "bolt.fill"
+        case .steady: return "equal.circle.fill"
+        case .easy:   return "moon.fill"
+        }
+    }
+    var widgetTint: Color {
+        switch self {
+        case .goHard: return .green
+        case .steady: return .blue
+        case .easy:   return .yellow
+        }
     }
 }

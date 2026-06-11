@@ -26,6 +26,11 @@ struct RootView: View {
                 await health.connect()
             }
         }
+        // Re-publish the snapshot whenever readiness (re)computes so widgets and the
+        // watch see the score; other call sites pass nil and leave it untouched here.
+        .onChange(of: health.readiness) { _, readiness in
+            WidgetSnapshotWriter.update(context: context, readiness: readiness)
+        }
     }
 
     /// Inserts a default profile when launched with `-seedProfile` (used by UI smoke tests).

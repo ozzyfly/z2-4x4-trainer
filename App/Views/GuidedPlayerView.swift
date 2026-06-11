@@ -16,6 +16,10 @@ struct GuidedPlayerView: View {
 
     var body: some View {
         VStack(spacing: Spacing.xl) {
+            if engine.audioUnavailable {
+                audioUnavailableBanner
+            }
+
             header
 
             Text(engine.clockText)
@@ -59,6 +63,23 @@ struct GuidedPlayerView: View {
         .sensoryFeedback(.impact, trigger: engine.hapticTrigger)
         .onAppear { engine.start() }
         .onDisappear { engine.stop() }
+    }
+
+    /// Small non-blocking banner: the session keeps timing, only spoken cues are lost.
+    private var audioUnavailableBanner: some View {
+        Label {
+            Text("Voice cues unavailable — the timer still runs.")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(Theme.warning)
+                .fixedSize(horizontal: false, vertical: true)
+        } icon: {
+            Image(systemName: "speaker.slash.fill")
+                .foregroundStyle(Theme.warning)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(Spacing.sm)
+        .background(Theme.warning.opacity(0.12), in: RoundedRectangle(cornerRadius: 8))
+        .accessibilityLabel("Voice cues unavailable — the timer still runs.")
     }
 
     @ViewBuilder

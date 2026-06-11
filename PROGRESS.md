@@ -1,5 +1,16 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-06-10: `watch-parity-widgets` done [11/11] — watch status parity + new widgets/complications.**
+> WidgetSnapshot v2 (readiness/streak fields, backward-compatible decode), phone publishes snapshot +
+> profile to watch via `updateApplicationContext` (`PhoneStatusPublisher`), watch writes its own App
+> Group copy and shows a status block (readiness/streak/week progress) above the workout list; new
+> `StreakWidget`/`ReadinessWidget` (iOS) and `ReadinessComplication`/`StreakComplication` (watch),
+> `NextSessionComplication` reads the snapshot first. Verified: SharedCore **79 tests**, iOS tests
+> (HealthWriteback + PhoneSessionReceiver) green, iOS + watch builds green, iPhone 17 sim launch
+> (`-mockHealth -seedProfile`) renders Today, watch sim shows "Waiting for iPhone sync" placeholder.
+> **Hardware-pending:** real-Watch `applicationContext` delivery timing + watch-face complication
+> refresh cadence need a physical Apple Watch.
+>
 > **2026-06-10: `localization-sweep` archived [7/7] — full-app l10n coverage done.** ~80 remaining
 > user-visible strings localized across Week/Settings/History/Achievements/StreakBanner/ShareCard/
 > Onboarding/ManualEntry/WorkoutDetail/GuidedPlayer + SharedCore (Achievement titles, readiness
@@ -88,7 +99,10 @@ Legend: `[ ]` todo · `[~]` in progress (進行中) · `[x]` done + verified (�
 - [x] save `HKWorkout` + send to phone (`Watch/WorkoutSync.swift`, WCSession message + transferUserInfo fallback)
 - [x] phone⇄watch sync code: `App/Sync/PhoneSessionReceiver.swift` (WCSessionDelegate → dedupe by `healthUUID` → `WorkoutLog`), activated in app. iOS builds; dedupe + transfer round-trip unit-tested (32 SharedCore) **+ receiver end-to-end tested vs in-memory SwiftData (3 tests, `Z24x4TrainerTests`)**
 - [x] watchOS 26.5 SDK installed; `Z24x4TrainerWatch` compiles for device + simulator
-- [ ] tested on physical Apple Watch (live HR + haptics + end-to-end phone sync need real hardware)
+- [ ] tested on physical Apple Watch (live HR + haptics + end-to-end phone sync need real hardware;
+      also verify watch workouts persist to Apple Health via `HKLiveWorkoutBuilder.finishWorkout` —
+      code path confirmed in `Watch/WorkoutSessionManager.swift` `finishAndSave()`, spec'd in
+      `health-writeback` capability)
 
 Tracked as Spectra change `watch-phone-sync` (`spectra status`).
 

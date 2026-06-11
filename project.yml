@@ -61,6 +61,8 @@ targets:
       path: Watch/Z24x4TrainerWatch.entitlements
       properties:
         com.apple.developer.healthkit: true
+        com.apple.security.application-groups:
+          - group.ca.logolo.z24x4
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
@@ -110,6 +112,11 @@ targets:
       - WatchComplications
     dependencies:
       - package: SharedCore
+    entitlements:
+      path: WatchComplications/Z24x4WatchComplications.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.ca.logolo.z24x4
     info:
       path: WatchComplications/Info.plist
       properties:

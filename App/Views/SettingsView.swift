@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import SharedCore
+import UIKit
 
 /// Edit the profile: max-HR override, goal, weight, activity. Writes straight to the record.
 struct SettingsView: View {
@@ -12,6 +13,11 @@ struct SettingsView: View {
     @AppStorage("remindersEnabled") private var remindersEnabled = false
     @AppStorage("reminderHour") private var reminderHour = 18
     @AppStorage("reminderMinute") private var reminderMinute = 0
+
+    /// Notification permission is denied in system Settings, so reminders can't fire.
+    @State private var notificationsDenied = false
+    /// The last reschedule attempt threw — surfaced inline instead of failing silently.
+    @State private var reminderScheduleFailed = false
 
     init(profile: ProfileRecord, health: HealthStore) {
         self.profile = profile
@@ -34,12 +40,22 @@ struct SettingsView: View {
         )
     }
 
-    private func scheduleReminders() {
-        ReminderScheduler.reschedule(
-            plan: TrainingPlan.weekly(for: profile.domain.goal),
-            hour: reminderHour,
-            minute: reminderMinute
-        )
+    private func scheduleReminders() async {
+        do {
+            let outcome = try await ReminderScheduler.reschedule(
+                plan: TrainingPlan.weekly(for: profile.domain.goal),
+                hour: reminderHour,
+                minute: reminderMinute
+            )
+            reminderScheduleFailed = false
+            notificationsDenied = (outcome == .notAuthorized)
+        } catch {
+            reminderScheduleFailed = true
+        }
+    }
+
+    private func refreshNotificationStatus() async {
+        notificationsDenied = await ReminderScheduler.authorizationStatus() == .denied
     }
 
     private var hasOverride: Binding<Bool> {
@@ -266,9 +282,39 @@ struct SettingsView: View {
         VStack(alignment: .leading, spacing: Spacing.sm) {
             SectionHeader("Reminders")
             Card {
-                VStack(spacing: Spacing.md) {
+                VStack(alignment: .leading, spacing: Spacing.md) {
                     Toggle("Training reminders", isOn: $remindersEnabled)
-                    if remindersEnabled {
+                        .disabled(notificationsDenied)
+                    if notificationsDenied {
+                        Divider()
+                        Label {
+                            Text("Notifications are turned off for this app, so reminders can't be delivered.")
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(Theme.warning)
+                                .fixedSize(horizontal: false, vertical: true)
+                        } icon: {
+                            Image(systemName: "bell.slash.fill")
+                                .foregroundStyle(Theme.warning)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        if let url = URL(string: UIApplication.openNotificationSettingsURLString) {
+                            Link("Open Settings", destination: url)
+                                .font(.subheadline.weight(.semibold))
+                        }
+                    }
+                    if reminderScheduleFailed {
+                        Label {
+                            Text("Couldn't schedule reminders. Try again.")
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(Theme.warning)
+                                .fixedSize(horizontal: false, vertical: true)
+                        } icon: {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .foregroundStyle(Theme.warning)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    if remindersEnabled && !notificationsDenied {
                         Divider()
                         DatePicker(
                             "Time",
@@ -279,27 +325,30 @@ struct SettingsView: View {
                 }
             }
         }
+        .task { await refreshNotificationStatus() }
         .onChange(of: remindersEnabled) { _, isOn in
-            if isOn {
-                Task {
+            Task {
+                if isOn {
                     if await ReminderScheduler.requestAuthorization() {
-                        scheduleReminders()
+                        await scheduleReminders()
                     } else {
                         remindersEnabled = false
+                        await refreshNotificationStatus()
                     }
+                } else {
+                    reminderScheduleFailed = false
+                    await ReminderScheduler.cancelAll()
                 }
-            } else {
-                ReminderScheduler.cancelAll()
             }
         }
         .onChange(of: reminderHour) { _, _ in
-            if remindersEnabled { scheduleReminders() }
+            if remindersEnabled { Task { await scheduleReminders() } }
         }
         .onChange(of: reminderMinute) { _, _ in
-            if remindersEnabled { scheduleReminders() }
+            if remindersEnabled { Task { await scheduleReminders() } }
         }
         .onChange(of: profile.goalIsLose) { _, _ in
-            if remindersEnabled { scheduleReminders() }
+            if remindersEnabled { Task { await scheduleReminders() } }
         }
     }
 

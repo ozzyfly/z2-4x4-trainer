@@ -3,7 +3,23 @@ import SharedCore
 
 /// Canned `HealthProviding` for SwiftUI previews and tests — no HealthKit access.
 struct PreviewHealthService: HealthProviding {
+    /// Thrown by `saveWorkout` when `shouldFailSave` is set (failure injection).
+    struct SaveFailure: Error {}
+
+    /// Stable UUID returned by every successful `saveWorkout`.
+    static let savedWorkoutUUID = "PREVIEW-WORKOUT-UUID"
+
+    /// Set to make `saveWorkout` throw, to exercise the failure path.
+    var shouldFailSave = false
+
     func requestAuthorization() async throws {}
+
+    func workoutWriteAuthorized() async -> Bool { true }
+
+    func saveWorkout(type: SessionType, start: Date, durationMin: Int, energyKcal: Int?) async throws -> String {
+        if shouldFailSave { throw SaveFailure() }
+        return Self.savedWorkoutUUID
+    }
 
     func todayActiveEnergyKcal() async -> Int { 420 }
 

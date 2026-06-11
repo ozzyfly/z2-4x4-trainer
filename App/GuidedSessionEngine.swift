@@ -22,6 +22,9 @@ final class GuidedSessionEngine {
     private(set) var hapticTrigger = 0
     /// Most recent spoken cue (also useful for accessibility / display).
     private(set) var lastCue = ""
+    /// True when the audio session couldn't be configured — voice cues won't be
+    /// heard, but the timer keeps running. Views surface this as a banner.
+    private(set) var audioUnavailable = false
 
     private var timer: Timer?
     private let speech = AVSpeechSynthesizer()
@@ -131,8 +134,13 @@ final class GuidedSessionEngine {
 
     private func configureAudioSession() {
         let session = AVAudioSession.sharedInstance()
-        try? session.setCategory(.playback, options: [.duckOthers])
-        try? session.setActive(true)
+        do {
+            try session.setCategory(.playback, options: [.duckOthers])
+            try session.setActive(true)
+            audioUnavailable = false
+        } catch {
+            audioUnavailable = true
+        }
     }
 
     private func deactivateAudioSession() {

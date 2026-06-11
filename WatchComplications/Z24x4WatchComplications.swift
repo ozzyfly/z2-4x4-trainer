@@ -8,10 +8,12 @@ import SharedCore
 struct Z24x4ComplicationBundle: WidgetBundle {
     var body: some Widget {
         NextSessionComplication()
+        ReadinessComplication()
+        StreakComplication()
     }
 }
 
-// MARK: - Timeline
+// MARK: - Next-session timeline
 
 struct NextEntry: TimelineEntry {
     let date: Date
@@ -19,9 +21,13 @@ struct NextEntry: TimelineEntry {
 }
 
 struct ComplicationProvider: TimelineProvider {
-    /// Next non-rest planned session, computed directly from SharedCore (no App
-    /// Group needed on the watch). Uses the default goal until a synced profile exists.
+    /// Next non-rest planned session. Prefers the snapshot synced from the phone
+    /// (real plan, real goal); falls back to a locally computed default-goal plan
+    /// when nothing has been synced yet.
     private func nextSession() -> PlannedSession {
+        if let snapshot = WidgetSnapshotStore.read(), snapshot.todayType != .rest {
+            return PlannedSession(day: 0, type: snapshot.todayType, durationMin: snapshot.todayMinutes)
+        }
         let plan = TrainingPlan.weekly(for: .maintainHealth)
         let cal = Calendar.current
         for offset in 0..<7 {
@@ -48,7 +54,33 @@ struct ComplicationProvider: TimelineProvider {
     }
 }
 
-// MARK: - Complication
+// MARK: - Snapshot timeline (readiness + streak)
+
+struct SnapshotEntry: TimelineEntry {
+    let date: Date
+    let snapshot: WidgetSnapshot
+}
+
+struct SnapshotProvider: TimelineProvider {
+    private func current() -> WidgetSnapshot { WidgetSnapshotStore.read() ?? .placeholder }
+
+    func placeholder(in context: Context) -> SnapshotEntry {
+        SnapshotEntry(date: .now, snapshot: .placeholder)
+    }
+
+    func getSnapshot(in context: Context, completion: @escaping (SnapshotEntry) -> Void) {
+        completion(SnapshotEntry(date: .now, snapshot: current()))
+    }
+
+    func getTimeline(in context: Context, completion: @escaping (Timeline<SnapshotEntry>) -> Void) {
+        let entry = SnapshotEntry(date: .now, snapshot: current())
+        // The watch app reloads on each received context; refresh hourly as a fallback.
+        let next = Calendar.current.date(byAdding: .hour, value: 1, to: .now) ?? .now
+        completion(Timeline(entries: [entry], policy: .after(next)))
+    }
+}
+
+// MARK: - Complications
 
 struct NextSessionComplication: Widget {
     var body: some WidgetConfiguration {
@@ -59,6 +91,30 @@ struct NextSessionComplication: Widget {
         .configurationDisplayName("Next session")
         .description("Your next Zone 2 or 4×4 session.")
         .supportedFamilies([.accessoryCircular, .accessoryCorner])
+    }
+}
+
+struct ReadinessComplication: Widget {
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: "Z24x4Readiness", provider: SnapshotProvider()) { entry in
+            ReadinessComplicationView(snapshot: entry.snapshot)
+                .containerBackground(.fill.tertiary, for: .widget)
+        }
+        .configurationDisplayName("Readiness")
+        .description("Today's readiness score synced from your iPhone.")
+        .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryInline])
+    }
+}
+
+struct StreakComplication: Widget {
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: "Z24x4Streak", provider: SnapshotProvider()) { entry in
+            StreakComplicationView(snapshot: entry.snapshot)
+                .containerBackground(.fill.tertiary, for: .widget)
+        }
+        .configurationDisplayName("Streak")
+        .description("Your current weekly training streak.")
+        .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryInline])
     }
 }
 
@@ -79,6 +135,25 @@ private extension SessionType {
     }
 }
 
+private extension ReadinessLabel {
+    var title: String {
+        switch self {
+        case .goHard: return "Go hard"
+        case .steady: return "Steady"
+        case .easy:   return "Take it easy"
+        }
+    }
+    var glyph: String {
+        switch self {
+        case .goHard: return "bolt.fill"
+        case .steady: return "equal.circle.fill"
+        case .easy:   return "moon.fill"
+        }
+    }
+}
+
+// MARK: - Views
+
 struct ComplicationView: View {
     @Environment(\.widgetFamily) private var family
     let session: PlannedSession
@@ -93,6 +168,64 @@ struct ComplicationView: View {
             VStack(spacing: 1) {
                 Image(systemName: session.type.glyph).font(.title3)
                 Text("\(session.durationMin)m").font(.caption2)
+            }
+        }
+    }
+}
+
+struct ReadinessComplicationView: View {
+    @Environment(\.widgetFamily) private var family
+    let snapshot: WidgetSnapshot
+    private var value: Int? { snapshot.readinessValue }
+    private var label: ReadinessLabel? { snapshot.readinessLabel }
+
+    var body: some View {
+        switch family {
+        case .accessoryCorner:
+            Image(systemName: label?.glyph ?? "bolt.heart")
+                .font(.title3)
+                .widgetLabel(value.map { "Readiness \($0)" } ?? "Readiness —")
+        case .accessoryInline:
+            Label {
+                Text(value.map { "Readiness \($0)" } ?? "Readiness —")
+            } icon: {
+                Image(systemName: label?.glyph ?? "bolt.heart")
+            }
+        default:
+            Gauge(value: Double(value ?? 0), in: 0...100) {
+                Image(systemName: label?.glyph ?? "bolt.heart")
+            } currentValueLabel: {
+                Text(value.map { "\($0)" } ?? "—")
+            }
+            .gaugeStyle(.accessoryCircularCapacity)
+        }
+    }
+}
+
+struct StreakComplicationView: View {
+    @Environment(\.widgetFamily) private var family
+    let snapshot: WidgetSnapshot
+    /// Weeks when there is an active streak; nil renders the neutral placeholder.
+    private var weeks: Int? { snapshot.streakWeeks.flatMap { $0 > 0 ? $0 : nil } }
+    private var glyph: String { weeks != nil ? "flame.fill" : "flame" }
+
+    var body: some View {
+        switch family {
+        case .accessoryCorner:
+            Image(systemName: glyph)
+                .font(.title3)
+                .widgetLabel(weeks.map { "\($0)-week streak" } ?? "No streak yet")
+        case .accessoryInline:
+            Label {
+                Text(weeks.map { "\($0) wk streak" } ?? "No streak yet")
+            } icon: {
+                Image(systemName: glyph)
+            }
+        default:
+            VStack(spacing: 1) {
+                Image(systemName: glyph).font(.title3)
+                Text(weeks.map { "\($0)" } ?? "—")
+                    .font(.caption2.weight(.semibold)).monospacedDigit()
             }
         }
     }

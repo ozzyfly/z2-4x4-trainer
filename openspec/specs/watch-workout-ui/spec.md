@@ -185,3 +185,100 @@ code:
   - Watch/LiveWorkoutView.swift
   - SharedCore/Sources/SharedCore/HRZone+UI.swift
 -->
+
+---
+### Requirement: Watch status section
+The watch workout-list screen SHALL show a status section with the readiness score and label, the current streak in weeks, and this week's done/target training minutes, sourced from the cached snapshot. When no snapshot has been received the section SHALL show a neutral placeholder instead of stale or fabricated values.
+
+#### Scenario: Status section shows synced insight
+- **WHEN** the watch has a cached snapshot with readinessValue 100, streakWeeks 2, and weekly minutes 90 of 163
+- **THEN** the status section displays the readiness score and label, the 2-week streak, and the 90/163 minute progress
+
+#### Scenario: Placeholder before first sync
+- **WHEN** the watch has never received a snapshot
+- **THEN** the status section shows a placeholder state and the workout list remains usable
+
+
+<!-- @trace
+source: watch-parity-widgets
+updated: 2026-06-10
+code:
+  - SharedCore/Sources/SharedCore/Readiness.swift
+  - SharedCore/Sources/SharedCore/UnitConvert.swift
+  - App/WidgetSnapshotWriter.swift
+  - SharedCore/Tests/SharedCoreTests/SmartCoachTests.swift
+  - Watch/WorkoutListView.swift
+  - App/GuidedSessionEngine.swift
+  - App/Views/SettingsView.swift
+  - Watch/WorkoutSync.swift
+  - SharedCore/Tests/SharedCoreTests/ReadinessTests.swift
+  - SharedCore/Tests/SharedCoreTests/WidgetSnapshotTests.swift
+  - App/Sync/PhoneStatusPublisher.swift
+  - App/Views/RootView.swift
+  - SharedCore/Sources/SharedCore/WorkoutExport.swift
+  - App/Health/PreviewHealthService.swift
+  - PROGRESS.md
+  - Tests/HealthWritebackTests.swift
+  - App/Health/HealthProviding.swift
+  - App/Notifications/ReminderScheduler.swift
+  - App/Health/HealthKitService.swift
+  - App/Views/GuidedPlayerView.swift
+  - App/Views/ManualEntryView.swift
+  - project.yml
+  - SharedCore/Sources/SharedCore/FitnessTrend.swift
+  - WatchComplications/Z24x4WatchComplications.entitlements
+  - Watch/Z24x4TrainerWatch.entitlements
+  - SharedCore/Tests/SharedCoreTests/UnitsExportTests.swift
+  - SharedCore/Sources/SharedCore/UnitPreference.swift
+  - Widgets/Z24x4Widgets.swift
+  - SharedCore/Sources/SharedCore/WidgetSnapshot.swift
+  - WatchComplications/Z24x4WatchComplications.swift
+-->
+
+---
+### Requirement: Watch uses synced profile
+The watch app SHALL derive heart-rate zones from profile values synced from the phone (age, max-HR override, zone method) when available, and SHALL fall back to its built-in default profile only when no synced profile exists.
+
+#### Scenario: Synced profile drives zones
+- **WHEN** the phone has pushed a profile with a max-HR override of 185
+- **THEN** the watch zone calculations use 185 as max HR instead of the default profile
+
+#### Scenario: Fallback without sync
+- **WHEN** no profile has ever been synced
+- **THEN** the watch uses its built-in default profile and the workout list still renders
+
+<!-- @trace
+source: watch-parity-widgets
+updated: 2026-06-10
+code:
+  - SharedCore/Sources/SharedCore/Readiness.swift
+  - SharedCore/Sources/SharedCore/UnitConvert.swift
+  - App/WidgetSnapshotWriter.swift
+  - SharedCore/Tests/SharedCoreTests/SmartCoachTests.swift
+  - Watch/WorkoutListView.swift
+  - App/GuidedSessionEngine.swift
+  - App/Views/SettingsView.swift
+  - Watch/WorkoutSync.swift
+  - SharedCore/Tests/SharedCoreTests/ReadinessTests.swift
+  - SharedCore/Tests/SharedCoreTests/WidgetSnapshotTests.swift
+  - App/Sync/PhoneStatusPublisher.swift
+  - App/Views/RootView.swift
+  - SharedCore/Sources/SharedCore/WorkoutExport.swift
+  - App/Health/PreviewHealthService.swift
+  - PROGRESS.md
+  - Tests/HealthWritebackTests.swift
+  - App/Health/HealthProviding.swift
+  - App/Notifications/ReminderScheduler.swift
+  - App/Health/HealthKitService.swift
+  - App/Views/GuidedPlayerView.swift
+  - App/Views/ManualEntryView.swift
+  - project.yml
+  - SharedCore/Sources/SharedCore/FitnessTrend.swift
+  - WatchComplications/Z24x4WatchComplications.entitlements
+  - Watch/Z24x4TrainerWatch.entitlements
+  - SharedCore/Tests/SharedCoreTests/UnitsExportTests.swift
+  - SharedCore/Sources/SharedCore/UnitPreference.swift
+  - Widgets/Z24x4Widgets.swift
+  - SharedCore/Sources/SharedCore/WidgetSnapshot.swift
+  - WatchComplications/Z24x4WatchComplications.swift
+-->

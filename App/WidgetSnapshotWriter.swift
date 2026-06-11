@@ -9,7 +9,7 @@ import WidgetKit
 /// session syncs in.
 enum WidgetSnapshotWriter {
     @MainActor
-    static func update(context: ModelContext) {
+    static func update(context: ModelContext, readiness: ReadinessScore? = nil) {
         guard let profile = try? context.fetch(FetchDescriptor<ProfileRecord>()).first else { return }
         let logs = (try? context.fetch(FetchDescriptor<WorkoutLog>())) ?? []
 
@@ -23,17 +23,24 @@ enum WidgetSnapshotWriter {
         let weekDone = thisWeek.reduce(0) { $0 + $1.durationMin }
         let hardDone = thisWeek.filter { $0.type == .norwegian4x4 }.count
 
-        WidgetSnapshotStore.write(
-            WidgetSnapshot(
-                todayType: today.type,
-                todayMinutes: today.type == .rest ? 0 : today.durationMin,
-                weekDoneMinutes: weekDone,
-                weekTargetMinutes: weekly.trainingMinutes,
-                hardDone: hardDone,
-                hardTarget: weekly.hardSessions,
-                generatedAt: .now
-            )
+        let history = logs.map {
+            WorkoutRecord(date: $0.date, type: $0.type, durationMin: $0.durationMin, energyKcal: $0.activeEnergyKcal)
+        }
+
+        let snapshot = WidgetSnapshot(
+            todayType: today.type,
+            todayMinutes: today.type == .rest ? 0 : today.durationMin,
+            weekDoneMinutes: weekDone,
+            weekTargetMinutes: weekly.trainingMinutes,
+            hardDone: hardDone,
+            hardTarget: weekly.hardSessions,
+            generatedAt: .now,
+            readinessValue: readiness?.value,
+            readinessLabel: readiness?.label,
+            streakWeeks: StreakCalculator.currentWeeks(in: history)
         )
+        WidgetSnapshotStore.write(snapshot)
         WidgetCenter.shared.reloadAllTimelines()
+        PhoneStatusPublisher.publish(snapshot: snapshot, profile: p)
     }
 }

@@ -8,7 +8,7 @@
 
 ## 3. 筆記輸入與最近紀錄
 
-- [ ] 3.1 App/Views/ManualEntryView.swift：加 note TextField（optional，存入既有 WorkoutLog.note）。注意：此檔由 health-writeback-robustness 變更的執行者一併修改以避免衝突；本變更只定義驗收。完成條件：存檔後 log.note 有值（驗證需求：Workout notes are usable）。
+- [x] 3.1 App/Views/ManualEntryView.swift：加 note TextField（optional，存入既有 WorkoutLog.note）。注意：此檔由 health-writeback-robustness 變更的執行者一併修改以避免衝突；本變更只定義驗收。完成條件：存檔後 log.note 有值（驗證需求：Workout notes are usable）。
 - [ ] 3.2 新增 App/Views/RecentWorkoutsSection.swift：最近 N=10 筆 WorkoutLog 列表（日期、類型、分鐘、來源圖示：手動/Health/Watch，note 存在時顯示）；以單行插入 App/Views/HistoryView.swift（圖表下方）。新字串走 catalog 片段。完成條件：列表顯示手動與匯入紀錄並區分來源、note 可見（驗證需求：Workout notes are usable）。
 
 ## 4. es/ja 定稿（必須最後執行）
