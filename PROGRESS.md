@@ -1,5 +1,16 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-06-11: `units-export` done [9/9] — imperial units + history export.**
+> `ProfileRecord.unitsRaw` (metric default, locale-derived on onboarding); Settings units picker,
+> weight + loss-rate fields display kg↔lb (storage stays metric); onboarding imperial entry
+> (lb, ft+in) converts before save; History weight chart converts axis/series; History toolbar
+> export Menu — CSV (RFC-4180) + JSON ShareLinks via Transferable (`workouts.csv`/`.json`),
+> `source` = `health`/`manual` by `healthUUID`. Verified: SharedCore 79 tests, iOS builds green,
+> sim smoke en_CA→metric and US-units→imperial onboarding (lb/ft+in rendered). Not GUI-tapped:
+> Settings unit flip + export share sheet (no headless tap tool) — quick manual check recommended.
+> New strings pending catalog translation (zh-Hant/es/ja): Units/Metric/Imperial/Weight (lb)/
+> Height (ft + in)/Export/Export CSV/Export JSON/lb-week format.
+
 > **2026-06-10: `watch-parity-widgets` done [11/11] — watch status parity + new widgets/complications.**
 > WidgetSnapshot v2 (readiness/streak fields, backward-compatible decode), phone publishes snapshot +
 > profile to watch via `updateApplicationContext` (`PhoneStatusPublisher`), watch writes its own App

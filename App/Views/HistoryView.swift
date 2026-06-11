@@ -2,11 +2,36 @@ import SwiftUI
 import SwiftData
 import Charts
 import SharedCore
+import UniformTypeIdentifiers
+
+/// Workout history as a shareable CSV file (`workouts.csv`).
+struct WorkoutCSVExport: Transferable {
+    let text: String
+
+    static var transferRepresentation: some TransferRepresentation {
+        DataRepresentation(exportedContentType: .commaSeparatedText) { Data($0.text.utf8) }
+            .suggestedFileName("workouts.csv")
+    }
+}
+
+/// Workout history as a shareable JSON file (`workouts.json`).
+struct WorkoutJSONExport: Transferable {
+    let data: Data
+
+    static var transferRepresentation: some TransferRepresentation {
+        DataRepresentation(exportedContentType: .json) { $0.data }
+            .suggestedFileName("workouts.json")
+    }
+}
 
 /// Charts this week's training minutes by weekday and the recent body-weight trend.
 struct HistoryView: View {
     let health: HealthStore
     @Query(sort: \WorkoutLog.date, order: .reverse) private var logs: [WorkoutLog]
+    @Query private var profiles: [ProfileRecord]
+
+    /// Display units from the profile; metric when no profile exists.
+    private var units: UnitPreference { profiles.first?.units ?? .metric }
 
     /// Chart height scales with Dynamic Type but is clamped so large accessibility
     /// sizes don't blow the charts up off-screen (or shrink them away).
@@ -43,6 +68,15 @@ struct HistoryView: View {
 
     private var weightPoints: [WeightPoint] {
         health.weightSeries.map { WeightPoint(date: $0.date, kg: $0.kg) }
+    }
+
+    /// Weight value in the preferred display units (storage stays kg).
+    private func displayWeight(_ kg: Double) -> Double {
+        units == .imperial ? UnitConvert.kgToLb(kg) : kg
+    }
+
+    private var weightAxisLabel: String {
+        units == .imperial ? String(localized: "Weight (lb)") : String(localized: "Weight (kg)")
     }
 
     private var hasTrainingData: Bool {
@@ -118,6 +152,42 @@ struct HistoryView: View {
         }
     }
 
+    // MARK: - Export
+
+    /// Every logged workout as a flat export row, oldest first. `source` says
+    /// whether the entry is linked to Apple Health (`health`) or app-only (`manual`).
+    private var exportRows: [WorkoutExportRow] {
+        logs.reversed().map { log in
+            WorkoutExportRow(
+                date: log.date,
+                type: log.type.rawValue,
+                durationMin: log.durationMin,
+                energyKcal: log.activeEnergyKcal,
+                note: log.note,
+                source: log.healthUUID != nil ? "health" : "manual"
+            )
+        }
+    }
+
+    private var exportMenu: some View {
+        Menu {
+            ShareLink(
+                item: WorkoutCSVExport(text: WorkoutExport(rows: exportRows).csv()),
+                preview: SharePreview("workouts.csv")
+            ) {
+                Label("Export CSV", systemImage: "tablecells")
+            }
+            ShareLink(
+                item: WorkoutJSONExport(data: WorkoutExport(rows: exportRows).json()),
+                preview: SharePreview("workouts.json")
+            ) {
+                Label("Export JSON", systemImage: "curlybraces")
+            }
+        } label: {
+            Label("Export", systemImage: "square.and.arrow.down")
+        }
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -131,6 +201,9 @@ struct HistoryView: View {
             .background(Theme.background)
             .navigationTitle("History")
             .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    exportMenu
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     shareLink
                 }
@@ -252,17 +325,17 @@ struct HistoryView: View {
             Card {
                 if weightPoints.count > 1 {
                     VStack(alignment: .leading, spacing: Spacing.xs) {
-                        chartCaption("Weight (kg)")
+                        chartCaption(weightAxisLabel)
                         Chart(weightPoints) { point in
                             LineMark(
                                 x: .value("Date", point.date),
-                                y: .value("Weight (kg)", point.kg)
+                                y: .value(weightAxisLabel, displayWeight(point.kg))
                             )
                             .foregroundStyle(Theme.accent)
                             .interpolationMethod(.catmullRom)
                             PointMark(
                                 x: .value("Date", point.date),
-                                y: .value("Weight (kg)", point.kg)
+                                y: .value(weightAxisLabel, displayWeight(point.kg))
                             )
                             .foregroundStyle(Theme.accent)
                         }

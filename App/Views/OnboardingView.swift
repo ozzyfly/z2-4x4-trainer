@@ -7,10 +7,18 @@ struct OnboardingView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
+    /// Display units come from the device locale; storage is always metric.
+    private let units = UnitPreference.defaultValue(for: Locale.current)
+
     @State private var age = 30
     @State private var sex: BiologicalSex = .male
     @State private var weightKg = 75.0
     @State private var heightCm = 175.0
+    // Imperial-entry fields (used only when `units == .imperial`), converted
+    // to metric in `save()`. Defaults mirror the metric defaults above.
+    @State private var weightLb = 165.0
+    @State private var heightFeet = 5
+    @State private var heightInches = 9
     @State private var activity: ActivityLevel = .moderate
     @State private var goalIsLose = false
     @State private var loseRate = 0.5
@@ -80,18 +88,46 @@ struct OnboardingView: View {
                         }
                     }
                     Divider()
-                    LabeledContent("Weight (kg)") {
-                        TextField("kg", value: $weightKg, format: .number)
-                            .keyboardType(.decimalPad)
-                            .multilineTextAlignment(.trailing)
-                            .accessibilityLabel("Weight in kilograms")
-                    }
-                    Divider()
-                    LabeledContent("Height (cm)") {
-                        TextField("cm", value: $heightCm, format: .number)
-                            .keyboardType(.decimalPad)
-                            .multilineTextAlignment(.trailing)
-                            .accessibilityLabel("Height in centimetres")
+                    if units == .imperial {
+                        LabeledContent("Weight (lb)") {
+                            TextField("lb", value: $weightLb, format: .number)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                                .accessibilityLabel("Weight in pounds")
+                        }
+                        Divider()
+                        LabeledContent("Height (ft + in)") {
+                            HStack(spacing: Spacing.sm) {
+                                TextField("ft", value: $heightFeet, format: .number)
+                                    .keyboardType(.numberPad)
+                                    .multilineTextAlignment(.trailing)
+                                    .frame(width: 44)
+                                    .accessibilityLabel("Height, feet")
+                                Text("ft")
+                                    .foregroundStyle(Theme.secondaryLabel)
+                                TextField("in", value: $heightInches, format: .number)
+                                    .keyboardType(.numberPad)
+                                    .multilineTextAlignment(.trailing)
+                                    .frame(width: 44)
+                                    .accessibilityLabel("Height, inches")
+                                Text("in")
+                                    .foregroundStyle(Theme.secondaryLabel)
+                            }
+                        }
+                    } else {
+                        LabeledContent("Weight (kg)") {
+                            TextField("kg", value: $weightKg, format: .number)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                                .accessibilityLabel("Weight in kilograms")
+                        }
+                        Divider()
+                        LabeledContent("Height (cm)") {
+                            TextField("cm", value: $heightCm, format: .number)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                                .accessibilityLabel("Height in centimetres")
+                        }
                     }
                 }
             }
@@ -122,7 +158,9 @@ struct OnboardingView: View {
                             Divider()
                             AccessibleStepper(
                                 title: "Rate", value: $loseRate, range: 0.25...1.0, step: 0.25,
-                                valueText: String(format: "%.2f kg/week", loseRate)
+                                valueText: units == .imperial
+                                    ? String(format: "%.2f lb/week", UnitConvert.kgToLb(loseRate))
+                                    : String(format: "%.2f kg/week", loseRate)
                             )
                         }
                         .transition(.opacity.combined(with: .move(edge: .top)))
@@ -132,13 +170,23 @@ struct OnboardingView: View {
         }
     }
 
-    /// Block profile creation until body metrics are positive.
-    private var isValid: Bool { weightKg > 0 && heightCm > 0 }
+    /// Block profile creation until body metrics are positive (in either unit system).
+    private var isValid: Bool {
+        switch units {
+        case .metric: weightKg > 0 && heightCm > 0
+        case .imperial: weightLb > 0 && heightFeet >= 0 && heightInches >= 0
+            && (heightFeet * 12 + heightInches) > 0
+        }
+    }
 
     private func save() {
+        let storedWeightKg = units == .imperial ? UnitConvert.lbToKg(weightLb) : weightKg
+        let storedHeightCm = units == .imperial
+            ? UnitConvert.feetInchesToCm(feet: heightFeet, inches: heightInches) : heightCm
         let record = ProfileRecord(
-            age: age, sex: sex, weightKg: weightKg, heightCm: heightCm,
-            activity: activity, goalIsLose: goalIsLose, loseRateKgPerWeek: loseRate
+            age: age, sex: sex, weightKg: storedWeightKg, heightCm: storedHeightCm,
+            activity: activity, goalIsLose: goalIsLose, loseRateKgPerWeek: loseRate,
+            units: units
         )
         context.insert(record)
         didSave = true

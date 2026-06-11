@@ -17,6 +17,8 @@ final class ProfileRecord {
 
     /// Persisted zone-derivation method. Defaults to age-max for older records/data.
     var zoneMethodRaw: String = ZoneMethod.ageMax.rawValue
+    /// Persisted display-unit preference. Defaults to metric for older records/data.
+    var unitsRaw: String = UnitPreference.metric.rawValue
     /// Persisted custom-zone bands, stored as parallel scalar arrays (index = zone − 1).
     var customZoneLowers: [Int]?
     var customZoneUppers: [Int]?
@@ -32,7 +34,8 @@ final class ProfileRecord {
         goalIsLose: Bool = false,
         loseRateKgPerWeek: Double = 0.5,
         zoneMethod: ZoneMethod = .ageMax,
-        customZones: [HRRange]? = nil
+        customZones: [HRRange]? = nil,
+        units: UnitPreference = .defaultValue(for: Locale.current)
     ) {
         self.age = age
         self.sexRaw = sex.rawValue
@@ -46,6 +49,7 @@ final class ProfileRecord {
         self.zoneMethodRaw = zoneMethod.rawValue
         self.customZoneLowers = customZones?.map(\.lower)
         self.customZoneUppers = customZones?.map(\.upper)
+        self.unitsRaw = units.rawValue
     }
 
     var sex: BiologicalSex {
@@ -61,6 +65,11 @@ final class ProfileRecord {
     var zoneMethod: ZoneMethod {
         get { ZoneMethod(rawValue: zoneMethodRaw) ?? .ageMax }
         set { zoneMethodRaw = newValue.rawValue }
+    }
+
+    var units: UnitPreference {
+        get { UnitPreference(rawValue: unitsRaw) ?? .metric }
+        set { unitsRaw = newValue.rawValue }
     }
 
     /// User-supplied zone bands, reassembled from the parallel scalar arrays.

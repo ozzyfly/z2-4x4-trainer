@@ -58,6 +58,19 @@ struct SettingsView: View {
         notificationsDenied = await ReminderScheduler.authorizationStatus() == .denied
     }
 
+    /// Weight in the preferred display units; storage stays metric (kg).
+    private var displayWeight: Binding<Double> {
+        Binding(
+            get: {
+                profile.units == .imperial ? UnitConvert.kgToLb(profile.weightKg) : profile.weightKg
+            },
+            set: { newValue in
+                profile.weightKg = profile.units == .imperial
+                    ? UnitConvert.lbToKg(newValue) : newValue
+            }
+        )
+    }
+
     private var hasOverride: Binding<Bool> {
         Binding(
             get: { profile.maxHROverride != nil },
@@ -143,10 +156,18 @@ struct SettingsView: View {
                     AccessibleStepper(title: "Age", value: $profile.age, range: 12...100,
                                       valueText: "\(profile.age)")
                     Divider()
-                    LabeledContent("Weight (kg)") {
-                        TextField("kg", value: $profile.weightKg, format: .number)
+                    Picker("Units", selection: $profile.units) {
+                        Text("Metric").tag(UnitPreference.metric)
+                        Text("Imperial").tag(UnitPreference.imperial)
+                    }
+                    Divider()
+                    LabeledContent(profile.units == .imperial ? "Weight (lb)" : "Weight (kg)") {
+                        TextField(profile.units == .imperial ? "lb" : "kg",
+                                  value: displayWeight,
+                                  format: .number.precision(.fractionLength(0...1)))
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
+                            .id(profile.units) // re-seed the field text when units flip
                     }
                     Divider()
                     Picker("Activity", selection: $profile.activity) {
@@ -268,7 +289,10 @@ struct SettingsView: View {
                             AccessibleStepper(
                                 title: "Rate", value: $profile.loseRateKgPerWeek,
                                 range: 0.25...1.0, step: 0.25,
-                                valueText: String(format: "%.2f kg/week", profile.loseRateKgPerWeek)
+                                valueText: profile.units == .imperial
+                                    ? String(format: "%.2f lb/week",
+                                             UnitConvert.kgToLb(profile.loseRateKgPerWeek))
+                                    : String(format: "%.2f kg/week", profile.loseRateKgPerWeek)
                             )
                         }
                         .transition(.opacity.combined(with: .move(edge: .top)))
