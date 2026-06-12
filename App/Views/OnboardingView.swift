@@ -153,7 +153,7 @@ struct OnboardingView: View {
             Card {
                 Picker("Activity", selection: $activity) {
                     ForEach(ActivityLevel.allCases, id: \.self) {
-                        Text($0.rawValue).tag($0)
+                        Text($0.displayName).tag($0)
                     }
                 }
             }

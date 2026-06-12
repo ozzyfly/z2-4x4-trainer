@@ -155,7 +155,8 @@ struct PrimaryButton: ButtonStyle {
 
 /// Small pill showing a zone band, e.g. "Zone 2 · 114–133".
 struct ZoneChip: View {
-    let title: String
+    /// `LocalizedStringKey` so literal titles resolve through the String Catalog.
+    let title: LocalizedStringKey
     let range: String
     var color: Color = Theme.accent
 

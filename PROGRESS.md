@@ -1,5 +1,14 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-06-12 (later): `l10n-gap-fill` done [6/6] — last hardcoded UI strings localized.**
+> `AccessibleStepper.title` + `ZoneChip.title` → `LocalizedStringKey` (String params rendered
+> verbatim); `ActivityLevel.displayName`; History weekday labels from `Calendar.shortWeekdaySymbols`
+> (Monday-first) + chart captions/Latest summary localized; es plural for "%lld-week streak"
+> ("Racha de 1 semana"). App catalog 181 keys, 0 needs_review. Verified in sim (es+ja): Edad/年齢,
+> Moderado/中程度, lun–dom weekday axis, Minutos por día, Último %@, 4×4 intenso, Racha de 1 semana.
+> Note: earlier "Zone 2 untranslated" sightings were screenshot misreads — runtime probe confirmed
+> `String(localized: "Zone 2")` → "Zona 2" all along.
+
 > **2026-06-12: `ux-polish` done [6/6] — ROUND 4 COMPLETE (all 4 changes archived).**
 > Onboarding intro page (3 core points) before the form; Today welcome card when no logs
 > (guided/manual CTAs, hides after first log); `RecentWorkoutsSection` on History (last 10,

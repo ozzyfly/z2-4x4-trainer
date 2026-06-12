@@ -369,6 +369,19 @@ extension SessionType {
     }
 }
 
+extension ActivityLevel {
+    /// Localized display name; the raw value is a storage detail, not UI text.
+    var displayName: String {
+        switch self {
+        case .sedentary: return String(localized: "Sedentary")
+        case .light: return String(localized: "Light")
+        case .moderate: return String(localized: "Moderate")
+        case .active: return String(localized: "Active")
+        case .veryActive: return String(localized: "Very active")
+        }
+    }
+}
+
 struct SessionRow: View {
     let type: SessionType
     let durationMin: Int

@@ -3,6 +3,7 @@ import SwiftData
 
 @main
 struct Z24x4TrainerApp: App {
+
     private let container: ModelContainer = {
         try! ModelContainer(for: ProfileRecord.self, WorkoutLog.self, AchievementRecord.self)
     }()

@@ -11,7 +11,9 @@ import SwiftUI
 /// produces. The caller supplies `valueText` so the displayed and spoken value
 /// match exactly (e.g. "30", "0.50 kg/week", "165 bpm").
 struct AccessibleStepper<V: Strideable>: View {
-    let title: String
+    /// `LocalizedStringKey` so literal titles at call sites resolve through the
+    /// String Catalog at runtime (a `String` parameter would render verbatim).
+    let title: LocalizedStringKey
     @Binding var value: V
     let range: ClosedRange<V>
     var step: V.Stride = 1

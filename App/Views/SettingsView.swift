@@ -171,7 +171,7 @@ struct SettingsView: View {
                     }
                     Divider()
                     Picker("Activity", selection: $profile.activity) {
-                        ForEach(ActivityLevel.allCases, id: \.self) { Text($0.rawValue).tag($0) }
+                        ForEach(ActivityLevel.allCases, id: \.self) { Text($0.displayName).tag($0) }
                     }
                 }
             }
@@ -242,9 +242,9 @@ struct SettingsView: View {
                         }
                     case .custom:
                         Divider()
-                        customBandEditor(title: "Zone 2", zone: .zone2)
+                        customBandEditor(title: String(localized: "Zone 2"), zone: .zone2)
                         Divider()
-                        customBandEditor(title: "Zone 4 (4×4)", zone: .zone4)
+                        customBandEditor(title: String(localized: "Zone 4 (4×4)"), zone: .zone4)
                         Text("Other zones use age-based defaults until edited.")
                             .font(.caption)
                             .foregroundStyle(Theme.secondaryLabel)

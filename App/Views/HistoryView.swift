@@ -56,7 +56,13 @@ struct HistoryView: View {
         let value: Double
     }
 
-    private static let weekdayLabels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    /// Locale-aware short weekday names reordered to Monday-first, matching
+    /// `ActivityAggregator`'s 0 = Mon … 6 = Sun indexing.
+    private static let weekdayLabels: [String] = {
+        // Calendar's shortWeekdaySymbols start with Sunday (index 0).
+        let symbols = Calendar.current.shortWeekdaySymbols
+        return Array(symbols[1...]) + [symbols[0]]
+    }()
 
     private var weeklyByWeekday: [DayMinutes] {
         let samples = logs.map { ActivitySample(date: $0.date, minutes: $0.durationMin, energyKcal: $0.activeEnergyKcal) }
@@ -227,7 +233,7 @@ struct HistoryView: View {
             Card {
                 if hasTrainingData {
                     VStack(alignment: .leading, spacing: Spacing.xs) {
-                        chartCaption("Minutes per day")
+                        chartCaption(String(localized: "Minutes per day"))
                         Chart(weeklyByWeekday) { day in
                             BarMark(
                                 x: .value("Day", day.label),
@@ -266,7 +272,7 @@ struct HistoryView: View {
                 if let trend = health.fitness {
                     let points = trend.samples.map { FitnessPoint(date: $0.date, value: $0.value) }
                     VStack(alignment: .leading, spacing: Spacing.md) {
-                        chartCaption("VO2 max (ml·kg⁻¹·min⁻¹)")
+                        chartCaption(String(localized: "VO2 max (ml·kg⁻¹·min⁻¹)"))
                         Chart(points) { point in
                             LineMark(
                                 x: .value("Date", point.date),
@@ -290,7 +296,9 @@ struct HistoryView: View {
                         let latestText = trend.latest.formatted(oneDP)
                         let deltaSignedText = trend.deltaFromFirst.formatted(oneDP.sign(strategy: .always()))
                         let deltaAbsText = abs(trend.deltaFromFirst).formatted(oneDP)
-                        let trendA11y = "Latest VO2 max \(latestText), \(improving ? "improved" : "declined") by \(deltaAbsText)"
+                        let trendA11y = improving
+                            ? String(localized: "Latest VO2 max \(latestText), improved by \(deltaAbsText)")
+                            : String(localized: "Latest VO2 max \(latestText), declined by \(deltaAbsText)")
                         HStack(spacing: Spacing.xs) {
                             Text("Latest \(latestText)")
                                 .numericStyle(.subheadline.weight(.semibold))
