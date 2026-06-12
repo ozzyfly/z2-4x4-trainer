@@ -296,3 +296,62 @@ code:
   - SharedCore/Sources/SharedCore/Readiness.swift
   - App/Localizable.xcstrings
 -->
+
+---
+### Requirement: Spanish and Japanese are finalized
+The Spanish and Japanese translations in the app and SharedCore String Catalogs SHALL be reviewed and marked as translated (not needs-review) before release, after all strings introduced in the same round are merged.
+
+#### Scenario: No needs-review entries remain
+- **WHEN** the round's catalog merge is complete and the es/ja review pass has run
+- **THEN** the app and SharedCore String Catalogs contain zero needs-review entries for Spanish and Japanese
+
+#### Scenario: Reviewed UI renders
+- **WHEN** the app runs with the device language set to Spanish or Japanese
+- **THEN** core screens render the reviewed translations with English fallback only for untranslated keys
+
+<!-- @trace
+source: ux-polish
+updated: 2026-06-12
+code:
+  - App/Sync/PhoneSessionReceiver.swift
+  - Watch/WorkoutListView.swift
+  - App/Health/HealthStore.swift
+  - App/Views/OnboardingIntroView.swift
+  - App/Health/HealthKitService.swift
+  - SharedCore/Tests/SharedCoreTests/UnitsExportTests.swift
+  - App/Health/HealthProviding.swift
+  - App/Views/TodayView.swift
+  - App/Views/RootView.swift
+  - App/Health/PreviewHealthService.swift
+  - App/Persistence/WorkoutLog.swift
+  - WatchComplications/Z24x4WatchComplications.swift
+  - Watch/WorkoutSync.swift
+  - App/WidgetSnapshotWriter.swift
+  - SharedCore/Sources/SharedCore/WidgetSnapshot.swift
+  - App/Views/ManualEntryView.swift
+  - Tests/HealthWritebackTests.swift
+  - App/Views/OnboardingView.swift
+  - SharedCore/Sources/SharedCore/UnitPreference.swift
+  - App/Localizable.xcstrings
+  - Watch/Z24x4TrainerWatch.entitlements
+  - WatchComplications/Z24x4WatchComplications.entitlements
+  - Widgets/Z24x4Widgets.swift
+  - SharedCore/Tests/SharedCoreTests/ReadinessTests.swift
+  - PROGRESS.md
+  - App/Views/GuidedPlayerView.swift
+  - SharedCore/Sources/SharedCore/UnitConvert.swift
+  - App/Views/RecentWorkoutsSection.swift
+  - SharedCore/Sources/SharedCore/FitnessTrend.swift
+  - SharedCore/Sources/SharedCore/Readiness.swift
+  - SharedCore/Tests/SharedCoreTests/SmartCoachTests.swift
+  - project.yml
+  - App/Persistence/ProfileRecord.swift
+  - App/Sync/PhoneStatusPublisher.swift
+  - App/Views/HistoryView.swift
+  - App/GuidedSessionEngine.swift
+  - SharedCore/Sources/SharedCore/Localizable.xcstrings
+  - SharedCore/Sources/SharedCore/WorkoutExport.swift
+  - App/Views/SettingsView.swift
+  - App/Notifications/ReminderScheduler.swift
+  - SharedCore/Tests/SharedCoreTests/WidgetSnapshotTests.swift
+-->

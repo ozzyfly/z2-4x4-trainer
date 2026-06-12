@@ -1,5 +1,19 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-06-12: `ux-polish` done [6/6] — ROUND 4 COMPLETE (all 4 changes archived).**
+> Onboarding intro page (3 core points) before the form; Today welcome card when no logs
+> (guided/manual CTAs, hides after first log); `RecentWorkoutsSection` on History (last 10,
+> source icon, note); new `WorkoutLog.sourceRaw` (manual/health/watch — `healthUUID` no longer
+> distinguishes since manual writeback; set in ManualEntryView default/HealthStore import/
+> PhoneSessionReceiver; export `source` now uses it). Localization: 36 new keys merged into
+> App catalog (now 166) with zh-Hant/es/ja; full es/ja review pass — terminology unified
+> (es "Apple Salud"/"Zona 2"; ja latin "Zone 2", "ノルウェー式 4×4", "Appleヘルスケア") and
+> **0 needs_review in both catalogs**. Verified: iOS+watch builds, iOS tests green; sim smoke:
+> intro page, welcome card (and hides with logs), es/ja Today/Settings/History screenshots.
+> Known pre-existing l10n gaps (English fallback, not this round): "Age", ActivityLevel raw
+> values ("moderate"), chart internals ("Minutes per day", weekday abbrevs), es plural
+> "Racha de 1 semanas", zone chip "4×4 hard".
+
 > **2026-06-11: `units-export` done [9/9] — imperial units + history export.**
 > `ProfileRecord.unitsRaw` (metric default, locale-derived on onboarding); Settings units picker,
 > weight + loss-rate fields display kg↔lb (storage stays metric); onboarding imperial entry

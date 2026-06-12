@@ -154,8 +154,7 @@ struct HistoryView: View {
 
     // MARK: - Export
 
-    /// Every logged workout as a flat export row, oldest first. `source` says
-    /// whether the entry is linked to Apple Health (`health`) or app-only (`manual`).
+    /// Every logged workout as a flat export row, oldest first.
     private var exportRows: [WorkoutExportRow] {
         logs.reversed().map { log in
             WorkoutExportRow(
@@ -164,7 +163,7 @@ struct HistoryView: View {
                 durationMin: log.durationMin,
                 energyKcal: log.activeEnergyKcal,
                 note: log.note,
-                source: log.healthUUID != nil ? "health" : "manual"
+                source: log.source.rawValue
             )
         }
     }
@@ -195,6 +194,7 @@ struct HistoryView: View {
                     minutesSection
                     fitnessSection
                     weightSection
+                    RecentWorkoutsSection()
                 }
                 .padding(Spacing.lg)
             }

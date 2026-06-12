@@ -28,6 +28,10 @@ struct TodayView: View {
                 VStack(alignment: .leading, spacing: Spacing.xl) {
                     header
 
+                    if logs.isEmpty {
+                        welcomeSection(today: today, calc: calc, isRest: isRest)
+                    }
+
                     if let readiness = health.readiness {
                         readinessSection(readiness)
                     }
@@ -62,6 +66,43 @@ struct TodayView: View {
     }
 
     // MARK: - Sections
+
+    /// First-run welcome card: explains today's plan and offers the two ways to
+    /// get a first workout in. Disappears once anything is logged.
+    private func welcomeSection(today: PlannedSession, calc: HRZoneCalculator, isRest: Bool) -> some View {
+        Card {
+            VStack(alignment: .leading, spacing: Spacing.md) {
+                Label {
+                    Text("Welcome! Let's get started.")
+                        .font(.rounded(.headline, weight: .semibold))
+                        .foregroundStyle(Theme.label)
+                } icon: {
+                    Image(systemName: "hand.wave.fill")
+                        .foregroundStyle(Theme.accent)
+                }
+                Text(isRest
+                     ? String(localized: "Today is a rest day — but you can start with an easy Zone 2 session whenever you're ready.")
+                     : String(localized: "Today's plan: \(today.type.displayName), \(today.durationMin) min. Start a guided session, or log a workout you've already done."))
+                    .font(.subheadline)
+                    .foregroundStyle(Theme.secondaryLabel)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                NavigationLink {
+                    GuidedPlayerView(type: isRest ? .zone2 : today.type, calc: calc)
+                } label: {
+                    Label("Start guided session", systemImage: "play.fill")
+                }
+                .buttonStyle(PrimaryButton())
+
+                NavigationLink {
+                    ManualEntryView(defaultType: isRest ? .zone2 : today.type)
+                } label: {
+                    Label("Log manually", systemImage: "plus.circle.fill")
+                }
+                .buttonStyle(SecondaryButton())
+            }
+        }
+    }
 
     private var header: some View {
         Text(Self.dateFormatter.string(from: .now))

@@ -65,7 +65,8 @@ final class HealthStore {
                 durationMin: w.durationMin,
                 activeEnergyKcal: w.energyKcal,
                 note: "Imported from Apple Health",
-                healthUUID: w.uuid
+                healthUUID: w.uuid,
+                source: .health
             )
             context.insert(log)
         }

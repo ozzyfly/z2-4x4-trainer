@@ -1,292 +1,292 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "10 Sessions" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "10 sesiones"
+  "sourceLanguage": "en",
+  "strings": {
+    "10 Sessions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 sesiones"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "10 セッション"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 セッション"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "10 次訓練"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 次訓練"
           }
         }
       }
     },
-    "3-Week Streak" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Racha de 3 semanas"
+    "3-Week Streak": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Racha de 3 semanas"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "3 週間連続"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 週間連続"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "連續三週"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連續三週"
           }
         }
       }
     },
-    "Completed your first Norwegian 4×4 session." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Completaste tu primera sesión noruega 4×4."
+    "Completed your first Norwegian 4×4 session.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Completaste tu primera sesión noruega 4×4."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "初めてのノルウェー式 4×4 セッションを完了しました。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "初めてのノルウェー式 4×4 セッションを完了しました。"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "完成了你的第一次挪威 4×4 訓練。"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完成了你的第一次挪威 4×4 訓練。"
           }
         }
       }
     },
-    "Consistent Month" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Mes constante"
+    "Consistent Month": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mes constante"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "継続した 1 か月"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "継続した 1 か月"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "穩定的一個月"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "穩定的一個月"
           }
         }
       }
     },
-    "First 4×4" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Primer 4×4"
+    "First 4×4": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Primer 4×4"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "初めての 4×4"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "初めての 4×4"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "首次 4×4"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "首次 4×4"
           }
         }
       }
     },
-    "Fitter" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Más en forma"
+    "Fitter": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más en forma"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "より健康に"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "より健康に"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "更健康"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更健康"
           }
         }
       }
     },
-    "Great day for a hard 4×4." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Gran día para un 4×4 intenso."
+    "Great day for a hard 4×4.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gran día para un 4×4 intenso."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "ハードな 4×4 に最適な日です。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ハードな 4×4 に最適な日です。"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "今天很適合進行高強度 4×4。"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天很適合進行高強度 4×4。"
           }
         }
       }
     },
-    "Hit your weekly training target 4 weeks." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Alcanzaste tu objetivo semanal de entrenamiento durante 4 semanas."
+    "Hit your weekly training target 4 weeks.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alcanzaste tu objetivo semanal de entrenamiento durante 4 semanas."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "週間トレーニング目標を 4 週間達成しました。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週間トレーニング目標を 4 週間達成しました。"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "連續四週達成每週訓練目標。"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連續四週達成每週訓練目標。"
           }
         }
       }
     },
-    "Logged 10 workouts." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Registraste 10 entrenamientos."
+    "Logged 10 workouts.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registraste 10 entrenamientos."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "10 回のワークアウトを記録しました。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 回のワークアウトを記録しました。"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已記錄 10 次運動。"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已記錄 10 次運動。"
           }
         }
       }
     },
-    "Prioritise recovery — keep it easy or rest." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Prioriza la recuperación: tómatelo con calma o descansa."
+    "Prioritise recovery — keep it easy or rest.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prioriza la recuperación: tómatelo con calma o descansa."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "回復を優先しましょう。軽めにするか休んでください。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "回復を優先しましょう。軽めにするか休んでください。"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "優先恢復——放輕鬆或休息。"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "優先恢復——放輕鬆或休息。"
           }
         }
       }
     },
-    "Steady aerobic work today." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Trabajo aeróbico moderado hoy."
+    "Steady aerobic work today.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trabajo aeróbico moderado hoy."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "今日は安定した有酸素運動を。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日は安定した有酸素運動を。"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "今天進行穩定的有氧運動。"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天進行穩定的有氧運動。"
           }
         }
       }
     },
-    "Trained at least once a week for 3 weeks running." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Entrenaste al menos una vez por semana durante 3 semanas seguidas."
+    "Trained at least once a week for 3 weeks running.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrenaste al menos una vez por semana durante 3 semanas seguidas."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "3 週間連続で週に 1 回以上トレーニングしました。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 週間連続で週に 1 回以上トレーニングしました。"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "連續三週每週至少訓練一次。"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連續三週每週至少訓練一次。"
           }
         }
       }
     },
-    "Your VO2max is up since you started." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Tu VO2máx ha subido desde que empezaste."
+    "Your VO2max is up since you started.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu VO2máx ha subido desde que empezaste."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "開始時より VO2max が向上しています。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始時より VO2max が向上しています。"
           }
         },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自從你開始以來，你的最大攝氧量已提升。"
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自從你開始以來，你的最大攝氧量已提升。"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

@@ -33,7 +33,8 @@ final class PhoneSessionReceiver: NSObject, WCSessionDelegate {
             type: transfer.type,
             durationMin: transfer.durationMin,
             activeEnergyKcal: transfer.energyKcal,
-            healthUUID: transfer.healthUUID
+            healthUUID: transfer.healthUUID,
+            source: .watch
         ))
         WidgetSnapshotWriter.update(context: context)
         return true

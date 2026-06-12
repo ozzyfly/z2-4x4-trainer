@@ -23,9 +23,25 @@ struct OnboardingView: View {
     @State private var goalIsLose = false
     @State private var loseRate = 0.5
     @State private var didSave = false
+    @State private var showsIntro = true
 
     var body: some View {
         NavigationStack {
+            if showsIntro {
+                OnboardingIntroView {
+                    withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.25)) {
+                        showsIntro = false
+                    }
+                }
+            } else {
+                form
+            }
+        }
+        .tint(Theme.accent)
+        .sensoryFeedback(.success, trigger: didSave)
+    }
+
+    private var form: some View {
             ScrollView {
                 VStack(alignment: .leading, spacing: Spacing.xl) {
                     header
@@ -46,9 +62,6 @@ struct OnboardingView: View {
             }
             .background(Theme.background)
             .navigationBarTitleDisplayMode(.inline)
-        }
-        .tint(Theme.accent)
-        .sensoryFeedback(.success, trigger: didSave)
     }
 
     // MARK: - Sections
