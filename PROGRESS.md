@@ -1,5 +1,17 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-06-13: build 3 prepped for App Store — version bump + extension-version fix.**
+> `CURRENT_PROJECT_VERSION` 2→3 on all targets (app, watch, Widgets, Complications).
+> **Caught a ship blocker:** Widgets/Complications Info.plist hardcoded CFBundleVersion=1 /
+> CFBundleShortVersionString=1.0 — would fail App Store validation (bundled extensions must match
+> the app's 3/1.0.0). Build 2 predated these extensions so it was never hit. Fixed by routing both
+> keys through `$(MARKETING_VERSION)`/`$(CURRENT_PROJECT_VERSION)` in the xcodegen `info.properties`
+> block (direct Info.plist edits get overwritten by xcodegen — must live in project.yml). Verified:
+> Release archive for generic/iOS SUCCEEDED (CODE_SIGNING_ALLOWED=NO); resolved app + Z24x4Widgets.appex
+> both report **3 / 1.0.0**. Archive embeds iOS app + widget only (app is iPhone-only; watch app
+> independent, not in this store build). **Upload still pending user** — needs ASC API key env
+> (DEVELOPMENT_TEAM/ASC_KEY_ID/ASC_ISSUER_ID/ASC_KEY_PATH) then `scripts/archive-and-export.sh --upload`.
+
 > **2026-06-12 (later): `l10n-gap-fill` done [6/6] — last hardcoded UI strings localized.**
 > `AccessibleStepper.title` + `ZoneChip.title` → `LocalizedStringKey` (String params rendered
 > verbatim); `ActivityLevel.displayName`; History weekday labels from `Calendar.shortWeekdaySymbols`
