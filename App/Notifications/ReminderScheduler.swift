@@ -66,8 +66,8 @@ enum ReminderScheduler {
             components.minute = minute
 
             let content = UNMutableNotificationContent()
-            content.title = "Time to train 💪"
-            content.body = "Today's session: \(label(for: session.type))"
+            content.title = String(localized: "Time to train 💪")
+            content.body = String(localized: "Today's session: \(session.type.displayName)")
             content.sound = .default
 
             let trigger = UNCalendarNotificationTrigger(
@@ -95,13 +95,5 @@ enum ReminderScheduler {
             .map(\.identifier)
             .filter { $0.hasPrefix(idPrefix) }
         center.removePendingNotificationRequests(withIdentifiers: ids)
-    }
-
-    private static func label(for type: SessionType) -> String {
-        switch type {
-        case .zone2: return "Zone 2"
-        case .norwegian4x4: return "Norwegian 4×4"
-        case .rest: return "Rest"
-        }
     }
 }
