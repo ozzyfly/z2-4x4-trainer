@@ -121,9 +121,9 @@ struct StreakComplication: Widget {
 private extension SessionType {
     var title: String {
         switch self {
-        case .zone2: return "Zone 2"
-        case .norwegian4x4: return "4×4"
-        case .rest: return "Rest"
+        case .zone2: return String(localized: "Zone 2")
+        case .norwegian4x4: return String(localized: "4×4")
+        case .rest: return String(localized: "Rest")
         }
     }
     var glyph: String {
@@ -138,9 +138,9 @@ private extension SessionType {
 private extension ReadinessLabel {
     var title: String {
         switch self {
-        case .goHard: return "Go hard"
-        case .steady: return "Steady"
-        case .easy:   return "Take it easy"
+        case .goHard: return String(localized: "Go hard")
+        case .steady: return String(localized: "Steady")
+        case .easy:   return String(localized: "Take it easy")
         }
     }
     var glyph: String {
@@ -184,10 +184,10 @@ struct ReadinessComplicationView: View {
         case .accessoryCorner:
             Image(systemName: label?.glyph ?? "bolt.heart")
                 .font(.title3)
-                .widgetLabel(value.map { "Readiness \($0)" } ?? "Readiness —")
+                .widgetLabel(value.map { String(localized: "Readiness \($0)") } ?? String(localized: "Readiness —"))
         case .accessoryInline:
             Label {
-                Text(value.map { "Readiness \($0)" } ?? "Readiness —")
+                Text(value.map { String(localized: "Readiness \($0)") } ?? String(localized: "Readiness —"))
             } icon: {
                 Image(systemName: label?.glyph ?? "bolt.heart")
             }
@@ -214,10 +214,10 @@ struct StreakComplicationView: View {
         case .accessoryCorner:
             Image(systemName: glyph)
                 .font(.title3)
-                .widgetLabel(weeks.map { "\($0)-week streak" } ?? "No streak yet")
+                .widgetLabel(weeks.map { String(localized: "\($0)-week streak") } ?? String(localized: "No streak yet"))
         case .accessoryInline:
             Label {
-                Text(weeks.map { "\($0) wk streak" } ?? "No streak yet")
+                Text(weeks.map { String(localized: "\($0) wk streak") } ?? String(localized: "No streak yet"))
             } icon: {
                 Image(systemName: glyph)
             }

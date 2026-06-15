@@ -59,9 +59,9 @@ struct TodayWidget: Widget {
 private extension SessionType {
     var widgetTitle: String {
         switch self {
-        case .zone2: return "Zone 2"
-        case .norwegian4x4: return "4×4"
-        case .rest: return "Rest"
+        case .zone2: return String(localized: "Zone 2")
+        case .norwegian4x4: return String(localized: "4×4")
+        case .rest: return String(localized: "Rest")
         }
     }
     var widgetGlyph: String {
@@ -90,7 +90,9 @@ struct Z24x4WidgetView: View {
     }
 
     private var todayLine: String {
-        s.todayType == .rest ? "Rest day" : "\(s.todayType.widgetTitle) · \(s.todayMinutes) min"
+        s.todayType == .rest
+            ? String(localized: "Rest day")
+            : String(localized: "\(s.todayType.widgetTitle) · \(s.todayMinutes) min")
     }
 
     private var small: some View {
@@ -98,7 +100,7 @@ struct Z24x4WidgetView: View {
             Label("Today", systemImage: s.todayType.widgetGlyph)
                 .font(.caption2.weight(.semibold))
                 .foregroundStyle(.secondary)
-            Text(s.todayType == .rest ? "Rest" : s.todayType.widgetTitle)
+            Text(s.todayType.widgetTitle)
                 .font(.headline)
             if s.todayType != .rest {
                 Text("\(s.todayMinutes) min").font(.subheadline).foregroundStyle(.secondary)
@@ -116,7 +118,7 @@ struct Z24x4WidgetView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Label("Today", systemImage: s.todayType.widgetGlyph)
                     .font(.caption2.weight(.semibold)).foregroundStyle(.secondary)
-                Text(s.todayType == .rest ? "Rest" : s.todayType.widgetTitle).font(.title3.weight(.semibold))
+                Text(s.todayType.widgetTitle).font(.title3.weight(.semibold))
                 if s.todayType != .rest {
                     Text("\(s.todayMinutes) min").font(.subheadline).foregroundStyle(.secondary)
                 }
@@ -190,7 +192,7 @@ struct StreakWidgetView: View {
                     .font(.system(size: 40, weight: .bold, design: .rounded))
                     .monospacedDigit()
                     .foregroundStyle(.orange)
-                Text(weeks == 1 ? "week" : "weeks")
+                Text(weeks == 1 ? String(localized: "week") : String(localized: "weeks"))
                     .font(.subheadline).foregroundStyle(.secondary)
             } else {
                 Text("—")
@@ -303,9 +305,9 @@ struct ReadinessWidgetView: View {
 private extension ReadinessLabel {
     var widgetTitle: String {
         switch self {
-        case .goHard: return "Go hard"
-        case .steady: return "Steady"
-        case .easy:   return "Take it easy"
+        case .goHard: return String(localized: "Go hard")
+        case .steady: return String(localized: "Steady")
+        case .easy:   return String(localized: "Take it easy")
         }
     }
     var widgetGlyph: String {

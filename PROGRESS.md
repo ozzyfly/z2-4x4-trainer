@@ -1,5 +1,17 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-06-15: `widget-complication-l10n` done [7/7] — extension strings localized.**
+> Widgets + WatchComplications shipped English-only (separate bundles, untouched by the App
+> catalog). Added `Widgets/Localizable.xcstrings` (26 keys) + `WatchComplications/Localizable.xcstrings`
+> (19 keys), zh-Hant/es/ja, terms reused verbatim from the App catalog. Fixed the `Text(String)` /
+> `widgetLabel(String)` verbatim-render trap: `widgetTitle`/`title` helpers now return
+> `String(localized:)`, and `.map { "Readiness \($0)" }` / streak-label closures wrapped in
+> `String(localized:)`. es plural for "%lld-week streak" in both. Folder-level `sources:` globs the
+> new catalogs in automatically — no project.yml change. Verified: iOS + watch builds green; both
+> appex bundles compile 4 lproj; es/ja strings + es plural stringsdict resolve in the built bundles
+> (all 4 catalogs 0 needs_review). On-springboard widget/complication gallery screenshots are the
+> one remaining manual check (can't add widgets to the sim home screen headlessly).
+
 > **2026-06-13: build 3 prepped for App Store — version bump + extension-version fix.**
 > `CURRENT_PROJECT_VERSION` 2→3 on all targets (app, watch, Widgets, Complications).
 > **Caught a ship blocker:** Widgets/Complications Info.plist hardcoded CFBundleVersion=1 /
