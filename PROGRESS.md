@@ -1,5 +1,17 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-06-20: agent de-risk pass for the 2 open changes — automated green, 3 hardware tasks pending user.**
+> `watch-phone-sync` and `app-store-submission` have only physical-device verification left
+> (`watch-phone-sync` 5.1/5.2 need an Apple Watch; `app-store-submission` 4.1 needs a TestFlight
+> build on a real iPhone). Agents ran everything automatable: SharedCore **79 tests** green; iOS
+> build+test on iPhone 17 sim `BUILD/TEST SUCCEEDED` (**11 tests** incl. PhoneSessionReceiver
+> dedup); watch app `BUILD SUCCEEDED` on Apple Watch Series 11 / watchOS 26.5 sim; `-mockHealth`
+> sim smoke launched clean (Today renders, no crash). **Finding:** `GuidedPlayerView` End does not
+> write a `WorkoutLog` (coaching timer only) — phone-guided sessions must be logged via Manual
+> Entry / Health / watch to hit stats; confirm this is intended UX when running 4.1. Manual steps
+> for 4.1/5.1/5.2 captured in `docs/manual-verification-checklist.md` (fill RESULT, then archive).
+> RESULT 4.1: <pending> · 5.1: <pending> · 5.2: <pending>.
+
 > **2026-06-15: `widget-complication-l10n` done [7/7] — extension strings localized.**
 > Widgets + WatchComplications shipped English-only (separate bundles, untouched by the App
 > catalog). Added `Widgets/Localizable.xcstrings` (26 keys) + `WatchComplications/Localizable.xcstrings`
