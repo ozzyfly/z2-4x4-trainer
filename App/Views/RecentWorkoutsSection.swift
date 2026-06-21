@@ -72,6 +72,7 @@ struct RecentWorkoutsSection: View {
         case .manual: "square.and.pencil"
         case .health: "heart.fill"
         case .watch: "applewatch"
+        case .guided: "play.circle.fill"
         }
     }
 
@@ -80,6 +81,7 @@ struct RecentWorkoutsSection: View {
         case .manual: String(localized: "Logged manually")
         case .health: String(localized: "From Apple Health")
         case .watch: String(localized: "From Apple Watch")
+        case .guided: String(localized: "From a guided session")
         }
     }
 }

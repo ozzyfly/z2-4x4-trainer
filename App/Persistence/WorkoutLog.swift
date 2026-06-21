@@ -8,6 +8,7 @@ enum WorkoutSource: String {
     case manual
     case health
     case watch
+    case guided
 }
 
 /// A completed workout, entered manually or (later) imported from Apple Health.

@@ -55,5 +55,14 @@ struct WorkoutSourceTests {
         #expect(WorkoutSource.manual.rawValue == "manual")
         #expect(WorkoutSource.health.rawValue == "health")
         #expect(WorkoutSource.watch.rawValue == "watch")
+        #expect(WorkoutSource.guided.rawValue == "guided")
+    }
+
+    @Test("a guided source survives a SwiftData round-trip")
+    func guidedRoundTrips() throws {
+        let ctx = try makeContext()
+        ctx.insert(WorkoutLog(type: .zone2, durationMin: 40, source: .guided))
+        let fetched = try ctx.fetch(FetchDescriptor<WorkoutLog>())
+        #expect(fetched.first?.source == .guided)
     }
 }

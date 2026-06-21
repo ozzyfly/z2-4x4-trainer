@@ -4,6 +4,9 @@ import SharedCore
 /// Instructions for a Zone 2 or Norwegian 4×4 session with personalised HR bands.
 struct WorkoutDetailView: View {
     let type: SessionType
+    /// Planned minutes for this session, forwarded to the guided player so a Zone 2
+    /// run is only recorded once it reaches its prescribed duration.
+    let prescribedMinutes: Int
     let calc: HRZoneCalculator
 
     var body: some View {
@@ -87,7 +90,7 @@ struct WorkoutDetailView: View {
     /// Starts the on-iPhone guided player for this workout.
     private var guidedSessionButton: some View {
         NavigationLink {
-            GuidedPlayerView(type: type, calc: calc)
+            GuidedPlayerView(type: type, prescribedMinutes: prescribedMinutes, calc: calc)
         } label: {
             Label("Start guided session", systemImage: "play.circle.fill")
         }

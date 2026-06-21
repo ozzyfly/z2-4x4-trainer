@@ -56,7 +56,7 @@ struct WeekView: View {
             DayRow(weekday: weekday, title: "Rest", detail: nil, isRest: true, showsChevron: false)
         } else {
             NavigationLink {
-                WorkoutDetailView(type: s.type, calc: calc)
+                WorkoutDetailView(type: s.type, prescribedMinutes: s.durationMin, calc: calc)
             } label: {
                 DayRow(
                     weekday: weekday,

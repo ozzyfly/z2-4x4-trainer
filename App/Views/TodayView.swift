@@ -9,6 +9,9 @@ struct TodayView: View {
     @Environment(\.modelContext) private var context
     @Query(sort: \WorkoutLog.date, order: .reverse) private var logs: [WorkoutLog]
 
+    /// Prescribed minutes for the off-plan easy Zone 2 offered on a rest day.
+    private static let easyZone2Minutes = 40
+
     var body: some View {
         let p = profile.domain
         let calc = HRZoneCalculator(profile: p)
@@ -88,7 +91,9 @@ struct TodayView: View {
                     .fixedSize(horizontal: false, vertical: true)
 
                 NavigationLink {
-                    GuidedPlayerView(type: isRest ? .zone2 : today.type, calc: calc)
+                    GuidedPlayerView(type: isRest ? .zone2 : today.type,
+                                     prescribedMinutes: isRest ? Self.easyZone2Minutes : today.durationMin,
+                                     calc: calc)
                 } label: {
                     Label("Start guided session", systemImage: "play.fill")
                 }
@@ -240,7 +245,7 @@ struct TodayView: View {
                 }
             } else {
                 NavigationLink {
-                    WorkoutDetailView(type: today.type, calc: calc)
+                    WorkoutDetailView(type: today.type, prescribedMinutes: today.durationMin, calc: calc)
                 } label: {
                     HStack(spacing: Spacing.md) {
                         Image(systemName: today.type.systemImage)
@@ -316,7 +321,7 @@ struct TodayView: View {
         VStack(spacing: Spacing.md) {
             if !isRest {
                 NavigationLink {
-                    WorkoutDetailView(type: today.type, calc: calc)
+                    WorkoutDetailView(type: today.type, prescribedMinutes: today.durationMin, calc: calc)
                 } label: {
                     Label("Start workout", systemImage: "play.fill")
                 }

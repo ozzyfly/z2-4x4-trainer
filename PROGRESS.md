@@ -1,5 +1,19 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-06-21: `guided-player-autolog` done [5/5] — guided sessions now record a WorkoutLog.**
+> Closed the gap found during de-risk: `GuidedPlayerView` End only stopped + dismissed, so
+> phone-guided sessions never hit Today/Week/History. New `App/GuidedSessionLogger.swift` (mirrors
+> `PhoneSessionReceiver`) decides + inserts: 4×4 logs its full 43 min when `engine.isFinished`;
+> Zone 2 (open-ended) logs actual elapsed only once it reaches the prescribed minutes, else nothing
+> (cancel). Logs tagged new `WorkoutSource.guided` (History icon `play.circle.fill`, label "From a
+> guided session" + es/ja/zh-Hant); export/History pass the rawValue through. View logs on
+> completion (4×4) and on disappear (catches End + swipe-back), `didLog`-guarded against
+> double-insert. `prescribedMinutes` threaded through GuidedPlayerView + WorkoutDetailView and all
+> call sites (TodayView, WeekView). Verified: SharedCore **79 tests**; iOS build+test **21 tests**
+> (new `GuidedPlayerLoggingTests` ×10 + guided round-trip) `BUILD/TEST SUCCEEDED` on iPhone 17 sim;
+> `-mockHealth` launch renders Today, no crash. **Sim-only note:** the 40-min wall-clock completion
+> path isn't driven in-sim (impractical) — covered by the unit tests + real-device task 4.1.
+
 > **2026-06-20: agent de-risk pass for the 2 open changes — automated green, 3 hardware tasks pending user.**
 > `watch-phone-sync` and `app-store-submission` have only physical-device verification left
 > (`watch-phone-sync` 5.1/5.2 need an Apple Watch; `app-store-submission` 4.1 needs a TestFlight

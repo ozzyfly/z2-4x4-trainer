@@ -1,17 +1,36 @@
 import SwiftUI
+import SwiftData
 import SharedCore
 
 /// On-iPhone guided workout player: a big live clock, the current/next interval
 /// (4×4) or elapsed time (Zone 2), transition haptics, and spoken cues from the
-/// `GuidedSessionEngine`.
+/// `GuidedSessionEngine`. A normally-completed session is recorded as a `WorkoutLog`
+/// (see `GuidedSessionLogger`); an early exit records nothing.
 struct GuidedPlayerView: View {
     let type: SessionType
+    /// Planned minutes for this session; a Zone 2 run is only recorded once its
+    /// elapsed time reaches this. Unused for the structured 4×4.
+    let prescribedMinutes: Int
     @State private var engine: GuidedSessionEngine
+    @State private var didLog = false
+    @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
 
-    init(type: SessionType, calc: HRZoneCalculator) {
+    init(type: SessionType, prescribedMinutes: Int, calc: HRZoneCalculator) {
         self.type = type
+        self.prescribedMinutes = prescribedMinutes
         _engine = State(initialValue: GuidedSessionEngine(type: type, calc: calc))
+    }
+
+    /// Records the session as a `WorkoutLog` once, when it qualifies (4×4 finished,
+    /// or Zone 2 past its prescribed duration). Safe to call repeatedly.
+    private func logIfCompleted() {
+        guard !didLog else { return }
+        let logger = GuidedSessionLogger(context: context)
+        if logger.log(type: type, isFinished: engine.isFinished,
+                      elapsedSec: engine.elapsedSec, prescribedMinutes: prescribedMinutes) {
+            didLog = true
+        }
     }
 
     var body: some View {
@@ -61,8 +80,14 @@ struct GuidedPlayerView: View {
         .navigationBarTitleDisplayMode(.inline)
         .tint(Theme.accent)
         .sensoryFeedback(.impact, trigger: engine.hapticTrigger)
+        .onChange(of: engine.isFinished) { _, finished in
+            if finished { logIfCompleted() }
+        }
         .onAppear { engine.start() }
-        .onDisappear { engine.stop() }
+        .onDisappear {
+            logIfCompleted()
+            engine.stop()
+        }
     }
 
     /// Small non-blocking banner: the session keeps timing, only spoken cues are lost.
