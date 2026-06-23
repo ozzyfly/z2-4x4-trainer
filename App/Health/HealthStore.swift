@@ -50,14 +50,19 @@ final class HealthStore {
         readiness = ReadinessCalculator.score(hrv: hrv, restingHR: restingHR)
     }
 
+    /// Imports recent Health workouts into `context`, deduped by health UUID, and
+    /// refreshes the widget snapshot when at least one new log was created. Returns
+    /// the number of newly inserted logs (0 when everything was a duplicate or empty).
     @MainActor
-    private func importWorkouts(into context: ModelContext) async {
+    @discardableResult
+    func importWorkouts(into context: ModelContext) async -> Int {
         let workouts = await provider.recentWorkouts(days: 30)
-        guard !workouts.isEmpty else { return }
+        guard !workouts.isEmpty else { return 0 }
 
         let existing = (try? context.fetch(FetchDescriptor<WorkoutLog>())) ?? []
         let existingUUIDs = Set(existing.compactMap { $0.healthUUID })
 
+        var inserted = 0
         for w in workouts where !existingUUIDs.contains(w.uuid) {
             let log = WorkoutLog(
                 date: w.date,
@@ -69,6 +74,12 @@ final class HealthStore {
                 source: .health
             )
             context.insert(log)
+            inserted += 1
         }
+
+        if inserted > 0 {
+            WidgetSnapshotWriter.update(context: context)
+        }
+        return inserted
     }
 }

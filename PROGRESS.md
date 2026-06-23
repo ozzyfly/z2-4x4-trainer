@@ -1,5 +1,17 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-06-22: `widget-refresh-on-health-import` done [3/3] — Health import now refreshes widgets.**
+> Audit-found bug: `HealthStore.importWorkouts` inserted `WorkoutLog`s but skipped the widget
+> snapshot refresh every other mutation path does (manual/watch/guided), so imported Apple Health
+> workouts showed stale weekly totals on Home/Lock widgets + watch complication until another
+> action fired. Fix: `importWorkouts` now returns the inserted count and calls
+> `WidgetSnapshotWriter.update` only when >0 (no needless rewrite on all-duplicate imports). New
+> `Tests/HealthImportSnapshotTests.swift` ×3 (new→1, duplicate→0, empty→0) using a local spy
+> provider. Verified: SharedCore 79; iOS build+test **24 tests** `BUILD/TEST SUCCEEDED` on iPhone 17
+> sim; existing `HealthWritebackTests` dedup case still green. Delta requirement applied to
+> `widgets-complication`. Scoped out: imported workouts typed `.zone2` (HKWorkout can't distinguish
+> a 4×4 — defensible default, not a bug).
+
 > **2026-06-21: `guided-player-autolog` done [5/5] — guided sessions now record a WorkoutLog.**
 > Closed the gap found during de-risk: `GuidedPlayerView` End only stopped + dismissed, so
 > phone-guided sessions never hit Today/Week/History. New `App/GuidedSessionLogger.swift` (mirrors
