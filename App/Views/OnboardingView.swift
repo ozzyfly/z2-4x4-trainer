@@ -171,9 +171,16 @@ struct OnboardingView: View {
                             Divider()
                             AccessibleStepper(
                                 title: "Rate", value: $loseRate, range: 0.25...1.0, step: 0.25,
-                                valueText: units == .imperial
-                                    ? String(format: "%.2f lb/week", UnitConvert.kgToLb(loseRate))
-                                    : String(format: "%.2f kg/week", loseRate)
+                                valueText: {
+                                    if units == .imperial {
+                                        let n = UnitConvert.kgToLb(loseRate)
+                                            .formatted(.number.precision(.fractionLength(2)))
+                                        return String(localized: "\(n) lb/week")
+                                    } else {
+                                        let n = loseRate.formatted(.number.precision(.fractionLength(2)))
+                                        return String(localized: "\(n) kg/week")
+                                    }
+                                }()
                             )
                         }
                         .transition(.opacity.combined(with: .move(edge: .top)))

@@ -289,10 +289,17 @@ struct SettingsView: View {
                             AccessibleStepper(
                                 title: "Rate", value: $profile.loseRateKgPerWeek,
                                 range: 0.25...1.0, step: 0.25,
-                                valueText: profile.units == .imperial
-                                    ? String(format: "%.2f lb/week",
-                                             UnitConvert.kgToLb(profile.loseRateKgPerWeek))
-                                    : String(format: "%.2f kg/week", profile.loseRateKgPerWeek)
+                                valueText: {
+                                    if profile.units == .imperial {
+                                        let n = UnitConvert.kgToLb(profile.loseRateKgPerWeek)
+                                            .formatted(.number.precision(.fractionLength(2)))
+                                        return String(localized: "\(n) lb/week")
+                                    } else {
+                                        let n = profile.loseRateKgPerWeek
+                                            .formatted(.number.precision(.fractionLength(2)))
+                                        return String(localized: "\(n) kg/week")
+                                    }
+                                }()
                             )
                         }
                         .transition(.opacity.combined(with: .move(edge: .top)))

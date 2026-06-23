@@ -24,6 +24,52 @@
         }
       }
     },
+    "%@ kg/week": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ kg/semana"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ kg/週"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ kg/週"
+          }
+        }
+      }
+    },
+    "%@ lb/week": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ lb/semana"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ lb/週"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ lb/週"
+          }
+        }
+      }
+    },
     "%@ lower": {
       "extractionState": "manual",
       "localizations": {
@@ -66,6 +112,29 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ 上限"
+          }
+        }
+      }
+    },
+    "%lld kcal/week": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld kcal/semana"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld kcal/週"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld kcal/週"
           }
         }
       }
@@ -141,6 +210,29 @@
           "stringUnit": {
             "state": "translated",
             "value": "連續 %lld 週"
+          }
+        }
+      }
+    },
+    "%lld/week": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/semana"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/週"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/週"
           }
         }
       }

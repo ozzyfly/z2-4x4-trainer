@@ -1,5 +1,17 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-06-22: `localize-per-week-unit-labels` done [4/4] — per-week unit labels now localized.**
+> Audit-found l10n gap: weight-loss rate "kg/week"/"lb/week" (Settings + Onboarding) and Week
+> screen "%lld/week" (hard sessions) + "%lld kcal/week" (energy) were hardcoded English via
+> `String(format:)`/interpolation, so es/ja/zh-Hant users saw untranslated units. Routed all four
+> through `String(localized:)` with locale-aware number formatting
+> (`.formatted(.number.precision(.fractionLength(2)))`); added 4 catalog keys ("%@ kg/week",
+> "%@ lb/week", "%lld/week", "%lld kcal/week") with es/ja/zh-Hant (period → /semana, /週; unit
+> abbreviations kept latin). App catalog now 188 keys. Verified: iOS build+test **24 tests**
+> `BUILD/TEST SUCCEEDED`; all 4 keys state=translated in 3 langs; es-locale sim launch renders
+> Spanish. (#Preview Demo's "kg/week" left as-is — not user-facing.) On-tab render of the exact
+> Week/Settings strings follows the same proven catalog path.
+
 > **2026-06-22: `widget-refresh-on-health-import` done [3/3] — Health import now refreshes widgets.**
 > Audit-found bug: `HealthStore.importWorkouts` inserted `WorkoutLog`s but skipped the widget
 > snapshot refresh every other mutation path does (manual/watch/guided), so imported Apple Health

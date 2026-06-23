@@ -87,7 +87,7 @@ struct WeekView: View {
                         icon: "bolt.heart.fill",
                         iconColor: HRZone.zone4.color,
                         title: "Hard (4×4) sessions",
-                        value: "\(weekly.hardSessions)/week"
+                        value: String(localized: "\(weekly.hardSessions)/week")
                     )
 
                     if let energy = weekly.activeEnergyKcal {
@@ -96,7 +96,7 @@ struct WeekView: View {
                             icon: "flame.fill",
                             iconColor: .orange,
                             title: "Exercise energy",
-                            value: "\(energy) kcal/week"
+                            value: String(localized: "\(energy) kcal/week")
                         )
                     }
                 }
