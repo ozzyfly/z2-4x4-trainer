@@ -17,15 +17,69 @@ public enum ReadinessLabel: String, Codable, Sendable, CaseIterable {
     }
 }
 
+/// Inputs that most influenced today's readiness score.
+public enum ReadinessSignal: String, Sendable, Equatable {
+    case hrvAboveBaseline
+    case hrvNearBaseline
+    case hrvBelowBaseline
+    case restingHRBelowBaseline
+    case restingHRNearBaseline
+    case restingHRAboveBaseline
+    case restingHRMissing
+
+    public var explanation: String {
+        switch self {
+        case .hrvAboveBaseline:
+            return String(localized: "HRV is above your 28-day baseline.", bundle: .module)
+        case .hrvNearBaseline:
+            return String(localized: "HRV is close to your 28-day baseline.", bundle: .module)
+        case .hrvBelowBaseline:
+            return String(localized: "HRV is below your 28-day baseline.", bundle: .module)
+        case .restingHRBelowBaseline:
+            return String(localized: "Resting heart rate is below baseline.", bundle: .module)
+        case .restingHRNearBaseline:
+            return String(localized: "Resting heart rate is near baseline.", bundle: .module)
+        case .restingHRAboveBaseline:
+            return String(localized: "Resting heart rate is elevated.", bundle: .module)
+        case .restingHRMissing:
+            return String(localized: "Resting heart-rate history is still limited.", bundle: .module)
+        }
+    }
+}
+
 /// A 0–100 readiness score with its qualitative label.
 public struct ReadinessScore: Sendable, Equatable {
     /// Clamped to 0...100.
     public let value: Int
     public let label: ReadinessLabel
+    /// Short, user-facing signals explaining why the score landed here.
+    public let signals: [ReadinessSignal]
 
-    public init(value: Int, label: ReadinessLabel) {
+    public init(value: Int, label: ReadinessLabel, signals: [ReadinessSignal] = []) {
         self.value = value
         self.label = label
+        self.signals = signals
+    }
+
+    public var explanation: String {
+        guard !signals.isEmpty else {
+            return String(localized: "Based on your recent HRV and resting heart-rate trend.", bundle: .module)
+        }
+        return signals.map(\.explanation).joined(separator: " ")
+    }
+
+    public var actionRecommendation: String {
+        if signals.contains(.hrvBelowBaseline) && signals.contains(.restingHRAboveBaseline) {
+            return String(localized: "Make today Zone 2 or rest; save 4×4 for a fresher day.", bundle: .module)
+        }
+        switch label {
+        case .goHard:
+            return String(localized: "Good day to follow the planned hard session if one is scheduled.", bundle: .module)
+        case .steady:
+            return String(localized: "Follow the plan, but keep the first interval honest before pushing harder.", bundle: .module)
+        case .easy:
+            return String(localized: "Reduce intensity today: easy Zone 2, mobility, or rest.", bundle: .module)
+        }
     }
 }
 
@@ -68,6 +122,7 @@ public enum ReadinessCalculator {
         // ±25% swing maps to roughly ±50 points before clamping.
         let hrvRatio = todayHRV / hrvBaseline
         let hrvComponent = (hrvRatio - 1.0) * 200.0
+        var signals = [hrvSignal(for: hrvRatio)]
 
         // Resting-HR component (optional): higher than baseline subtracts readiness.
         var rhrComponent = 0.0
@@ -79,18 +134,35 @@ public enum ReadinessCalculator {
                 let rhrRatio = todayRHR / rhrBaseline
                 // Elevated RHR penalises; a lower-than-baseline RHR gives a small bonus.
                 rhrComponent = -(rhrRatio - 1.0) * 200.0
+                signals.append(rhrSignal(for: rhrRatio))
+            } else {
+                signals.append(.restingHRMissing)
             }
+        } else {
+            signals.append(.restingHRMissing)
         }
 
         let raw = 50.0 + hrvComponent + rhrComponent
         let value = Int(raw.rounded()).clamped(to: 0...100)
-        return ReadinessScore(value: value, label: label(for: value))
+        return ReadinessScore(value: value, label: label(for: value), signals: signals)
     }
 
     static func label(for value: Int) -> ReadinessLabel {
         if value >= 67 { return .goHard }
         if value >= 34 { return .steady }
         return .easy
+    }
+
+    private static func hrvSignal(for ratio: Double) -> ReadinessSignal {
+        if ratio >= 1.08 { return .hrvAboveBaseline }
+        if ratio <= 0.92 { return .hrvBelowBaseline }
+        return .hrvNearBaseline
+    }
+
+    private static func rhrSignal(for ratio: Double) -> ReadinessSignal {
+        if ratio >= 1.05 { return .restingHRAboveBaseline }
+        if ratio <= 0.95 { return .restingHRBelowBaseline }
+        return .restingHRNearBaseline
     }
 
     private static func mean(_ samples: [MetricSample]) -> Double {

@@ -23,8 +23,21 @@ struct Norwegian4x4Tests {
         }
     }
 
-    @Test("total duration is 43 minutes")
+    @Test("total duration is 36 minutes")
     func totalDuration() {
-        #expect(Norwegian4x4.totalDurationSec == 2580)
+        // 5 min warmup + 4×(4 min hard + 3 min recovery) + 3 min cooldown.
+        #expect(Norwegian4x4.totalDurationSec == 2160)
+    }
+
+    @Test("low readiness reduces to 3 hard blocks")
+    func readinessReducesRepeats() {
+        #expect(Norwegian4x4.recommendedRepeats(for: .easy) == 3)
+        #expect(Norwegian4x4.recommendedRepeats(for: .steady) == 4)
+        #expect(Norwegian4x4.recommendedRepeats(for: .goHard) == 4)
+        #expect(Norwegian4x4.recommendedRepeats(for: nil) == 4)
+
+        let three = Norwegian4x4.build(using: HRZoneCalculator(maxHR: 200), repeats: 3)
+        #expect(three.filter { $0.kind == .hard }.count == 3)
+        #expect(three.filter { $0.kind == .recovery }.count == 3)
     }
 }

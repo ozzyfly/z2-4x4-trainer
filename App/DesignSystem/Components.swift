@@ -14,7 +14,13 @@ struct CardModifier: ViewModifier {
                 RoundedRectangle(cornerRadius: Radius.lg, style: .continuous)
                     .fill(Theme.surface)
             )
-            .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 4)
+            // Restraint over depth: a fine warm hairline plus a whisper of shadow,
+            // the Hermès way, instead of a heavy drop shadow.
+            .overlay(
+                RoundedRectangle(cornerRadius: Radius.lg, style: .continuous)
+                    .strokeBorder(Theme.separator, lineWidth: 0.75)
+            )
+            .shadow(color: .black.opacity(0.04), radius: 5, x: 0, y: 2)
     }
 }
 
@@ -53,8 +59,8 @@ struct SectionHeader: View {
         // the underlying casing and pronounces terms like "VO2max" naturally.
         Text(title)
             .textCase(.uppercase)
-            .font(.caption.weight(.semibold))
-            .tracking(0.8)
+            .font(.caption2.weight(.semibold))
+            .tracking(2.2) // couture overline: wider letterspacing, quieter color
             .foregroundStyle(Theme.secondaryLabel)
             .accessibilityAddTraits(.isHeader)
     }
@@ -85,6 +91,7 @@ struct TargetBar: View {
             HStack(alignment: .firstTextBaseline) {
                 Text("\(done) / \(target) \(unit)")
                     .numericStyle(.subheadline.weight(.semibold))
+                    .contentTransition(.numericText())
                     .foregroundStyle(Theme.label)
                 Spacer()
                 if isMet {
@@ -102,14 +109,16 @@ struct TargetBar: View {
 
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
+                    // Neutral hairline track — orange appears only as the earned fill,
+                    // so the accent stays meaningful.
                     Capsule()
-                        .fill(Theme.accent.opacity(0.15))
+                        .fill(Theme.separator.opacity(0.55))
                     Capsule()
                         .fill(Theme.accent)
-                        .frame(width: max(geo.size.width * animatedFraction, animatedFraction > 0 ? 8 : 0))
+                        .frame(width: max(geo.size.width * animatedFraction, animatedFraction > 0 ? 6 : 0))
                 }
             }
-            .frame(height: 10)
+            .frame(height: 6)
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(accessibilityText)
@@ -137,15 +146,17 @@ struct TargetBar: View {
 struct PrimaryButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.headline)
+            .font(.subheadline.weight(.semibold))
+            .textCase(.uppercase)
+            .tracking(1.2)
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity)
             .padding(.vertical, Spacing.md)
             .background(
-                RoundedRectangle(cornerRadius: Radius.md, style: .continuous)
+                RoundedRectangle(cornerRadius: Radius.sm, style: .continuous)
                     .fill(Theme.accent)
             )
-            .opacity(configuration.isPressed ? 0.8 : 1)
+            .opacity(configuration.isPressed ? 0.85 : 1)
             .scaleEffect(configuration.isPressed ? 0.98 : 1)
             .modifier(PressAnimation(isPressed: configuration.isPressed))
     }

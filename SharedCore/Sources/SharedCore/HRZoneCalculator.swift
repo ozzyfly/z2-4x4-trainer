@@ -34,12 +34,14 @@ public struct HRZoneCalculator: Sendable {
     private let method: ZoneMethod
     private let restingHR: Int?
     private let customZones: [HRRange]?
+    private let hardStrict: Bool
 
     public init(maxHR: Int) {
         self.maxHR = maxHR
         self.method = .ageMax
         self.restingHR = nil
         self.customZones = nil
+        self.hardStrict = false
     }
 
     public init(profile: UserProfile) {
@@ -47,6 +49,7 @@ public struct HRZoneCalculator: Sendable {
         self.method = profile.zoneMethod
         self.restingHR = profile.restingHR
         self.customZones = profile.customZones
+        self.hardStrict = profile.hardEffortStrict
     }
 
     private func bpm(_ percent: Double) -> Int {
@@ -98,8 +101,11 @@ public struct HRZoneCalculator: Sendable {
     /// The aerobic-base target band.
     public var zone2: HRRange { range(for: .zone2) }
 
-    /// The hard-interval band for Norwegian 4×4 (85–95% maxHR / reserve / custom-derived).
+    /// The hard-interval band for Norwegian 4×4. Normally the top band (≈Zone 4–5);
+    /// in strict mode it tightens to Zone 5 only (≈90–100%) for a sharper VO2max
+    /// stimulus, derived consistently with the active zone method.
     public var fourByFourHard: HRRange {
+        if hardStrict { return range(for: .zone5) }
         switch method {
         case .ageMax:
             return HRRange(lower: bpm(0.85), upper: bpm(0.95))
@@ -112,8 +118,11 @@ public struct HRZoneCalculator: Sendable {
             let upper = Double(resting) + 0.95 * reserve
             return HRRange(lower: Int(lower.rounded()), upper: Int(upper.rounded()))
         case .custom:
-            // No dedicated custom 4×4 band; treat it as the top of the custom range.
-            return HRRange(lower: bpm(0.85), upper: bpm(0.95))
+            // Align with Apple: the 4×4 hard effort is the top of the custom
+            // ladder — from Zone 4's floor up through Zone 5's ceiling.
+            let z4 = range(for: .zone4)
+            let z5 = range(for: .zone5)
+            return HRRange(lower: z4.lower, upper: z5.upper)
         }
     }
 

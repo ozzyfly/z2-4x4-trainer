@@ -23,6 +23,14 @@ final class ProfileRecord {
     var customZoneLowers: [Int]?
     var customZoneUppers: [Int]?
 
+    /// When true, the 4×4 hard effort targets Zone 5 only. Defaults off for older records.
+    var hardEffortStrict: Bool = false
+
+    /// Advanced 4×4 timing guards (seconds). Defaults match the engine defaults.
+    var warmupMinSec: Int = 180
+    var hardWallCapSec: Int = 480
+    var recoveryMinSec: Int = 30
+
     init(
         age: Int,
         sex: BiologicalSex,
@@ -35,6 +43,10 @@ final class ProfileRecord {
         loseRateKgPerWeek: Double = 0.5,
         zoneMethod: ZoneMethod = .ageMax,
         customZones: [HRRange]? = nil,
+        hardEffortStrict: Bool = false,
+        warmupMinSec: Int = 180,
+        hardWallCapSec: Int = 480,
+        recoveryMinSec: Int = 30,
         units: UnitPreference = .defaultValue(for: Locale.current)
     ) {
         self.age = age
@@ -49,6 +61,10 @@ final class ProfileRecord {
         self.zoneMethodRaw = zoneMethod.rawValue
         self.customZoneLowers = customZones?.map(\.lower)
         self.customZoneUppers = customZones?.map(\.upper)
+        self.hardEffortStrict = hardEffortStrict
+        self.warmupMinSec = warmupMinSec
+        self.hardWallCapSec = hardWallCapSec
+        self.recoveryMinSec = recoveryMinSec
         self.unitsRaw = units.rawValue
     }
 
@@ -97,7 +113,11 @@ final class ProfileRecord {
             activityLevel: activity,
             goal: goalIsLose ? .loseWeight(rateKgPerWeek: loseRateKgPerWeek) : .maintainHealth,
             zoneMethod: zoneMethod,
-            customZones: customZones
+            customZones: customZones,
+            hardEffortStrict: hardEffortStrict,
+            warmupMinSec: warmupMinSec,
+            hardWallCapSec: hardWallCapSec,
+            recoveryMinSec: recoveryMinSec
         )
     }
 }

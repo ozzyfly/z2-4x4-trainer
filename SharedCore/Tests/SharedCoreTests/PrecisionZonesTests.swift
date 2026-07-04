@@ -8,7 +8,8 @@ struct PrecisionZonesTests {
         method: ZoneMethod,
         restingHR: Int? = nil,
         customZones: [HRRange]? = nil,
-        maxHROverride: Int? = 190
+        maxHROverride: Int? = 190,
+        hardEffortStrict: Bool = false
     ) -> UserProfile {
         UserProfile(
             age: 30,
@@ -18,7 +19,8 @@ struct PrecisionZonesTests {
             restingHR: restingHR,
             maxHROverride: maxHROverride,
             zoneMethod: method,
-            customZones: customZones
+            customZones: customZones,
+            hardEffortStrict: hardEffortStrict
         )
     }
 
@@ -46,6 +48,41 @@ struct PrecisionZonesTests {
         ]
         let c = HRZoneCalculator(profile: profile(method: .custom, customZones: custom))
         #expect(c.zone2 == HRRange(lower: 120, upper: 140))
+    }
+
+    @Test("Custom 4×4 hard band spans Zone 4 floor to Zone 5 ceiling")
+    func customHardBand() {
+        let custom = [
+            HRRange(lower: 100, upper: 120), // zone1
+            HRRange(lower: 120, upper: 140), // zone2
+            HRRange(lower: 140, upper: 160), // zone3
+            HRRange(lower: 160, upper: 175), // zone4
+            HRRange(lower: 175, upper: 190), // zone5
+        ]
+        let c = HRZoneCalculator(profile: profile(method: .custom, customZones: custom))
+        // Hard effort follows Apple's top two zones: Z4 lower → Z5 upper.
+        #expect(c.fourByFourHard == HRRange(lower: 160, upper: 190))
+    }
+
+    @Test("strict hard effort targets Zone 5 only (custom)")
+    func strictHardCustom() {
+        let custom = [
+            HRRange(lower: 100, upper: 120),
+            HRRange(lower: 120, upper: 140),
+            HRRange(lower: 140, upper: 160),
+            HRRange(lower: 160, upper: 175),
+            HRRange(lower: 175, upper: 190),
+        ]
+        let strict = HRZoneCalculator(profile: profile(method: .custom, customZones: custom, hardEffortStrict: true))
+        #expect(strict.fourByFourHard == HRRange(lower: 175, upper: 190)) // Zone 5
+        let wide = HRZoneCalculator(profile: profile(method: .custom, customZones: custom))
+        #expect(wide.fourByFourHard == HRRange(lower: 160, upper: 190))   // Zone 4–5
+    }
+
+    @Test("strict hard effort uses Zone 5 under age-max")
+    func strictHardAgeMax() {
+        let c = HRZoneCalculator(profile: profile(method: .ageMax, hardEffortStrict: true))
+        #expect(c.fourByFourHard == c.range(for: .zone5)) // 90–100% maxHR
     }
 
     @Test("Karvonen with nil resting HR falls back to age-max")

@@ -13,11 +13,18 @@ struct SettingsView: View {
     @AppStorage("remindersEnabled") private var remindersEnabled = false
     @AppStorage("reminderHour") private var reminderHour = 18
     @AppStorage("reminderMinute") private var reminderMinute = 0
+    /// Whether workouts from Apple Health (external apps) are auto-imported.
+    @AppStorage("autoImportHealth") private var autoImportHealth = true
 
     /// Notification permission is denied in system Settings, so reminders can't fire.
     @State private var notificationsDenied = false
     /// The last reschedule attempt threw — surfaced inline instead of failing silently.
     @State private var reminderScheduleFailed = false
+
+    /// Resting-HR-from-Health fetch state.
+    @State private var fetchingRestingHR = false
+    @State private var restingHRNote: String?
+    @State private var restingHRFetchFailed = false
 
     init(profile: ProfileRecord, health: HealthStore) {
         self.profile = profile
@@ -58,6 +65,24 @@ struct SettingsView: View {
         notificationsDenied = await ReminderScheduler.authorizationStatus() == .denied
     }
 
+    /// Pulls the latest resting heart rate from Apple Health into the profile.
+    @MainActor
+    private func fetchRestingHR() async {
+        fetchingRestingHR = true
+        defer { fetchingRestingHR = false }
+        if !health.authorized {
+            await health.connect()
+        }
+        if let hr = await health.latestRestingHR() {
+            profile.restingHR = hr
+            restingHRFetchFailed = false
+            restingHRNote = String(localized: "Set to \(hr) bpm from Apple Health.")
+        } else {
+            restingHRFetchFailed = true
+            restingHRNote = String(localized: "No resting heart rate found in Apple Health.")
+        }
+    }
+
     /// Weight in the preferred display units; storage stays metric (kg).
     private var displayWeight: Binding<Double> {
         Binding(
@@ -93,35 +118,6 @@ struct SettingsView: View {
         )
     }
 
-    /// Age-max-derived defaults seed the custom bands the first time the user edits them.
-    private var defaultCustomZones: [HRRange] {
-        let calc = HRZoneCalculator(maxHR: profile.maxHROverride ?? (220 - profile.age))
-        return HRZone.allCases.map { calc.range(for: $0) }
-    }
-
-    /// Read-or-seed the custom bands, then read/write a single zone's bound.
-    private func customBound(zone: HRZone, isLower: Bool) -> Binding<Int> {
-        Binding(
-            get: {
-                let zones = profile.customZones ?? defaultCustomZones
-                let range = zones.indices.contains(zone.rawValue - 1)
-                    ? zones[zone.rawValue - 1]
-                    : defaultCustomZones[zone.rawValue - 1]
-                return isLower ? range.lower : range.upper
-            },
-            set: { newValue in
-                var zones = profile.customZones ?? defaultCustomZones
-                if zones.count < HRZone.allCases.count { zones = defaultCustomZones }
-                let i = zone.rawValue - 1
-                let current = zones[i]
-                zones[i] = isLower
-                    ? HRRange(lower: newValue, upper: max(newValue, current.upper))
-                    : HRRange(lower: min(current.lower, newValue), upper: newValue)
-                profile.customZones = zones
-            }
-        )
-    }
-
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -131,6 +127,8 @@ struct SettingsView: View {
                     heartRateSection
 
                     zonesSection
+
+                    advancedSection
 
                     goalSection
 
@@ -144,6 +142,7 @@ struct SettingsView: View {
             .navigationTitle("Settings")
         }
         .tint(Theme.accent)
+        .syncsProfileToWatch(profile, context: context)
     }
 
     // MARK: - Sections
@@ -240,21 +239,63 @@ struct SettingsView: View {
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                         }
+
+                        Button {
+                            Task { await fetchRestingHR() }
+                        } label: {
+                            if fetchingRestingHR {
+                                ProgressView().frame(maxWidth: .infinity)
+                            } else {
+                                Label("Use Apple Health", systemImage: "heart.fill")
+                            }
+                        }
+                        .buttonStyle(SecondaryButton())
+                        .disabled(fetchingRestingHR)
+
+                        if let note = restingHRNote {
+                            Text(note)
+                                .font(.caption)
+                                .foregroundStyle(restingHRFetchFailed ? Theme.warning : Theme.secondaryLabel)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
                     case .custom:
                         Divider()
-                        customBandEditor(title: String(localized: "Zone 2"), zone: .zone2)
-                        Divider()
-                        customBandEditor(title: String(localized: "Zone 4 (4×4)"), zone: .zone4)
-                        Text("Other zones use age-based defaults until edited.")
+                        NavigationLink {
+                            AppleZonesView(profile: profile, health: health)
+                        } label: {
+                            HStack {
+                                Label("Sync Apple HR zones", systemImage: "applewatch")
+                                    .foregroundStyle(Theme.label)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .font(.caption.weight(.semibold))
+                                    .foregroundStyle(Theme.secondaryLabel)
+                            }
+                            .frame(minHeight: 44)
+                            .contentShape(Rectangle())
+                        }
+                        Text("Set all five zones to match Apple Watch — import from Health or enter them by hand.")
                             .font(.caption)
                             .foregroundStyle(Theme.secondaryLabel)
                             .fixedSize(horizontal: false, vertical: true)
                     }
 
                     Divider()
+                    Toggle("Strict hard effort (Zone 5)", isOn: $profile.hardEffortStrict)
+                    Text("Off targets the top band (≈Zone 4–5). On tightens the 4×4 hard interval to Zone 5 for a sharper VO2max stimulus.")
+                        .font(.caption)
+                        .foregroundStyle(Theme.secondaryLabel)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    Divider()
+                    let calc = HRZoneCalculator(profile: profile.domain)
                     LabeledContent("Zone 2 preview") {
-                        let z2 = HRZoneCalculator(profile: profile.domain).zone2
-                        Text("\(z2.lower)–\(z2.upper) bpm")
+                        Text("\(calc.zone2.lower)–\(calc.zone2.upper) bpm")
+                            .numericStyle(.body)
+                            .foregroundStyle(Theme.secondaryLabel)
+                    }
+                    LabeledContent("Hard preview") {
+                        Text("\(calc.fourByFourHard.lower)–\(calc.fourByFourHard.upper) bpm")
                             .numericStyle(.body)
                             .foregroundStyle(Theme.secondaryLabel)
                     }
@@ -263,17 +304,26 @@ struct SettingsView: View {
         }
     }
 
-    private func customBandEditor(title: String, zone: HRZone) -> some View {
+    private var advancedSection: some View {
         VStack(alignment: .leading, spacing: Spacing.sm) {
-            Text(title)
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(Theme.label)
-            AccessibleStepper(title: "\(title) lower",
-                              value: customBound(zone: zone, isLower: true), range: 60...220,
-                              valueText: "\(customBound(zone: zone, isLower: true).wrappedValue) bpm")
-            AccessibleStepper(title: "\(title) upper",
-                              value: customBound(zone: zone, isLower: false), range: 60...220,
-                              valueText: "\(customBound(zone: zone, isLower: false).wrappedValue) bpm")
+            SectionHeader("Advanced · 4×4 timing")
+            Card {
+                VStack(alignment: .leading, spacing: Spacing.md) {
+                    AccessibleStepper(title: "Warmup minimum", value: $profile.warmupMinSec,
+                                      range: 60...300, step: 30, valueText: "\(profile.warmupMinSec) s")
+                    Divider()
+                    AccessibleStepper(title: "Hard time cap", value: $profile.hardWallCapSec,
+                                      range: 300...720, step: 30, valueText: "\(profile.hardWallCapSec) s")
+                    Divider()
+                    AccessibleStepper(title: "Recovery minimum", value: $profile.recoveryMinSec,
+                                      range: 0...120, step: 10, valueText: "\(profile.recoveryMinSec) s")
+                    Divider()
+                    Text("Tunes how the watch's adaptive 4×4 starts and ends each segment.")
+                        .font(.caption)
+                        .foregroundStyle(Theme.secondaryLabel)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
         }
     }
 
@@ -398,6 +448,12 @@ struct SettingsView: View {
                             Spacer()
                         }
                         Text("Syncing: Workouts · Active energy · Heart rate · VO2 max · Body weight")
+                            .font(.caption)
+                            .foregroundStyle(Theme.secondaryLabel)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Divider()
+                        Toggle("Auto-import workouts", isOn: $autoImportHealth)
+                        Text("When on, workouts recorded elsewhere (Apple Health, other apps) are added to your history. Turn off to keep only your watch and manual sessions.")
                             .font(.caption)
                             .foregroundStyle(Theme.secondaryLabel)
                             .fixedSize(horizontal: false, vertical: true)

@@ -23,6 +23,15 @@ final class WorkoutLog {
     var healthUUID: String?
     /// How the log was created. Defaults to manual for pre-existing records.
     var sourceRaw: String = WorkoutSource.manual.rawValue
+    /// 4×4 quality (0…100) from the adaptive watch session; nil for others/legacy.
+    var qualityScore: Int?
+    /// 4×4 detail (watch sessions only): peak HR, average hard-effort HR, fully-completed reps.
+    var peakHR: Int?
+    var avgHardHR: Int?
+    var repsCompleted: Int?
+    /// Zone 2 detail (watch sessions only): average in-zone HR, total session seconds.
+    var avgHR: Int?
+    var totalSec: Int?
 
     init(
         date: Date = .now,
@@ -31,7 +40,13 @@ final class WorkoutLog {
         activeEnergyKcal: Int? = nil,
         note: String? = nil,
         healthUUID: String? = nil,
-        source: WorkoutSource = .manual
+        source: WorkoutSource = .manual,
+        qualityScore: Int? = nil,
+        peakHR: Int? = nil,
+        avgHardHR: Int? = nil,
+        repsCompleted: Int? = nil,
+        avgHR: Int? = nil,
+        totalSec: Int? = nil
     ) {
         self.date = date
         self.typeRaw = type.rawValue
@@ -40,6 +55,12 @@ final class WorkoutLog {
         self.note = note
         self.healthUUID = healthUUID
         self.sourceRaw = source.rawValue
+        self.qualityScore = qualityScore
+        self.peakHR = peakHR
+        self.avgHardHR = avgHardHR
+        self.repsCompleted = repsCompleted
+        self.avgHR = avgHR
+        self.totalSec = totalSec
     }
 
     var type: SessionType {

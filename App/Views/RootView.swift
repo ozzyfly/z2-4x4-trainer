@@ -5,6 +5,7 @@ import SharedCore
 /// Shows onboarding until a profile exists, then the main tabs.
 struct RootView: View {
     @Environment(\.modelContext) private var context
+    @Environment(\.scenePhase) private var scenePhase
     @Query private var profiles: [ProfileRecord]
     @State private var health = HealthStore(
         provider: ProcessInfo.processInfo.arguments.contains("-mockHealth")
@@ -24,12 +25,24 @@ struct RootView: View {
             // Populate Health-derived UI (readiness, VO2max trend) with canned data for UI smoke tests.
             if ProcessInfo.processInfo.arguments.contains("-mockHealth") {
                 await health.connect()
+            } else if health.hasConnectedBefore {
+                // Silently restore a prior Apple Health connection so the user
+                // doesn't have to reconnect on every launch.
+                await health.connect()
+                await health.refresh(context: context)
             }
         }
         // Re-publish the snapshot whenever readiness (re)computes so widgets and the
         // watch see the score; other call sites pass nil and leave it untouched here.
         .onChange(of: health.readiness) { _, readiness in
             WidgetSnapshotWriter.update(context: context, readiness: readiness)
+        }
+        // The launch `.task` only runs once — also refresh Health-derived state
+        // (today's energy, readiness, newly recorded workouts) whenever the app
+        // returns to the foreground, e.g. right after finishing a watch session.
+        .onChange(of: scenePhase) { _, phase in
+            guard phase == .active, health.authorized else { return }
+            Task { await health.refresh(context: context) }
         }
     }
 
@@ -93,12 +106,9 @@ struct MainTabView: View {
             HistoryView(health: health)
                 .tabItem { Label("History", systemImage: "chart.bar.fill") }
                 .tag(2)
-            AchievementsView(profile: profile, health: health)
-                .tabItem { Label("Awards", systemImage: "trophy.fill") }
-                .tag(3)
             SettingsView(profile: profile, health: health)
                 .tabItem { Label("Settings", systemImage: "gearshape.fill") }
-                .tag(4)
+                .tag(3)
         }
         .tint(Theme.accent)
         // Widgets deep-link here: z24x4://today opens the Today tab.

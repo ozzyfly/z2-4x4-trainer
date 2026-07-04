@@ -70,18 +70,21 @@ Z2/4×4 Trainer is a fitness and training tool, not a medical device. It does no
 
 ## Keywords (max 100 chars, comma-separated, no spaces after commas to save room)
 
+Recommended final (95 chars):
 ```
-zone 2,4x4,norwegian,VO2 max,heart rate,cardio,interval,HIIT,endurance,running,cycling,fitness,training
-```
-(101 chars — trim one to fit. Suggested trim: drop `,training` → 92 chars.)
-
-Recommended final (92 chars):
-```
-zone 2,4x4,norwegian,VO2 max,heart rate,cardio,interval,HIIT,endurance,running,cycling,fitness
+vo2 max,heart rate,interval,hiit,norwegian,endurance,running,cycling,aerobic,base,fitness,zones
 ```
 
-> Tips: don't repeat words already in the app name/subtitle; don't use plurals AND
-> singulars; no spaces needed after commas (Apple ignores them but they waste limit).
+> Why these: Apple already indexes every word in the app **name** ("Z2/4×4 Trainer")
+> and **subtitle** ("Zone 2 & 4×4 cardio coach") — so `zone`, `2`, `4x4`, `cardio`,
+> `coach`, `trainer` are free and repeating them in the keyword field wastes limit.
+> Spend the 100 chars on terms users actually search that aren't in the name:
+> `vo2 max`, `hiit`, `norwegian`, `aerobic base`, sport names.
+>
+> Tips: don't use plurals AND singulars; no spaces needed after commas (Apple
+> ignores them but they waste limit); keywords can be changed with every new
+> version — revisit after checking search performance in App Store Connect →
+> Analytics once live.
 
 ---
 

@@ -18,6 +18,7 @@ struct HealthImportSnapshotTests {
         func todayActiveEnergyKcal() async -> Int { 0 }
         func latestBodyMassKg() async -> Double? { nil }
         func restingHeartRate() async -> Int? { nil }
+        func observedMaxHeartRate(days: Int) async -> Int? { nil }
         func bodyMassSeries(days: Int) async -> [(date: Date, kg: Double)] { [] }
         func recentWorkouts(days: Int) async -> [HealthWorkout] { importableWorkouts }
         func vo2MaxSeries(days: Int) async -> [VO2MaxSample] { [] }
@@ -27,7 +28,7 @@ struct HealthImportSnapshotTests {
 
     private func makeContext() throws -> ModelContext {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: WorkoutLog.self, ProfileRecord.self,
+        let container = try ModelContainer(for: WorkoutLog.self, ProfileRecord.self, DeletedWorkout.self,
                                            configurations: config)
         return ModelContext(container)
     }
@@ -66,5 +67,22 @@ struct HealthImportSnapshotTests {
         let store = HealthStore(provider: Spy())
         let inserted = await store.importWorkouts(into: ctx)
         #expect(inserted == 0)
+    }
+
+    @Test("import keeps the stamped session type; nil falls back to Zone 2")
+    func importRecoversSessionType() async throws {
+        let ctx = try makeContext()
+        let spy = Spy()
+        spy.importableWorkouts = [
+            HealthWorkout(uuid: "H-4x4", date: .now, durationMin: 34, energyKcal: 300, type: .norwegian4x4),
+            HealthWorkout(uuid: "H-untyped", date: .now, durationMin: 40, energyKcal: 200, type: nil),
+        ]
+        let store = HealthStore(provider: spy)
+
+        _ = await store.importWorkouts(into: ctx)
+
+        let logs = try ctx.fetch(FetchDescriptor<WorkoutLog>())
+        #expect(logs.first(where: { $0.healthUUID == "H-4x4" })?.type == .norwegian4x4)
+        #expect(logs.first(where: { $0.healthUUID == "H-untyped" })?.type == .zone2)
     }
 }

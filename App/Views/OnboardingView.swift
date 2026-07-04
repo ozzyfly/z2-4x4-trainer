@@ -74,7 +74,7 @@ struct OnboardingView: View {
                 .frame(width: 52, height: 52)
                 .background(Theme.accent.opacity(0.12), in: RoundedRectangle(cornerRadius: Radius.md, style: .continuous))
             Text("Z2 / 4×4 Trainer")
-                .font(.rounded(.largeTitle, weight: .bold))
+                .font(.serif(.largeTitle, weight: .bold))
                 .foregroundStyle(Theme.label)
             Text("Build your aerobic base and lift your fitness with workouts tuned to you — Zone 2 easy days and Norwegian 4×4 intervals.")
                 .font(.subheadline)

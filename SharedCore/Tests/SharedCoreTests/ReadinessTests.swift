@@ -29,6 +29,9 @@ struct ReadinessTests {
         let s = try! #require(score)
         #expect(s.value >= 67)
         #expect(s.label == .goHard)
+        #expect(s.signals.contains(.hrvAboveBaseline))
+        #expect(s.signals.contains(.restingHRBelowBaseline))
+        #expect(!s.explanation.isEmpty)
     }
 
     @Test("Below baseline (low HRV, high RHR) reads low and labels easy")
@@ -43,6 +46,9 @@ struct ReadinessTests {
         let s = try! #require(score)
         #expect(s.value < 34)
         #expect(s.label == .easy)
+        #expect(s.signals.contains(.hrvBelowBaseline))
+        #expect(s.signals.contains(.restingHRAboveBaseline))
+        #expect(s.actionRecommendation.contains("Zone 2"))
     }
 
     @Test("Insufficient HRV history returns nil")
@@ -68,6 +74,8 @@ struct ReadinessTests {
         let s = try! #require(ReadinessCalculator.score(hrv: hrv, restingHR: rhr, now: now, calendar: cal))
         #expect(s.value == 50)
         #expect(s.label == .steady)
+        #expect(s.signals == [.hrvNearBaseline, .restingHRNearBaseline])
+        #expect(!s.actionRecommendation.isEmpty)
     }
 
     @Test("Recommendations are distinct per label")

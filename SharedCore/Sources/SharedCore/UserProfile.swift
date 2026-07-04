@@ -50,6 +50,15 @@ public struct UserProfile: Codable, Sendable, Equatable {
     /// `zoneMethod` is `.custom`; ignored otherwise.
     public var customZones: [HRRange]?
 
+    /// When true, the Norwegian 4×4 hard effort targets Zone 5 only (≈90–100%) for a
+    /// stricter VO2max stimulus; when false it spans the top band (≈Zone 4–5).
+    public var hardEffortStrict: Bool
+
+    /// Advanced 4×4 timing guards (seconds). Defaults match the engine's defaults.
+    public var warmupMinSec: Int
+    public var hardWallCapSec: Int
+    public var recoveryMinSec: Int
+
     public init(
         age: Int,
         sex: BiologicalSex,
@@ -60,7 +69,11 @@ public struct UserProfile: Codable, Sendable, Equatable {
         activityLevel: ActivityLevel = .moderate,
         goal: TrainingGoal = .maintainHealth,
         zoneMethod: ZoneMethod = .ageMax,
-        customZones: [HRRange]? = nil
+        customZones: [HRRange]? = nil,
+        hardEffortStrict: Bool = false,
+        warmupMinSec: Int = 180,
+        hardWallCapSec: Int = 480,
+        recoveryMinSec: Int = 30
     ) {
         self.age = age
         self.sex = sex
@@ -72,6 +85,10 @@ public struct UserProfile: Codable, Sendable, Equatable {
         self.goal = goal
         self.zoneMethod = zoneMethod
         self.customZones = customZones
+        self.hardEffortStrict = hardEffortStrict
+        self.warmupMinSec = warmupMinSec
+        self.hardWallCapSec = hardWallCapSec
+        self.recoveryMinSec = recoveryMinSec
     }
 
     // Backwards-compatible decoding: profiles persisted before precision-zones
@@ -88,5 +105,9 @@ public struct UserProfile: Codable, Sendable, Equatable {
         goal = try c.decode(TrainingGoal.self, forKey: .goal)
         zoneMethod = try c.decodeIfPresent(ZoneMethod.self, forKey: .zoneMethod) ?? .ageMax
         customZones = try c.decodeIfPresent([HRRange].self, forKey: .customZones)
+        hardEffortStrict = try c.decodeIfPresent(Bool.self, forKey: .hardEffortStrict) ?? false
+        warmupMinSec = try c.decodeIfPresent(Int.self, forKey: .warmupMinSec) ?? 180
+        hardWallCapSec = try c.decodeIfPresent(Int.self, forKey: .hardWallCapSec) ?? 480
+        recoveryMinSec = try c.decodeIfPresent(Int.self, forKey: .recoveryMinSec) ?? 30
     }
 }

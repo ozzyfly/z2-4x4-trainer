@@ -1,6 +1,9 @@
 import Foundation
 import WatchConnectivity
 import SharedCore
+import os
+
+private let log = Logger(subsystem: "ca.logolo.z24x4", category: "PhoneStatusPublisher")
 
 /// Pushes the latest widget snapshot (and the user's profile basics) to the paired
 /// Apple Watch via the WCSession application context. Application context has
@@ -24,7 +27,7 @@ enum PhoneStatusPublisher {
         do {
             try session.updateApplicationContext(context)
         } catch {
-            print("PhoneStatusPublisher: updateApplicationContext failed: \(error)")
+            log.error("updateApplicationContext failed: \(error)")
         }
     }
 }

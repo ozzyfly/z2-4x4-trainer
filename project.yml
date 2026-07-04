@@ -25,6 +25,10 @@ targets:
     dependencies:
       - package: SharedCore
       - target: Z24x4Widgets
+      # Embed the watch app so the phone↔watch pair is recognized as companions
+      # (required for WatchConnectivity / WCSession to work).
+      - target: Z24x4TrainerWatch
+        embed: true
     entitlements:
       path: App/Z24x4Trainer.entitlements
       properties:
@@ -34,8 +38,8 @@ targets:
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
-        MARKETING_VERSION: "1.0.0"
-        CURRENT_PROJECT_VERSION: "3"
+        MARKETING_VERSION: "1.0.1"
+        CURRENT_PROJECT_VERSION: "13"
         PRODUCT_BUNDLE_IDENTIFIER: ca.logolo.z24x4.Z24x4Trainer
         INFOPLIST_KEY_CFBundleDisplayName: "Z2/4×4 Trainer"
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
@@ -44,9 +48,11 @@ targets:
         INFOPLIST_KEY_NSHealthUpdateUsageDescription: "Saves your Zone 2 and Norwegian 4×4 workouts to Apple Health."
         TARGETED_DEVICE_FAMILY: "1"
         SWIFT_VERSION: "6.0"
-        # Distribution signing: team passed at archive time
-        # (`DEVELOPMENT_TEAM=XXXX … -allowProvisioningUpdates`).
         CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: "2NXQLV6CJH"
+        # Standard HTTPS only → exempt from export compliance; skips the
+        # App Store Connect encryption prompt on every upload.
+        INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: "NO"
 
   Z24x4TrainerWatch:
     type: application
@@ -66,8 +72,8 @@ targets:
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
-        MARKETING_VERSION: "1.0.0"
-        CURRENT_PROJECT_VERSION: "3"
+        MARKETING_VERSION: "1.0.1"
+        CURRENT_PROJECT_VERSION: "13"
         PRODUCT_BUNDLE_IDENTIFIER: ca.logolo.z24x4.Z24x4Trainer.watchkitapp
         INFOPLIST_KEY_CFBundleDisplayName: "Z2/4×4 Trainer"
         INFOPLIST_KEY_WKApplication: YES
@@ -78,6 +84,9 @@ targets:
         TARGETED_DEVICE_FAMILY: "4"
         SWIFT_VERSION: "6.0"
         CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: "2NXQLV6CJH"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: "NO"
 
   Z24x4Widgets:
     type: app-extension
@@ -104,9 +113,10 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: ca.logolo.z24x4.Z24x4Trainer.Widgets
         SWIFT_VERSION: "6.0"
         CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: "2NXQLV6CJH"
         TARGETED_DEVICE_FAMILY: "1"
-        MARKETING_VERSION: "1.0.0"
-        CURRENT_PROJECT_VERSION: "3"
+        MARKETING_VERSION: "1.0.1"
+        CURRENT_PROJECT_VERSION: "13"
 
   Z24x4WatchComplications:
     type: app-extension
@@ -134,9 +144,10 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: ca.logolo.z24x4.Z24x4Trainer.watchkitapp.Complications
         SWIFT_VERSION: "6.0"
         CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: "2NXQLV6CJH"
         TARGETED_DEVICE_FAMILY: "4"
-        MARKETING_VERSION: "1.0.0"
-        CURRENT_PROJECT_VERSION: "3"
+        MARKETING_VERSION: "1.0.1"
+        CURRENT_PROJECT_VERSION: "13"
 
   Z24x4TrainerTests:
     type: bundle.unit-test

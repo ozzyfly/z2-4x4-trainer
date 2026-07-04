@@ -9,7 +9,7 @@ import SharedCore
 struct PhoneSessionReceiverTests {
     private func makeContext() throws -> ModelContext {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: WorkoutLog.self, ProfileRecord.self,
+        let container = try ModelContainer(for: WorkoutLog.self, ProfileRecord.self, DeletedWorkout.self,
                                            configurations: config)
         return ModelContext(container)
     }
@@ -51,5 +51,26 @@ struct PhoneSessionReceiverTests {
         _ = receiver.ingest(transfer(uuid: "A"))
         _ = receiver.ingest(transfer(uuid: "B"))
         #expect(logCount(ctx) == 2)
+    }
+
+    @Test("watch data upgrades an earlier Health-imported entry in place")
+    func watchUpgradesHealthImport() throws {
+        let ctx = try makeContext()
+        // Simulate a Health import that mislabeled a 4×4 as Zone 2, with no quality.
+        ctx.insert(WorkoutLog(type: .zone2, durationMin: 33, healthUUID: "SHARED",
+                              source: .health))
+        let receiver = PhoneSessionReceiver(context: ctx)
+
+        let upgraded = receiver.ingest(WorkoutTransfer(
+            healthUUID: "SHARED", date: .now, type: .norwegian4x4,
+            durationMin: 34, energyKcal: 300, qualityScore: 100, peakHR: 173, repsCompleted: 4))
+
+        #expect(upgraded == true)
+        let logs = try ctx.fetch(FetchDescriptor<WorkoutLog>())
+        #expect(logs.count == 1)                     // upgraded in place, not duplicated
+        #expect(logs.first?.type == .norwegian4x4)   // corrected type
+        #expect(logs.first?.source == .watch)        // watch is authoritative
+        #expect(logs.first?.qualityScore == 100)
+        #expect(logs.first?.peakHR == 173)
     }
 }

@@ -31,10 +31,10 @@ public extension IntervalKind {
     /// Human-readable interval name, e.g. "Cool Down".
     var displayName: String {
         switch self {
-        case .warmup: return "Warm Up"
-        case .hard: return "Hard"
-        case .recovery: return "Recovery"
-        case .cooldown: return "Cool Down"
+        case .warmup: return String(localized: "Warm Up", bundle: .module)
+        case .hard: return String(localized: "Hard", bundle: .module)
+        case .recovery: return String(localized: "Recovery", bundle: .module)
+        case .cooldown: return String(localized: "Cool Down", bundle: .module)
         }
     }
 }

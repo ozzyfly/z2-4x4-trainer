@@ -15,16 +15,24 @@ final class HealthStore {
     private(set) var fitness: FitnessTrend?
     private(set) var readiness: ReadinessScore?
 
+    private static let connectedKey = "hasConnectedHealth"
+
     init(provider: HealthProviding) {
         self.provider = provider
     }
 
-    /// Requests authorization, then loads metrics (no SwiftData import).
+    /// Whether the user has connected Apple Health before (persisted across launches),
+    /// so we can silently restore the connection instead of asking again.
+    var hasConnectedBefore: Bool { UserDefaults.standard.bool(forKey: Self.connectedKey) }
+
+    /// Requests authorization, then loads metrics (no SwiftData import). Requesting
+    /// again after the first grant is silent — the system doesn't re-prompt.
     @MainActor
     func connect() async {
         do {
             try await provider.requestAuthorization()
             authorized = true
+            UserDefaults.standard.set(true, forKey: Self.connectedKey)
         } catch {
             authorized = false
         }
@@ -50,28 +58,73 @@ final class HealthStore {
         readiness = ReadinessCalculator.score(hrv: hrv, restingHR: restingHR)
     }
 
+    /// The most recent resting heart-rate reading from Apple Health, if any.
+    @MainActor
+    func latestRestingHR() async -> Int? {
+        await provider.restingHeartRate()
+    }
+
+    /// Seeds Apple-style heart-rate zones from Health: pulls resting HR and the
+    /// observed-max HR, then derives the five bands with the heart-rate-reserve
+    /// (Karvonen) method Apple uses by default. `maxHR` is the higher of the
+    /// supplied estimate (override or 220 − age) and the observed maximum, so a
+    /// well-trained athlete's real ceiling isn't undercut.
+    ///
+    /// Returns nil when Health has no resting-HR sample to work from — without it
+    /// HRR zones can't be computed and the caller should keep manual entry.
+    ///
+    /// Note: HealthKit exposes no API for the Fitness app's *configured* zone
+    /// boundaries, so this is a close estimate, not a guaranteed exact match.
+    @MainActor
+    func appleZoneSeed(age: Int, maxHROverride: Int?) async -> (zones: [HRRange], restingHR: Int, maxHR: Int)? {
+        guard let resting = await provider.restingHeartRate() else { return nil }
+        let observedMax = await provider.observedMaxHeartRate(days: 365) ?? 0
+        let maxHR = max(maxHROverride ?? (220 - age), observedMax)
+        let calc = HRZoneCalculator(profile: UserProfile(
+            age: age,
+            sex: .male,
+            weightKg: 0,
+            heightCm: 0,
+            restingHR: resting,
+            maxHROverride: maxHR,
+            zoneMethod: .karvonen
+        ))
+        let zones = HRZone.allCases.map { calc.range(for: $0) }
+        return (zones, resting, maxHR)
+    }
+
     /// Imports recent Health workouts into `context`, deduped by health UUID, and
     /// refreshes the widget snapshot when at least one new log was created. Returns
     /// the number of newly inserted logs (0 when everything was a duplicate or empty).
     @MainActor
     @discardableResult
     func importWorkouts(into context: ModelContext) async -> Int {
+        // Respect the user's "auto-import" preference (defaults on when unset).
+        let autoImport = UserDefaults.standard.object(forKey: "autoImportHealth") as? Bool ?? true
+        guard autoImport else { return 0 }
+
         let workouts = await provider.recentWorkouts(days: 30)
         guard !workouts.isEmpty else { return 0 }
 
-        let existing = (try? context.fetch(FetchDescriptor<WorkoutLog>())) ?? []
+        // Dedup only needs the UUID column, not fully materialized models.
+        var uuidQuery = FetchDescriptor<WorkoutLog>()
+        uuidQuery.propertiesToFetch = [\.healthUUID]
+        let existing = (try? context.fetch(uuidQuery)) ?? []
         let existingUUIDs = Set(existing.compactMap { $0.healthUUID })
+        let tombstoned = Set(((try? context.fetch(FetchDescriptor<DeletedWorkout>())) ?? []).map(\.healthUUID))
 
         var inserted = 0
-        for w in workouts where !existingUUIDs.contains(w.uuid) {
+        // Skip duplicates, user-deleted workouts, and empty (0-minute) noise.
+        for w in workouts where !existingUUIDs.contains(w.uuid) && !tombstoned.contains(w.uuid) && w.durationMin >= 1 {
             let log = WorkoutLog(
                 date: w.date,
-                type: .zone2,
+                type: w.type ?? .zone2,
                 durationMin: w.durationMin,
                 activeEnergyKcal: w.energyKcal,
                 note: "Imported from Apple Health",
                 healthUUID: w.uuid,
-                source: .health
+                source: .health,
+                avgHR: w.avgHR
             )
             context.insert(log)
             inserted += 1

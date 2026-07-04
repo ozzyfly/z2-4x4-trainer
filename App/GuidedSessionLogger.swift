@@ -39,17 +39,29 @@ struct GuidedSessionLogger {
     }
 
     /// Inserts a `WorkoutLog` for a qualifying guided session and refreshes the
+    /// widget snapshot. Returns the created log so the caller can attach feedback.
+    @discardableResult
+    func logWorkout(type: SessionType,
+                    isFinished: Bool,
+                    elapsedSec: Int,
+                    prescribedMinutes: Int) -> WorkoutLog? {
+        guard let durationMin = Self.durationToLog(
+            type: type, isFinished: isFinished,
+            elapsedSec: elapsedSec, prescribedMinutes: prescribedMinutes) else { return nil }
+        let log = WorkoutLog(type: type, durationMin: durationMin, source: .guided)
+        context.insert(log)
+        WidgetSnapshotWriter.update(context: context)
+        return log
+    }
+
+    /// Inserts a `WorkoutLog` for a qualifying guided session and refreshes the
     /// widget snapshot. Returns true when a log was created.
     @discardableResult
     func log(type: SessionType,
              isFinished: Bool,
              elapsedSec: Int,
              prescribedMinutes: Int) -> Bool {
-        guard let durationMin = Self.durationToLog(
-            type: type, isFinished: isFinished,
-            elapsedSec: elapsedSec, prescribedMinutes: prescribedMinutes) else { return false }
-        context.insert(WorkoutLog(type: type, durationMin: durationMin, source: .guided))
-        WidgetSnapshotWriter.update(context: context)
-        return true
+        logWorkout(type: type, isFinished: isFinished,
+                   elapsedSec: elapsedSec, prescribedMinutes: prescribedMinutes) != nil
     }
 }

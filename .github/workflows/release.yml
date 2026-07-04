@@ -1,0 +1,46 @@
+# Release: pushing a tag like v1.0.2 archives, exports, and uploads the build to
+# App Store Connect — the same path as scripts/archive-and-export.sh, headless.
+#
+# Required repository secrets (Settings → Secrets and variables → Actions):
+#   ASC_KEY_ID       App Store Connect API Key ID (10 chars)
+#   ASC_ISSUER_ID    API Issuer ID (UUID)
+#   ASC_KEY_P8       full contents of the AuthKey_XXXX.p8 file
+#   DEVELOPMENT_TEAM Apple Team ID (2NXQLV6CJH)
+#
+# The build number is derived from the commit count (see archive-and-export.sh),
+# so every tagged commit produces a unique, monotonically increasing build.
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  archive-upload:
+    name: Archive + upload to App Store Connect
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history — the build number is the commit count
+      - name: Select latest Xcode
+        run: sudo xcode-select -s "$(ls -d /Applications/Xcode*.app | sort -V | tail -1)"
+      - name: Install xcodegen
+        run: brew install xcodegen
+      - name: Write ASC API key
+        run: |
+          mkdir -p "$RUNNER_TEMP/keys"
+          printf '%s' "$ASC_KEY_P8" > "$RUNNER_TEMP/keys/AuthKey.p8"
+        env:
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+      - name: Archive, export, upload
+        run: scripts/archive-and-export.sh --upload
+        env:
+          DEVELOPMENT_TEAM: ${{ secrets.DEVELOPMENT_TEAM }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_PATH: ${{ runner.temp }}/keys/AuthKey.p8
+      - name: Clean up key
+        if: always()
+        run: rm -f "$RUNNER_TEMP/keys/AuthKey.p8"

@@ -8,6 +8,12 @@ public struct WorkoutExportRow: Codable, Sendable, Equatable {
     public let energyKcal: Int?
     public let note: String?
     public let source: String
+    public let avgHR: Int?
+    public let peakHR: Int?
+    public let avgHardHR: Int?
+    public let repsCompleted: Int?
+    public let qualityScore: Int?
+    public let totalSec: Int?
 
     public init(
         date: Date,
@@ -15,7 +21,13 @@ public struct WorkoutExportRow: Codable, Sendable, Equatable {
         durationMin: Int,
         energyKcal: Int?,
         note: String?,
-        source: String
+        source: String,
+        avgHR: Int? = nil,
+        peakHR: Int? = nil,
+        avgHardHR: Int? = nil,
+        repsCompleted: Int? = nil,
+        qualityScore: Int? = nil,
+        totalSec: Int? = nil
     ) {
         self.date = date
         self.type = type
@@ -23,6 +35,12 @@ public struct WorkoutExportRow: Codable, Sendable, Equatable {
         self.energyKcal = energyKcal
         self.note = note
         self.source = source
+        self.avgHR = avgHR
+        self.peakHR = peakHR
+        self.avgHardHR = avgHardHR
+        self.repsCompleted = repsCompleted
+        self.qualityScore = qualityScore
+        self.totalSec = totalSec
     }
 }
 
@@ -37,7 +55,7 @@ public struct WorkoutExport: Sendable {
 
     // MARK: - CSV
 
-    static let csvHeader = "date,type,durationMin,energyKcal,note,source"
+    static let csvHeader = "date,type,durationMin,energyKcal,note,source,avgHR,peakHR,avgHardHR,repsCompleted,qualityScore,totalSec"
 
     /// CSV with a header row, ISO 8601 dates, and RFC 4180 quoting: fields
     /// containing a comma, double quote, or newline are quoted with inner
@@ -45,13 +63,19 @@ public struct WorkoutExport: Sendable {
     public func csv() -> String {
         var lines = [Self.csvHeader]
         for row in rows {
-            let fields = [
+            let fields: [String] = [
                 row.date.formatted(Self.iso8601),
                 row.type,
                 String(row.durationMin),
                 row.energyKcal.map(String.init) ?? "",
                 row.note ?? "",
                 row.source,
+                row.avgHR.map(String.init) ?? "",
+                row.peakHR.map(String.init) ?? "",
+                row.avgHardHR.map(String.init) ?? "",
+                row.repsCompleted.map(String.init) ?? "",
+                row.qualityScore.map(String.init) ?? "",
+                row.totalSec.map(String.init) ?? "",
             ]
             lines.append(fields.map(Self.escapeCSVField).joined(separator: ","))
         }

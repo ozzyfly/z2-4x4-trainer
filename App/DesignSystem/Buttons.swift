@@ -25,17 +25,19 @@ struct PressAnimation: ViewModifier {
 struct SecondaryButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.headline)
+            .font(.subheadline.weight(.semibold))
+            .textCase(.uppercase)
+            .tracking(1.2)
             .foregroundStyle(Theme.accent)
             .frame(maxWidth: .infinity, minHeight: 44)
             .padding(.vertical, Spacing.sm)
             .background(
-                RoundedRectangle(cornerRadius: Radius.md, style: .continuous)
-                    .fill(Theme.accent.opacity(0.12))
+                RoundedRectangle(cornerRadius: Radius.sm, style: .continuous)
+                    .fill(Theme.accent.opacity(0.08))
             )
             .overlay(
-                RoundedRectangle(cornerRadius: Radius.md, style: .continuous)
-                    .strokeBorder(Theme.accent.opacity(0.25), lineWidth: 1)
+                RoundedRectangle(cornerRadius: Radius.sm, style: .continuous)
+                    .strokeBorder(Theme.accent.opacity(0.35), lineWidth: 1)
             )
             .opacity(configuration.isPressed ? 0.8 : 1)
             .scaleEffect(configuration.isPressed ? 0.98 : 1)

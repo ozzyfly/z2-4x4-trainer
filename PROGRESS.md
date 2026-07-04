@@ -1,5 +1,69 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-07-03: robustness + release-pipeline pass (agent review) — VERIFIED on Mac same day:**
+> SharedCore `swift test` 106/106, iOS `xcodebuild test` (iPhone 17 sim) 31/31, watch build
+> succeeded. Committed alongside the previously uncommitted Awards-feature removal (separate
+> commit). Original notes: **(1) wall-clock timing** — new SharedCore `TickClock` (Date-anchored catch-up ticks,
+> 7 new tests); `Watch/IntervalEngine`, watch Zone 2 timer, and `App/GuidedSessionEngine` now
+> replay seconds a throttled timer missed (wrist-down drift fix — the pending real-Watch risk);
+> incoming HR samples also drive ticks. **(2) Zone 2 blind fallback** — `Zone2TimeTracker` gains
+> `noHRGraceSec`/`isBlind` (credits wall-clock after 15s of no HR so a dead sensor can't void a
+> session; 2 new tests); Live view shows "No HR — timed" (reused key); both engines treat >10s-old
+> HR samples as no reading (a dead sensor's last value otherwise looks fresh forever).
+> **(3) watch auth** — share types now include heartRate + activeEnergyBurned (live builder saves
+> those samples; energy was at risk of being dropped). **(4)** `sendLiveHR` throttled to 1 msg/5s.
+> **(5)** `PhoneSessionReceiver.ingest` dedupes via `#Predicate` UUID fetch (no full-table scan).
+> **(6)** all 7 `print`s → `os.Logger` (subsystem `ca.logolo.z24x4`). **Release pipeline:** new
+> `.github/workflows/ci.yml` (SharedCore tests + iOS test + watch build) and `release.yml`
+> (tag `v*` → archive+upload; needs ASC_* secrets); `archive-and-export.sh` now derives
+> CURRENT_PROJECT_VERSION from `git rev-list --count HEAD` (override: `BUILD_NUMBER=`) and uploads
+> via ExportOptions `destination=upload` (drops deprecated altool). **Docs:** METADATA keywords
+> rewritten (drop name/subtitle duplicates), `docs/feature-proposals-2026-07-03.md` (5 proposals:
+> live-activity, workout-hr-series, outdoor-gps-route, morning-readiness-notification,
+> maxhr-field-test). **Verify on Mac:** `cd SharedCore && swift test` (expect 79+9); iOS
+> build+test iPhone 16 sim; watch build; then commit. Note: worktree already held unrelated
+> uncommitted changes (Achievements refactor, icon) — left untouched, not committed.
+>
+> **Round 2 (same day): snapshot/refresh fixes.** (7) **readiness-wipe bug** — of
+> `WidgetSnapshotWriter.update`'s 10 call sites only RootView passes readiness; the other 9
+> (watch sync, manual entry, guided log, Health import, scene-active) wrote nil, wiping the score
+> off widgets/complications AND off the watch's readiness-based 4×4 rep reduction
+> (`Norwegian4x4.recommendedRepeats` reads the snapshot). Writer now carries the previous
+> same-day readiness forward when the caller passes nil. (8) **foreground refresh** — RootView
+> only loaded Health data in its one-shot `.task`; now also `health.refresh` on scenePhase →
+> `.active` (guarded on `authorized`), so today-energy/readiness/imports update when returning
+> from a watch session. (9) snapshot writer now fetches newest-first with `fetchLimit` 1000
+> instead of the unbounded full table (runs after every mutation); Health-import dedup fetches
+> only the `healthUUID` column (`propertiesToFetch`).
+>
+> **Round 3 (same day): guided-player UX.** (10) **screen auto-lock killed guided sessions** —
+> no `isIdleTimerDisabled` anywhere, so mid-workout the display locked, the app suspended, and
+> voice cues stopped (TickClock only recovers state, not the coaching). GuidedPlayerView now
+> disables the idle timer onAppear / restores it onDisappear. (11) **43-minute music duck** —
+> the engine activated the `.duckOthers` audio session at start and held it for the whole
+> session, leaving the user's music ducked throughout. New `SpeechCoordinator`
+> (AVSpeechSynthesizerDelegate) activates the session just-in-time per cue and deactivates
+> (`.notifyOthersOnDeactivation`) when the utterance queue drains. Known-and-left: workouts save
+> as `.running` regardless of actual modality; watch back-swipe during a live session shows the
+> picker again (harmless — `start` is `isRunning`-guarded — but consider hiding back);
+> `try!` ModelContainer at startup.
+>
+> **Round 4 (same day): Hermès-style UI refinement pass — VISUAL, needs sim screenshots.**
+> iPhone: `numericStyle` de-rounded (SF default numerals — editorial next to the serif
+> headings; app-wide change); SectionHeader tracking 1.6→2.2; TargetBar slimmed to a 6pt bar on
+> a neutral separator track (orange = earned fill only); off-palette colors folded into tokens
+> (Today flame `.orange`→accent, guided-player heart `.red`→danger, 76pt clock de-rounded).
+> Widgets: mirrored brand palette added (extension can't link the app target — hex pairs
+> duplicated from Theme with a keep-in-sync note); streak `.orange`→brandAccent, readiness
+> green/blue/yellow→status tokens. Watch: new `Watch/WatchTheme.swift` (accent/ivory/taupe,
+> dark-appearance values); list rows unified to the single brand accent (glyphs already
+> differentiate sessions); duplicated "This week" label removed; week progress + overlay Done
+> buttons green→accent; live HR panel ring 3pt→1.5pt hairline; completion titles serif.
+> Deliberately KEPT: all mid-workout semantic colors (in-zone green / too-high orange cues,
+> paused warnings) — glanceability during exercise beats palette purity. Verify: light+dark
+> screenshots of Today/Week/History/Settings, widget gallery, watch list + live + overlays;
+> `xcodegen generate` required (new WatchTheme.swift).
+
 > **2026-06-22: `localize-per-week-unit-labels` done [4/4] — per-week unit labels now localized.**
 > Audit-found l10n gap: weight-loss rate "kg/week"/"lb/week" (Settings + Onboarding) and Week
 > screen "%lld/week" (hard sessions) + "%lld kcal/week" (energy) were hardcoded English via

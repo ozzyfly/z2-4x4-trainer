@@ -8,6 +8,8 @@ struct WorkoutDetailView: View {
     /// run is only recorded once it reaches its prescribed duration.
     let prescribedMinutes: Int
     let calc: HRZoneCalculator
+    /// Number of 4×4 hard blocks (reduced on low-readiness days).
+    var repeats: Int = Norwegian4x4.repeats
 
     var body: some View {
         ScrollView {
@@ -45,6 +47,15 @@ struct WorkoutDetailView: View {
                 }
             }
 
+            educationSection(
+                "Why Zone 2 matters",
+                points: [
+                    ("lungs.fill", String(localized: "Builds aerobic base without piling on fatigue.")),
+                    ("message.fill", String(localized: "You should be able to speak in short sentences.")),
+                    ("speedometer", String(localized: "Heart-rate zones matter more than pace on easy days."))
+                ]
+            )
+
             guidedSessionButton
         }
     }
@@ -57,6 +68,18 @@ struct WorkoutDetailView: View {
                 "Norwegian 4×4",
                 "Four 4-minute hard intervals at 85–95% max HR, each followed by 3 minutes of easy recovery. Warm up and cool down properly."
             )
+
+            if repeats < Norwegian4x4.repeats {
+                Label {
+                    Text("Readiness is low — today's session is reduced to \(repeats) hard blocks.")
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(Theme.warning)
+                        .fixedSize(horizontal: false, vertical: true)
+                } icon: {
+                    Image(systemName: "moon.fill").foregroundStyle(Theme.warning)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
 
             VStack(alignment: .leading, spacing: Spacing.sm) {
                 SectionHeader("Target bands")
@@ -71,7 +94,7 @@ struct WorkoutDetailView: View {
             VStack(alignment: .leading, spacing: Spacing.sm) {
                 SectionHeader("Structure")
                 Card(padding: Spacing.xs) {
-                    let intervals = Norwegian4x4.build(using: calc)
+                    let intervals = Norwegian4x4.build(using: calc, repeats: repeats)
                     VStack(spacing: 0) {
                         ForEach(Array(intervals.enumerated()), id: \.offset) { index, interval in
                             IntervalRow(interval: interval)
@@ -82,6 +105,15 @@ struct WorkoutDetailView: View {
                     }
                 }
             }
+
+            educationSection(
+                "How 4×4 should feel",
+                points: [
+                    ("flame.fill", String(localized: "Hard means controlled: strong breathing, not an all-out sprint.")),
+                    ("arrow.down.heart.fill", String(localized: "Recoveries matter because your heart rate needs room to drop.")),
+                    ("calendar.badge.clock", String(localized: "Do not chase hard intervals every day; adaptation happens between sessions."))
+                ]
+            )
 
             guidedSessionButton
         }
@@ -111,7 +143,7 @@ struct WorkoutDetailView: View {
                         .background(Theme.accent.opacity(0.12), in: Circle())
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Rest day")
-                            .font(.rounded(.title3, weight: .semibold))
+                            .font(.serif(.title3, weight: .semibold))
                             .foregroundStyle(Theme.label)
                         Text("Recover well.")
                             .font(.subheadline)
@@ -134,6 +166,28 @@ struct WorkoutDetailView: View {
                     .foregroundStyle(Theme.label)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+    }
+
+    private func educationSection(_ title: LocalizedStringKey, points: [(String, String)]) -> some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader(title)
+            Card {
+                VStack(alignment: .leading, spacing: Spacing.md) {
+                    ForEach(Array(points.enumerated()), id: \.offset) { _, point in
+                        HStack(alignment: .top, spacing: Spacing.md) {
+                            Image(systemName: point.0)
+                                .foregroundStyle(Theme.accent)
+                                .frame(width: 24)
+                            Text(point.1)
+                                .font(.subheadline)
+                                .foregroundStyle(Theme.label)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        .accessibilityElement(children: .combine)
+                    }
+                }
             }
         }
     }

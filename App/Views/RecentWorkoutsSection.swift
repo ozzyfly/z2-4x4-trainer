@@ -6,6 +6,7 @@ import SharedCore
 /// (manual / Health / Watch), and the note when one exists.
 struct RecentWorkoutsSection: View {
     @Query(sort: \WorkoutLog.date, order: .reverse) private var logs: [WorkoutLog]
+    @Environment(\.modelContext) private var context
 
     /// How many rows the list shows at most.
     private static let limit = 10
@@ -21,14 +22,75 @@ struct RecentWorkoutsSection: View {
                         description: Text("Log a workout from the Today tab to see it here.")
                     )
                 } else {
-                    VStack(spacing: Spacing.md) {
-                        ForEach(Array(logs.prefix(Self.limit).enumerated()), id: \.element.persistentModelID) { index, log in
-                            if index > 0 { Divider() }
-                            row(log)
+                    VStack(alignment: .leading, spacing: Spacing.lg) {
+                        ForEach(groups) { group in
+                            VStack(alignment: .leading, spacing: Spacing.md) {
+                                Text(group.header)
+                                    .font(.caption2.weight(.semibold))
+                                    .textCase(.uppercase)
+                                    .tracking(1.2)
+                                    .foregroundStyle(Theme.secondaryLabel)
+                                    .accessibilityAddTraits(.isHeader)
+                                ForEach(Array(group.logs.enumerated()), id: \.element.persistentModelID) { idx, log in
+                                    if idx > 0 { Divider() }
+                                    NavigationLink {
+                                        WorkoutLogDetailView(log: log)
+                                    } label: {
+                                        row(log)
+                                    }
+                                    .buttonStyle(.plain)
+                                    .contextMenu {
+                                        Button(role: .destructive) {
+                                            delete(log)
+                                        } label: {
+                                            Label("Delete workout", systemImage: "trash")
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
+        }
+    }
+
+    /// Recent logs grouped into Today / Yesterday / This week / Earlier buckets.
+    private struct LogGroup: Identifiable {
+        let id: String
+        let header: LocalizedStringKey
+        var logs: [WorkoutLog]
+    }
+
+    private var groups: [LogGroup] {
+        var result: [LogGroup] = []
+        var currentKey: String?
+        for log in logs.prefix(Self.limit) {
+            let key = bucketKey(log.date)
+            if key != currentKey {
+                result.append(LogGroup(id: key, header: bucketHeader(key), logs: [log]))
+                currentKey = key
+            } else {
+                result[result.count - 1].logs.append(log)
+            }
+        }
+        return result
+    }
+
+    private func bucketKey(_ date: Date) -> String {
+        let cal = Calendar.current
+        if cal.isDateInToday(date) { return "today" }
+        if cal.isDateInYesterday(date) { return "yesterday" }
+        if cal.isDate(date, equalTo: .now, toGranularity: .weekOfYear) { return "thisweek" }
+        return "earlier"
+    }
+
+    private func bucketHeader(_ key: String) -> LocalizedStringKey {
+        switch key {
+        case "today": return "Today"
+        case "yesterday": return "Yesterday"
+        case "thisweek": return "This week"
+        default: return "Earlier"
         }
     }
 
@@ -55,6 +117,10 @@ struct RecentWorkoutsSection: View {
                     .font(.caption)
                     .foregroundStyle(Theme.secondaryLabel)
                     .accessibilityLabel(sourceLabel(log.source))
+                Image(systemName: "chevron.right")
+                    .font(.caption2.weight(.semibold))
+                    .foregroundStyle(Theme.separator)
+                    .accessibilityHidden(true)
             }
             if let note = log.note, !note.isEmpty {
                 Text(note)
@@ -65,6 +131,16 @@ struct RecentWorkoutsSection: View {
             }
         }
         .accessibilityElement(children: .combine)
+    }
+
+    /// Deletes a log and tombstones its Health UUID so it isn't re-imported.
+    private func delete(_ log: WorkoutLog) {
+        if let uuid = log.healthUUID, !uuid.isEmpty {
+            context.insert(DeletedWorkout(healthUUID: uuid))
+        }
+        context.delete(log)
+        try? context.save()
+        WidgetSnapshotWriter.update(context: context)
     }
 
     private func sourceIcon(_ source: WorkoutSource) -> String {

@@ -27,6 +27,8 @@ struct PreviewHealthService: HealthProviding {
 
     func restingHeartRate() async -> Int? { 54 }
 
+    func observedMaxHeartRate(days: Int) async -> Int? { 186 }
+
     func bodyMassSeries(days: Int) async -> [(date: Date, kg: Double)] {
         let cal = Calendar.current
         let weights: [Double] = [80.6, 80.2, 80.1, 79.8, 79.5, 79.6, 79.4]

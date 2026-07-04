@@ -9,11 +9,11 @@ public extension HRZone {
     /// Human-readable zone name, e.g. "Zone 2".
     var displayName: String {
         switch self {
-        case .zone1: return "Zone 1"
-        case .zone2: return "Zone 2"
-        case .zone3: return "Zone 3"
-        case .zone4: return "Zone 4"
-        case .zone5: return "Zone 5"
+        case .zone1: return String(localized: "Zone 1", bundle: .module)
+        case .zone2: return String(localized: "Zone 2", bundle: .module)
+        case .zone3: return String(localized: "Zone 3", bundle: .module)
+        case .zone4: return String(localized: "Zone 4", bundle: .module)
+        case .zone5: return String(localized: "Zone 5", bundle: .module)
         }
     }
 

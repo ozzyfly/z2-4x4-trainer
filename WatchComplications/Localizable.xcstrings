@@ -24,6 +24,7 @@
         }
       }
     },
+    "%@m": {},
     "%lld wk streak": {
       "extractionState": "manual",
       "localizations": {
@@ -87,15 +88,39 @@
           }
         },
         "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld週連続"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld週連続"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld週連続"
+                }
+              }
+            }
           }
         },
         "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld 週連續"
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld 週連續"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld 週連續"
+                }
+              }
+            }
           }
         }
       }
@@ -238,29 +263,6 @@
         }
       }
     },
-    "Readiness %lld": {
-      "extractionState": "manual",
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Preparación %lld"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "コンディション %lld"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "狀態 %lld"
-          }
-        }
-      }
-    },
     "Readiness —": {
       "extractionState": "manual",
       "localizations": {
@@ -280,6 +282,29 @@
           "stringUnit": {
             "state": "translated",
             "value": "狀態 —"
+          }
+        }
+      }
+    },
+    "Readiness %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparación %lld"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "コンディション %lld"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "狀態 %lld"
           }
         }
       }

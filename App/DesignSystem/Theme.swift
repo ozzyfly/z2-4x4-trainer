@@ -28,24 +28,23 @@ enum Radius {
     static let pill: CGFloat = 999
 }
 
-/// Color tokens that adapt to light/dark via the system semantic colors.
+/// Color tokens for the Hermès-inspired palette: warm ivory paper, espresso ink,
+/// and a single refined orange accent. Each is an adaptive light/dark pair.
 enum Theme {
-    /// Screen background for grouped, card-led layouts.
-    static let background = Color(.systemGroupedBackground)
-    /// Plain background.
-    static let plainBackground = Color(.systemBackground)
-    /// Card / surface fill.
-    static let surface = Color(.secondarySystemBackground)
-    /// Primary text.
-    static let label = Color(.label)
-    /// Secondary / supporting text.
-    static let secondaryLabel = Color(.secondaryLabel)
-    /// Hairline separators.
-    static let separator = Color(.separator)
-    /// Brand accent (from AccentColor asset; adapts light/dark).
-    /// Loaded by name so it applies even when the project's global accent
-    /// build setting isn't pointed at the asset.
-    static let accent = Color("AccentColor", bundle: .main)
+    /// Screen background — warm ivory paper (deep warm charcoal in dark).
+    static let background = Color(uiColor: .dynamic(light: 0xF4EFE4, dark: 0x1A1714))
+    /// Plain background — a touch lighter than `background`.
+    static let plainBackground = Color(uiColor: .dynamic(light: 0xFBF8F1, dark: 0x201C18))
+    /// Card / surface fill — near-white warm card that sits on the ivory with a hairline.
+    static let surface = Color(uiColor: .dynamic(light: 0xFFFEFB, dark: 0x26221C))
+    /// Primary text — espresso ink (warm ivory in dark).
+    static let label = Color(uiColor: .dynamic(light: 0x2A2521, dark: 0xF0E9DD))
+    /// Secondary / supporting text — warm taupe.
+    static let secondaryLabel = Color(uiColor: .dynamic(light: 0x8A7C6A, dark: 0xA89C8A))
+    /// Hairline separators — warm, faint.
+    static let separator = Color(uiColor: .dynamic(light: 0xE4DAC8, dark: 0x3A332B))
+    /// Brand accent — Hermès-style refined orange (a little brighter in dark).
+    static let accent = Color(uiColor: .dynamic(light: 0xDD5A12, dark: 0xF2772E))
 
     // MARK: - Semantic status tokens
     //
@@ -90,11 +89,13 @@ extension UIColor {
 }
 
 extension Text {
-    /// Rounded, monospaced-digit numeric styling for stats.
+    /// Monospaced-digit numeric styling for stats. SF (default) numerals — not
+    /// rounded — so figures read editorial next to the serif headings, in keeping
+    /// with the Hermès-style restraint of the rest of the chrome.
     func numericStyle(_ font: Font = .body) -> some View {
         self.font(font)
             .monospacedDigit()
-            .fontDesign(.rounded)
+            .fontDesign(.default)
     }
 }
 
@@ -102,5 +103,11 @@ extension Font {
     /// Rounded variant of a system text style.
     static func rounded(_ style: Font.TextStyle, weight: Font.Weight = .regular) -> Font {
         .system(style, design: .rounded).weight(weight)
+    }
+
+    /// Serif (New York) variant of a system text style — the Hermès-style display
+    /// face for titles and headings. Scales with Dynamic Type like any text style.
+    static func serif(_ style: Font.TextStyle, weight: Font.Weight = .regular) -> Font {
+        .system(style, design: .serif).weight(weight)
     }
 }

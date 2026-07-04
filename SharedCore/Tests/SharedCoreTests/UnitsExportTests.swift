@@ -77,7 +77,13 @@ struct WorkoutExportTests {
             durationMin: 40,
             energyKcal: 320,
             note: note,
-            source: "manual"
+            source: "manual",
+            avgHR: 132,
+            peakHR: 171,
+            avgHardHR: 166,
+            repsCompleted: 4,
+            qualityScore: 92,
+            totalSec: 2400
         )
     }
 
@@ -85,9 +91,9 @@ struct WorkoutExportTests {
     func csvISO8601Date() {
         let csv = WorkoutExport(rows: [row(note: nil)]).csv()
         let lines = csv.split(separator: "\n") // file ends with a trailing newline
-        #expect(lines.first == "date,type,durationMin,energyKcal,note,source")
+        #expect(lines.first == "date,type,durationMin,energyKcal,note,source,avgHR,peakHR,avgHardHR,repsCompleted,qualityScore,totalSec")
         #expect(lines.count == 2)
-        #expect(lines[1] == "2023-11-14T22:13:20Z,zone2,40,320,,manual")
+        #expect(lines[1] == "2023-11-14T22:13:20Z,zone2,40,320,,manual,132,171,166,4,92,2400")
     }
 
     @Test("Notes with comma, quote, and newline escape per RFC 4180")
@@ -96,13 +102,13 @@ struct WorkoutExportTests {
         let expectedField = "\"felt \"\"great\"\", then\ntired\""
         #expect(csv.contains(expectedField))
         // Header plus one record; the newline inside the quoted field is preserved.
-        #expect(csv.hasPrefix("date,type,durationMin,energyKcal,note,source\n"))
+        #expect(csv.hasPrefix("date,type,durationMin,energyKcal,note,source,avgHR,peakHR,avgHardHR,repsCompleted,qualityScore,totalSec\n"))
     }
 
     @Test("Empty history exports header-only CSV and empty JSON array")
     func emptyExport() throws {
         let export = WorkoutExport(rows: [])
-        #expect(export.csv() == "date,type,durationMin,energyKcal,note,source\n")
+        #expect(export.csv() == "date,type,durationMin,energyKcal,note,source,avgHR,peakHR,avgHardHR,repsCompleted,qualityScore,totalSec\n")
         let json = try JSONSerialization.jsonObject(with: export.json()) as? [Any]
         #expect(json?.isEmpty == true)
     }
@@ -118,5 +124,11 @@ struct WorkoutExportTests {
         #expect(array[0]["energyKcal"] as? Int == 320)
         #expect(array[0]["note"] as? String == "easy spin")
         #expect(array[0]["source"] as? String == "manual")
+        #expect(array[0]["avgHR"] as? Int == 132)
+        #expect(array[0]["peakHR"] as? Int == 171)
+        #expect(array[0]["avgHardHR"] as? Int == 166)
+        #expect(array[0]["repsCompleted"] as? Int == 4)
+        #expect(array[0]["qualityScore"] as? Int == 92)
+        #expect(array[0]["totalSec"] as? Int == 2400)
     }
 }

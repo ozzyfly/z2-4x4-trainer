@@ -1,6 +1,34 @@
 import WidgetKit
 import SwiftUI
 import SharedCore
+import UIKit
+
+// MARK: - Brand palette
+//
+// The widget extension doesn't link the app target, so the app's `Theme` hex
+// pairs are mirrored here. Keep in sync with App/DesignSystem/Theme.swift.
+private extension Color {
+    private static func dynamic(light: UInt32, dark: UInt32) -> Color {
+        Color(uiColor: UIColor { traits in
+            let rgb = traits.userInterfaceStyle == .dark ? dark : light
+            return UIColor(
+                red: CGFloat((rgb >> 16) & 0xFF) / 255,
+                green: CGFloat((rgb >> 8) & 0xFF) / 255,
+                blue: CGFloat(rgb & 0xFF) / 255,
+                alpha: 1
+            )
+        })
+    }
+
+    /// Hermès-style refined orange (Theme.accent).
+    static let brandAccent = dynamic(light: 0xDD5A12, dark: 0xF2772E)
+    /// Positive / ready (Theme.success).
+    static let statusGo = dynamic(light: 0x1B7F3B, dark: 0x4ADE80)
+    /// Neutral informational (Theme.info).
+    static let statusSteady = dynamic(light: 0x1565C0, dark: 0x60A5FA)
+    /// Caution / recover (Theme.warning).
+    static let statusEasy = dynamic(light: 0xB45309, dark: 0xFBBF24)
+}
 
 // MARK: - Bundle
 
@@ -189,9 +217,9 @@ struct StreakWidgetView: View {
             Spacer(minLength: 0)
             if let weeks, weeks > 0 {
                 Text("\(weeks)")
-                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                    .font(.system(size: 40, weight: .semibold))
                     .monospacedDigit()
-                    .foregroundStyle(.orange)
+                    .foregroundStyle(Color.brandAccent)
                 Text(weeks == 1 ? String(localized: "week") : String(localized: "weeks"))
                     .font(.subheadline).foregroundStyle(.secondary)
             } else {
@@ -319,9 +347,9 @@ private extension ReadinessLabel {
     }
     var widgetTint: Color {
         switch self {
-        case .goHard: return .green
-        case .steady: return .blue
-        case .easy:   return .yellow
+        case .goHard: return .statusGo
+        case .steady: return .statusSteady
+        case .easy:   return .statusEasy
         }
     }
 }

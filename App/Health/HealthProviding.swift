@@ -7,6 +7,19 @@ struct HealthWorkout {
     let date: Date
     let durationMin: Int
     let energyKcal: Int?
+    /// The session kind recovered from our metadata stamp, when present.
+    let type: SessionType?
+    /// Average heart rate over the workout, from Health (nil if none recorded).
+    let avgHR: Int?
+
+    init(uuid: String, date: Date, durationMin: Int, energyKcal: Int?, type: SessionType? = nil, avgHR: Int? = nil) {
+        self.uuid = uuid
+        self.date = date
+        self.durationMin = durationMin
+        self.energyKcal = energyKcal
+        self.type = type
+        self.avgHR = avgHR
+    }
 }
 
 /// Abstraction over Apple Health so the UI can be driven by a mock in previews/tests.
@@ -30,6 +43,10 @@ protocol HealthProviding: Sendable {
 
     /// The most recent resting heart-rate sample, in bpm (nil if none).
     func restingHeartRate() async -> Int?
+
+    /// The highest heart-rate sample observed over the last `days` days, in bpm
+    /// (nil if none). Used as an observed-max proxy when seeding Apple-style zones.
+    func observedMaxHeartRate(days: Int) async -> Int?
 
     /// Daily body-mass samples over the last `days` days, oldest first.
     func bodyMassSeries(days: Int) async -> [(date: Date, kg: Double)]

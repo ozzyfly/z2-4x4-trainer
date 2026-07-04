@@ -12,6 +12,11 @@ struct TodayView: View {
     /// Prescribed minutes for the off-plan easy Zone 2 offered on a rest day.
     private static let easyZone2Minutes = 40
 
+    /// Today's recommended 4×4 hard-block count, reduced on low-readiness days.
+    private var recommendedFourByFourRepeats: Int {
+        Norwegian4x4.recommendedRepeats(for: health.readiness?.label)
+    }
+
     var body: some View {
         let p = profile.domain
         let calc = HRZoneCalculator(profile: p)
@@ -31,8 +36,12 @@ struct TodayView: View {
                 VStack(alignment: .leading, spacing: Spacing.xl) {
                     header
 
+                    // First run gets the welcome card; returning users get the
+                    // session hero with a single, primary "Start" up top.
                     if logs.isEmpty {
                         welcomeSection(today: today, calc: calc, isRest: isRest)
+                    } else {
+                        sessionSection(today: today, calc: calc, isRest: isRest)
                     }
 
                     if let readiness = health.readiness {
@@ -46,18 +55,23 @@ struct TodayView: View {
 
                     coachSection(base: plan, adapted: adapted)
 
-                    sessionSection(today: today, calc: calc, isRest: isRest)
-
                     zonesSection(calc: calc)
 
                     targetSection(progress: progress)
 
-                    actionsSection(today: today, calc: calc, isRest: isRest)
+                    if !logs.isEmpty {
+                        actionsSection(today: today, calc: calc, isRest: isRest)
+                    }
                 }
                 .padding(Spacing.lg)
             }
             .background(Theme.background)
             .navigationTitle("Today")
+            .refreshable {
+                if health.authorized {
+                    await health.refresh(context: context)
+                }
+            }
         }
         .tint(Theme.accent)
         .sensoryFeedback(.success, trigger: progress.isMet)
@@ -77,7 +91,7 @@ struct TodayView: View {
             VStack(alignment: .leading, spacing: Spacing.md) {
                 Label {
                     Text("Welcome! Let's get started.")
-                        .font(.rounded(.headline, weight: .semibold))
+                        .font(.serif(.title3, weight: .semibold))
                         .foregroundStyle(Theme.label)
                 } icon: {
                     Image(systemName: "hand.wave.fill")
@@ -93,7 +107,7 @@ struct TodayView: View {
                 NavigationLink {
                     GuidedPlayerView(type: isRest ? .zone2 : today.type,
                                      prescribedMinutes: isRest ? Self.easyZone2Minutes : today.durationMin,
-                                     calc: calc)
+                                     calc: calc, repeats: recommendedFourByFourRepeats)
                 } label: {
                     Label("Start guided session", systemImage: "play.fill")
                 }
@@ -111,7 +125,7 @@ struct TodayView: View {
 
     private var header: some View {
         Text(Self.dateFormatter.string(from: .now))
-            .font(.rounded(.headline, weight: .medium))
+            .font(.serif(.title3))
             .foregroundStyle(Theme.secondaryLabel)
     }
 
@@ -123,12 +137,18 @@ struct TodayView: View {
                 HStack(alignment: .center, spacing: Spacing.md) {
                     ZStack {
                         Circle()
-                            .fill(color.opacity(0.12))
-                            .frame(width: 56, height: 56)
+                            .stroke(Theme.separator, lineWidth: 5)
+                        Circle()
+                            .trim(from: 0, to: min(1, max(0, CGFloat(readiness.value) / 100)))
+                            .stroke(color, style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                            .rotationEffect(.degrees(-90))
                         Text("\(readiness.value)")
-                            .numericStyle(.title2.weight(.bold))
+                            .font(.serif(.title3, weight: .bold))
+                            .monospacedDigit()
+                            .contentTransition(.numericText())
                             .foregroundStyle(color)
                     }
+                    .frame(width: 56, height: 56)
                     VStack(alignment: .leading, spacing: Spacing.xs) {
                         HStack(spacing: Spacing.xs) {
                             // Glyph + text carry the state without relying on color.
@@ -136,18 +156,31 @@ struct TodayView: View {
                                 .font(.subheadline.weight(.bold))
                                 .foregroundStyle(color)
                             Text(readinessTitle(readiness.label))
-                                .font(.rounded(.headline, weight: .semibold))
+                                .font(.serif(.title3, weight: .semibold))
                                 .foregroundStyle(Theme.label)
                         }
                         Text(readiness.label.recommendation)
                             .font(.subheadline)
                             .foregroundStyle(Theme.secondaryLabel)
+                        Text(readiness.explanation)
+                            .font(.caption)
+                            .foregroundStyle(Theme.secondaryLabel)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Label {
+                            Text(readiness.actionRecommendation)
+                                .font(.caption.weight(.semibold))
+                                .foregroundStyle(Theme.label)
+                                .fixedSize(horizontal: false, vertical: true)
+                        } icon: {
+                            Image(systemName: "figure.cooldown")
+                                .foregroundStyle(color)
+                        }
                     }
                     Spacer(minLength: 0)
                 }
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(
-                    "Readiness \(readiness.value), \(readinessTitle(readiness.label)), \(readiness.label.recommendation)"
+                    "Readiness \(readiness.value), \(readinessTitle(readiness.label)), \(readiness.label.recommendation) \(readiness.explanation) \(readiness.actionRecommendation)"
                 )
             }
         }
@@ -189,7 +222,7 @@ struct TodayView: View {
                         .background(Theme.accent.opacity(0.12), in: Circle())
                     VStack(alignment: .leading, spacing: Spacing.xs) {
                         Text(weekSummary(for: adapted))
-                            .font(.rounded(.headline, weight: .semibold))
+                            .font(.serif(.title3, weight: .semibold))
                             .foregroundStyle(Theme.label)
                         Text(coachingTip(base: base, adapted: adapted))
                             .font(.subheadline)
@@ -234,7 +267,7 @@ struct TodayView: View {
                             .background(Theme.accent.opacity(0.12), in: Circle())
                         VStack(alignment: .leading, spacing: 2) {
                             Text("Rest day")
-                                .font(.rounded(.title3, weight: .semibold))
+                                .font(.serif(.title2, weight: .semibold))
                                 .foregroundStyle(Theme.label)
                             Text("Recover well.")
                                 .font(.subheadline)
@@ -244,32 +277,61 @@ struct TodayView: View {
                     }
                 }
             } else {
-                NavigationLink {
-                    WorkoutDetailView(type: today.type, prescribedMinutes: today.durationMin, calc: calc)
-                } label: {
-                    HStack(spacing: Spacing.md) {
-                        Image(systemName: today.type.systemImage)
-                            .font(.title2)
-                            .foregroundStyle(Theme.accent)
-                            .frame(width: 44, height: 44)
-                            .background(Theme.accent.opacity(0.12), in: Circle())
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(today.type.displayName)
-                                .font(.rounded(.title3, weight: .semibold))
-                                .foregroundStyle(Theme.label)
-                            Text("\(today.durationMin) min")
-                                .numericStyle(.subheadline)
-                                .foregroundStyle(Theme.secondaryLabel)
+                Card {
+                    VStack(alignment: .leading, spacing: Spacing.md) {
+                        HStack(spacing: Spacing.md) {
+                            Image(systemName: today.type.systemImage)
+                                .font(.title2)
+                                .foregroundStyle(Theme.accent)
+                                .frame(width: 44, height: 44)
+                                .background(Theme.accent.opacity(0.12), in: Circle())
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(today.type.displayName)
+                                    .font(.serif(.title2, weight: .semibold))
+                                    .foregroundStyle(Theme.label)
+                                Text("\(today.durationMin) min")
+                                    .numericStyle(.subheadline)
+                                    .foregroundStyle(Theme.secondaryLabel)
+                            }
+                            Spacer()
                         }
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                            .font(.subheadline.weight(.semibold))
-                            .foregroundStyle(Theme.secondaryLabel)
+                        NavigationLink {
+                            WorkoutDetailView(type: today.type, prescribedMinutes: today.durationMin,
+                                              calc: calc, repeats: recommendedFourByFourRepeats)
+                        } label: {
+                            Label("Start workout", systemImage: "play.fill")
+                        }
+                        .buttonStyle(PrimaryButton())
                     }
-                    .card()
                 }
-                .buttonStyle(.plain)
             }
+
+            // Let the athlete start the other main session on demand, any day.
+            alternateWorkoutLink(today: today, calc: calc)
+        }
+    }
+
+    /// A quiet link to start the *other* main workout (e.g. a Norwegian 4×4 on a
+    /// Zone 2 day), so either is always one tap away regardless of today's plan.
+    @ViewBuilder
+    private func alternateWorkoutLink(today: PlannedSession, calc: HRZoneCalculator) -> some View {
+        let altType: SessionType = today.type == .norwegian4x4 ? .zone2 : .norwegian4x4
+        let altMinutes = altType == .norwegian4x4
+            ? Norwegian4x4.totalDurationSec / 60
+            : Self.easyZone2Minutes
+        NavigationLink {
+            WorkoutDetailView(type: altType, prescribedMinutes: altMinutes,
+                              calc: calc, repeats: recommendedFourByFourRepeats)
+        } label: {
+            HStack(spacing: Spacing.xs) {
+                Image(systemName: altType.systemImage)
+                Text("Start a \(altType.displayName) instead")
+            }
+            .font(.subheadline.weight(.semibold))
+            .foregroundStyle(Theme.accent)
+            .frame(maxWidth: .infinity)
+            .frame(minHeight: 44)
+            .contentShape(Rectangle())
         }
     }
 
@@ -278,9 +340,16 @@ struct TodayView: View {
             SectionHeader("Your zones")
             Card {
                 VStack(alignment: .leading, spacing: Spacing.md) {
-                    HStack(spacing: Spacing.sm) {
-                        ZoneChip(title: "Zone 2", range: rangeText(calc.zone2), color: HRZone.zone2.color)
-                        ZoneChip(title: "4×4 hard", range: rangeText(calc.fourByFourHard), color: HRZone.zone4.color)
+                    // Side by side normally; stacks when large Dynamic Type would clip them.
+                    ViewThatFits(in: .horizontal) {
+                        HStack(spacing: Spacing.sm) {
+                            ZoneChip(title: "Zone 2", range: rangeText(calc.zone2), color: HRZone.zone2.color)
+                            ZoneChip(title: "4×4 hard", range: rangeText(calc.fourByFourHard), color: HRZone.zone4.color)
+                        }
+                        VStack(alignment: .leading, spacing: Spacing.sm) {
+                            ZoneChip(title: "Zone 2", range: rangeText(calc.zone2), color: HRZone.zone2.color)
+                            ZoneChip(title: "4×4 hard", range: rangeText(calc.fourByFourHard), color: HRZone.zone4.color)
+                        }
                     }
                     ZoneChip(title: "Max HR", range: "\(calc.maxHR) bpm", color: HRZone.zone5.color)
                 }
@@ -303,7 +372,7 @@ struct TodayView: View {
                                     .foregroundStyle(Theme.secondaryLabel)
                             } icon: {
                                 Image(systemName: "flame.fill")
-                                    .foregroundStyle(.orange)
+                                    .foregroundStyle(Theme.accent)
                             }
                             Spacer()
                             Text("\(health.todayEnergy) kcal")
@@ -316,25 +385,14 @@ struct TodayView: View {
         }
     }
 
-    @ViewBuilder
     private func actionsSection(today: PlannedSession, calc: HRZoneCalculator, isRest: Bool) -> some View {
-        VStack(spacing: Spacing.md) {
-            if !isRest {
-                NavigationLink {
-                    WorkoutDetailView(type: today.type, prescribedMinutes: today.durationMin, calc: calc)
-                } label: {
-                    Label("Start workout", systemImage: "play.fill")
-                }
-                .buttonStyle(PrimaryButton())
-            }
-
-            NavigationLink {
-                ManualEntryView(defaultType: isRest ? .zone2 : today.type)
-            } label: {
-                Label("Log a workout", systemImage: "plus.circle.fill")
-            }
-            .buttonStyle(SecondaryButton())
+        // Primary "Start" now lives in the session hero; this is the secondary log action.
+        NavigationLink {
+            ManualEntryView(defaultType: isRest ? .zone2 : today.type)
+        } label: {
+            Label("Log a workout", systemImage: "plus.circle.fill")
         }
+        .buttonStyle(SecondaryButton())
     }
 
     // MARK: - Helpers

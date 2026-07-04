@@ -28,6 +28,7 @@ private final class SpyHealthService: HealthProviding, @unchecked Sendable {
     func todayActiveEnergyKcal() async -> Int { 0 }
     func latestBodyMassKg() async -> Double? { nil }
     func restingHeartRate() async -> Int? { nil }
+    func observedMaxHeartRate(days: Int) async -> Int? { nil }
     func bodyMassSeries(days: Int) async -> [(date: Date, kg: Double)] { [] }
     func recentWorkouts(days: Int) async -> [HealthWorkout] { importableWorkouts }
     func vo2MaxSeries(days: Int) async -> [VO2MaxSample] { [] }
@@ -42,7 +43,7 @@ private final class SpyHealthService: HealthProviding, @unchecked Sendable {
 struct HealthWritebackTests {
     private func makeContext() throws -> ModelContext {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: WorkoutLog.self, ProfileRecord.self,
+        let container = try ModelContainer(for: WorkoutLog.self, ProfileRecord.self, DeletedWorkout.self,
                                            configurations: config)
         return ModelContext(container)
     }

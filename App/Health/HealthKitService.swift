@@ -80,6 +80,9 @@ final class HealthKitService: HealthProviding, @unchecked Sendable {
             try await builder.addSamples([sample])
         }
 
+        // Stamp the session kind so a re-import from Health recovers the right type.
+        try await builder.addMetadata([WorkoutMetadata.sessionTypeKey: type.rawValue])
+
         try await builder.endCollection(at: end)
         guard let workout = try await builder.finishWorkout() else { throw WriteError.finishFailed }
         return workout.uuid.uuidString
@@ -115,6 +118,50 @@ final class HealthKitService: HealthProviding, @unchecked Sendable {
         let unit = HKUnit.count().unitDivided(by: .minute())
         guard let bpm = await latestQuantity(of: type, unit: unit) else { return nil }
         return Int(bpm.rounded())
+    }
+
+    func observedMaxHeartRate(days: Int) async -> Int? {
+        guard HKHealthStore.isHealthDataAvailable(),
+              let type = HKQuantityType.quantityType(forIdentifier: .heartRate) else { return nil }
+        let unit = HKUnit.count().unitDivided(by: .minute())
+        let cal = Calendar.current
+        let start = cal.startOfDay(for: cal.date(byAdding: .day, value: -days, to: .now) ?? .now)
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: .now)
+
+        // Per-day maxima rather than one global max, so a single bogus spike on one
+        // day doesn't define the ceiling.
+        let dailyMaxes: [Int] = await withCheckedContinuation { continuation in
+            let query = HKStatisticsCollectionQuery(
+                quantityType: type,
+                quantitySamplePredicate: predicate,
+                options: .discreteMax,
+                anchorDate: start,
+                intervalComponents: DateComponents(day: 1)
+            )
+            query.initialResultsHandler = { _, collection, _ in
+                var values: [Int] = []
+                collection?.enumerateStatistics(from: start, to: .now) { stats, _ in
+                    if let bpm = stats.maximumQuantity()?.doubleValue(for: unit) {
+                        values.append(Int(bpm.rounded()))
+                    }
+                }
+                continuation.resume(returning: values)
+            }
+            store.execute(query)
+        }
+
+        return Self.filteredObservedMax(dailyMaxes)
+    }
+
+    /// Picks a robust "observed max" from per-day maxima: keep only physiologically
+    /// plausible values, drop the top spike(s) as likely artifacts, and return the
+    /// highest remaining. A genuine max recurs across days, so it survives the trim.
+    static func filteredObservedMax(_ dailyMaxes: [Int]) -> Int? {
+        let plausible = dailyMaxes.filter { (100...215).contains($0) }.sorted()
+        guard !plausible.isEmpty else { return nil }
+        // Drop up to the top 2 days as potential one-off artifacts when we have enough data.
+        let dropTop = plausible.count >= 5 ? 2 : (plausible.count >= 3 ? 1 : 0)
+        return plausible[plausible.count - 1 - dropTop]
     }
 
     func bodyMassSeries(days: Int) async -> [(date: Date, kg: Double)] {
@@ -153,14 +200,21 @@ final class HealthKitService: HealthProviding, @unchecked Sendable {
                 limit: HKObjectQueryNoLimit,
                 sortDescriptors: [sort]
             ) { _, samples, _ in
+                let bpmUnit = HKUnit.count().unitDivided(by: .minute())
                 let workouts: [HealthWorkout] = (samples as? [HKWorkout] ?? []).map { w in
                     let kcal = w.statistics(for: HKQuantityType(.activeEnergyBurned))?
                         .sumQuantity()?.doubleValue(for: .kilocalorie())
+                    let avgHR = w.statistics(for: HKQuantityType(.heartRate))?
+                        .averageQuantity()?.doubleValue(for: bpmUnit)
+                    let stampedType = (w.metadata?[WorkoutMetadata.sessionTypeKey] as? String)
+                        .flatMap(SessionType.init(rawValue:))
                     return HealthWorkout(
                         uuid: w.uuid.uuidString,
                         date: w.startDate,
                         durationMin: Int((w.duration / 60).rounded()),
-                        energyKcal: kcal.map { Int($0.rounded()) }
+                        energyKcal: kcal.map { Int($0.rounded()) },
+                        type: stampedType,
+                        avgHR: avgHR.map { Int($0.rounded()) }
                     )
                 }
                 continuation.resume(returning: workouts)

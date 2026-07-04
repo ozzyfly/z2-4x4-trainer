@@ -56,6 +56,21 @@ struct HistoryView: View {
         let value: Double
     }
 
+    private struct QualityPoint: Identifiable {
+        let id = UUID()
+        let date: Date
+        let score: Int
+    }
+
+    /// Scored 4×4 sessions over time, oldest first.
+    private var qualityPoints: [QualityPoint] {
+        logs.filter { $0.type == .norwegian4x4 && $0.qualityScore != nil }
+            .sorted { $0.date < $1.date }
+            .map { QualityPoint(date: $0.date, score: $0.qualityScore ?? 0) }
+    }
+
+    private var hasQualityData: Bool { !qualityPoints.isEmpty }
+
     /// Locale-aware short weekday names reordered to Monday-first, matching
     /// `ActivityAggregator`'s 0 = Mon … 6 = Sun indexing.
     private static let weekdayLabels: [String] = {
@@ -169,7 +184,13 @@ struct HistoryView: View {
                 durationMin: log.durationMin,
                 energyKcal: log.activeEnergyKcal,
                 note: log.note,
-                source: log.source.rawValue
+                source: log.source.rawValue,
+                avgHR: log.avgHR,
+                peakHR: log.peakHR,
+                avgHardHR: log.avgHardHR,
+                repsCompleted: log.repsCompleted,
+                qualityScore: log.qualityScore,
+                totalSec: log.totalSec
             )
         }
     }
@@ -198,6 +219,7 @@ struct HistoryView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: Spacing.xl) {
                     minutesSection
+                    if hasQualityData { qualitySection }
                     fitnessSection
                     weightSection
                     RecentWorkoutsSection()
@@ -260,6 +282,34 @@ struct HistoryView: View {
                         }
                         .buttonStyle(SecondaryButton())
                     }
+                }
+            }
+        }
+    }
+
+    private var qualitySection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("4×4 quality trend")
+            Card {
+                VStack(alignment: .leading, spacing: Spacing.md) {
+                    chartCaption(String(localized: "Quality score (0–100)"))
+                    Chart(qualityPoints) { point in
+                        LineMark(
+                            x: .value("Date", point.date),
+                            y: .value("Quality", point.score)
+                        )
+                        .foregroundStyle(Theme.accent)
+                        .interpolationMethod(.catmullRom)
+                        PointMark(
+                            x: .value("Date", point.date),
+                            y: .value("Quality", point.score)
+                        )
+                        .foregroundStyle(Theme.accent)
+                        .accessibilityValue("\(point.score)")
+                    }
+                    .chartYScale(domain: 0...100)
+                    .chartYAxis { AxisMarks(position: .leading) }
+                    .frame(height: chartHeight)
                 }
             }
         }

@@ -10,7 +10,7 @@ import SharedCore
 struct WorkoutSourceTests {
     private func makeContext() throws -> ModelContext {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: WorkoutLog.self, ProfileRecord.self,
+        let container = try ModelContainer(for: WorkoutLog.self, ProfileRecord.self, DeletedWorkout.self,
                                            configurations: config)
         return ModelContext(container)
     }

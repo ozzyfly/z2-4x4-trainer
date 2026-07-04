@@ -26,7 +26,7 @@ struct StreakBanner: View {
                 streakIcon
                 VStack(alignment: .leading, spacing: 2) {
                     Text(String(localized: "\(currentWeeks)-week streak"))
-                        .font(.rounded(.title2, weight: .bold))
+                        .font(.serif(.title2, weight: .bold))
                         .foregroundStyle(Theme.label)
                     Text(String(localized: "Longest: \(longestWeeks)"))
                         .font(.subheadline)
@@ -43,7 +43,7 @@ struct StreakBanner: View {
                 streakIcon
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Start a streak this week")
-                        .font(.rounded(.title3, weight: .semibold))
+                        .font(.serif(.title3, weight: .semibold))
                         .foregroundStyle(Theme.label)
                     Text(longestWeeks > 0 ? String(localized: "Your best: \(longestWeeks) weeks") : "Log a workout to begin.")
                         .font(.subheadline)

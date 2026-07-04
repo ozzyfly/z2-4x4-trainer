@@ -34,6 +34,26 @@ final class WatchWorkoutSender: NSObject, WCSessionDelegate, @unchecked Sendable
         }
     }
 
+    /// Only called from HealthKit's (serial) builder-delegate queue, so plain vars
+    /// are safe without a lock.
+    private var lastLiveHRSentAt = Date.distantPast
+    /// Minimum spacing between live-HR messages — each `sendMessage` wakes the
+    /// radio, so streaming every sample costs real battery for no visible gain.
+    private static let liveHRMinIntervalSec: TimeInterval = 5
+
+    /// Streams a live heart-rate sample to the phone, best-effort and throttled to
+    /// one message per `liveHRMinIntervalSec`. Dropped silently when the phone
+    /// isn't reachable — live data isn't worth queueing.
+    func sendLiveHR(_ bpm: Int) {
+        guard WCSession.isSupported() else { return }
+        let session = WCSession.default
+        guard session.activationState == .activated, session.isReachable else { return }
+        let now = Date()
+        guard now.timeIntervalSince(lastLiveHRSentAt) >= Self.liveHRMinIntervalSec else { return }
+        lastLiveHRSentAt = now
+        session.sendMessage(["liveHR": bpm], replyHandler: nil, errorHandler: { _ in })
+    }
+
     // MARK: WCSessionDelegate
 
     func session(_ session: WCSession,
@@ -62,8 +82,18 @@ final class WatchWorkoutSender: NSObject, WCSessionDelegate, @unchecked Sendable
         if let data = applicationContext["profile"] as? Data,
            let profile = try? JSONDecoder().decode(UserProfile.self, from: data) {
             SyncedProfileStore.write(profile)
+            // Let a foregrounded session screen pick up the new zones immediately,
+            // instead of waiting for the next app launch.
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .syncedProfileDidChange, object: profile)
+            }
         }
     }
+}
+
+extension Notification.Name {
+    /// Posted (with the decoded `UserProfile`) when the phone syncs a new profile.
+    static let syncedProfileDidChange = Notification.Name("syncedProfileDidChange")
 }
 
 /// Caches the profile synced from the phone in the watch App Group container so

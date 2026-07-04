@@ -10,7 +10,7 @@ import SharedCore
 struct GuidedPlayerLoggingTests {
     private func makeContext() throws -> ModelContext {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: WorkoutLog.self, ProfileRecord.self,
+        let container = try ModelContainer(for: WorkoutLog.self, ProfileRecord.self, DeletedWorkout.self,
                                            configurations: config)
         return ModelContext(container)
     }
@@ -85,6 +85,18 @@ struct GuidedPlayerLoggingTests {
         #expect(logs.first?.type == .zone2)
         #expect(logs.first?.durationMin == 42)
         #expect(logs.first?.source == .guided)
+    }
+
+    @Test("logWorkout returns the created log for feedback")
+    func logWorkoutReturnsCreatedLog() throws {
+        let ctx = try makeContext()
+        let logger = GuidedSessionLogger(context: ctx)
+        let log = try #require(logger.logWorkout(type: .zone2, isFinished: false,
+                                                 elapsedSec: 42 * 60, prescribedMinutes: 40))
+        log.note = "Felt: Good"
+        let logs = try ctx.fetch(FetchDescriptor<WorkoutLog>())
+        #expect(logs.count == 1)
+        #expect(logs.first?.note == "Felt: Good")
     }
 
     @Test("cancelling a guided zone 2 before prescribed inserts nothing")
