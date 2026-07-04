@@ -24,5 +24,7 @@ Package.resolved
 *.p8
 AuthKey_*.p8
 /ExportOptions.plist
+# Machine-local agent permissions — contains the ASC issuer ID and local paths
+.claude/settings.local.json
 .spectra/
 openspec/.vector-search.db*
