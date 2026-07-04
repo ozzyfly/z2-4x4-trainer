@@ -7,20 +7,12 @@ check the boxes and archive.
 
 ---
 
-## ⚠️ Read first — guided player does NOT auto-log
+## ~~⚠️ Read first — guided player does NOT auto-log~~ RESOLVED 2026-06-21
 
-Source review found that `GuidedPlayerView` is a coaching timer only: its **End** button calls
-`engine.stop()` + `dismiss()` and never writes a `WorkoutLog`. The Today/Week/History screens
-read from the `WorkoutLog` SwiftData store, which is written from three places only:
-Manual Entry, the watch sync receiver (`PhoneSessionReceiver`), and Apple Health import.
-
-**Implication for task 4.1:** after finishing a guided Zone 2 / 4×4 on the *phone*, the session
-will **not** appear in stats by itself — you must log it (Manual Entry) or have it come from the
-watch / Apple Health. Confirm whether that's the intended UX before signing off 4.1. If you
-expected "finish guided → auto-appears in History," that's a product gap to file as a new change,
-not a verification failure of the sync work.
-
-(On the *watch* side, task 5.x is unaffected — the watch's `HKWorkoutSession` does save and sync.)
+`guided-player-autolog` closed this gap: a completed phone-guided session now writes a
+`WorkoutLog` via `GuidedSessionLogger` (4×4 on `isFinished`; Zone 2 once elapsed reaches the
+prescribed minutes). For 4.1, a finished guided session **should** appear in Today/Week/History
+by itself — if it doesn't, that's now a verification FAILURE, not expected behavior.
 
 ---
 
@@ -72,6 +64,43 @@ Steps:
     the automated `PhoneSessionReceiverTests` already prove the dedup logic, this confirms it on real hardware).
 
 Pass criteria: single record across both devices, present in iPhone stats.
+
+- RESULT: <pending>
+- NOTES:
+
+---
+
+## ⚠️ 2026-07-03 changes — extra checks to fold into 4.1 / 5.1 / 5.2
+
+The July robustness pass rewrote the timing core and the watch auth. While you're on hardware
+anyway, verify these in the same runs (they're exactly the behaviors a simulator can't prove):
+
+**During 5.1 (watch 4×4):**
+- [ ] **Wrist-down timing (TickClock)** — during a hard segment, drop your wrist for ~30s, then
+      look again. The countdown must have advanced by the elapsed wall time (catch-up ticks),
+      not frozen where you left it. This was the #1 real-device risk of the old tick-per-timer code.
+- [ ] **Energy samples (share-auth fix)** — the permission sheet should now also request
+      *write* access for Active Energy + Heart Rate. After the session, the synced log on the
+      phone should show a non-nil kcal value, and the workout in Apple Health should contain
+      energy. (First run after updating: expect a new permission prompt.)
+- [ ] **HR-loss fallback** — optional: loosen the strap for ~20s mid-Zone 2. The live view
+      should flip to "No HR — timed" and keep crediting time (blind fallback) instead of
+      freezing at the banked seconds; also verify stale-HR handling means it doesn't keep
+      counting your last reading as in-zone forever.
+
+**During 5.2 (sync):**
+- [ ] Live HR on a phone-side guided screen updates at most every ~5s now (throttle) — slower
+      cadence is intended, dead stream is not.
+- [ ] After the watch workout syncs in, check a Readiness widget/complication: the score must
+      **survive** the sync (readiness carry-forward fix) rather than going blank.
+
+**During 4.1 (TestFlight):**
+- [ ] Guided session: screen must **not** auto-lock mid-session (idle timer fix), and if music
+      is playing, it should duck only while a cue is spoken and recover right after — not stay
+      quiet for the whole session (SpeechCoordinator).
+- [ ] Finished guided session auto-appears in Today/Week/History (autolog — see resolved note).
+- [ ] UI pass: SF (non-rounded) numerals, slimmer target bar, brand-orange widgets/watch rows
+      render acceptably in light + dark (Hermès refinement round — pure visual judgment call).
 
 - RESULT: <pending>
 - NOTES:
