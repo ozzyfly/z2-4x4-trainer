@@ -1,5 +1,12 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-07-03 (late): build 58 uploaded to App Store Connect** ("Upload succeeded", processing).
+> First build containing the July robustness/UI rounds — supersedes TestFlight build 12; the
+> hardware checks in `docs/manual-verification-checklist.md` (5.1/5.2/4.1 + 2026-07-03 extras)
+> must run against 58+. ASC key now at `~/private_keys/AuthKey_4AJBG7WZAL.p8`;
+> `.claude/settings.local.json` ignored (held the issuer ID). Next: hardware runs → fill
+> RESULT lines → archive `watch-phone-sync` + `app-store-submission`.
+
 > **2026-07-03: robustness + release-pipeline pass (agent review) — VERIFIED on Mac same day:**
 > SharedCore `swift test` 106/106, iOS `xcodebuild test` (iPhone 17 sim) 31/31, watch build
 > succeeded. Committed alongside the previously uncommitted Awards-feature removal (separate
