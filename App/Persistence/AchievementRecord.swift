@@ -1,12 +1,12 @@
 import Foundation
 import SwiftData
 
-/// Records that an `Achievement` (by its catalog `id`) has been unlocked, and when.
-/// Persisting the unlock lets the UI distinguish *newly* unlocked badges from
-/// previously celebrated ones across launches.
+/// Legacy unlocked-achievement record. The Awards feature has been removed, but this
+/// model is retained (and kept in the SwiftData schema) so existing installs migrate
+/// cleanly rather than dropping an entity. Nothing writes to it anymore.
 @Model
 final class AchievementRecord {
-    /// The `Achievement.id` from `Achievement.catalog`.
+    /// The achievement catalog id it recorded.
     var id: String
     /// When the achievement was first unlocked.
     var unlockedDate: Date
