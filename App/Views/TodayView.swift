@@ -48,6 +48,10 @@ struct TodayView: View {
                         readinessSection(readiness)
                     }
 
+                    // Overtraining early warning that needs no sensors at all:
+                    // acute (7-day) vs chronic (28-day) load from the logs alone.
+                    trainingLoadSection(history: history)
+
                     StreakBanner(
                         currentWeeks: StreakCalculator.currentWeeks(in: history),
                         longestWeeks: StreakCalculator.longestWeeks(in: history)
@@ -207,6 +211,41 @@ struct TodayView: View {
         case .goHard: return "bolt.fill"
         case .steady: return "equal.circle.fill"
         case .easy:   return "moon.fill"
+        }
+    }
+
+    /// Shown only when the acute:chronic workload ratio is in the caution or
+    /// high-risk zone — silence is the normal state.
+    @ViewBuilder
+    private func trainingLoadSection(history: [WorkoutRecord]) -> some View {
+        let load = TrainingLoad.assess(history: history)
+        if load.level != .ok, let ratio = load.ratio {
+            let color = load.level == .highRisk ? Theme.danger : Theme.warning
+            VStack(alignment: .leading, spacing: Spacing.sm) {
+                SectionHeader("Training load")
+                Card {
+                    HStack(alignment: .top, spacing: Spacing.md) {
+                        Image(systemName: "gauge.with.needle.fill")
+                            .font(.title2)
+                            .foregroundStyle(color)
+                            .frame(width: 44, height: 44)
+                            .background(color.opacity(0.12), in: Circle())
+                        VStack(alignment: .leading, spacing: Spacing.xs) {
+                            Text(load.level == .highRisk
+                                 ? String(localized: "Ramping too fast")
+                                 : String(localized: "Ramping fast"))
+                                .font(.serif(.title3, weight: .semibold))
+                                .foregroundStyle(Theme.label)
+                            Text(String(localized: "This week is \(ratio.formatted(.number.precision(.fractionLength(1))))× your 4-week norm (\(load.acuteMinutes) vs ~\(load.chronicWeeklyMinutes) min). Consider easing — big jumps drive overtraining and injury."))
+                                .font(.subheadline)
+                                .foregroundStyle(Theme.secondaryLabel)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        Spacer(minLength: 0)
+                    }
+                    .accessibilityElement(children: .combine)
+                }
+            }
         }
     }
 

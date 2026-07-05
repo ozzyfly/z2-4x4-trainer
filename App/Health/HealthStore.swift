@@ -55,7 +55,17 @@ final class HealthStore {
 
         let hrv = await provider.hrvSeries(days: 30)
         let restingHR = await provider.restingHeartRateSeries(days: 30)
-        readiness = ReadinessCalculator.score(hrv: hrv, restingHR: restingHR)
+        // Optional recovery signals: sleeping wrist temperature above baseline
+        // and short sleep both subtract from readiness (penalty-only, so their
+        // absence changes nothing).
+        let wristTemp = await provider.wristTemperatureSeries(days: 30)
+        let sleepHours = await provider.lastNightSleepHours()
+        readiness = ReadinessCalculator.score(
+            hrv: hrv,
+            restingHR: restingHR,
+            wristTemp: wristTemp,
+            sleepHours: sleepHours
+        )
     }
 
     /// The most recent resting heart-rate reading from Apple Health, if any.

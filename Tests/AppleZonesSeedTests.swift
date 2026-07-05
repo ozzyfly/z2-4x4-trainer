@@ -25,6 +25,8 @@ struct AppleZonesSeedTests {
         func vo2MaxSeries(days: Int) async -> [VO2MaxSample] { [] }
         func hrvSeries(days: Int) async -> [MetricSample] { [] }
         func restingHeartRateSeries(days: Int) async -> [MetricSample] { [] }
+        func wristTemperatureSeries(days: Int) async -> [MetricSample] { [] }
+        func lastNightSleepHours() async -> Double? { nil }
     }
 
     // MARK: appleZoneSeed

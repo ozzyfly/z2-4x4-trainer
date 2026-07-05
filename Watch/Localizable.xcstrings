@@ -1,117 +1,71 @@
 {
   "sourceLanguage": "en",
   "strings": {
-    "No target": {
+    "%lld/%lld full reps": {
       "extractionState": "manual",
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sin objetivo"
+            "value": "%lld/%lld rep completas"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "目標なし"
+            "value": "%lld/%lld 本完了"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "沒有目標"
+            "value": "完成 %lld/%lld 組"
           }
         }
       }
     },
-    "Too low": {
+    "Avg HR %lld": {
       "extractionState": "manual",
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Demasiado bajo"
+            "value": "FC media %lld"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "低すぎます"
+            "value": "平均HR %lld"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "太低"
+            "value": "平均心率 %lld"
           }
         }
       }
     },
-    "Too high": {
+    "Avg hard %lld · peak %lld": {
       "extractionState": "manual",
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Demasiado alto"
+            "value": "Media dura %lld · pico %lld"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "高すぎます"
+            "value": "ハード平均 %lld · ピーク %lld"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "太高"
-          }
-        }
-      }
-    },
-    "Start a session to see your target.": {
-      "extractionState": "manual",
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Inicia una sesión para ver tu objetivo."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "セッションを開始すると目標が表示されます。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "開始訓練後會顯示你的目標。"
-          }
-        }
-      }
-    },
-    "Keep moving while Apple Watch locks onto your heart rate.": {
-      "extractionState": "manual",
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sigue moviéndote mientras Apple Watch detecta tu frecuencia cardíaca."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch が心拍数を検出するまで動き続けてください。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch 鎖定心率時請保持活動。"
+            "value": "高強度平均 %lld · 最高 %lld"
           }
         }
       }
@@ -139,25 +93,48 @@
         }
       }
     },
-    "Hold %lld–%lld bpm.": {
+    "Cancel": {
       "extractionState": "manual",
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mantén %lld–%lld ppm."
+            "value": "Cancelar"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld–%lld bpm を維持します。"
+            "value": "キャンセル"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "維持在 %lld–%lld bpm。"
+            "value": "取消"
+          }
+        }
+      }
+    },
+    "Do Zone 2 instead": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mejor haz Zona 2"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "代わりにZone 2"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "改做 Zone 2"
           }
         }
       }
@@ -185,29 +162,6 @@
         }
       }
     },
-    "Zone 2 summary": {
-      "extractionState": "manual",
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Resumen Zone 2"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 2 サマリー"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 2 總結"
-          }
-        }
-      }
-    },
     "Effective Zone 2": {
       "extractionState": "manual",
       "localizations": {
@@ -231,25 +185,48 @@
         }
       }
     },
-    "Avg HR %lld": {
+    "Hard time %lldm · recoveries %lld/%lld": {
       "extractionState": "manual",
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "FC media %lld"
+            "value": "Tiempo duro %lldm · recuperaciones %lld/%lld"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "平均HR %lld"
+            "value": "ハード時間 %lld分 · 回復 %lld/%lld"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "平均心率 %lld"
+            "value": "高強度時間 %lld分 · 恢復 %lld/%lld"
+          }
+        }
+      }
+    },
+    "Hold %lld–%lld bpm.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantén %lld–%lld ppm."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld–%lld bpm を維持します。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "維持在 %lld–%lld bpm。"
           }
         }
       }
@@ -300,48 +277,71 @@
         }
       }
     },
-    "%lld/%lld full reps": {
+    "Keep moving while Apple Watch locks onto your heart rate.": {
       "extractionState": "manual",
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld/%lld rep completas"
+            "value": "Sigue moviéndote mientras Apple Watch detecta tu frecuencia cardíaca."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld/%lld 本完了"
+            "value": "Apple Watch が心拍数を検出するまで動き続けてください。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "完成 %lld/%lld 組"
+            "value": "Apple Watch 鎖定心率時請保持活動。"
           }
         }
       }
     },
-    "Avg hard %lld · peak %lld": {
+    "Low readiness": {
       "extractionState": "manual",
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Media dura %lld · pico %lld"
+            "value": "Baja preparación"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ハード平均 %lld · ピーク %lld"
+            "value": "回復不足"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "高強度平均 %lld · 最高 %lld"
+            "value": "恢復狀態不佳"
+          }
+        }
+      }
+    },
+    "No target": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin objetivo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標なし"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "沒有目標"
           }
         }
       }
@@ -369,25 +369,163 @@
         }
       }
     },
-    "Hard time %lldm · recoveries %lld/%lld": {
+    "Recovery looks limited today. An easy Zone 2 is recommended; a 4×4 runs reduced (3 intervals).": {
       "extractionState": "manual",
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tiempo duro %lldm · recuperaciones %lld/%lld"
+            "value": "La recuperación parece limitada hoy. Se recomienda Zona 2 suave; el 4×4 se reduce (3 intervalos)."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ハード時間 %lld分 · 回復 %lld/%lld"
+            "value": "今日は回復が限られています。軽いZone 2がおすすめ。4×4は短縮（3本）になります。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "高強度時間 %lld分 · 恢復 %lld/%lld"
+            "value": "今天恢復有限，建議做輕鬆的 Zone 2；若做 4×4 會縮減為 3 組。"
+          }
+        }
+      }
+    },
+    "Reduced 4×4 anyway": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4×4 reducido igual"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "短縮4×4を実行"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仍做縮減版 4×4"
+          }
+        }
+      }
+    },
+    "Start a session to see your target.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicia una sesión para ver tu objetivo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "セッションを開始すると目標が表示されます。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始訓練後會顯示你的目標。"
+          }
+        }
+      }
+    },
+    "Still no reading — check Health access in the watch Settings app, and snug the band.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún sin lectura: revisa el acceso a Salud en Ajustes del reloj y ajusta la correa."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "まだ読み取れません。Watchの設定で「ヘルスケア」のアクセスを確認し、バンドを締め直してください。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仍讀不到心率——請到手錶的「設定」檢查「健康」取用權限，並收緊錶帶。"
+          }
+        }
+      }
+    },
+    "Too high": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demasiado alto"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高すぎます"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "太高"
+          }
+        }
+      }
+    },
+    "Too low": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demasiado bajo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "低すぎます"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "太低"
+          }
+        }
+      }
+    },
+    "Zone 2 summary": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resumen Zone 2"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zone 2 サマリー"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zone 2 總結"
           }
         }
       }

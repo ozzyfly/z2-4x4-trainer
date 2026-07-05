@@ -62,4 +62,12 @@ protocol HealthProviding: Sendable {
 
     /// Resting heart-rate (bpm) samples over the last `days` days, oldest first.
     func restingHeartRateSeries(days: Int) async -> [MetricSample]
+
+    /// Sleeping wrist-temperature samples (°C) over the last `days` days, oldest
+    /// first. Empty on devices/permissions without the metric (needs an Apple
+    /// Watch worn during sleep, Series 8+/Ultra).
+    func wristTemperatureSeries(days: Int) async -> [MetricSample]
+
+    /// Hours asleep during the most recent night, or nil when none was recorded.
+    func lastNightSleepHours() async -> Double?
 }

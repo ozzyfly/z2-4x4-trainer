@@ -90,4 +90,17 @@ struct PreviewHealthService: HealthProviding {
             return MetricSample(date: date, value: value)
         }
     }
+
+    func wristTemperatureSeries(days: Int) async -> [MetricSample] {
+        let cal = Calendar.current
+        // Steady baseline at 34.1°C, today unremarkable — no temp penalty in previews.
+        let values: [Double] = [34.1, 34.0, 34.2, 34.1, 34.1, 34.0, 34.2, 34.1, 34.1, 34.1]
+        return values.enumerated().compactMap { offset, value in
+            let daysAgo = values.count - 1 - offset
+            guard let date = cal.date(byAdding: .day, value: -daysAgo, to: .now) else { return nil }
+            return MetricSample(date: date, value: value)
+        }
+    }
+
+    func lastNightSleepHours() async -> Double? { 7.4 }
 }

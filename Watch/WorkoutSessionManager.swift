@@ -66,6 +66,11 @@ final class WorkoutSessionManager: NSObject, @unchecked Sendable {
     /// wall-clock time instead (surfaced as "No HR — timed" in the live view).
     @MainActor var zone2Blind: Bool { zone2Tracker?.isBlind ?? false }
 
+    /// Freshest readiness known to the list screen (watch-computed when the
+    /// phone snapshot is stale). When set, it wins over the snapshot's label
+    /// for the 4×4 rep reduction.
+    @MainActor var readinessOverride: ReadinessLabel?
+
     // MARK: HealthKit
     private let store = HKHealthStore()
     private var session: HKWorkoutSession?
@@ -128,6 +133,14 @@ final class WorkoutSessionManager: NSObject, @unchecked Sendable {
             typesToRead.insert(energy)
             typesToShare.insert(energy)
         }
+        // Read-only recovery metrics so the watch can compute readiness on its
+        // own when the phone hasn't synced a fresh snapshot.
+        if let hrv = HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN) {
+            typesToRead.insert(hrv)
+        }
+        if let resting = HKQuantityType.quantityType(forIdentifier: .restingHeartRate) {
+            typesToRead.insert(resting)
+        }
         try await store.requestAuthorization(toShare: typesToShare, read: typesToRead)
     }
 
@@ -149,10 +162,20 @@ final class WorkoutSessionManager: NSObject, @unchecked Sendable {
         do {
             let session = try HKWorkoutSession(healthStore: store, configuration: configuration)
             let builder = session.associatedWorkoutBuilder()
-            builder.dataSource = HKLiveWorkoutDataSource(
+            let dataSource = HKLiveWorkoutDataSource(
                 healthStore: store,
                 workoutConfiguration: configuration
             )
+            // Belt-and-braces: the data source enables applicable types by
+            // default, but heart rate is the whole product — enable it (and
+            // energy) explicitly so a quiet default can never leave us blind.
+            if let hr = HKQuantityType.quantityType(forIdentifier: .heartRate) {
+                dataSource.enableCollection(for: hr, predicate: nil)
+            }
+            if let energy = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) {
+                dataSource.enableCollection(for: energy, predicate: nil)
+            }
+            builder.dataSource = dataSource
             session.delegate = self
             builder.delegate = self
 
@@ -160,8 +183,11 @@ final class WorkoutSessionManager: NSObject, @unchecked Sendable {
             self.builder = builder
 
             if kind.isStructured {
-                // Drop to a reduced session on low-readiness days; honor advanced guards.
-                let reps = Norwegian4x4.recommendedRepeats(for: WidgetSnapshotStore.read()?.readinessLabel)
+                // Drop to a reduced session on low-readiness days; honor advanced
+                // guards. A watch-computed readiness (set by the list screen when
+                // the phone snapshot is stale) wins over the synced label.
+                let label = readinessOverride ?? WidgetSnapshotStore.read()?.readinessLabel
+                let reps = Norwegian4x4.recommendedRepeats(for: label)
                 let engine = IntervalEngine(
                     calculator: calculator,
                     repeats: reps,

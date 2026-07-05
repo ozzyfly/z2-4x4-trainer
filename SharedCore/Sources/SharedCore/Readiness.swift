@@ -26,6 +26,11 @@ public enum ReadinessSignal: String, Sendable, Equatable {
     case restingHRNearBaseline
     case restingHRAboveBaseline
     case restingHRMissing
+    /// Sleeping wrist temperature is meaningfully above the personal baseline
+    /// (possible illness or incomplete recovery).
+    case wristTempElevated
+    /// Last night's sleep was short enough to impair recovery.
+    case sleepShort
 
     public var explanation: String {
         switch self {
@@ -43,6 +48,10 @@ public enum ReadinessSignal: String, Sendable, Equatable {
             return String(localized: "Resting heart rate is elevated.", bundle: .module)
         case .restingHRMissing:
             return String(localized: "Resting heart-rate history is still limited.", bundle: .module)
+        case .wristTempElevated:
+            return String(localized: "Wrist temperature is above your baseline.", bundle: .module)
+        case .sleepShort:
+            return String(localized: "Sleep was short last night.", bundle: .module)
         }
     }
 }
@@ -92,14 +101,30 @@ public enum ReadinessCalculator {
     static let excludeRecentDays = 1
     /// Minimum HRV baseline samples required to produce a score.
     static let minimumHRVSamples = 3
+    /// Minimum wrist-temperature baseline samples before the deviation is trusted.
+    static let minimumTempSamples = 7
+    /// Wrist-temp deviation (°C above baseline) that starts penalising readiness.
+    static let tempCautionDeltaC = 0.3
+    /// Deviation treated as strongly elevated (bigger penalty).
+    static let tempElevatedDeltaC = 0.5
+    /// Sleep below this many hours applies the small penalty…
+    static let sleepShortHours = 6.0
+    /// …and below this the large penalty.
+    static let sleepVeryShortHours = 5.0
 
     /// Computes a readiness score, or nil when there isn't enough history.
     ///
-    /// Higher HRV vs baseline raises readiness; higher resting HR vs baseline lowers it.
+    /// Higher HRV vs baseline raises readiness; higher resting HR vs baseline
+    /// lowers it. Two optional recovery signals subtract further when present:
+    /// sleeping wrist temperature above the personal baseline (illness /
+    /// incomplete recovery) and short sleep. Both are penalty-only — good sleep
+    /// or normal temperature never inflates the score.
     /// - Returns: A `ReadinessScore` in 0...100, or nil when HRV history is insufficient.
     public static func score(
         hrv: [MetricSample],
         restingHR: [MetricSample],
+        wristTemp: [MetricSample] = [],
+        sleepHours: Double? = nil,
         now: Date = .now,
         calendar: Calendar = .current
     ) -> ReadinessScore? {
@@ -142,7 +167,36 @@ public enum ReadinessCalculator {
             signals.append(.restingHRMissing)
         }
 
-        let raw = 50.0 + hrvComponent + rhrComponent
+        // Wrist-temperature component (optional, penalty-only): today's sleeping
+        // wrist temp vs the personal baseline. Absolute skin temperature varies
+        // between people; the *deviation* is the recovery/illness signal.
+        var tempComponent = 0.0
+        let tempSorted = wristTemp.sorted { $0.date < $1.date }
+        let tempBaselineSamples = tempSorted.filter { $0.date >= windowStart && $0.date < baselineEnd }
+        if tempBaselineSamples.count >= minimumTempSamples, let todayTemp = tempSorted.last?.value {
+            let deviation = todayTemp - mean(tempBaselineSamples)
+            if deviation >= tempElevatedDeltaC {
+                tempComponent = -25
+                signals.append(.wristTempElevated)
+            } else if deviation >= tempCautionDeltaC {
+                tempComponent = -15
+                signals.append(.wristTempElevated)
+            }
+        }
+
+        // Sleep component (optional, penalty-only): short sleep impairs recovery.
+        var sleepComponent = 0.0
+        if let sleepHours {
+            if sleepHours > 0, sleepHours < sleepVeryShortHours {
+                sleepComponent = -20
+                signals.append(.sleepShort)
+            } else if sleepHours > 0, sleepHours < sleepShortHours {
+                sleepComponent = -10
+                signals.append(.sleepShort)
+            }
+        }
+
+        let raw = 50.0 + hrvComponent + rhrComponent + tempComponent + sleepComponent
         let value = Int(raw.rounded()).clamped(to: 0...100)
         return ReadinessScore(value: value, label: label(for: value), signals: signals)
     }

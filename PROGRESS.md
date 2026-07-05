@@ -1,5 +1,32 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-07-05: overtraining signals without live HR — VERIFIED on Mac same day:** SharedCore
+> `swift test` 117/117, iOS test (iPhone 17 sim) 31/31, watch build succeeded. One fix needed on
+> Mac: the new `HealthProviding` requirements (`wristTemperatureSeries`, `lastNightSleepHours`)
+> broke the 3 iOS test doubles (SeedHealth/Spy/SpyHealthService) — added `[] / nil` stubs.
+> Original notes: Answering "watch can't
+> see HR — can HRV/other data warn about overtraining": live HRV mid-workout isn't measurable
+> (Apple only samples SDNN at rest), so blind-mode stays the in-session fallback; overtraining
+> detection is a *between-sessions* signal, now strengthened on four fronts. **(1) ACWR** — new
+> SharedCore `TrainingLoad` (acute 7d ÷ chronic 28d minutes, caution ≥1.3 / high-risk ≥1.5,
+> ratio suppressed under 60 chronic weekly minutes; 5 tests); Today shows a warning card only
+> when elevated ("Ramping fast/too fast"). Zero sensor dependence — works with no HR/HRV at all.
+> **(2) readiness model extended** — `ReadinessCalculator.score` gains optional penalty-only
+> signals: sleeping wrist temperature vs 28d baseline (−15/−25 at +0.3/+0.5 °C, needs ≥7 baseline
+> samples) and last-night sleep (−10/−20 under 6h/5h); 6 tests; existing call sites unaffected.
+> Phone reads `appleSleepingWristTemperature` + `sleepAnalysis` (new read auths) and feeds them.
+> **(3) watch pre-start guard** — tapping 4×4 on a low-readiness day now confirms first
+> ("Do Zone 2 instead / Reduced 4×4 anyway"); works with zero live HR. New
+> `Watch/WatchReadinessProvider` computes readiness on-watch from its own HealthKit HRV/RHR
+> (new read auths) whenever the phone snapshot is >24h old or lacks a label;
+> `WorkoutSessionManager.readinessOverride` feeds the rep reduction. **(4) no-HR diagnostics**
+> (the observed "watch 看不到 HR"): live builder now `enableCollection`s heart rate + energy
+> explicitly, and after 30s with no reading the live view escalates to "check Health access in
+> the watch Settings app, and snug the band" instead of "still locking on". l10n: +6 watch,
+> +4 app, +2 SharedCore keys (zh-Hant/es/ja). **Verify on Mac:** `xcodegen generate` (2 new watch
+> files) → SharedCore `swift test` (expect ~117: 106 + 11 new) → iOS + watch builds → on watch,
+> re-grant the new Health prompts (HRV/RHR read).
+
 > **2026-07-03 (late): build 58 uploaded to App Store Connect** ("Upload succeeded", processing).
 > First build containing the July robustness/UI rounds — supersedes TestFlight build 12; the
 > hardware checks in `docs/manual-verification-checklist.md` (5.1/5.2/4.1 + 2026-07-03 extras)

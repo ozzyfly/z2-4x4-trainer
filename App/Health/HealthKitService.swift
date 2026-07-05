@@ -33,6 +33,12 @@ final class HealthKitService: HealthProviding, @unchecked Sendable {
         if let hrv = HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN) {
             types.insert(hrv)
         }
+        if let temp = HKQuantityType.quantityType(forIdentifier: .appleSleepingWristTemperature) {
+            types.insert(temp)
+        }
+        if let sleep = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) {
+            types.insert(sleep)
+        }
         types.insert(HKObjectType.workoutType())
         return types
     }
@@ -261,6 +267,39 @@ final class HealthKitService: HealthProviding, @unchecked Sendable {
         }
         let unit = HKUnit.count().unitDivided(by: .minute())
         return await metricSeries(of: type, unit: unit, days: days)
+    }
+
+    func wristTemperatureSeries(days: Int) async -> [MetricSample] {
+        guard let type = HKQuantityType.quantityType(forIdentifier: .appleSleepingWristTemperature) else {
+            return []
+        }
+        return await metricSeries(of: type, unit: .degreeCelsius(), days: days)
+    }
+
+    /// Sums the asleep stages of sleep samples that *ended* within the last 18
+    /// hours — i.e. last night, regardless of when the user went to bed.
+    func lastNightSleepHours() async -> Double? {
+        guard HKHealthStore.isHealthDataAvailable(),
+              let type = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) else {
+            return nil
+        }
+        let windowStart = Date.now.addingTimeInterval(-18 * 3600)
+        let predicate = HKQuery.predicateForSamples(withStart: windowStart, end: .now)
+        return await withCheckedContinuation { continuation in
+            let query = HKSampleQuery(
+                sampleType: type,
+                predicate: predicate,
+                limit: HKObjectQueryNoLimit,
+                sortDescriptors: nil
+            ) { _, samples, _ in
+                let asleepValues = Set(HKCategoryValueSleepAnalysis.allAsleepValues.map(\.rawValue))
+                let seconds = (samples as? [HKCategorySample] ?? [])
+                    .filter { asleepValues.contains($0.value) }
+                    .reduce(0.0) { $0 + $1.endDate.timeIntervalSince($1.startDate) }
+                continuation.resume(returning: seconds > 0 ? seconds / 3600 : nil)
+            }
+            store.execute(query)
+        }
     }
 
     // MARK: - Helpers

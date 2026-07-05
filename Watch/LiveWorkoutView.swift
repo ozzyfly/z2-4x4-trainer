@@ -11,6 +11,10 @@ struct LiveWorkoutView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showEndConfirm = false
     @State private var showZone2Summary = false
+    /// Escalates the "waiting for heart rate" hint after 30s with no reading —
+    /// at that point it's almost always permissions or band fit, not warm-up.
+    @State private var hrHintEscalated = false
+    private static let hrEscalateAfterSec: TimeInterval = 30
 
     private enum TargetFeedback: Equatable {
         case noTarget
@@ -91,6 +95,15 @@ struct LiveWorkoutView: View {
 
     private var zoneBorderColor: Color {
         targetFeedback.isActionable ? targetFeedback.color : .clear
+    }
+
+    /// The feedback detail line, escalated to an actionable permissions/band
+    /// hint once HR has been missing long enough that warm-up can't explain it.
+    private var feedbackDetail: String {
+        if hrHintEscalated, targetFeedback == .noReading {
+            return String(localized: "Still no reading — check Health access in the watch Settings app, and snug the band.")
+        }
+        return targetFeedback.detail
     }
 
     var body: some View {
@@ -178,6 +191,12 @@ struct LiveWorkoutView: View {
         .onAppear {
             manager.start(kind: kind)
         }
+        // No reading after 30s in-session is almost never "still locking on".
+        .onReceive(Timer.publish(every: 5, on: .main, in: .common).autoconnect()) { _ in
+            hrHintEscalated = manager.isRunning
+                && manager.currentHR == 0
+                && (manager.startDate.map { Date().timeIntervalSince($0) > Self.hrEscalateAfterSec } ?? false)
+        }
         // Give distinct taps as the athlete enters or leaves the target band.
         .onChange(of: targetFeedback) { old, new in
             guard old != new, new.isActionable else { return }
@@ -261,10 +280,10 @@ struct LiveWorkoutView: View {
                     .foregroundStyle(targetFeedback.color)
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
-                Text(targetFeedback.detail)
+                Text(feedbackDetail)
                     .font(.caption2)
                     .foregroundStyle(.secondary)
-                    .lineLimit(1)
+                    .lineLimit(hrHintEscalated ? 3 : 1)
                     .minimumScaleFactor(0.7)
             }
             Spacer(minLength: 0)
@@ -282,7 +301,7 @@ struct LiveWorkoutView: View {
         )
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(targetFeedback.title)
-        .accessibilityValue(targetFeedback.detail)
+        .accessibilityValue(feedbackDetail)
     }
 
     private var controls: some View {
