@@ -68,13 +68,22 @@ Apple Fitness.
 
 ---
 
-## 3. `outdoor-gps-route` — optional GPS route for outdoor sessions
+## 3. `outdoor-gps-route` — optional GPS route + activity modality
 
 ### Why
 
 Sessions record `locationType: .unknown` and no route. For outdoor runners the
 workout looks incomplete in Apple Fitness/Health next to any other running app,
 and distance/pace are missing from our own logs.
+
+**On-device evidence (2026-07-05):** a 34-min 4×4 at 88–91% max HR recorded only
+**108 kcal** while the same evening's 35-min Zone 2 recorded 243 kcal — inverted.
+Everything is typed `.running` with `.unknown` location, so Apple's energy model
+(motion + HR fused for the declared activity) badly underestimates non-running
+modalities (bike/erg/elliptical intervals). A pre-start Indoor/Outdoor + modality
+picker (running / cycling / other) that sets the correct `HKWorkoutActivityType`
+fixes energy accuracy as a side effect of this proposal — arguably the stronger
+reason to do it than the route map.
 
 ### What Changes
 

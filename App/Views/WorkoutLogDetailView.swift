@@ -261,6 +261,13 @@ struct WorkoutLogDetailView: View {
             Card {
                 VStack(spacing: Spacing.md) {
                     statRow("Duration", "\(log.durationMin) min")
+                    // Zone 2's Duration is *credited in-zone* minutes; show the
+                    // wall-clock total too so "35 min" next to a 40-minute run
+                    // reads as a feature, not a discrepancy.
+                    if log.type == .zone2, let total = log.totalSec, total / 60 > log.durationMin {
+                        Divider()
+                        statRow("Total time", "\(Int((Double(total) / 60).rounded())) min")
+                    }
                     if let kcal = log.activeEnergyKcal, kcal > 0 {
                         Divider()
                         statRow("Active energy", "\(kcal) kcal")

@@ -115,12 +115,22 @@ struct LiveWorkoutView: View {
                         .foregroundStyle(.orange)
                 }
 
-                // Glanceable first: current interval + countdown, then big HR + zone.
+                // Glanceable first: the session's ONE number on top — countdown
+                // for a 4×4, banked in-zone time for open-ended Zone 2 — then HR.
                 if kind.isStructured, let engine = manager.intervalEngine {
                     IntervalBanner(engine: engine)
+                } else {
+                    Zone2Banner(manager: manager)
                 }
 
                 heartRatePanel
+
+                if !kind.isStructured, manager.zone2Blind {
+                    Label("No HR — timed", systemImage: "heart.slash")
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                        .accessibilityLabel("No heart rate, crediting elapsed time")
+                }
 
                 if kind.isStructured, let engine = manager.intervalEngine {
                     if engine.noHeartRate {
@@ -150,8 +160,6 @@ struct LiveWorkoutView: View {
                 }
 
                 compactTargetFeedback
-
-                elapsedTime
 
                 controls
             }
@@ -279,7 +287,7 @@ struct LiveWorkoutView: View {
                     .font(.caption.weight(.bold))
                     .foregroundStyle(targetFeedback.color)
                     .lineLimit(1)
-                    .minimumScaleFactor(0.8)
+                    .minimumScaleFactor(0.6) // "Waiting for heart rate" must not truncate
                 Text(feedbackDetail)
                     .font(.caption2)
                     .foregroundStyle(.secondary)
@@ -332,52 +340,38 @@ struct LiveWorkoutView: View {
         .padding(.top, 2)
     }
 
-    @ViewBuilder
-    private var elapsedTime: some View {
-        // Open-ended Zone 2 sessions count *time in Zone 2* — the clock pauses when
-        // HR eases down into Zone 1, so junk minutes don't pad the session.
-        if !kind.isStructured, manager.startDate != nil {
-            let secs = manager.zone2InZoneSeconds
-            VStack(spacing: 2) {
-                Text(Self.elapsedString(secs))
-                    .font(.system(.title3, design: .rounded).weight(.semibold))
-                    .monospacedDigit()
-                    .foregroundStyle(.secondary)
-                    .accessibilityLabel("Time in Zone 2")
-                    .accessibilityValue("\(secs / 60) minutes \(secs % 60) seconds")
+}
 
-                if manager.zone2Blind {
-                    // Sensor lost — crediting wall-clock time instead of voiding the session.
-                    Label("No HR — timed", systemImage: "heart.slash")
-                        .font(.caption2.weight(.semibold))
-                        .foregroundStyle(.secondary)
-                        .accessibilityLabel("No heart rate, crediting elapsed time")
-                } else if manager.zone2Counting {
-                    Label("In Zone 2", systemImage: "checkmark.circle.fill")
-                        .font(.caption2)
-                        .foregroundStyle(.green)
-                } else if manager.currentHR > 0, let target = manager.targetRange {
-                    if manager.currentHR > target.upper {
-                        Label("Above Zone 2 — paused", systemImage: "pause.circle.fill")
-                            .font(.caption2)
-                            .foregroundStyle(.orange)
-                    } else {
-                        Label("Below Zone 2 — paused", systemImage: "pause.circle.fill")
-                            .font(.caption2)
-                            .foregroundStyle(.orange)
-                    }
-                } else {
-                    Text("Waiting for heart rate")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
-                }
-            }
-            .accessibilityElement(children: .combine)
+/// The Zone 2 headline: banked in-zone time, big and on top (mirrors the 4×4
+/// countdown banner). Green while crediting, dimmed while the clock is paused
+/// out-of-zone, heart-slash while blind (crediting wall-clock time).
+private struct Zone2Banner: View {
+    var manager: WorkoutSessionManager
+
+    var body: some View {
+        let secs = manager.zone2InZoneSeconds
+        let counting = manager.zone2Counting
+        let fill: Color = counting ? HRZone.zone2.color : .gray
+        HStack(spacing: 6) {
+            Image(systemName: manager.zone2Blind
+                  ? "heart.slash"
+                  : (counting ? "checkmark.circle.fill" : "pause.circle.fill"))
+                .accessibilityHidden(true)
+            Text(String(format: "%d:%02d", secs / 60, secs % 60))
+                .font(.system(.title2, design: .rounded).weight(.heavy))
+                .monospacedDigit()
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
         }
-    }
-
-    private static func elapsedString(_ seconds: Int) -> String {
-        String(format: "%d:%02d", seconds / 60, seconds % 60)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 8)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(fill.opacity(counting ? 0.85 : 0.45))
+        )
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Time in Zone 2")
+        .accessibilityValue("\(secs / 60) minutes \(secs % 60) seconds\(counting ? "" : ", paused")")
     }
 }
 
@@ -440,6 +434,9 @@ private struct CompletionOverlay: View {
             }
             .font(.caption2)
             .foregroundStyle(.secondary)
+            // Stats must wrap, not truncate ("Avg hard 159 · peak…").
+            .multilineTextAlignment(.center)
+            .fixedSize(horizontal: false, vertical: true)
             Button("Done", action: onDone)
                 .buttonStyle(.borderedProminent)
                 .tint(WatchTheme.accent)
@@ -471,6 +468,8 @@ private struct Zone2CompletionOverlay: View {
                 .foregroundStyle(.green)
             Text("Zone 2 summary")
                 .font(.system(.headline, design: .serif))
+                .lineLimit(1)
+                .minimumScaleFactor(0.6) // fit on 41/45mm too, don't truncate
             Text(Self.elapsedString(inZoneSeconds))
                 .font(.system(.title3, design: .rounded).weight(.bold))
                 .monospacedDigit()
@@ -490,6 +489,9 @@ private struct Zone2CompletionOverlay: View {
                     .tint(WatchTheme.accent)
             }
             .font(.caption)
+            // One line each — "Keep going" was wrapping mid-word on device.
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)

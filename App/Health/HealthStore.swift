@@ -16,6 +16,9 @@ final class HealthStore {
     private(set) var readiness: ReadinessScore?
 
     private static let connectedKey = "hasConnectedHealth"
+    /// Minimum minutes before a workout stamped by our own watch app is worth
+    /// re-importing from Health — the watch deliberately skips logging mis-taps.
+    static let minimumOwnImportMinutes = 5
 
     init(provider: HealthProviding) {
         self.provider = provider
@@ -125,7 +128,13 @@ final class HealthStore {
 
         var inserted = 0
         // Skip duplicates, user-deleted workouts, and empty (0-minute) noise.
-        for w in workouts where !existingUUIDs.contains(w.uuid) && !tombstoned.contains(w.uuid) && w.durationMin >= 1 {
+        // Workouts carrying OUR session stamp came from the watch app, and the
+        // watch already refuses to sync mis-taps — but they still land in Apple
+        // Health, so without a floor the auto-import resurrects them as 1-minute
+        // junk rows (observed on-device 2026-07-05). A genuinely lost session is
+        // well past 5 minutes, so the safety-net import still catches those.
+        for w in workouts where !existingUUIDs.contains(w.uuid) && !tombstoned.contains(w.uuid)
+            && w.durationMin >= (w.type != nil ? Self.minimumOwnImportMinutes : 1) {
             let log = WorkoutLog(
                 date: w.date,
                 type: w.type ?? .zone2,

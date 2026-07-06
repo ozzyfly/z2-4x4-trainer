@@ -4904,6 +4904,29 @@
         }
       }
     },
+    "Total time": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiempo total"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "合計時間"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "總時長"
+          }
+        }
+      }
+    },
     "Trained this week": {
       "extractionState": "manual",
       "localizations": {

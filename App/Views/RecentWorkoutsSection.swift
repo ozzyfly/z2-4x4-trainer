@@ -102,9 +102,12 @@ struct RecentWorkoutsSection: View {
                     .foregroundStyle(Theme.accent)
                     .frame(width: 24)
                 VStack(alignment: .leading, spacing: 2) {
+                    // One line — "Norwegian 4×4" was wrapping mid-name on device.
                     Text(log.type.displayName)
-                        .font(.rounded(.subheadline, weight: .semibold))
+                        .font(.subheadline.weight(.semibold))
                         .foregroundStyle(Theme.label)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                     Text(log.date, format: .dateTime.month(.abbreviated).day().hour().minute())
                         .font(.caption)
                         .foregroundStyle(Theme.secondaryLabel)

@@ -30,8 +30,12 @@ Steps:
 
 Pass criteria: two sessions recorded, all three stats screens updated, zero crashes.
 
-- RESULT: <pending>
-- NOTES:
+- RESULT: **PARTIAL (photo evidence 2026-07-05) — guided-autolog + no-crash word pending**
+- NOTES: One Zone 2 + one 4×4 completed end-to-end on Jul 5 and recorded (History rows with
+  correct durations/kcal); History + detail screens render correctly. Still needed from the
+  user: confirm build number was 58, the sessions counted on Today/Week too, a *phone-guided*
+  session auto-logs (autolog path — the Jul 5 runs were watch-driven), screen stays awake +
+  music ducks only during cues in the guided player, and no crashes seen.
 
 ---
 
@@ -47,8 +51,12 @@ Steps:
 
 Pass criteria: HR live, zone colors correct, haptic on every transition.
 
-- RESULT: <pending>
-- NOTES:
+- RESULT: **PASS (photo-verified 2026-07-05, haptics pending user word)**
+- NOTES: Real 4×4 on Watch Ultra, Jul 5 20:24 — live HR streamed (photo: 120 BPM mid-Zone 2
+  session; earlier "no BPM" was a permissions issue, resolved on-device). Zone colors correct
+  (green Zone 2 pill + "In zone · Hold 108–126 bpm"). Completion overlay: Quality 100, 4/4 full
+  reps, avg hard 159 · peak 164 (91% max). Haptic-per-transition not confirmable from photos —
+  user to confirm verbally. Wrist-down 30s catch-up (2026-07-03 extra) also pending user word.
 
 ---
 
@@ -65,8 +73,15 @@ Steps:
 
 Pass criteria: single record across both devices, present in iPhone stats.
 
-- RESULT: <pending>
-- NOTES:
+- RESULT: **PASS (photo-verified 2026-07-05)**
+- NOTES: History (21:54 screenshot): the real 4×4 (Jul 5 20:24, 34 min) and Zone 2 (20:58,
+  35 min) each appear **exactly once**, Source = Apple Watch, kcal non-nil (108 / 243 —
+  share-auth fix confirmed). Zone 2 math consistent across devices (watch 34:53/40:06 = 87%
+  ↔ phone 35/40 min · 87% · avg 121). **Finding from the same screenshot:** two 1-minute
+  "Imported from Apple Health" rows (11:37, 13:34) — watch mis-tap tests the watch refused to
+  sync, resurrected by the Health auto-import. Not a dedup failure (distinct workouts), but
+  junk. Fixed same day: own-stamped imports now require ≥5 min (`minimumOwnImportMinutes`,
+  new unit test). The existing 1-min rows can be swipe-deleted; tombstones stop re-import.
 
 ---
 
@@ -102,8 +117,14 @@ anyway, verify these in the same runs (they're exactly the behaviors a simulator
 - [ ] UI pass: SF (non-rounded) numerals, slimmer target bar, brand-orange widgets/watch rows
       render acceptably in light + dark (Hermès refinement round — pure visual judgment call).
 
-- RESULT: <pending>
-- NOTES:
+- RESULT: **PARTIAL (photo-verified 2026-07-05 where possible)**
+- NOTES: Confirmed by photos — energy samples save (4×4 108 kcal / Zone 2 243 kcal on the
+  synced logs; new share-auth prompt path works); live view UI renders correctly on device
+  (WatchTheme orange Done buttons, serif overlay titles, zone pill). Exposed by photos and
+  fixed same evening — overlay/stat truncations, "Keep going" wrap, Zone 2 time buried at the
+  bottom (now a top banner). Still pending user word: wrist-down 30s catch-up, "No HR — timed"
+  fallback, ~5s live-HR cadence on the phone, readiness widget surviving a sync, guided-player
+  screen-awake + duck-only-during-cue.
 
 ---
 

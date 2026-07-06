@@ -71,6 +71,28 @@ struct HealthImportSnapshotTests {
         #expect(inserted == 0)
     }
 
+    @Test("short own-stamped workouts (watch mis-taps) are not re-imported")
+    func ownMisTapsAreFiltered() async throws {
+        let ctx = try makeContext()
+        let spy = Spy()
+        spy.importableWorkouts = [
+            // Stamped by our watch app but under the floor → the watch already
+            // decided this wasn't a session; don't resurrect it as junk.
+            HealthWorkout(uuid: "H-mistap", date: .now, durationMin: 1, energyKcal: 5, type: .norwegian4x4),
+            // Stamped and real → the safety net still imports lost sessions.
+            HealthWorkout(uuid: "H-real", date: .now, durationMin: 34, energyKcal: 300, type: .norwegian4x4),
+            // Foreign (no stamp) short workout keeps the old ≥1 min behavior.
+            HealthWorkout(uuid: "H-foreign", date: .now, durationMin: 2, energyKcal: 20, type: nil),
+        ]
+        let store = HealthStore(provider: spy)
+
+        let inserted = await store.importWorkouts(into: ctx)
+
+        #expect(inserted == 2)
+        let uuids = Set(try ctx.fetch(FetchDescriptor<WorkoutLog>()).compactMap(\.healthUUID))
+        #expect(uuids == ["H-real", "H-foreign"])
+    }
+
     @Test("import keeps the stamped session type; nil falls back to Zone 2")
     func importRecoversSessionType() async throws {
         let ctx = try makeContext()

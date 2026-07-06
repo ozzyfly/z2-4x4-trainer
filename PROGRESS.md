@@ -1,5 +1,39 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-07-05 (evening): first real-hardware session + photo-driven UI fixes — VERIFIED on Mac
+> same evening:** SharedCore 117/117, iOS test (iPhone 17 sim) 32/32 (incl. the new min-import
+> case), watch build succeeded. Original notes:
+> Real Apple Watch Ultra runs landed: 4×4 (Quality 100, 4/4 reps, peak 164/91%, avg hard 159,
+> **kcal non-nil — share-auth fix confirmed**, Source=Apple Watch) and Zone 2 (avg 121/67%,
+> credited 35/40 min, 87% in zone — tracker math consistent watch↔phone). Earlier "no BPM" was
+> resolved on-device (permissions); live view showed 120 BPM in zone. Photo review drove 4 fixes:
+> **(1) Zone 2 banked time promoted to a top banner** (mirrors the 4×4 countdown banner: green
+> while crediting, dimmed pause icon out-of-zone, heart-slash when blind); the old bottom
+> elapsed block deleted — its status captions duplicated the target-feedback card. Blind label
+> now sits under the HR panel for Zone 2 like the 4×4's. **(2) truncation pass** from the
+> photos: "Zone 2 summa…" (overlay title minScale 0.6), "Avg hard 159 · peak…" (stats wrap via
+> fixedSize), "Keep going" mid-word wrap (lineLimit 1 + minScale), "Waiting for hear…" (feedback
+> title minScale 0.8→0.6). **(3) iPhone Zone 2 detail**: Details now adds a "Total time" row
+> (wall clock) when it exceeds credited minutes, so "Duration 35 min" on a 40-minute run reads
+> as effective-time-by-design (+1 l10n key ×3 langs). **Verify:** watch build + sim screenshot
+> of Zone 2 live (banner on top), iOS build. Checklist RESULT lines still await the user's
+> explicit pass/fail (wrist-down catch-up, no-dup, screen-lock, audio-duck unconfirmed by photos).
+>
+> **Later same evening — History screenshot read into the checklist + one algo fix.** 5.1 marked
+> PASS (photos; haptics/wrist-down still verbal-pending), 5.2 marked PASS (both real sessions
+> appear exactly once, Source=Apple Watch, kcal 108/243), 4.1 PARTIAL (watch-driven sessions
+> recorded; guided-autolog/screen-awake/duck/no-crash need user word). **Algo finding from the
+> same screenshot:** two 1-minute "Imported from Apple Health" junk rows (11:37, 13:34) — watch
+> mis-tap tests the watch refused to sync, resurrected by the Health auto-import. Fix:
+> own-stamped imports now need ≥5 min (`HealthStore.minimumOwnImportMinutes`; foreign workouts
+> keep ≥1); new `HealthImportSnapshotTests` case (mis-tap filtered / real kept / foreign kept)
+> → iOS suite expects 32. Old junk rows: swipe-delete (tombstones prevent re-import).
+> Two more from the same photos: History row title "Norwegian 4×4" wrapped mid-name → lineLimit 1
+> + minScale (also de-rounded the leftover `.rounded` title font). And a **kcal inversion**
+> (34-min 4×4 = 108 kcal vs 35-min Zone 2 = 243) — symptom of `.running`/`.unknown` on
+> non-running modalities; recorded as evidence in feature proposal #3 (modality picker), not a
+> quick fix.
+
 > **2026-07-05: overtraining signals without live HR — VERIFIED on Mac same day:** SharedCore
 > `swift test` 117/117, iOS test (iPhone 17 sim) 31/31, watch build succeeded. One fix needed on
 > Mac: the new `HealthProviding` requirements (`wristTemperatureSeries`, `lastNightSleepHours`)
