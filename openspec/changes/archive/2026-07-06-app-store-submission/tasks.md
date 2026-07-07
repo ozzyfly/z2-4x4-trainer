@@ -25,7 +25,7 @@
 
 ## 4. 測試與送審 (Requirement: TestFlight build passes before submission)
 
-- [ ] 4.1 建立 TestFlight 內部測試，安裝後完成一次 Zone 2 與一次 4×4，確認記錄與 Today/Week/History 更新且不崩潰。
+- [x] 4.1 建立 TestFlight 內部測試，安裝後完成一次 Zone 2 與一次 4×4，確認記錄與 Today/Week/History 更新且不崩潰。
   行為：TestFlight build 可完成端到端訓練流程。驗證：對應 spec 場景「Internal TestFlight run」，實機觀察兩筆 session 與統計更新。
 - [x] 4.2 送出審查，附上 HealthKit 使用說明的 review notes（取自 `SUBMISSION_CHECKLIST.md`）。
   行為：app 進入「Waiting for Review」。驗證：App Store Connect 狀態顯示已送審。

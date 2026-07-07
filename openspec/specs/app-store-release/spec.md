@@ -1,0 +1,581 @@
+# app-store-release Specification
+
+## Purpose
+
+TBD - created by archiving change 'app-store-submission'. Update Purpose after archive.
+
+## Requirements
+
+### Requirement: Distributable signed build
+The `Z24x4Trainer` app SHALL be archivable and uploadable to App Store Connect with a valid
+distribution signing identity and the HealthKit capability enabled.
+
+#### Scenario: Archive uploads to App Store Connect
+- **WHEN** the developer archives `Z24x4Trainer` with automatic signing under the enrolled team
+- **THEN** the archive validates and uploads to App Store Connect with no signing or capability errors
+
+
+<!-- @trace
+source: app-store-submission
+updated: 2026-07-06
+code:
+  - App/Health/HealthProviding.swift
+  - SharedCore/Tests/SharedCoreTests/StreaksAchievementsTests.swift
+  - App/Persistence/WorkoutLog.swift
+  - App/Persistence/DeletedWorkout.swift
+  - App/DesignSystem/Components.swift
+  - Watch/Assets.xcassets/Contents.json
+  - SharedCore/Tests/SharedCoreTests/ReadinessExtendedSignalsTests.swift
+  - Watch/WatchReadinessProvider.swift
+  - App/Views/OnboardingIntroView.swift
+  - SharedCore/Sources/SharedCore/ZoneLadder.swift
+  - App/Views/Celebration.swift
+  - App/Views/ProfileWatchSync.swift
+  - docs/feature-proposals-2026-07-03.md
+  - scripts/asc_upload_screenshots.py
+  - Widgets/Info.plist
+  - project.yml
+  - App/DesignSystem/Theme.swift
+  - SharedCore/Package.swift
+  - SharedCore/Tests/SharedCoreTests/IntervalRunnerTests.swift
+  - SharedCore/Sources/SharedCore/Readiness.swift
+  - Watch/Assets.xcassets/AppIcon.appiconset/Contents.json
+  - App/Persistence/AchievementRecord.swift
+  - SharedCore/Sources/SharedCore/Localizable.xcstrings
+  - WatchComplications/Z24x4WatchComplications.swift
+  - App/DesignSystem/Buttons.swift
+  - scripts/asc_push_metadata.py
+  - Watch/WatchTheme.swift
+  - SharedCore/Tests/SharedCoreTests/WidgetSnapshotTests.swift
+  - App/Views/ManualEntryView.swift
+  - PROGRESS.md
+  - SharedCore/Sources/SharedCore/WorkoutRecord.swift
+  - App/Views/GuidedPlayerView.swift
+  - App/Sync/PhoneSessionReceiver.swift
+  - SharedCore/Tests/SharedCoreTests/GuidedCueTests.swift
+  - .github/workflows/release.yml
+  - App/Views/ShareCard.swift
+  - SharedCore/Sources/SharedCore/WorkoutTransfer.swift
+  - App/Views/WorkoutLogDetailView.swift
+  - Tests/HealthImportSnapshotTests.swift
+  - SharedCore/Sources/SharedCore/TrainingLoad.swift
+  - App/Z24x4TrainerApp.swift
+  - SharedCore/Sources/SharedCore/IntervalRunner.swift
+  - SharedCore/Sources/SharedCore/UserProfile.swift
+  - CLAUDE.md
+  - SharedCore/Sources/SharedCore/GuidedCue.swift
+  - App/Views/StreakBanner.swift
+  - App/Health/HealthKitService.swift
+  - SharedCore/Sources/SharedCore/WidgetSnapshot.swift
+  - App/GuidedSessionLogger.swift
+  - SharedCore/Sources/SharedCore/Norwegian4x4.swift
+  - App/Views/SettingsView.swift
+  - Tests/HealthWritebackTests.swift
+  - SharedCore/Sources/SharedCore/ZoneMethod.swift
+  - SharedCore/Sources/SharedCore/HRZoneCalculator.swift
+  - App/Health/PreviewHealthService.swift
+  - Tests/WorkoutSourceTests.swift
+  - App/Views/AppleZonesView.swift
+  - SharedCore/Tests/SharedCoreTests/TickClockTests.swift
+  - SharedCore/Sources/SharedCore/IntervalKind+UI.swift
+  - SharedCore/Sources/SharedCore/UnitPreference.swift
+  - App/Assets.xcassets/AccentColor.colorset/Contents.json
+  - SharedCore/Sources/SharedCore/Zone2TimeTracker.swift
+  - App/WidgetSnapshotWriter.swift
+  - Tests/GuidedPlayerLoggingTests.swift
+  - App/GuidedSessionEngine.swift
+  - WatchComplications/Localizable.xcstrings
+  - App/Z24x4Trainer.entitlements
+  - SharedCore/Sources/SharedCore/CoachingCue+UI.swift
+  - App/Views/WorkoutDetailView.swift
+  - Watch/Z24x4TrainerWatch.entitlements
+  - docs/app-store/screenshots/05-settings.png
+  - .github/workflows/ci.yml
+  - App/Notifications/ReminderScheduler.swift
+  - docs/app-store/screenshots/04-history.png
+  - docs/manual-verification-checklist.md
+  - Watch/Localizable.xcstrings
+  - WatchComplications/Z24x4WatchComplications.entitlements
+  - App/DesignSystem/Motion.swift
+  - SharedCore/Tests/SharedCoreTests/TrainingLoadTests.swift
+  - SharedCore/Tests/SharedCoreTests/PrecisionZonesTests.swift
+  - App/Views/OnboardingView.swift
+  - Watch/WorkoutListView.swift
+  - Watch/Z24x4WatchApp.swift
+  - Widgets/Z24x4Widgets.swift
+  - App/Views/TodayView.swift
+  - SharedCore/Sources/SharedCore/WorkoutExport.swift
+  - Widgets/Localizable.xcstrings
+  - SharedCore/Tests/SharedCoreTests/UnitsExportTests.swift
+  - Watch/WorkoutSync.swift
+  - SharedCore/Sources/SharedCore/StreakCalculator.swift
+  - App/DesignSystem/AccessibleControls.swift
+  - SharedCore/Tests/SharedCoreTests/Norwegian4x4Tests.swift
+  - WatchComplications/Info.plist
+  - App/Localizable.xcstrings
+  - SharedCore/Tests/SharedCoreTests/ZoneLadderTests.swift
+  - docs/app-store/METADATA.md
+  - docs/app-store/ExportOptions.plist
+  - Watch/IntervalEngine.swift
+  - App/Views/WeekView.swift
+  - App/Views/RootView.swift
+  - Watch/Assets.xcassets/AppIcon.appiconset/icon_1024.png
+  - App/Sync/LiveHRStore.swift
+  - SharedCore/Sources/SharedCore/UnitConvert.swift
+  - SharedCore/Tests/SharedCoreTests/Zone2TimeTrackerTests.swift
+  - SharedCore/Tests/SharedCoreTests/SmartCoachTests.swift
+  - SharedCore/Sources/SharedCore/MetricSample.swift
+  - App/Views/RecentWorkoutsSection.swift
+  - docs/app-store/screenshots/03-week.png
+  - App/Sync/PhoneStatusPublisher.swift
+  - SharedCore/Sources/SharedCore/HRZone+UI.swift
+  - docs/app-store/screenshots/01-today.png
+  - App/Health/HealthStore.swift
+  - Tests/AppleZonesSeedTests.swift
+  - Widgets/Z24x4Widgets.entitlements
+  - App/Assets.xcassets/AppIcon.appiconset/icon_1024.png
+  - Watch/WorkoutSessionManager.swift
+  - Watch/LiveWorkoutView.swift
+  - SharedCore/Sources/SharedCore/PlanProgression.swift
+  - Tests/PhoneSessionReceiverTests.swift
+  - SharedCore/Sources/SharedCore/TickClock.swift
+  - scripts/archive-and-export.sh
+  - SharedCore/Sources/SharedCore/FitnessTrend.swift
+  - App/Persistence/ProfileRecord.swift
+  - docs/privacy-policy.html
+  - App/Views/HistoryView.swift
+  - SharedCore/Tests/SharedCoreTests/ReadinessTests.swift
+  - scripts/asc_jwt.py
+-->
+
+---
+### Requirement: Privacy compliance for HealthKit
+The submission SHALL include a reachable privacy-policy URL and an App Privacy label that
+declares the app does not collect or transmit user data.
+
+#### Scenario: Privacy policy is reachable
+- **WHEN** App Store review opens the privacy-policy URL recorded for the app
+- **THEN** the page loads and states that Health data stays on device and is never shared or used for advertising
+
+#### Scenario: Privacy label matches behavior
+- **WHEN** the App Privacy questionnaire is answered
+- **THEN** every Health data type is marked Data Not Collected, consistent with the local-only implementation
+
+
+<!-- @trace
+source: app-store-submission
+updated: 2026-07-06
+code:
+  - App/Health/HealthProviding.swift
+  - SharedCore/Tests/SharedCoreTests/StreaksAchievementsTests.swift
+  - App/Persistence/WorkoutLog.swift
+  - App/Persistence/DeletedWorkout.swift
+  - App/DesignSystem/Components.swift
+  - Watch/Assets.xcassets/Contents.json
+  - SharedCore/Tests/SharedCoreTests/ReadinessExtendedSignalsTests.swift
+  - Watch/WatchReadinessProvider.swift
+  - App/Views/OnboardingIntroView.swift
+  - SharedCore/Sources/SharedCore/ZoneLadder.swift
+  - App/Views/Celebration.swift
+  - App/Views/ProfileWatchSync.swift
+  - docs/feature-proposals-2026-07-03.md
+  - scripts/asc_upload_screenshots.py
+  - Widgets/Info.plist
+  - project.yml
+  - App/DesignSystem/Theme.swift
+  - SharedCore/Package.swift
+  - SharedCore/Tests/SharedCoreTests/IntervalRunnerTests.swift
+  - SharedCore/Sources/SharedCore/Readiness.swift
+  - Watch/Assets.xcassets/AppIcon.appiconset/Contents.json
+  - App/Persistence/AchievementRecord.swift
+  - SharedCore/Sources/SharedCore/Localizable.xcstrings
+  - WatchComplications/Z24x4WatchComplications.swift
+  - App/DesignSystem/Buttons.swift
+  - scripts/asc_push_metadata.py
+  - Watch/WatchTheme.swift
+  - SharedCore/Tests/SharedCoreTests/WidgetSnapshotTests.swift
+  - App/Views/ManualEntryView.swift
+  - PROGRESS.md
+  - SharedCore/Sources/SharedCore/WorkoutRecord.swift
+  - App/Views/GuidedPlayerView.swift
+  - App/Sync/PhoneSessionReceiver.swift
+  - SharedCore/Tests/SharedCoreTests/GuidedCueTests.swift
+  - .github/workflows/release.yml
+  - App/Views/ShareCard.swift
+  - SharedCore/Sources/SharedCore/WorkoutTransfer.swift
+  - App/Views/WorkoutLogDetailView.swift
+  - Tests/HealthImportSnapshotTests.swift
+  - SharedCore/Sources/SharedCore/TrainingLoad.swift
+  - App/Z24x4TrainerApp.swift
+  - SharedCore/Sources/SharedCore/IntervalRunner.swift
+  - SharedCore/Sources/SharedCore/UserProfile.swift
+  - CLAUDE.md
+  - SharedCore/Sources/SharedCore/GuidedCue.swift
+  - App/Views/StreakBanner.swift
+  - App/Health/HealthKitService.swift
+  - SharedCore/Sources/SharedCore/WidgetSnapshot.swift
+  - App/GuidedSessionLogger.swift
+  - SharedCore/Sources/SharedCore/Norwegian4x4.swift
+  - App/Views/SettingsView.swift
+  - Tests/HealthWritebackTests.swift
+  - SharedCore/Sources/SharedCore/ZoneMethod.swift
+  - SharedCore/Sources/SharedCore/HRZoneCalculator.swift
+  - App/Health/PreviewHealthService.swift
+  - Tests/WorkoutSourceTests.swift
+  - App/Views/AppleZonesView.swift
+  - SharedCore/Tests/SharedCoreTests/TickClockTests.swift
+  - SharedCore/Sources/SharedCore/IntervalKind+UI.swift
+  - SharedCore/Sources/SharedCore/UnitPreference.swift
+  - App/Assets.xcassets/AccentColor.colorset/Contents.json
+  - SharedCore/Sources/SharedCore/Zone2TimeTracker.swift
+  - App/WidgetSnapshotWriter.swift
+  - Tests/GuidedPlayerLoggingTests.swift
+  - App/GuidedSessionEngine.swift
+  - WatchComplications/Localizable.xcstrings
+  - App/Z24x4Trainer.entitlements
+  - SharedCore/Sources/SharedCore/CoachingCue+UI.swift
+  - App/Views/WorkoutDetailView.swift
+  - Watch/Z24x4TrainerWatch.entitlements
+  - docs/app-store/screenshots/05-settings.png
+  - .github/workflows/ci.yml
+  - App/Notifications/ReminderScheduler.swift
+  - docs/app-store/screenshots/04-history.png
+  - docs/manual-verification-checklist.md
+  - Watch/Localizable.xcstrings
+  - WatchComplications/Z24x4WatchComplications.entitlements
+  - App/DesignSystem/Motion.swift
+  - SharedCore/Tests/SharedCoreTests/TrainingLoadTests.swift
+  - SharedCore/Tests/SharedCoreTests/PrecisionZonesTests.swift
+  - App/Views/OnboardingView.swift
+  - Watch/WorkoutListView.swift
+  - Watch/Z24x4WatchApp.swift
+  - Widgets/Z24x4Widgets.swift
+  - App/Views/TodayView.swift
+  - SharedCore/Sources/SharedCore/WorkoutExport.swift
+  - Widgets/Localizable.xcstrings
+  - SharedCore/Tests/SharedCoreTests/UnitsExportTests.swift
+  - Watch/WorkoutSync.swift
+  - SharedCore/Sources/SharedCore/StreakCalculator.swift
+  - App/DesignSystem/AccessibleControls.swift
+  - SharedCore/Tests/SharedCoreTests/Norwegian4x4Tests.swift
+  - WatchComplications/Info.plist
+  - App/Localizable.xcstrings
+  - SharedCore/Tests/SharedCoreTests/ZoneLadderTests.swift
+  - docs/app-store/METADATA.md
+  - docs/app-store/ExportOptions.plist
+  - Watch/IntervalEngine.swift
+  - App/Views/WeekView.swift
+  - App/Views/RootView.swift
+  - Watch/Assets.xcassets/AppIcon.appiconset/icon_1024.png
+  - App/Sync/LiveHRStore.swift
+  - SharedCore/Sources/SharedCore/UnitConvert.swift
+  - SharedCore/Tests/SharedCoreTests/Zone2TimeTrackerTests.swift
+  - SharedCore/Tests/SharedCoreTests/SmartCoachTests.swift
+  - SharedCore/Sources/SharedCore/MetricSample.swift
+  - App/Views/RecentWorkoutsSection.swift
+  - docs/app-store/screenshots/03-week.png
+  - App/Sync/PhoneStatusPublisher.swift
+  - SharedCore/Sources/SharedCore/HRZone+UI.swift
+  - docs/app-store/screenshots/01-today.png
+  - App/Health/HealthStore.swift
+  - Tests/AppleZonesSeedTests.swift
+  - Widgets/Z24x4Widgets.entitlements
+  - App/Assets.xcassets/AppIcon.appiconset/icon_1024.png
+  - Watch/WorkoutSessionManager.swift
+  - Watch/LiveWorkoutView.swift
+  - SharedCore/Sources/SharedCore/PlanProgression.swift
+  - Tests/PhoneSessionReceiverTests.swift
+  - SharedCore/Sources/SharedCore/TickClock.swift
+  - scripts/archive-and-export.sh
+  - SharedCore/Sources/SharedCore/FitnessTrend.swift
+  - App/Persistence/ProfileRecord.swift
+  - docs/privacy-policy.html
+  - App/Views/HistoryView.swift
+  - SharedCore/Tests/SharedCoreTests/ReadinessTests.swift
+  - scripts/asc_jwt.py
+-->
+
+---
+### Requirement: Release metadata and assets present
+The App Store record SHALL carry a final (non-placeholder) icon, the required screenshots, and
+complete listing metadata before submission.
+
+#### Scenario: Listing is complete
+- **WHEN** the developer submits the app for review
+- **THEN** the 1024² icon is final artwork, iPhone screenshots are attached, and name/subtitle/description/keywords/category are filled
+
+
+<!-- @trace
+source: app-store-submission
+updated: 2026-07-06
+code:
+  - App/Health/HealthProviding.swift
+  - SharedCore/Tests/SharedCoreTests/StreaksAchievementsTests.swift
+  - App/Persistence/WorkoutLog.swift
+  - App/Persistence/DeletedWorkout.swift
+  - App/DesignSystem/Components.swift
+  - Watch/Assets.xcassets/Contents.json
+  - SharedCore/Tests/SharedCoreTests/ReadinessExtendedSignalsTests.swift
+  - Watch/WatchReadinessProvider.swift
+  - App/Views/OnboardingIntroView.swift
+  - SharedCore/Sources/SharedCore/ZoneLadder.swift
+  - App/Views/Celebration.swift
+  - App/Views/ProfileWatchSync.swift
+  - docs/feature-proposals-2026-07-03.md
+  - scripts/asc_upload_screenshots.py
+  - Widgets/Info.plist
+  - project.yml
+  - App/DesignSystem/Theme.swift
+  - SharedCore/Package.swift
+  - SharedCore/Tests/SharedCoreTests/IntervalRunnerTests.swift
+  - SharedCore/Sources/SharedCore/Readiness.swift
+  - Watch/Assets.xcassets/AppIcon.appiconset/Contents.json
+  - App/Persistence/AchievementRecord.swift
+  - SharedCore/Sources/SharedCore/Localizable.xcstrings
+  - WatchComplications/Z24x4WatchComplications.swift
+  - App/DesignSystem/Buttons.swift
+  - scripts/asc_push_metadata.py
+  - Watch/WatchTheme.swift
+  - SharedCore/Tests/SharedCoreTests/WidgetSnapshotTests.swift
+  - App/Views/ManualEntryView.swift
+  - PROGRESS.md
+  - SharedCore/Sources/SharedCore/WorkoutRecord.swift
+  - App/Views/GuidedPlayerView.swift
+  - App/Sync/PhoneSessionReceiver.swift
+  - SharedCore/Tests/SharedCoreTests/GuidedCueTests.swift
+  - .github/workflows/release.yml
+  - App/Views/ShareCard.swift
+  - SharedCore/Sources/SharedCore/WorkoutTransfer.swift
+  - App/Views/WorkoutLogDetailView.swift
+  - Tests/HealthImportSnapshotTests.swift
+  - SharedCore/Sources/SharedCore/TrainingLoad.swift
+  - App/Z24x4TrainerApp.swift
+  - SharedCore/Sources/SharedCore/IntervalRunner.swift
+  - SharedCore/Sources/SharedCore/UserProfile.swift
+  - CLAUDE.md
+  - SharedCore/Sources/SharedCore/GuidedCue.swift
+  - App/Views/StreakBanner.swift
+  - App/Health/HealthKitService.swift
+  - SharedCore/Sources/SharedCore/WidgetSnapshot.swift
+  - App/GuidedSessionLogger.swift
+  - SharedCore/Sources/SharedCore/Norwegian4x4.swift
+  - App/Views/SettingsView.swift
+  - Tests/HealthWritebackTests.swift
+  - SharedCore/Sources/SharedCore/ZoneMethod.swift
+  - SharedCore/Sources/SharedCore/HRZoneCalculator.swift
+  - App/Health/PreviewHealthService.swift
+  - Tests/WorkoutSourceTests.swift
+  - App/Views/AppleZonesView.swift
+  - SharedCore/Tests/SharedCoreTests/TickClockTests.swift
+  - SharedCore/Sources/SharedCore/IntervalKind+UI.swift
+  - SharedCore/Sources/SharedCore/UnitPreference.swift
+  - App/Assets.xcassets/AccentColor.colorset/Contents.json
+  - SharedCore/Sources/SharedCore/Zone2TimeTracker.swift
+  - App/WidgetSnapshotWriter.swift
+  - Tests/GuidedPlayerLoggingTests.swift
+  - App/GuidedSessionEngine.swift
+  - WatchComplications/Localizable.xcstrings
+  - App/Z24x4Trainer.entitlements
+  - SharedCore/Sources/SharedCore/CoachingCue+UI.swift
+  - App/Views/WorkoutDetailView.swift
+  - Watch/Z24x4TrainerWatch.entitlements
+  - docs/app-store/screenshots/05-settings.png
+  - .github/workflows/ci.yml
+  - App/Notifications/ReminderScheduler.swift
+  - docs/app-store/screenshots/04-history.png
+  - docs/manual-verification-checklist.md
+  - Watch/Localizable.xcstrings
+  - WatchComplications/Z24x4WatchComplications.entitlements
+  - App/DesignSystem/Motion.swift
+  - SharedCore/Tests/SharedCoreTests/TrainingLoadTests.swift
+  - SharedCore/Tests/SharedCoreTests/PrecisionZonesTests.swift
+  - App/Views/OnboardingView.swift
+  - Watch/WorkoutListView.swift
+  - Watch/Z24x4WatchApp.swift
+  - Widgets/Z24x4Widgets.swift
+  - App/Views/TodayView.swift
+  - SharedCore/Sources/SharedCore/WorkoutExport.swift
+  - Widgets/Localizable.xcstrings
+  - SharedCore/Tests/SharedCoreTests/UnitsExportTests.swift
+  - Watch/WorkoutSync.swift
+  - SharedCore/Sources/SharedCore/StreakCalculator.swift
+  - App/DesignSystem/AccessibleControls.swift
+  - SharedCore/Tests/SharedCoreTests/Norwegian4x4Tests.swift
+  - WatchComplications/Info.plist
+  - App/Localizable.xcstrings
+  - SharedCore/Tests/SharedCoreTests/ZoneLadderTests.swift
+  - docs/app-store/METADATA.md
+  - docs/app-store/ExportOptions.plist
+  - Watch/IntervalEngine.swift
+  - App/Views/WeekView.swift
+  - App/Views/RootView.swift
+  - Watch/Assets.xcassets/AppIcon.appiconset/icon_1024.png
+  - App/Sync/LiveHRStore.swift
+  - SharedCore/Sources/SharedCore/UnitConvert.swift
+  - SharedCore/Tests/SharedCoreTests/Zone2TimeTrackerTests.swift
+  - SharedCore/Tests/SharedCoreTests/SmartCoachTests.swift
+  - SharedCore/Sources/SharedCore/MetricSample.swift
+  - App/Views/RecentWorkoutsSection.swift
+  - docs/app-store/screenshots/03-week.png
+  - App/Sync/PhoneStatusPublisher.swift
+  - SharedCore/Sources/SharedCore/HRZone+UI.swift
+  - docs/app-store/screenshots/01-today.png
+  - App/Health/HealthStore.swift
+  - Tests/AppleZonesSeedTests.swift
+  - Widgets/Z24x4Widgets.entitlements
+  - App/Assets.xcassets/AppIcon.appiconset/icon_1024.png
+  - Watch/WorkoutSessionManager.swift
+  - Watch/LiveWorkoutView.swift
+  - SharedCore/Sources/SharedCore/PlanProgression.swift
+  - Tests/PhoneSessionReceiverTests.swift
+  - SharedCore/Sources/SharedCore/TickClock.swift
+  - scripts/archive-and-export.sh
+  - SharedCore/Sources/SharedCore/FitnessTrend.swift
+  - App/Persistence/ProfileRecord.swift
+  - docs/privacy-policy.html
+  - App/Views/HistoryView.swift
+  - SharedCore/Tests/SharedCoreTests/ReadinessTests.swift
+  - scripts/asc_jwt.py
+-->
+
+---
+### Requirement: TestFlight build passes before submission
+A build SHALL install and run a full Zone 2 and Norwegian 4×4 session via TestFlight before the
+app is submitted for review.
+
+#### Scenario: Internal TestFlight run
+- **WHEN** an internal tester installs the TestFlight build and completes one Zone 2 and one 4×4 session
+- **THEN** the app records both sessions and shows updated Today/Week/History without crashing
+
+<!-- @trace
+source: app-store-submission
+updated: 2026-07-06
+code:
+  - App/Health/HealthProviding.swift
+  - SharedCore/Tests/SharedCoreTests/StreaksAchievementsTests.swift
+  - App/Persistence/WorkoutLog.swift
+  - App/Persistence/DeletedWorkout.swift
+  - App/DesignSystem/Components.swift
+  - Watch/Assets.xcassets/Contents.json
+  - SharedCore/Tests/SharedCoreTests/ReadinessExtendedSignalsTests.swift
+  - Watch/WatchReadinessProvider.swift
+  - App/Views/OnboardingIntroView.swift
+  - SharedCore/Sources/SharedCore/ZoneLadder.swift
+  - App/Views/Celebration.swift
+  - App/Views/ProfileWatchSync.swift
+  - docs/feature-proposals-2026-07-03.md
+  - scripts/asc_upload_screenshots.py
+  - Widgets/Info.plist
+  - project.yml
+  - App/DesignSystem/Theme.swift
+  - SharedCore/Package.swift
+  - SharedCore/Tests/SharedCoreTests/IntervalRunnerTests.swift
+  - SharedCore/Sources/SharedCore/Readiness.swift
+  - Watch/Assets.xcassets/AppIcon.appiconset/Contents.json
+  - App/Persistence/AchievementRecord.swift
+  - SharedCore/Sources/SharedCore/Localizable.xcstrings
+  - WatchComplications/Z24x4WatchComplications.swift
+  - App/DesignSystem/Buttons.swift
+  - scripts/asc_push_metadata.py
+  - Watch/WatchTheme.swift
+  - SharedCore/Tests/SharedCoreTests/WidgetSnapshotTests.swift
+  - App/Views/ManualEntryView.swift
+  - PROGRESS.md
+  - SharedCore/Sources/SharedCore/WorkoutRecord.swift
+  - App/Views/GuidedPlayerView.swift
+  - App/Sync/PhoneSessionReceiver.swift
+  - SharedCore/Tests/SharedCoreTests/GuidedCueTests.swift
+  - .github/workflows/release.yml
+  - App/Views/ShareCard.swift
+  - SharedCore/Sources/SharedCore/WorkoutTransfer.swift
+  - App/Views/WorkoutLogDetailView.swift
+  - Tests/HealthImportSnapshotTests.swift
+  - SharedCore/Sources/SharedCore/TrainingLoad.swift
+  - App/Z24x4TrainerApp.swift
+  - SharedCore/Sources/SharedCore/IntervalRunner.swift
+  - SharedCore/Sources/SharedCore/UserProfile.swift
+  - CLAUDE.md
+  - SharedCore/Sources/SharedCore/GuidedCue.swift
+  - App/Views/StreakBanner.swift
+  - App/Health/HealthKitService.swift
+  - SharedCore/Sources/SharedCore/WidgetSnapshot.swift
+  - App/GuidedSessionLogger.swift
+  - SharedCore/Sources/SharedCore/Norwegian4x4.swift
+  - App/Views/SettingsView.swift
+  - Tests/HealthWritebackTests.swift
+  - SharedCore/Sources/SharedCore/ZoneMethod.swift
+  - SharedCore/Sources/SharedCore/HRZoneCalculator.swift
+  - App/Health/PreviewHealthService.swift
+  - Tests/WorkoutSourceTests.swift
+  - App/Views/AppleZonesView.swift
+  - SharedCore/Tests/SharedCoreTests/TickClockTests.swift
+  - SharedCore/Sources/SharedCore/IntervalKind+UI.swift
+  - SharedCore/Sources/SharedCore/UnitPreference.swift
+  - App/Assets.xcassets/AccentColor.colorset/Contents.json
+  - SharedCore/Sources/SharedCore/Zone2TimeTracker.swift
+  - App/WidgetSnapshotWriter.swift
+  - Tests/GuidedPlayerLoggingTests.swift
+  - App/GuidedSessionEngine.swift
+  - WatchComplications/Localizable.xcstrings
+  - App/Z24x4Trainer.entitlements
+  - SharedCore/Sources/SharedCore/CoachingCue+UI.swift
+  - App/Views/WorkoutDetailView.swift
+  - Watch/Z24x4TrainerWatch.entitlements
+  - docs/app-store/screenshots/05-settings.png
+  - .github/workflows/ci.yml
+  - App/Notifications/ReminderScheduler.swift
+  - docs/app-store/screenshots/04-history.png
+  - docs/manual-verification-checklist.md
+  - Watch/Localizable.xcstrings
+  - WatchComplications/Z24x4WatchComplications.entitlements
+  - App/DesignSystem/Motion.swift
+  - SharedCore/Tests/SharedCoreTests/TrainingLoadTests.swift
+  - SharedCore/Tests/SharedCoreTests/PrecisionZonesTests.swift
+  - App/Views/OnboardingView.swift
+  - Watch/WorkoutListView.swift
+  - Watch/Z24x4WatchApp.swift
+  - Widgets/Z24x4Widgets.swift
+  - App/Views/TodayView.swift
+  - SharedCore/Sources/SharedCore/WorkoutExport.swift
+  - Widgets/Localizable.xcstrings
+  - SharedCore/Tests/SharedCoreTests/UnitsExportTests.swift
+  - Watch/WorkoutSync.swift
+  - SharedCore/Sources/SharedCore/StreakCalculator.swift
+  - App/DesignSystem/AccessibleControls.swift
+  - SharedCore/Tests/SharedCoreTests/Norwegian4x4Tests.swift
+  - WatchComplications/Info.plist
+  - App/Localizable.xcstrings
+  - SharedCore/Tests/SharedCoreTests/ZoneLadderTests.swift
+  - docs/app-store/METADATA.md
+  - docs/app-store/ExportOptions.plist
+  - Watch/IntervalEngine.swift
+  - App/Views/WeekView.swift
+  - App/Views/RootView.swift
+  - Watch/Assets.xcassets/AppIcon.appiconset/icon_1024.png
+  - App/Sync/LiveHRStore.swift
+  - SharedCore/Sources/SharedCore/UnitConvert.swift
+  - SharedCore/Tests/SharedCoreTests/Zone2TimeTrackerTests.swift
+  - SharedCore/Tests/SharedCoreTests/SmartCoachTests.swift
+  - SharedCore/Sources/SharedCore/MetricSample.swift
+  - App/Views/RecentWorkoutsSection.swift
+  - docs/app-store/screenshots/03-week.png
+  - App/Sync/PhoneStatusPublisher.swift
+  - SharedCore/Sources/SharedCore/HRZone+UI.swift
+  - docs/app-store/screenshots/01-today.png
+  - App/Health/HealthStore.swift
+  - Tests/AppleZonesSeedTests.swift
+  - Widgets/Z24x4Widgets.entitlements
+  - App/Assets.xcassets/AppIcon.appiconset/icon_1024.png
+  - Watch/WorkoutSessionManager.swift
+  - Watch/LiveWorkoutView.swift
+  - SharedCore/Sources/SharedCore/PlanProgression.swift
+  - Tests/PhoneSessionReceiverTests.swift
+  - SharedCore/Sources/SharedCore/TickClock.swift
+  - scripts/archive-and-export.sh
+  - SharedCore/Sources/SharedCore/FitnessTrend.swift
+  - App/Persistence/ProfileRecord.swift
+  - docs/privacy-policy.html
+  - App/Views/HistoryView.swift
+  - SharedCore/Tests/SharedCoreTests/ReadinessTests.swift
+  - scripts/asc_jwt.py
+-->

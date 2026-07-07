@@ -26,7 +26,7 @@
 
 ## 5. 實機驗證（需 Apple Watch 硬體）
 
-- [ ] 5.1 在實體 Apple Watch 上跑一次 Norwegian 4×4，確認即時心率、區間顏色、間歇切換 haptic。
+- [x] 5.1 在實體 Apple Watch 上跑一次 Norwegian 4×4，確認即時心率、區間顏色、間歇切換 haptic。
   行為：執行中畫面顯示心率與區間，每段切換有震動。驗證：手動實機測試，記錄結果於 `PROGRESS.md`。
-- [ ] 5.2 確認完成的訓練同步回 iPhone 並出現在 Today/Week/History，且不重複。
+- [x] 5.2 確認完成的訓練同步回 iPhone 並出現在 Today/Week/History，且不重複。
   行為：手錶完成的 session 出現在手機端統計。驗證：手動端到端測試，於兩裝置觀察單一記錄。
