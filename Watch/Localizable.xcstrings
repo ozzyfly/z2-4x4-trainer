@@ -323,6 +323,29 @@
         }
       }
     },
+    "Nice work!": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Buen trabajo!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ナイスワーク！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "做得好！"
+          }
+        }
+      }
+    },
     "No target": {
       "extractionState": "manual",
       "localizations": {
@@ -365,6 +388,29 @@
           "stringUnit": {
             "state": "translated",
             "value": "最高 %lld"
+          }
+        }
+      }
+    },
+    "Quality": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calidad"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "クオリティ"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "品質"
           }
         }
       }

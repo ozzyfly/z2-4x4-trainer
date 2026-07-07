@@ -175,6 +175,11 @@ struct LiveWorkoutView: View {
             }
             Button("Keep going", role: .cancel) {}
         }
+        // The summary owns the whole screen — no nav chrome bleeding through.
+        .toolbar(
+            showZone2Summary || (manager.intervalEngine?.isFinished ?? false) ? .hidden : .automatic,
+            for: .navigationBar
+        )
         // Celebrate a completed 4×4 before saving + leaving.
         .overlay {
             if showZone2Summary {
@@ -404,55 +409,63 @@ private struct IntervalBanner: View {
     }
 }
 
-/// Full-screen "you finished" celebration + quality summary for a completed 4×4.
+/// Full-screen "you finished" summary for a completed 4×4: the quality score is
+/// the hero, everything else is one quiet block. Opaque black + scrollable.
 private struct CompletionOverlay: View {
     let summary: FourByFourSummary
     let onDone: () -> Void
-    @State private var pop = false
+
+    private var qualityColor: Color {
+        summary.qualityScore >= FourByFourSummary.creditQualityThreshold ? .green : .orange
+    }
 
     var body: some View {
-        VStack(spacing: 8) {
-            Image(systemName: "checkmark.seal.fill")
-                .font(.system(size: 40))
-                .foregroundStyle(.green)
-                .scaleEffect(pop ? 1 : 0.4)
-                .opacity(pop ? 1 : 0)
-            Text("Nice work!")
-                .font(.system(.headline, design: .serif))
-            Text("Quality \(summary.qualityScore)")
-                .font(.system(.title3, design: .rounded).weight(.bold))
-                .monospacedDigit()
-                .foregroundStyle(summary.qualityScore >= FourByFourSummary.creditQualityThreshold ? .green : .orange)
-            VStack(spacing: 3) {
-                Text("\(summary.repsCompletedFully)/\(summary.hardReps.count) full reps")
-                if summary.avgHardHR > 0 {
-                    Text("Avg hard \(summary.avgHardHR) · peak \(summary.peakHR)")
-                } else {
-                    Text("Peak \(summary.peakHR)")
+        ScrollView {
+            VStack(spacing: 6) {
+                Text("Nice work!")
+                    .font(.system(.caption2, design: .serif))
+                    .foregroundStyle(WatchTheme.taupe)
+                    .padding(.top, 10)
+
+                Text("\(summary.qualityScore)")
+                    .font(.system(size: 44, weight: .semibold, design: .rounded))
+                    .monospacedDigit()
+                    .foregroundStyle(qualityColor)
+
+                Text("Quality")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+
+                VStack(spacing: 2) {
+                    Text("\(summary.repsCompletedFully)/\(summary.hardReps.count) full reps")
+                    if summary.avgHardHR > 0 {
+                        Text("Avg hard \(summary.avgHardHR) · peak \(summary.peakHR)")
+                    } else {
+                        Text("Peak \(summary.peakHR)")
+                    }
+                    Text("Hard time \(summary.totalInZoneSec / 60)m · recoveries \(summary.recoveriesCompleted)/\(summary.recoveryTargets)")
                 }
-                Text("Hard time \(summary.totalInZoneSec / 60)m · recoveries \(summary.recoveriesCompleted)/\(summary.recoveryTargets)")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+
+                Button("Done", action: onDone)
+                    .buttonStyle(.borderedProminent)
+                    .tint(WatchTheme.accent)
+                    .padding(.top, 6)
             }
-            .font(.caption2)
-            .foregroundStyle(.secondary)
-            // Stats must wrap, not truncate ("Avg hard 159 · peak…").
-            .multilineTextAlignment(.center)
-            .fixedSize(horizontal: false, vertical: true)
-            Button("Done", action: onDone)
-                .buttonStyle(.borderedProminent)
-                .tint(WatchTheme.accent)
-                .padding(.top, 2)
+            .padding(.horizontal, 4)
         }
-        .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.ultraThinMaterial)
+        .background(Color.black)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("Workout complete. Quality \(summary.qualityScore). \(summary.repsCompletedFully) of \(summary.hardReps.count) full reps, average hard heart rate \(summary.avgHardHR), peak \(summary.peakHR).")
-        .onAppear {
-            withAnimation(.spring(response: 0.5, dampingFraction: 0.6)) { pop = true }
-        }
     }
 }
 
+/// One hero number (effective Zone 2 time), one quiet line of context, two
+/// buttons. Opaque black + scrollable so nothing bleeds through or clips.
 private struct Zone2CompletionOverlay: View {
     let inZoneSeconds: Int
     let totalSeconds: Int
@@ -462,40 +475,43 @@ private struct Zone2CompletionOverlay: View {
     let onCancel: () -> Void
 
     var body: some View {
-        VStack(spacing: 7) {
-            Image(systemName: "checkmark.circle.fill")
-                .font(.system(size: 34))
-                .foregroundStyle(.green)
-            Text("Zone 2 summary")
-                .font(.system(.headline, design: .serif))
-                .lineLimit(1)
-                .minimumScaleFactor(0.6) // fit on 41/45mm too, don't truncate
-            Text(Self.elapsedString(inZoneSeconds))
-                .font(.system(.title3, design: .rounded).weight(.bold))
-                .monospacedDigit()
-                .foregroundStyle(.green)
-            VStack(spacing: 2) {
+        ScrollView {
+            VStack(spacing: 6) {
                 Text("Effective Zone 2")
-                if averageHR > 0 { Text("Avg HR \(averageHR)") }
-                Text("In zone \(inZonePercent)% of \(Self.elapsedString(totalSeconds))")
+                    .font(.system(.caption2, design: .serif))
+                    .foregroundStyle(WatchTheme.taupe)
+                    .padding(.top, 10)
+
+                Text(Self.elapsedString(inZoneSeconds))
+                    .font(.system(size: 44, weight: .semibold, design: .rounded))
+                    .monospacedDigit()
+                    .foregroundStyle(.green)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+
+                VStack(spacing: 2) {
+                    if averageHR > 0 { Text("Avg HR \(averageHR)") }
+                    Text("In zone \(inZonePercent)% of \(Self.elapsedString(totalSeconds))")
+                }
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+
+                HStack {
+                    Button("Keep going", action: onCancel)
+                        .buttonStyle(.bordered)
+                    Button("Done", action: onDone)
+                        .buttonStyle(.borderedProminent)
+                        .tint(WatchTheme.accent)
+                }
+                .font(.caption)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .padding(.top, 6)
             }
-            .font(.caption2)
-            .foregroundStyle(.secondary)
-            HStack {
-                Button("Keep going", action: onCancel)
-                    .buttonStyle(.bordered)
-                Button("Done", action: onDone)
-                    .buttonStyle(.borderedProminent)
-                    .tint(WatchTheme.accent)
-            }
-            .font(.caption)
-            // One line each — "Keep going" was wrapping mid-word on device.
-            .lineLimit(1)
-            .minimumScaleFactor(0.7)
+            .padding(.horizontal, 4)
         }
-        .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.ultraThinMaterial)
+        .background(Color.black)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("Zone 2 summary. \(Self.elapsedString(inZoneSeconds)) effective Zone 2, average heart rate \(averageHR), in zone \(inZonePercent) percent.")
     }

@@ -9,6 +9,23 @@
 > UI fixes are on main but the watch app needs a fresh Xcode install to pick them up.
 > **Next:** `/spectra-archive` for `watch-phone-sync` + `app-store-submission` on the Mac,
 > reinstall the watch app (see the new Zone 2 top banner), then cut build 59 and submit.
+>
+> **Same evening — completion overlays redesigned (photo feedback: "can't scroll, still messy").**
+> Both watch summary overlays (`Zone2CompletionOverlay`, `CompletionOverlay`) rebuilt: opaque
+> black instead of `.ultraThinMaterial` (the live screen was bleeding through), wrapped in a
+> ScrollView (fixed VStack couldn't scroll / risked clipping on smaller watches), nav bar hidden
+> while a summary is up (the overlay checkmark was colliding with the nav title), and hierarchy
+> reduced to serif overline → one hero number (44pt effective time / quality score) → one quiet
+> caption block → buttons. Dropped: big checkmark/seal icons, pop animation, "Zone 2 summary"
+> title (nav already says Zone 2). l10n: +2 watch keys ("Quality", "Nice work!" — the latter
+> was previously hardcoded-English on device). Verify: watch build + reinstall, end a session
+> on both paths, confirm scroll + no bleed-through.
+>
+> **2026-07-06 (later): streak card removed from Today** (user: "沒什麼意義"). Deleted
+> `App/Views/StreakBanner.swift` + its TodayView call site. Streak data itself stays — the
+> History header stat, StreakWidget, and watch complication still read
+> `StreakCalculator`/snapshot `streakWeeks`; only the Today card is gone. `xcodegen generate`
+> required (file removal).
 
 > **2026-07-05 (evening): first real-hardware session + photo-driven UI fixes — VERIFIED on Mac
 > same evening:** SharedCore 117/117, iOS test (iPhone 17 sim) 32/32 (incl. the new min-import

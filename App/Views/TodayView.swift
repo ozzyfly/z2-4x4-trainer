@@ -52,11 +52,6 @@ struct TodayView: View {
                     // acute (7-day) vs chronic (28-day) load from the logs alone.
                     trainingLoadSection(history: history)
 
-                    StreakBanner(
-                        currentWeeks: StreakCalculator.currentWeeks(in: history),
-                        longestWeeks: StreakCalculator.longestWeeks(in: history)
-                    )
-
                     coachSection(base: plan, adapted: adapted)
 
                     zonesSection(calc: calc)
