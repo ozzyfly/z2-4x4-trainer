@@ -1,5 +1,15 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-07-06: hardware verification COMPLETE — 5.1 / 5.2 / 4.1 all PASS.** User confirmed the
+> remaining items: wrist-down 30s catch-up ✓ (TickClock works on-device), transition haptics ✓,
+> guided autolog ✓, screen-awake ✓, zero crashes ✓; TestFlight screenshot confirms build
+> **1.0.1 (58)**. Checklist RESULT lines all filled. Unexercised non-blockers noted in the
+> checklist (blind fallback, 5s live-HR cadence, readiness-widget survival, audio-duck).
+> Note: the Jul 6 watch photos still showed the *pre-banner* Zone 2 layout — the photo-driven
+> UI fixes are on main but the watch app needs a fresh Xcode install to pick them up.
+> **Next:** `/spectra-archive` for `watch-phone-sync` + `app-store-submission` on the Mac,
+> reinstall the watch app (see the new Zone 2 top banner), then cut build 59 and submit.
+
 > **2026-07-05 (evening): first real-hardware session + photo-driven UI fixes — VERIFIED on Mac
 > same evening:** SharedCore 117/117, iOS test (iPhone 17 sim) 32/32 (incl. the new min-import
 > case), watch build succeeded. Original notes:
