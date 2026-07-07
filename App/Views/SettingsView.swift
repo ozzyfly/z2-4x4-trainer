@@ -139,6 +139,8 @@ struct SettingsView: View {
                     remindersSection
 
                     healthSection
+
+                    languageSection
                 }
                 .padding(Spacing.lg)
             }
@@ -150,6 +152,31 @@ struct SettingsView: View {
     }
 
     // MARK: - Sections
+
+    /// Apple's supported path for per-app language: the system Settings page.
+    /// A custom in-app override (AppleLanguages) needs a relaunch and fights
+    /// String Catalogs — the deep link is the reliable, review-safe way.
+    private var languageSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("Language")
+            Card {
+                VStack(alignment: .leading, spacing: Spacing.md) {
+                    Text("English · 繁體中文 · Español · 日本語 · 한국어 · Deutsch · Français · Português")
+                        .font(.footnote)
+                        .foregroundStyle(Theme.secondaryLabel)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Button {
+                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(url)
+                        }
+                    } label: {
+                        Label("Change app language", systemImage: "globe")
+                    }
+                    .buttonStyle(SecondaryButton())
+                }
+            }
+        }
+    }
 
     @ViewBuilder
     private var proSection: some View {

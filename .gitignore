@@ -28,3 +28,4 @@ AuthKey_*.p8
 .claude/settings.local.json
 .spectra/
 openspec/.vector-search.db*
+__pycache__/

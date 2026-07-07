@@ -1,5 +1,24 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-07-07: 4 new languages (ko/de/fr/pt-BR) + in-app language switcher — VERIFIED on Mac:**
+> iOS test 35/35, watch build OK; sim Today screen spot-checked in all 4 new languages
+> (-AppleLanguages) — tab bar, readiness, coach cards all localized, German fits without
+> clipping. Settings/paywall screens not GUI-spot-checked (needs interactive nav) — eyeball
+> them in the sim before ship. Original notes:
+> App now localizes to 8 languages: en, zh-Hant, es, ja + new Korean, German, French,
+> Brazilian Portuguese. All 5 catalogs fully covered (424 keys × 4 new langs ≈ 1,700
+> localizations: App 305, Watch 25, SharedCore 40, Widgets 34, Complications 20), including the
+> "%lld-week streak" plural variations per language. Added via new `scripts/add_locales.py`
+> (merge-only — never overwrites, aborts on unknown keys, enforces %-placeholder parity;
+> post-run scan CLEAN). `project.yml` knownRegions extended. **Language switcher:** Settings
+> gains a Language section → deep-links to the system per-app language page
+> (`openSettingsURLString`) — Apple's supported path; no AppleLanguages hack, no relaunch logic.
+> +3 App keys ("Language", "Change app language", language list) ×7 langs. **Verify on Mac:**
+> `xcodegen generate` → build → sim run with `-AppleLanguages (ko)` (and de/fr/pt) to spot-check
+> Today/Settings/paywall rendering, watch build, then native-speaker review is the known gap —
+> translations are AI-drafted (state=translated; flip to needs_review per language if you want
+> Xcode to track a human pass). ASC metadata for the new locales is a separate, optional step.
+
 > **2026-07-06: monetization implemented — freemium + one-time Pro unlock — VERIFIED on Mac:**
 > iOS test 35/35 (iPhone 17 sim; incl. 3 grandfather tests), watch build succeeded. One Mac
 > fix: `ProStore.grandfatherCutoff` needed `nonisolated` (MainActor-isolated static used as a

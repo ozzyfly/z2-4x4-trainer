@@ -7,6 +7,10 @@ options:
     - zh-Hant
     - es
     - ja
+    - ko
+    - de
+    - fr
+    - pt-BR
   deploymentTarget:
     iOS: "18.0"
     watchOS: "11.0"

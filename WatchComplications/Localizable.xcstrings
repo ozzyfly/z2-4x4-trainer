@@ -4,16 +4,40 @@
     "%@ · %lldm": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %lld Min"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "%@ · %lldm"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %lld min"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "%@ · %lld分"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %lld분"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %lld min"
           }
         },
         "zh-Hant": {
@@ -24,20 +48,71 @@
         }
       }
     },
-    "%@m": {},
+    "%@m": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Min"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ min"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@분"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ min"
+          }
+        }
+      }
+    },
     "%lld wk streak": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld-Wo.-Serie"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld sem de racha"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Série %lld sem."
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld週連続"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld주 연속"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld sem. seguidas"
           }
         },
         "zh-Hant": {
@@ -51,6 +126,24 @@
     "%lld-week streak": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "1-Wochen-Serie"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld-Wochen-Serie"
+                }
+              }
+            }
+          }
+        },
         "en": {
           "variations": {
             "plural": {
@@ -87,6 +180,24 @@
             }
           }
         },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Série de 1 semaine"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Série de %lld semaines"
+                }
+              }
+            }
+          }
+        },
         "ja": {
           "variations": {
             "plural": {
@@ -100,6 +211,42 @@
                 "stringUnit": {
                   "state": "translated",
                   "value": "%lld週連続"
+                }
+              }
+            }
+          }
+        },
+        "ko": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld주 연속"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld주 연속"
+                }
+              }
+            }
+          }
+        },
+        "pt-BR": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Sequência de 1 semana"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Sequência de %lld semanas"
                 }
               }
             }
@@ -128,16 +275,40 @@
     "%lldm": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Min"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "%lldm"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld分"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld분"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min"
           }
         },
         "zh-Hant": {
@@ -151,13 +322,37 @@
     "4×4": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4×4"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "4×4"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4×4"
+          }
+        },
         "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4×4"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4×4"
+          }
+        },
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "4×4"
@@ -174,16 +369,40 @@
     "Go hard": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vollgas"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "A tope"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À fond"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "全力で"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "강하게"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pra cima"
           }
         },
         "zh-Hant": {
@@ -197,16 +416,40 @@
     "Next session": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nächste Einheit"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Próxima sesión"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prochaine séance"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "次のセッション"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다음 세션"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próxima sessão"
           }
         },
         "zh-Hant": {
@@ -220,16 +463,40 @@
     "No streak yet": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch keine Serie"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Sin racha aún"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas encore de série"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "まだ連続記録なし"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "아직 연속 기록 없음"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda sem sequência"
           }
         },
         "zh-Hant": {
@@ -243,16 +510,40 @@
     "Readiness": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bereitschaft"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Preparación"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forme"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "コンディション"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "준비도"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prontidão"
           }
         },
         "zh-Hant": {
@@ -263,42 +554,43 @@
         }
       }
     },
-    "Readiness —": {
-      "extractionState": "manual",
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Preparación —"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "コンディション —"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "狀態 —"
-          }
-        }
-      }
-    },
     "Readiness %lld": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bereitschaft %lld"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Preparación %lld"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forme %lld"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "コンディション %lld"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "준비도 %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prontidão %lld"
           }
         },
         "zh-Hant": {
@@ -309,19 +601,90 @@
         }
       }
     },
+    "Readiness —": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bereitschaft —"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparación —"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forme —"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "コンディション —"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "준비도 —"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prontidão —"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "狀態 —"
+          }
+        }
+      }
+    },
     "Rest": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruhetag"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Descanso"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repos"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "休養"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "휴식"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso"
           }
         },
         "zh-Hant": {
@@ -335,16 +698,40 @@
     "Steady": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konstant"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Constante"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Régulier"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "安定"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "꾸준히"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Constante"
           }
         },
         "zh-Hant": {
@@ -358,16 +745,40 @@
     "Streak": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serie"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Racha"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Série"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "連続記録"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연속"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sequência"
           }
         },
         "zh-Hant": {
@@ -381,16 +792,40 @@
     "Take it easy": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locker lassen"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Con calma"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Levez le pied"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "軽めに"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "쉬어가기"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegue leve"
           }
         },
         "zh-Hant": {
@@ -404,16 +839,40 @@
     "Today's readiness score synced from your iPhone.": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heutiger Bereitschaftswert, vom iPhone synchronisiert."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Tu puntuación de preparación de hoy sincronizada desde tu iPhone."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Score de forme du jour synchronisé depuis votre iPhone."
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "iPhoneから同期された今日のコンディションスコア。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone에서 동기화된 오늘의 준비도 점수."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pontuação de prontidão de hoje sincronizada do seu iPhone."
           }
         },
         "zh-Hant": {
@@ -427,16 +886,40 @@
     "Your current weekly training streak.": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine aktuelle wöchentliche Trainingsserie."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Tu racha de entrenamiento semanal actual."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre série d’entraînement hebdomadaire actuelle."
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "現在の週間トレーニング連続記録。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "현재 주간 훈련 연속 기록."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua sequência semanal de treinos atual."
           }
         },
         "zh-Hant": {
@@ -450,16 +933,40 @@
     "Your next Zone 2 or 4×4 session.": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine nächste Zone-2- oder 4×4-Einheit."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Tu próxima sesión de Zona 2 o 4×4."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre prochaine séance Zone 2 ou 4×4."
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "次の Zone 2 または 4×4 セッション。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다음 Zone 2 또는 4×4 세션."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua próxima sessão de Zona 2 ou 4×4."
           }
         },
         "zh-Hant": {
@@ -473,16 +980,40 @@
     "Zone 2": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zone 2"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Zona 2"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zone 2"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "Zone 2"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zone 2"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zona 2"
           }
         },
         "zh-Hant": {
