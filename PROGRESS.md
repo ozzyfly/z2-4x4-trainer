@@ -1,5 +1,40 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-07-06: monetization implemented — freemium + one-time Pro unlock — VERIFIED on Mac:**
+> iOS test 35/35 (iPhone 17 sim; incl. 3 grandfather tests), watch build succeeded. One Mac
+> fix: `ProStore.grandfatherCutoff` needed `nonisolated` (MainActor-isolated static used as a
+> default value in the nonisolated `isGrandfathered`). GUI buy-flow check pending (StoreKit
+> config only loads via the Xcode scheme). Original notes:
+> StoreKit 2, one non-consumable (`ca.logolo.z24x4.pro.lifetime`, US$14.99 anchor, Family
+> Sharing). New `App/Store/ProStore.swift` (@Observable; on-device
+> `Transaction.currentEntitlements` verification — no server/account, keeps the local-only
+> promise; `Transaction.updates` listener; explicit restore; `-pro` launch override).
+> **Launch-cohort grandfathering:** first launch before 2026-08-01 (`grandfatherCutoff`) is Pro
+> free forever — v1.0 ships effectively free, the paywall bites for post-cutoff installs; rule
+> is pure + tested (`Tests/ProGrandfatherTests` ×3). **Gates (5):** readiness details (label +
+> recommendation stay FREE as the safety layer; score/signals/explanation Pro), ACWR analysis
+> (warning headline free, numbers Pro), adaptive `PlanProgression` (free = base plan), History
+> export (CSV/JSON), VO₂max trend card. Teasers via new `ProTeaserRow` (quiet lock row, never a
+> nag). **UI:** `ProPaywallView` (Hermès: serif headline, 5 feature rows, price from
+> `Product.displayPrice`, restore, "everything you use stays free" footnote) + Settings top
+> section (unlocked thank-you / unlock CTA). **Infra:** `Z24x4.storekit` local test config wired
+> into the run scheme via project.yml (`storeKitConfiguration`); previews injected with
+> `.environment(ProStore())`. l10n: +24 app keys (zh-Hant/es/ja). Docs:
+> `docs/app-store/IAP_SETUP.md` (ASC product setup, review-guideline checklist — note the two
+> open items: app-description disclosure line + privacy-policy sentence). **Verify on Mac:**
+> `xcodegen generate` (new files + scheme change) → iOS build+test (expect 35 = 32 + 3
+> grandfather) → sim run: buy flow via the StoreKit config, gates flip, restore works,
+> `-pro` override, and confirm a pre-cutoff first launch stays unlocked.
+>
+> **Follow-up same day:** the two open review-checklist items closed — METADATA description
+> gained a "FREE + AN OPTIONAL ONE-TIME UPGRADE" section (3.1.1 disclosure), and an
+> "In-app purchases" section was added to PRIVACY_POLICY.md + the hosted privacy-policy.html
+> (processed by Apple, verified on-device, never linked to Health data). Push to publish the
+> HTML via Pages. **Decisions settled (user, 2026-07-06):** widget readiness score stays
+> visible for free users — deliberate teaser, no snapshot stripping. Price confirmed US$14.99.
+> **Post-workout teaser implemented:** WorkoutLogDetailView now shows one quiet ProTeaserRow
+> ("What this session means for tomorrow") under the stats for non-Pro users, only on sessions
+> that actually have quality/Zone 2 stats — the highest-intent conversion moment. +1 l10n key.
 > **2026-07-06: hardware verification COMPLETE — 5.1 / 5.2 / 4.1 all PASS.** User confirmed the
 > remaining items: wrist-down 30s catch-up ✓ (TickClock works on-device), transition haptics ✓,
 > guided autolog ✓, screen-awake ✓, zero crashes ✓; TestFlight screenshot confirms build

@@ -9,6 +9,8 @@ struct SettingsView: View {
     let health: HealthStore
     @Environment(\.modelContext) private var context
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(ProStore.self) private var pro
+    @State private var showsPaywall = false
 
     @AppStorage("remindersEnabled") private var remindersEnabled = false
     @AppStorage("reminderHour") private var reminderHour = 18
@@ -122,6 +124,8 @@ struct SettingsView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: Spacing.xl) {
+                    proSection
+
                     profileSection
 
                     heartRateSection
@@ -146,6 +150,51 @@ struct SettingsView: View {
     }
 
     // MARK: - Sections
+
+    @ViewBuilder
+    private var proSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("Z2/4×4 Pro")
+            if pro.isPro {
+                Card {
+                    HStack(spacing: Spacing.md) {
+                        Image(systemName: "checkmark.seal.fill")
+                            .font(.title3)
+                            .foregroundStyle(Theme.accent)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Pro unlocked")
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(Theme.label)
+                            Text("Thanks for supporting an independent, private-by-design app.")
+                                .font(.footnote)
+                                .foregroundStyle(Theme.secondaryLabel)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        Spacer(minLength: 0)
+                    }
+                    .accessibilityElement(children: .combine)
+                }
+            } else {
+                Card {
+                    VStack(alignment: .leading, spacing: Spacing.md) {
+                        Text("Readiness in full, overtraining guard, adaptive coaching, fitness trend, export.")
+                            .font(.footnote)
+                            .foregroundStyle(Theme.secondaryLabel)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Button {
+                            showsPaywall = true
+                        } label: {
+                            Text("Unlock Pro")
+                        }
+                        .buttonStyle(PrimaryButton())
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $showsPaywall) {
+            ProPaywallView()
+        }
+    }
 
     private var profileSection: some View {
         VStack(alignment: .leading, spacing: Spacing.sm) {

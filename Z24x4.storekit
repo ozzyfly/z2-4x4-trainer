@@ -1,0 +1,43 @@
+{
+  "identifier" : "5A1B2C3D",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "14.99",
+      "familyShareable" : true,
+      "internalID" : "6E5F4A3B",
+      "localizations" : [
+        {
+          "description" : "Readiness, overtraining guard, coaching, trend, export.",
+          "displayName" : "Z2/4×4 Pro (Lifetime)",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "完整 readiness、過度訓練防護、自適應教練、趨勢、匯出。",
+          "displayName" : "Z2/4×4 Pro（買斷）",
+          "locale" : "zh_Hant"
+        }
+      ],
+      "productID" : "ca.logolo.z24x4.pro.lifetime",
+      "referenceName" : "Pro Lifetime",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

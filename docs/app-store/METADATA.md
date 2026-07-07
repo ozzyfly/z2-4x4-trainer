@@ -63,6 +63,10 @@ WHO IT'S FOR
 • Runners, cyclists, rowers, and anyone doing cardio who wants structure instead of guesswork.
 • Beginners building a base and experienced athletes adding VO2-max work.
 
+FREE + AN OPTIONAL ONE-TIME UPGRADE
+• Everything above is free: guided workouts on iPhone and Apple Watch, plans, zones, Apple Health sync.
+• One optional one-time purchase (Pro) unlocks the deeper coaching analysis: full readiness breakdown, overtraining guard, adaptive weekly progression, VO2-max trend, and CSV/JSON export. No subscription.
+
 Z2/4×4 Trainer is a fitness and training tool, not a medical device. It does not diagnose, treat, or prevent any disease. Talk to a healthcare professional before starting a new exercise program.
 ```
 

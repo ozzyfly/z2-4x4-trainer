@@ -7,6 +7,8 @@ struct TodayView: View {
     let profile: ProfileRecord
     let health: HealthStore
     @Environment(\.modelContext) private var context
+    @Environment(ProStore.self) private var pro
+    @State private var showsPaywall = false
     @Query(sort: \WorkoutLog.date, order: .reverse) private var logs: [WorkoutLog]
 
     /// Prescribed minutes for the off-plan easy Zone 2 offered on a rest day.
@@ -29,7 +31,9 @@ struct TodayView: View {
         let history = logs.map {
             WorkoutRecord(date: $0.date, type: $0.type, durationMin: $0.durationMin, energyKcal: $0.activeEnergyKcal)
         }
-        let adapted = PlanProgression.adjust(base: plan, history: history, profile: p)
+        // Adaptive progression (auto progress/deload) is the Pro coach; free
+        // users train on the solid base plan.
+        let adapted = pro.isPro ? PlanProgression.adjust(base: plan, history: history, profile: p) : plan
 
         NavigationStack {
             ScrollView {
@@ -70,6 +74,9 @@ struct TodayView: View {
                 if health.authorized {
                     await health.refresh(context: context)
                 }
+            }
+            .sheet(isPresented: $showsPaywall) {
+                ProPaywallView()
             }
         }
         .tint(Theme.accent)
@@ -128,7 +135,38 @@ struct TodayView: View {
             .foregroundStyle(Theme.secondaryLabel)
     }
 
+    @ViewBuilder
     private func readinessSection(_ readiness: ReadinessScore) -> some View {
+        if pro.isPro {
+            readinessFullSection(readiness)
+        } else {
+            // The safety layer stays free: today's label and its one-line
+            // recommendation. The score, signals and explanation are Pro.
+            let color = readinessColor(readiness.label)
+            VStack(alignment: .leading, spacing: Spacing.sm) {
+                SectionHeader("Readiness")
+                Card {
+                    VStack(alignment: .leading, spacing: Spacing.md) {
+                        HStack(spacing: Spacing.xs) {
+                            Image(systemName: readinessGlyph(readiness.label))
+                                .font(.subheadline.weight(.bold))
+                                .foregroundStyle(color)
+                            Text(readinessTitle(readiness.label))
+                                .font(.serif(.title3, weight: .semibold))
+                                .foregroundStyle(Theme.label)
+                        }
+                        Text(readiness.label.recommendation)
+                            .font(.subheadline)
+                            .foregroundStyle(Theme.secondaryLabel)
+                        ProTeaserRow(title: "See your score and why") { showsPaywall = true }
+                    }
+                    .accessibilityElement(children: .contain)
+                }
+            }
+        }
+    }
+
+    private func readinessFullSection(_ readiness: ReadinessScore) -> some View {
         let color = readinessColor(readiness.label)
         return VStack(alignment: .leading, spacing: Spacing.sm) {
             SectionHeader("Readiness")
@@ -219,26 +257,38 @@ struct TodayView: View {
             VStack(alignment: .leading, spacing: Spacing.sm) {
                 SectionHeader("Training load")
                 Card {
-                    HStack(alignment: .top, spacing: Spacing.md) {
-                        Image(systemName: "gauge.with.needle.fill")
-                            .font(.title2)
-                            .foregroundStyle(color)
-                            .frame(width: 44, height: 44)
-                            .background(color.opacity(0.12), in: Circle())
-                        VStack(alignment: .leading, spacing: Spacing.xs) {
-                            Text(load.level == .highRisk
-                                 ? String(localized: "Ramping too fast")
-                                 : String(localized: "Ramping fast"))
-                                .font(.serif(.title3, weight: .semibold))
-                                .foregroundStyle(Theme.label)
-                            Text(String(localized: "This week is \(ratio.formatted(.number.precision(.fractionLength(1))))× your 4-week norm (\(load.acuteMinutes) vs ~\(load.chronicWeeklyMinutes) min). Consider easing — big jumps drive overtraining and injury."))
-                                .font(.subheadline)
-                                .foregroundStyle(Theme.secondaryLabel)
-                                .fixedSize(horizontal: false, vertical: true)
+                    VStack(alignment: .leading, spacing: Spacing.md) {
+                        HStack(alignment: .top, spacing: Spacing.md) {
+                            Image(systemName: "gauge.with.needle.fill")
+                                .font(.title2)
+                                .foregroundStyle(color)
+                                .frame(width: 44, height: 44)
+                                .background(color.opacity(0.12), in: Circle())
+                            VStack(alignment: .leading, spacing: Spacing.xs) {
+                                // The warning itself is free — it's a safety signal.
+                                Text(load.level == .highRisk
+                                     ? String(localized: "Ramping too fast")
+                                     : String(localized: "Ramping fast"))
+                                    .font(.serif(.title3, weight: .semibold))
+                                    .foregroundStyle(Theme.label)
+                                if pro.isPro {
+                                    Text(String(localized: "This week is \(ratio.formatted(.number.precision(.fractionLength(1))))× your 4-week norm (\(load.acuteMinutes) vs ~\(load.chronicWeeklyMinutes) min). Consider easing — big jumps drive overtraining and injury."))
+                                        .font(.subheadline)
+                                        .foregroundStyle(Theme.secondaryLabel)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                } else {
+                                    Text("Consider easing this week.")
+                                        .font(.subheadline)
+                                        .foregroundStyle(Theme.secondaryLabel)
+                                }
+                            }
+                            Spacer(minLength: 0)
                         }
-                        Spacer(minLength: 0)
+                        if !pro.isPro {
+                            ProTeaserRow(title: "See the load analysis") { showsPaywall = true }
+                        }
                     }
-                    .accessibilityElement(children: .combine)
+                    .accessibilityElement(children: .contain)
                 }
             }
         }
@@ -513,4 +563,5 @@ struct ZoneRow: View {
     let health = HealthStore(provider: PreviewHealthService())
     return TodayView(profile: profile, health: health)
         .modelContainer(container)
+        .environment(ProStore())
 }

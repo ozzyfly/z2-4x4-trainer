@@ -167,6 +167,11 @@ schemes:
       targets:
         Z24x4Trainer: all
         Z24x4TrainerTests: [test]
+    run:
+      # Local StoreKit testing: the Pro lifetime IAP works in sim/device runs
+      # without App Store Connect. Delete transactions via Xcode → Debug →
+      # StoreKit → Manage Transactions.
+      storeKitConfiguration: Z24x4.storekit
     test:
       targets:
         - Z24x4TrainerTests

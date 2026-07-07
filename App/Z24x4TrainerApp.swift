@@ -9,6 +9,7 @@ struct Z24x4TrainerApp: App {
         try! ModelContainer(for: ProfileRecord.self, WorkoutLog.self, AchievementRecord.self, DeletedWorkout.self)
     }()
     @State private var receiver: PhoneSessionReceiver?
+    @State private var proStore = ProStore()
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
@@ -65,10 +66,12 @@ struct Z24x4TrainerApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .environment(proStore)
                 .task {
                     if receiver == nil {
                         receiver = PhoneSessionReceiver(context: container.mainContext)
                     }
+                    await proStore.start()
                 }
         }
         .modelContainer(container)

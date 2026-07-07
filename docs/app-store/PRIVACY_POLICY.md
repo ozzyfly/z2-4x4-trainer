@@ -74,6 +74,15 @@ with third parties, and the App fully complies.
 
 ---
 
+## In-app purchases
+
+The App offers an optional one-time purchase ("Pro"). The transaction is processed
+entirely by Apple through the App Store; the App never sees your payment details, and
+purchase verification happens on your device. No purchase information is linked to your
+Health or training data.
+
+---
+
 ## Data storage and security
 
 - Your data is stored locally on your device using Apple's on-device storage

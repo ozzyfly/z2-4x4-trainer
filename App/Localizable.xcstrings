@@ -626,6 +626,52 @@
         }
       }
     },
+    "Acute-vs-chronic load analysis with the numbers behind every warning.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Análisis de carga aguda frente a crónica con los números detrás de cada aviso."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "急性と慢性の負荷分析。すべての警告に数値の裏付け。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "急性 vs 慢性負荷分析，每個警告都附數據。"
+          }
+        }
+      }
+    },
+    "Adaptive coaching": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrenamiento adaptativo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アダプティブコーチング"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自適應教練"
+          }
+        }
+      }
+    },
     "Advanced · 4×4 timing": {
       "extractionState": "manual",
       "localizations": {
@@ -1017,6 +1063,52 @@
         }
       }
     },
+    "Chart your VO2 max trajectory": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grafica tu trayectoria de VO2 max"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VO2 maxの推移をチャートで見る"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "繪製你的 VO2 max 軌跡"
+          }
+        }
+      }
+    },
+    "Close": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "閉じる"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "關閉"
+          }
+        }
+      }
+    },
     "Completed reps": {
       "extractionState": "manual",
       "localizations": {
@@ -1128,6 +1220,29 @@
           "stringUnit": {
             "state": "translated",
             "value": "已連結"
+          }
+        }
+      }
+    },
+    "Consider easing this week.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Considera aflojar esta semana."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今週はペースを落としましょう。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "建議本週放緩。"
           }
         }
       }
@@ -1569,6 +1684,29 @@
         }
       }
     },
+    "Everything you already use stays free: workouts on iPhone and Apple Watch, plans, zones, Apple Health sync.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo lo que ya usas sigue gratis: entrenamientos en iPhone y Apple Watch, planes, zonas, sincronización con Apple Salud."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今使っているものはすべて無料のまま：iPhoneとApple Watchでのワークアウト、プラン、ゾーン、Appleヘルスケア同期。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你已在使用的一切保持免費：iPhone 與 Apple Watch 訓練、計畫、心率區間、Apple 健康同步。"
+          }
+        }
+      }
+    },
     "Exercise energy": {
       "extractionState": "manual",
       "localizations": {
@@ -1680,6 +1818,29 @@
           "stringUnit": {
             "state": "translated",
             "value": "感覺：%@"
+          }
+        }
+      }
+    },
+    "Fitness trend": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tendencia de forma"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フィットネス傾向"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "體能趨勢"
           }
         }
       }
@@ -3225,6 +3386,29 @@
         }
       }
     },
+    "One purchase, yours forever. No subscription — the app runs on your device, so there's nothing to rent.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una compra, tuyo para siempre. Sin suscripción: la app funciona en tu dispositivo, no hay nada que alquilar."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一度の購入で永久に使えます。サブスクなし——アプリは端末上で動くため、借りるものはありません。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一次購買，永久使用。不訂閱——app 完全在你的裝置上運作，沒有需要月租的東西。"
+          }
+        }
+      }
+    },
     "Open Settings": {
       "extractionState": "manual",
       "localizations": {
@@ -3317,6 +3501,29 @@
         }
       }
     },
+    "Overtraining guard": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardia contra el sobreentrenamiento"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "オーバートレーニング防止"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過度訓練防護"
+          }
+        }
+      }
+    },
     "Pause": {
       "extractionState": "manual",
       "localizations": {
@@ -3405,6 +3612,29 @@
           "stringUnit": {
             "state": "translated",
             "value": "以隱私為核心設計"
+          }
+        }
+      }
+    },
+    "Pro unlocked": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro desbloqueado"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proアンロック済み"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro 已解鎖"
           }
         }
       }
@@ -3593,6 +3823,29 @@
         }
       }
     },
+    "Readiness in full, overtraining guard, adaptive coaching, fitness trend, export.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparación completa, guardia de sobreentrenamiento, entrenamiento adaptativo, tendencia, exportación."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リカバリー指標のすべて、オーバートレーニング防止、アダプティブコーチング、傾向、書き出し。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完整 readiness、過度訓練防護、自適應教練、體能趨勢、匯出。"
+          }
+        }
+      }
+    },
     "Readiness is low — today's session is reduced to %lld hard blocks.": {
       "extractionState": "manual",
       "localizations": {
@@ -3612,6 +3865,29 @@
           "stringUnit": {
             "state": "translated",
             "value": "Readiness 偏低 — 今天課表減為 %lld 組高強度。"
+          }
+        }
+      }
+    },
+    "Readiness, in full": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparación, al completo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リカバリー指標のすべて"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完整的 Readiness"
           }
         }
       }
@@ -3846,6 +4122,29 @@
         }
       }
     },
+    "Restore purchase": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurar compra"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "購入を復元"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "恢復購買"
+          }
+        }
+      }
+    },
     "Resume": {
       "extractionState": "manual",
       "localizations": {
@@ -3911,6 +4210,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "久坐"
+          }
+        }
+      }
+    },
+    "See the load analysis": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ver el análisis de carga"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "負荷分析を見る"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看負荷分析"
+          }
+        }
+      }
+    },
+    "See your score and why": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ver tu puntuación y por qué"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スコアと理由を見る"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看分數與原因"
           }
         }
       }
@@ -4513,6 +4858,75 @@
         }
       }
     },
+    "Thanks for supporting an independent, private-by-design app.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gracias por apoyar una app independiente y privada por diseño."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "独立開発・プライバシー第一のアプリを支えてくれてありがとうございます。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "謝謝你支持一款獨立、隱私優先的 app。"
+          }
+        }
+      }
+    },
+    "The App Store is unreachable right now — try again later.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se puede conectar con el App Store ahora mismo; inténtalo más tarde."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "現在App Storeに接続できません。後でもう一度お試しください。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目前無法連上 App Store——請稍後再試。"
+          }
+        }
+      }
+    },
+    "The daily score with its HRV, resting-HR, wrist-temperature and sleep signals — not just the headline.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La puntuación diaria con sus señales de HRV, pulso en reposo, temperatura de muñeca y sueño, no solo el titular."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HRV・安静時心拍・手首温度・睡眠のシグナルまで含む毎日のスコア。見出しだけではありません。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每日分數與背後的 HRV、安靜心率、手腕溫度、睡眠訊號——不只是結論。"
+          }
+        }
+      }
+    },
     "This removes it from your history. It won't be re-imported from Apple Health.": {
       "extractionState": "manual",
       "localizations": {
@@ -5065,6 +5479,52 @@
         }
       }
     },
+    "Unlock Pro": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desbloquear Pro"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proをアンロック"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "解鎖 Pro"
+          }
+        }
+      }
+    },
+    "Unlock Pro · %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desbloquear Pro · %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proをアンロック · %@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "解鎖 Pro · %@"
+          }
+        }
+      }
+    },
     "Use Apple Health": {
       "extractionState": "manual",
       "localizations": {
@@ -5130,6 +5590,29 @@
           "stringUnit": {
             "state": "translated",
             "value": "最大攝氧量趨勢"
+          }
+        }
+      }
+    },
+    "VO₂max trajectory from Apple Health, charted over months.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trayectoria de VO₂max desde Apple Salud, graficada a lo largo de meses."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appleヘルスケア由来のVO₂max推移を数か月単位でチャート化。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "來自 Apple 健康的 VO₂max 軌跡，以月為尺度繪製。"
           }
         }
       }
@@ -5433,6 +5916,29 @@
         }
       }
     },
+    "What this session means for tomorrow": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qué significa esta sesión para mañana"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このセッションが明日に意味すること"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "這次訓練對明天代表什麼"
+          }
+        }
+      }
+    },
     "When": {
       "extractionState": "manual",
       "localizations": {
@@ -5732,6 +6238,29 @@
         }
       }
     },
+    "Your complete history as CSV or JSON — your data is yours.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu historial completo en CSV o JSON: tus datos son tuyos."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全履歴をCSVまたはJSONで。データはあなたのものです。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完整歷史匯出為 CSV 或 JSON——你的數據屬於你。"
+          }
+        }
+      }
+    },
     "Your data stays on your device": {
       "extractionState": "manual",
       "localizations": {
@@ -5778,6 +6307,29 @@
         }
       }
     },
+    "Your weekly plan progresses and deloads with your actual training.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu plan semanal progresa y descarga según tu entrenamiento real."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週間プランが実際のトレーニングに合わせて漸進・減量します。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週計畫會隨你的實際訓練自動進階與減量。"
+          }
+        }
+      }
+    },
     "Your zones": {
       "extractionState": "manual",
       "localizations": {
@@ -5820,6 +6372,29 @@
           "stringUnit": {
             "state": "translated",
             "value": "Z2 / 4×4 Trainer"
+          }
+        }
+      }
+    },
+    "Z2/4×4 Pro": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z2/4×4 Pro"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z2/4×4 Pro"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z2/4×4 Pro"
           }
         }
       }

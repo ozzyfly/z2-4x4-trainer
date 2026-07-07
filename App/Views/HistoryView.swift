@@ -27,6 +27,8 @@ struct WorkoutJSONExport: Transferable {
 /// Charts this week's training minutes by weekday and the recent body-weight trend.
 struct HistoryView: View {
     let health: HealthStore
+    @Environment(ProStore.self) private var pro
+    @State private var showsPaywall = false
     @Query(sort: \WorkoutLog.date, order: .reverse) private var logs: [WorkoutLog]
     @Query private var profiles: [ProfileRecord]
 
@@ -195,7 +197,20 @@ struct HistoryView: View {
         }
     }
 
+    @ViewBuilder
     private var exportMenu: some View {
+        if pro.isPro {
+            exportMenuUnlocked
+        } else {
+            Button {
+                showsPaywall = true
+            } label: {
+                Label("Export", systemImage: "square.and.arrow.down")
+            }
+        }
+    }
+
+    private var exportMenuUnlocked: some View {
         Menu {
             ShareLink(
                 item: WorkoutCSVExport(text: WorkoutExport(rows: exportRows).csv()),
@@ -235,6 +250,9 @@ struct HistoryView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     shareLink
                 }
+            }
+            .sheet(isPresented: $showsPaywall) {
+                ProPaywallView()
             }
         }
         .tint(Theme.accent)
@@ -315,7 +333,19 @@ struct HistoryView: View {
         }
     }
 
+    @ViewBuilder
     private var fitnessSection: some View {
+        if pro.isPro {
+            fitnessSectionUnlocked
+        } else {
+            VStack(alignment: .leading, spacing: Spacing.sm) {
+                SectionHeader("VO2 max trend")
+                ProTeaserRow(title: "Chart your VO2 max trajectory") { showsPaywall = true }
+            }
+        }
+    }
+
+    private var fitnessSectionUnlocked: some View {
         VStack(alignment: .leading, spacing: Spacing.sm) {
             SectionHeader("VO2 max trend")
             Card {
@@ -416,4 +446,5 @@ struct HistoryView: View {
 #Preview {
     HistoryView(health: HealthStore(provider: PreviewHealthService()))
         .modelContainer(for: [ProfileRecord.self, WorkoutLog.self], inMemory: true)
+        .environment(ProStore())
 }

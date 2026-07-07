@@ -9,8 +9,10 @@ struct WorkoutLogDetailView: View {
     @Bindable var log: WorkoutLog
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
+    @Environment(ProStore.self) private var pro
     @Query private var profiles: [ProfileRecord]
     @State private var showDeleteConfirm = false
+    @State private var showsPaywall = false
 
     private var hasQuality: Bool {
         log.type == .norwegian4x4 && log.qualityScore != nil
@@ -129,6 +131,14 @@ struct WorkoutLogDetailView: View {
                 if log.type == .norwegian4x4 && hasHeartRate && !hasQuality { heartRateSection }
                 detailsSection
                 if let note = log.note, !note.isEmpty { noteSection(note) }
+                // The highest-intent moment: the athlete just finished and is
+                // looking at their numbers. One quiet line, only on real
+                // sessions with stats, never for Pro users.
+                if !pro.isPro, hasQuality || hasZone2Stats {
+                    ProTeaserRow(title: "What this session means for tomorrow") {
+                        showsPaywall = true
+                    }
+                }
                 deleteButton
             }
             .padding(Spacing.lg)
@@ -137,6 +147,9 @@ struct WorkoutLogDetailView: View {
         .navigationTitle(log.type.displayName)
         .navigationBarTitleDisplayMode(.inline)
         .tint(Theme.accent)
+        .sheet(isPresented: $showsPaywall) {
+            ProPaywallView()
+        }
         .confirmationDialog("Delete this workout?", isPresented: $showDeleteConfirm, titleVisibility: .visible) {
             Button("Delete workout", role: .destructive) { deleteLog() }
             Button("Cancel", role: .cancel) {}
