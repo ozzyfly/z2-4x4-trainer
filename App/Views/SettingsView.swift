@@ -10,7 +10,8 @@ struct SettingsView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(ProStore.self) private var pro
-    @State private var showsPaywall = false
+    // `-paywall` auto-presents the sheet for review screenshots (dev/run only).
+    @State private var showsPaywall = ProcessInfo.processInfo.arguments.contains("-paywall")
 
     @AppStorage("remindersEnabled") private var remindersEnabled = false
     @AppStorage("reminderHour") private var reminderHour = 18
