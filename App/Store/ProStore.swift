@@ -18,7 +18,7 @@ final class ProStore {
     /// Non-consumable product id — must match App Store Connect and Z24x4.storekit.
     static let productID = "ca.logolo.z24x4.pro.lifetime"
     /// First launches before this date are Pro for free (launch-cohort thank-you).
-    nonisolated static let grandfatherCutoff = ISO8601DateFormatter().date(from: "2026-08-01T00:00:00Z")!
+    nonisolated static let grandfatherCutoff = ISO8601DateFormatter().date(from: "2026-07-07T00:00:00Z")!
     private static let firstLaunchKey = "firstLaunchDate"
 
     /// Whether Pro features are unlocked (purchase, grandfathering, or `-pro`).
