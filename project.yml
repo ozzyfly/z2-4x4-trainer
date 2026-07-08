@@ -20,6 +20,11 @@ packages:
   SharedCore:
     path: SharedCore
 
+# Included in the project navigator (not compiled) so Xcode's scheme editor can
+# see the StoreKit configuration file.
+fileGroups:
+  - Z24x4.storekit
+
 targets:
   Z24x4Trainer:
     type: application
@@ -175,7 +180,18 @@ schemes:
       # Local StoreKit testing: the Pro lifetime IAP works in sim/device runs
       # without App Store Connect. Delete transactions via Xcode → Debug →
       # StoreKit → Manage Transactions.
+      # (Path is correct as generated — Xcode resolves the scheme identifier
+      # relative to the embedded project.xcworkspace. The product list can take
+      # a little while to load on the app's first run; the paywall fills in the
+      # price live once it arrives.)
       storeKitConfiguration: Z24x4.storekit
+      # Paywall verification setup (toggle in Edit Scheme; remove -nogrand and
+      # -AppleLanguages before cutting a release build — they only affect Run).
+      commandLineArguments:
+        "-mockHealth": true
+        "-nogrand": true
+        "-AppleLanguages (ko)": true
+        "-AppleLanguages (de)": false
     test:
       targets:
         - Z24x4TrainerTests

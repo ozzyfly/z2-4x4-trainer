@@ -73,8 +73,10 @@ struct SectionHeader: View {
 struct TargetBar: View {
     let done: Int
     let target: Int
-    var unit: String = "min"
-    var label: String = "Daily target"
+    // Localized defaults — a bare "min" default was rendering verbatim (English)
+    // in every other language (spotted in the ko on-device pass, 2026-07-07).
+    var unit: String = String(localized: "min")
+    var label: String = String(localized: "Daily target")
 
     @State private var animatedFraction: Double = 0
     @Environment(\.accessibilityReduceMotion) private var reduceMotion

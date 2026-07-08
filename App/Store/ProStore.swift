@@ -29,6 +29,11 @@ final class ProStore {
     private(set) var isPurchasing = false
 
     @ObservationIgnored private var updatesTask: Task<Void, Never>?
+    /// `-nogrand` disables launch-cohort grandfathering so the paywall and
+    /// gates are visible on dev machines whose first launch predates the
+    /// cutoff — otherwise the free-user experience is untestable in the sim.
+    @ObservationIgnored private let grandfatherDisabled =
+        ProcessInfo.processInfo.arguments.contains("-nogrand")
 
     init() {
         // Stamp the first launch exactly once; the value never changes after.
@@ -52,7 +57,8 @@ final class ProStore {
     /// entitlements, loads the product, and starts listening for updates
     /// (purchases on other devices, refunds, Ask to Buy approvals).
     func start() async {
-        if Self.isGrandfathered(firstLaunch: UserDefaults.standard.object(forKey: Self.firstLaunchKey) as? Date) {
+        if !grandfatherDisabled,
+           Self.isGrandfathered(firstLaunch: UserDefaults.standard.object(forKey: Self.firstLaunchKey) as? Date) {
             isPro = true
         }
         await refreshEntitlement()

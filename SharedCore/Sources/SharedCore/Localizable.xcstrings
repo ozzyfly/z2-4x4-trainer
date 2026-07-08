@@ -1,1860 +1,1870 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "10 Sessions": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "10 Einheiten"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "3-Week Streak" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3-Wochen-Serie"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "10 sesiones"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Racha de 3 semanas"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "10 séances"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Série de 3 semaines"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "10 セッション"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 週間連続"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "10회 세션"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3주 연속"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "10 sessões"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sequência de 3 semanas"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "10 次訓練"
-          }
-        }
-      }
-    },
-    "3-Week Streak": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "3-Wochen-Serie"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Racha de 3 semanas"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Série de 3 semaines"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "3 週間連続"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "3주 연속"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sequência de 3 semanas"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "連續三週"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "連續三週"
           }
         }
       }
     },
-    "Based on your recent HRV and resting heart-rate trend.": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Basierend auf deinem jüngsten HRV- und Ruhepuls-Trend."
+    "10 Sessions" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 Einheiten"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Basado en tu VFC reciente y la tendencia de frecuencia en reposo."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 sesiones"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Basé sur vos tendances récentes de VFC et de FC au repos."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 séances"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "最近の HRV と安静時心拍数の傾向に基づいています。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 セッション"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "최근 HRV와 안정 시 심박수 추세를 기반으로 합니다."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10회 세션"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Com base nas suas tendências recentes de VFC e FC em repouso."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 sessões"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "根據你最近的 HRV 與靜止心率趨勢。"
-          }
-        }
-      }
-    },
-    "Completed your first Norwegian 4×4 session.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Deine erste norwegische 4×4-Einheit abgeschlossen."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Completaste tu primera sesión noruega 4×4."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Première séance de 4×4 norvégien terminée."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "初めてのノルウェー式 4×4 セッションを完了しました。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "첫 노르웨이식 4×4 세션을 완료했습니다."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Primeira sessão de 4×4 norueguês concluída."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "完成了你的第一次挪威 4×4 訓練。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 次訓練"
           }
         }
       }
     },
-    "Consistent Month": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Konstanter Monat"
+    "Based on your recent HRV and resting heart-rate trend." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basierend auf deinem jüngsten HRV- und Ruhepuls-Trend."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mes constante"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basado en tu VFC reciente y la tendencia de frecuencia en reposo."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mois régulier"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basé sur vos tendances récentes de VFC et de FC au repos."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "継続した 1 か月"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近の HRV と安静時心拍数の傾向に基づいています。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "꾸준한 한 달"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최근 HRV와 안정 시 심박수 추세를 기반으로 합니다."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mês consistente"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Com base nas suas tendências recentes de VFC e FC em repouso."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "穩定的一個月"
-          }
-        }
-      }
-    },
-    "Cool Down": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Auslaufen"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enfriamiento"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Retour au calme"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "クールダウン"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "쿨다운"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Desaquecimento"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "緩和"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "根據你最近的 HRV 與靜止心率趨勢。"
           }
         }
       }
     },
-    "EASE OFF ▼": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "RAUSNEHMEN ▼"
+    "Completed your first Norwegian 4×4 session." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine erste norwegische 4×4-Einheit abgeschlossen."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "AFLOJA ▼"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completaste tu primera sesión noruega 4×4."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "RELÂCHEZ ▼"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Première séance de 4×4 norvégien terminée."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ペースダウン ▼"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "初めてのノルウェー式 4×4 セッションを完了しました。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "완화 ▼"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "첫 노르웨이식 4×4 세션을 완료했습니다."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ALIVIE ▼"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Primeira sessão de 4×4 norueguês concluída."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "放鬆 ▼"
-          }
-        }
-      }
-    },
-    "Ease off": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rausnehmen"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Afloja"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Relâcher"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ペースを落とす"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "완화하기"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aliviar"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "放鬆"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成了你的第一次挪威 4×4 訓練。"
           }
         }
       }
     },
-    "First 4×4": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erstes 4×4"
+    "Consistent Month" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konstanter Monat"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Primer 4×4"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mes constante"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Premier 4×4"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mois régulier"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "初めての 4×4"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "継続した 1 か月"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "첫 4×4"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "꾸준한 한 달"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Primeiro 4×4"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mês consistente"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "首次 4×4"
-          }
-        }
-      }
-    },
-    "Fitter": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fitter"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Más en forma"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Plus en forme"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "より健康に"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "체력 향상"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mais em forma"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "更健康"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "穩定的一個月"
           }
         }
       }
     },
-    "Follow the plan, but keep the first interval honest before pushing harder.": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Folge dem Plan, aber halte das erste Intervall ehrlich, bevor du härter gehst."
+    "Cool Down" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auslaufen"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sigue el plan, pero controla el primer intervalo antes de empujar más."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enfriamiento"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Suivez le plan, mais restez honnête sur le premier intervalle avant de forcer."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retour au calme"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "計画通り進めつつ、最初のインターバルは無理なく確認してから上げましょう。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "クールダウン"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "계획을 따르되, 첫 인터벌은 무리하지 말고 정직하게 소화한 뒤 강도를 올리세요."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "쿨다운"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Siga o plano, mas mantenha o primeiro intervalo honesto antes de forçar mais."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desaquecimento"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "照計畫進行，但第一組先穩住，再決定是否加強。"
-          }
-        }
-      }
-    },
-    "Good day to follow the planned hard session if one is scheduled.": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Guter Tag für die geplante harte Einheit, falls eine ansteht."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Buen día para seguir la sesión dura planificada si toca una."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bonne journée pour la séance dure prévue, le cas échéant."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ハードセッションの予定があるなら、実施しやすい日です。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "예정된 고강도 세션이 있다면 진행하기 좋은 날입니다."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bom dia para a sessão forte planejada, se houver."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "如果今天排了高強度課表，適合照計畫進行。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "緩和"
           }
         }
       }
     },
-    "Great day for a hard 4×4.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bester Tag für ein hartes 4×4."
+    "Ease off" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rausnehmen"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gran día para un 4×4 intenso."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afloja"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Journée idéale pour un 4×4 intense."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relâcher"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ハードな 4×4 に最適な日です。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ペースを落とす"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "고강도 4×4에 좋은 날입니다."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완화하기"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ótimo dia para um 4×4 forte."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aliviar"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "今天很適合進行高強度 4×4。"
-          }
-        }
-      }
-    },
-    "HRV is above your 28-day baseline.": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HRV liegt über deiner 28-Tage-Basis."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La VFC está por encima de tu referencia de 28 días."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La VFC est au-dessus de votre base de 28 jours."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HRV は 28 日間の基準値を上回っています。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HRV가 28일 기준선보다 높습니다."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A VFC está acima da sua linha de base de 28 dias."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HRV 高於你的 28 天基準。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "放鬆"
           }
         }
       }
     },
-    "HRV is below your 28-day baseline.": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HRV liegt unter deiner 28-Tage-Basis."
+    "EASE OFF ▼" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RAUSNEHMEN ▼"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La VFC está por debajo de tu referencia de 28 días."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AFLOJA ▼"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La VFC est en dessous de votre base de 28 jours."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RELÂCHEZ ▼"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HRV は 28 日間の基準値を下回っています。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ペースダウン ▼"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HRV가 28일 기준선보다 낮습니다."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완화 ▼"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A VFC está abaixo da sua linha de base de 28 dias."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ALIVIE ▼"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HRV 低於你的 28 天基準。"
-          }
-        }
-      }
-    },
-    "HRV is close to your 28-day baseline.": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HRV liegt nahe deiner 28-Tage-Basis."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La VFC está cerca de tu referencia de 28 días."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La VFC est proche de votre base de 28 jours."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HRV は 28 日間の基準値に近い状態です。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HRV가 28일 기준선과 비슷합니다."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A VFC está próxima da sua linha de base de 28 dias."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HRV 接近你的 28 天基準。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "放鬆 ▼"
           }
         }
       }
     },
-    "Hard": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hart"
+    "First 4×4" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstes 4×4"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Intenso"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Primer 4×4"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Effort"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premier 4×4"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "高強度"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "初めての 4×4"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "고강도"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "첫 4×4"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Forte"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Primeiro 4×4"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "高強度"
-          }
-        }
-      }
-    },
-    "Hit your weekly training target 4 weeks.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dein Wochenziel 4 Wochen lang erreicht."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Alcanzaste tu objetivo semanal de entrenamiento durante 4 semanas."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Objectif hebdo atteint 4 semaines."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "週間トレーニング目標を 4 週間達成しました。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주간 훈련 목표를 4주 달성했습니다."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meta semanal atingida por 4 semanas."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "連續四週達成每週訓練目標。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "首次 4×4"
           }
         }
       }
     },
-    "Logged 10 workouts.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "10 Workouts protokolliert."
+    "Fitter" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fitter"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Registraste 10 entrenamientos."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más en forma"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "10 entraînements enregistrés."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus en forme"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "10 回のワークアウトを記録しました。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "より健康に"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "운동 10회를 기록했습니다."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "체력 향상"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "10 treinos registrados."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mais em forma"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "已記錄 10 次運動。"
-          }
-        }
-      }
-    },
-    "Make today Zone 2 or rest; save 4×4 for a fresher day.": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mach heute Zone 2 oder Pause; heb dir das 4×4 für einen frischeren Tag auf."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Haz Zone 2 o descansa hoy; guarda 4×4 para un día más fresco."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aujourd’hui Zone 2 ou repos ; gardez le 4×4 pour un jour plus frais."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "今日は Zone 2 か休息にして、4×4 は回復した日に回しましょう。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "오늘은 Zone 2 또는 휴식으로 하고, 4×4는 컨디션 좋은 날로 미루세요."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hoje faça Zona 2 ou descanse; deixe o 4×4 para um dia mais descansado."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "今天改做 Zone 2 或休息，把 4×4 留到狀態更好的日子。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更健康"
           }
         }
       }
     },
-    "PUSH ▲": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "PUSHEN ▲"
+    "Follow the plan, but keep the first interval honest before pushing harder." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folge dem Plan, aber halte das erste Intervall ehrlich, bevor du härter gehst."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "MÁS ▲"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sigue el plan, pero controla el primer intervalo antes de empujar más."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "POUSSEZ ▲"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suivez le plan, mais restez honnête sur le premier intervalle avant de forcer."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "プッシュ ▲"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "計画通り進めつつ、最初のインターバルは無理なく確認してから上げましょう。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "강도 올리기 ▲"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "계획을 따르되, 첫 인터벌은 무리하지 말고 정직하게 소화한 뒤 강도를 올리세요."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ACELERE ▲"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siga o plano, mas mantenha o primeiro intervalo honesto antes de forçar mais."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "加速 ▲"
-          }
-        }
-      }
-    },
-    "Prioritise recovery — keep it easy or rest.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erholung zuerst — locker bleiben oder pausieren."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Prioriza la recuperación: tómatelo con calma o descansa."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Priorité à la récupération : restez facile ou reposez-vous."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "回復を優先しましょう。軽めにするか休んでください。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "회복을 우선하세요 — 가볍게 하거나 쉬세요."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Priorize a recuperação — pegue leve ou descanse."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "優先恢復——放輕鬆或休息。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "照計畫進行，但第一組先穩住，再決定是否加強。"
           }
         }
       }
     },
-    "Push harder": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Härter pushen"
+    "Good day to follow the planned hard session if one is scheduled." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guter Tag für die geplante harte Einheit, falls eine ansteht."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Esfuérzate más"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buen día para seguir la sesión dura planificada si toca una."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Poussez plus fort"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bonne journée pour la séance dure prévue, le cas échéant."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "もっと追い込む"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ハードセッションの予定があるなら、実施しやすい日です。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "더 강하게"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "예정된 고강도 세션이 있다면 진행하기 좋은 날입니다."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Force mais"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bom dia para a sessão forte planejada, se houver."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "再加把勁"
-          }
-        }
-      }
-    },
-    "Recovery": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erholung"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recuperación"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Récupération"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "リカバリー"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "회복"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recuperação"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "恢復"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果今天排了高強度課表，適合照計畫進行。"
           }
         }
       }
     },
-    "Reduce intensity today: easy Zone 2, mobility, or rest.": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Heute Intensität senken: lockere Zone 2, Mobility oder Pause."
+    "Great day for a hard 4×4." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bester Tag für ein hartes 4×4."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reduce la intensidad hoy: Zone 2 suave, movilidad o descanso."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gran día para un 4×4 intenso."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Réduisez l’intensité aujourd’hui : Zone 2 facile, mobilité ou repos."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Journée idéale pour un 4×4 intense."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "今日は強度を下げましょう。軽い Zone 2、モビリティ、または休息。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ハードな 4×4 に最適な日です。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "오늘은 강도를 낮추세요: 가벼운 Zone 2, 모빌리티 또는 휴식."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "고강도 4×4에 좋은 날입니다."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reduza a intensidade hoje: Zona 2 leve, mobilidade ou descanso."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ótimo dia para um 4×4 forte."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "今天降低強度：輕鬆 Zone 2、活動度訓練或休息。"
-          }
-        }
-      }
-    },
-    "Resting heart rate is below baseline.": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ruhepuls liegt unter der Basis."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La frecuencia cardíaca en reposo está por debajo de la referencia."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "FC au repos sous la base."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "安静時心拍数は基準値を下回っています。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "안정 시 심박수가 기준선보다 낮습니다."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "FC em repouso abaixo da linha de base."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "靜止心率低於基準。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今天很適合進行高強度 4×4。"
           }
         }
       }
     },
-    "Resting heart rate is elevated.": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ruhepuls ist erhöht."
+    "Hard" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hart"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La frecuencia cardíaca en reposo está elevada."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intenso"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "FC au repos élevée."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Effort"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "安静時心拍数が高めです。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高強度"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "안정 시 심박수가 높아졌습니다."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "고강도"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "FC em repouso elevada."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forte"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "靜止心率偏高。"
-          }
-        }
-      }
-    },
-    "Resting heart rate is near baseline.": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ruhepuls nahe der Basis."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La frecuencia cardíaca en reposo está cerca de la referencia."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "FC au repos proche de la base."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "安静時心拍数は基準値に近い状態です。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "안정 시 심박수가 기준선 부근입니다."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "FC em repouso próxima da linha de base."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "靜止心率接近基準。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高強度"
           }
         }
       }
     },
-    "Resting heart-rate history is still limited.": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ruhepuls-Historie ist noch begrenzt."
+    "Hit your weekly training target 4 weeks." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Wochenziel 4 Wochen lang erreicht."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "El historial de frecuencia en reposo aún es limitado."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alcanzaste tu objetivo semanal de entrenamiento durante 4 semanas."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Historique de FC au repos encore limité."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Objectif hebdo atteint 4 semaines."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "安静時心拍数の履歴がまだ限られています。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "週間トレーニング目標を 4 週間達成しました。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "안정 시 심박수 기록이 아직 부족합니다."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주간 훈련 목표를 4주 달성했습니다."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Histórico de FC em repouso ainda limitado."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meta semanal atingida por 4 semanas."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "靜止心率歷史資料仍然有限。"
-          }
-        }
-      }
-    },
-    "Sleep was short last night.": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Der Schlaf war letzte Nacht kurz."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Anoche dormiste poco."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sommeil court la nuit dernière."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "昨夜は睡眠が短めでした。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "어젯밤 수면이 짧았습니다."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O sono foi curto na noite passada."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "昨晚睡眠偏短。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "連續四週達成每週訓練目標。"
           }
         }
       }
     },
-    "Steady aerobic work today.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Heute ruhige aerobe Arbeit."
+    "HRV is above your 28-day baseline." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HRV liegt über deiner 28-Tage-Basis."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trabajo aeróbico moderado hoy."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La VFC está por encima de tu referencia de 28 días."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Travail aérobie régulier aujourd’hui."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La VFC est au-dessus de votre base de 28 jours."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "今日は安定した有酸素運動を。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HRV は 28 日間の基準値を上回っています。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "오늘은 꾸준한 유산소 훈련."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HRV가 28일 기준선보다 높습니다."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trabalho aeróbico constante hoje."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A VFC está acima da sua linha de base de 28 dias."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "今天進行穩定的有氧運動。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HRV 高於你的 28 天基準。"
           }
         }
       }
     },
-    "Trained at least once a week for 3 weeks running.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "3 Wochen in Folge mindestens einmal pro Woche trainiert."
+    "HRV is below your 28-day baseline." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HRV liegt unter deiner 28-Tage-Basis."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Entrenaste al menos una vez por semana durante 3 semanas seguidas."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La VFC está por debajo de tu referencia de 28 días."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Au moins une séance par semaine pendant 3 semaines d’affilée."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La VFC est en dessous de votre base de 28 jours."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "3 週間連続で週に 1 回以上トレーニングしました。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HRV は 28 日間の基準値を下回っています。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "3주 연속 주 1회 이상 훈련했습니다."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HRV가 28일 기준선보다 낮습니다."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Treinou ao menos uma vez por semana por 3 semanas seguidas."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A VFC está abaixo da sua linha de base de 28 dias."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "連續三週每週至少訓練一次。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HRV 低於你的 28 天基準。"
           }
         }
       }
     },
-    "Warm Up": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aufwärmen"
+    "HRV is close to your 28-day baseline." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HRV liegt nahe deiner 28-Tage-Basis."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Calentamiento"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La VFC está cerca de tu referencia de 28 días."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Échauffement"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La VFC est proche de votre base de 28 jours."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ウォームアップ"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HRV は 28 日間の基準値に近い状態です。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "웜업"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HRV가 28일 기준선과 비슷합니다."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aquecimento"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A VFC está próxima da sua linha de base de 28 dias."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "暖身"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HRV 接近你的 28 天基準。"
           }
         }
       }
     },
-    "Wrist temperature is above your baseline.": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Handgelenktemperatur liegt über deiner Basis."
+    "Logged 10 workouts." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 Workouts protokolliert."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La temperatura de la muñeca está por encima de tu línea base."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registraste 10 entrenamientos."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Température du poignet au-dessus de votre base."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 entraînements enregistrés."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "手首温度がベースラインより高めです。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 回のワークアウトを記録しました。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "손목 온도가 기준선보다 높습니다."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "운동 10회를 기록했습니다."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Temperatura do pulso acima da sua linha de base."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 treinos registrados."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "手腕溫度高於你的基準線。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已記錄 10 次運動。"
           }
         }
       }
     },
-    "Your VO2max is up since you started.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dein VO2max ist seit dem Start gestiegen."
+    "Make today Zone 2 or rest; save 4×4 for a fresher day." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mach heute Zone 2 oder Pause; heb dir das 4×4 für einen frischeren Tag auf."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu VO2máx ha subido desde que empezaste."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haz Zone 2 o descansa hoy; guarda 4×4 para un día más fresco."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Votre VO2max a progressé depuis vos débuts."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aujourd’hui Zone 2 ou repos ; gardez le 4×4 pour un jour plus frais."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "開始時より VO2max が向上しています。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日は Zone 2 か休息にして、4×4 は回復した日に回しましょう。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "시작한 이후 VO2max가 향상되었습니다."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오늘은 Zone 2 또는 휴식으로 하고, 4×4는 컨디션 좋은 날로 미루세요."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seu VO2max subiu desde que você começou."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoje faça Zona 2 ou descanse; deixe o 4×4 para um dia mais descansado."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "自從你開始以來，你的最大攝氧量已提升。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今天改做 Zone 2 或休息，把 4×4 留到狀態更好的日子。"
           }
         }
       }
     },
-    "Zone 1": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 1"
+    "Prioritise recovery — keep it easy or rest." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erholung zuerst — locker bleiben oder pausieren."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zona 1"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prioriza la recuperación: tómatelo con calma o descansa."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 1"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Priorité à la récupération : restez facile ou reposez-vous."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 1"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復を優先しましょう。軽めにするか休んでください。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 1"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "회복을 우선하세요 — 가볍게 하거나 쉬세요."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zona 1"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Priorize a recuperação — pegue leve ou descanse."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 1"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "優先恢復——放輕鬆或休息。"
           }
         }
       }
     },
-    "Zone 2": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 2"
+    "PUSH ▲" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PUSHEN ▲"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zona 2"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MÁS ▲"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 2"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "POUSSEZ ▲"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 2"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プッシュ ▲"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 2"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "강도 올리기 ▲"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zona 2"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ACELERE ▲"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 2"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加速 ▲"
           }
         }
       }
     },
-    "Zone 3": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 3"
+    "Push harder" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Härter pushen"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zona 3"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esfuérzate más"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 3"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poussez plus fort"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 3"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "もっと追い込む"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 3"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "더 강하게"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zona 3"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Force mais"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 3"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "再加把勁"
           }
         }
       }
     },
-    "Zone 4": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 4"
+    "Recovery" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erholung"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zona 4"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recuperación"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 4"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Récupération"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 4"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リカバリー"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 4"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "회복"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zona 4"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recuperação"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 4"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "恢復"
           }
         }
       }
     },
-    "Zone 5": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 5"
+    "Reduce intensity today: easy Zone 2, mobility, or rest." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute Intensität senken: lockere Zone 2, Mobility oder Pause."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zona 5"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reduce la intensidad hoy: Zone 2 suave, movilidad o descanso."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 5"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réduisez l’intensité aujourd’hui : Zone 2 facile, mobilité ou repos."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 5"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日は強度を下げましょう。軽い Zone 2、モビリティ、または休息。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 5"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오늘은 강도를 낮추세요: 가벼운 Zone 2, 모빌리티 또는 휴식."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zona 5"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reduza a intensidade hoje: Zona 2 leve, mobilidade ou descanso."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone 5"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今天降低強度：輕鬆 Zone 2、活動度訓練或休息。"
+          }
+        }
+      }
+    },
+    "Resting heart rate is below baseline." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ruhepuls liegt unter der Basis."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La frecuencia cardíaca en reposo está por debajo de la referencia."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FC au repos sous la base."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安静時心拍数は基準値を下回っています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "안정 시 심박수가 기준선보다 낮습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FC em repouso abaixo da linha de base."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "靜止心率低於基準。"
+          }
+        }
+      }
+    },
+    "Resting heart rate is elevated." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ruhepuls ist erhöht."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La frecuencia cardíaca en reposo está elevada."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FC au repos élevée."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安静時心拍数が高めです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "안정 시 심박수가 높아졌습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FC em repouso elevada."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "靜止心率偏高。"
+          }
+        }
+      }
+    },
+    "Resting heart rate is near baseline." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ruhepuls nahe der Basis."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La frecuencia cardíaca en reposo está cerca de la referencia."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FC au repos proche de la base."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安静時心拍数は基準値に近い状態です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "안정 시 심박수가 기준선 부근입니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FC em repouso próxima da linha de base."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "靜止心率接近基準。"
+          }
+        }
+      }
+    },
+    "Resting heart-rate history is still limited." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ruhepuls-Historie ist noch begrenzt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El historial de frecuencia en reposo aún es limitado."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historique de FC au repos encore limité."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安静時心拍数の履歴がまだ限られています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "안정 시 심박수 기록이 아직 부족합니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Histórico de FC em repouso ainda limitado."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "靜止心率歷史資料仍然有限。"
+          }
+        }
+      }
+    },
+    "Sleep was short last night." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Schlaf war letzte Nacht kurz."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anoche dormiste poco."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sommeil court la nuit dernière."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "昨夜は睡眠が短めでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "어젯밤 수면이 짧았습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O sono foi curto na noite passada."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "昨晚睡眠偏短。"
+          }
+        }
+      }
+    },
+    "Steady aerobic work today." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute ruhige aerobe Arbeit."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trabajo aeróbico moderado hoy."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Travail aérobie régulier aujourd’hui."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日は安定した有酸素運動を。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오늘은 꾸준한 유산소 훈련."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trabalho aeróbico constante hoje."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今天進行穩定的有氧運動。"
+          }
+        }
+      }
+    },
+    "Trained at least once a week for 3 weeks running." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 Wochen in Folge mindestens einmal pro Woche trainiert."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrenaste al menos una vez por semana durante 3 semanas seguidas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Au moins une séance par semaine pendant 3 semaines d’affilée."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 週間連続で週に 1 回以上トレーニングしました。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3주 연속 주 1회 이상 훈련했습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Treinou ao menos uma vez por semana por 3 semanas seguidas."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "連續三週每週至少訓練一次。"
+          }
+        }
+      }
+    },
+    "Warm Up" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufwärmen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calentamiento"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échauffement"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ウォームアップ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "웜업"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aquecimento"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暖身"
+          }
+        }
+      }
+    },
+    "Wrist temperature is above your baseline." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handgelenktemperatur liegt über deiner Basis."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La temperatura de la muñeca está por encima de tu línea base."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Température du poignet au-dessus de votre base."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "手首温度がベースラインより高めです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "손목 온도가 기준선보다 높습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperatura do pulso acima da sua linha de base."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "手腕溫度高於你的基準線。"
+          }
+        }
+      }
+    },
+    "Your VO2max is up since you started." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein VO2max ist seit dem Start gestiegen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tu VO2máx ha subido desde que empezaste."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre VO2max a progressé depuis vos débuts."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開始時より VO2max が向上しています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시작한 이후 VO2max가 향상되었습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seu VO2max subiu desde que você começou."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自從你開始以來，你的最大攝氧量已提升。"
+          }
+        }
+      }
+    },
+    "Zone 1" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 1"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zona 1"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 1"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 1"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 1"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zona 1"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 1"
+          }
+        }
+      }
+    },
+    "Zone 2" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 2"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zona 2"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 2"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 2"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 2"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zona 2"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 2"
+          }
+        }
+      }
+    },
+    "Zone 3" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 3"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zona 3"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 3"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 3"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 3"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zona 3"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 3"
+          }
+        }
+      }
+    },
+    "Zone 4" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 4"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zona 4"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 4"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 4"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 4"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zona 4"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 4"
+          }
+        }
+      }
+    },
+    "Zone 5" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 5"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zona 5"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 5"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 5"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 5"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zona 5"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 5"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

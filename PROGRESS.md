@@ -18,6 +18,42 @@
 > Today/Settings/paywall rendering, watch build, then native-speaker review is the known gap —
 > translations are AI-drafted (state=translated; flip to needs_review per language if you want
 > Xcode to track a human pass). ASC metadata for the new locales is a separate, optional step.
+> **Addendum:** new `-nogrand` launch argument disables grandfathering (ProStore) — required to
+> see the paywall/teasers on any dev machine whose first launch predates the 2026-08-01 cutoff;
+> add it to the scheme arguments for the buy-flow check, remove afterwards.
+>
+> **2026-07-07 (later): agent-driven simulator verification (computer use) + 2 fixes.**
+> Verified on the iPhone 17 sim by direct UI driving: **grandfathering PASS** (pre-cutoff sim,
+> relaunched without args → Settings shows "Pro unlocked" thank-you with no purchase);
+> **language switcher PASS end-to-end** (Settings → Change app language deep-links to the
+> system per-app page, all 8 languages listed; switched to 한국어 then Deutsch, app relaunched
+> localized each time); **ko Settings/Today PASS** (Pro card, 프로필, 심박수, 내 존 all render);
+> **de layout PASS** ("Stattdessen Norwegisches 4×4 starten" fits one line). Found + fixed a
+> pre-existing all-languages gap visible in both runs: TargetBar's `unit: String = "min"` and
+> `label` defaults were unlocalized (rendered English "min"/"39 to go" everywhere) → defaults now
+> `String(localized:)`; added "min" + "%lld to go" keys ×7 langs. Scheme launch args also moved
+> into project.yml (`commandLineArguments`: -mockHealth/-nogrand on, "-AppleLanguages (ko)" on,
+> de variant off) so the whole paywall test setup is click-only in Xcode. **Still blocked on one
+> terminal command:** `xcodegen generate` (then the agent can click Run and drive the buy flow —
+> StoreKit config only attaches via scheme launches, and Xcode is click-tier for the agent).
+> Note: the sim's app language is currently set to Deutsch via the per-app setting.
+>
+> **2026-07-07 (evening): BUY FLOW E2E PASS — agent-driven via Xcode + Simulator.**
+> Full purchase walkthrough on the iPhone 17 sim (ko, `-nogrand`): free-user gating renders
+> (readiness teaser + lock), paywall opens with all five feature rows, **price button loads
+> ("PRO 잠금 해제 · $14.99")**, Xcode StoreKit test sheet appears ("For testing purposes only"),
+> Purchase → "You're all set [Environment: Xcode]" → paywall auto-dismisses → readiness card
+> flips to the full Pro version (100 ring + HRV/RHR signals + action line), teaser gone,
+> Settings shows the Pro thank-you card. Two operational findings, both documented in
+> project.yml comments: (1) the xcodegen-generated storeKitConfiguration path `../../` is
+> CORRECT (resolves via the embedded project.xcworkspace) — do not "fix" it; (2) **Xcode caches
+> schemes in memory** — disk edits to the .xcscheme require closing/reopening the project, and
+> the product list can take up to ~2 minutes to load on a fresh sim run (the paywall fills in
+> live). Launch args now persist via project.yml `commandLineArguments` (-mockHealth/-nogrand
+> on, "-AppleLanguages (ko)" on, de off) — REMEMBER to flip -nogrand/-AppleLanguages off (or
+> just don't worry: they only affect scheme Runs, never archives). Remaining before build 66:
+> commit this batch (TargetBar l10n fix, min/%lld-to-go keys, project.yml args+fileGroups,
+> -nogrand code) → iOS tests → cut 66.
 
 > **2026-07-06: monetization implemented — freemium + one-time Pro unlock — VERIFIED on Mac:**
 > iOS test 35/35 (iPhone 17 sim; incl. 3 grandfather tests), watch build succeeded. One Mac
