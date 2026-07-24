@@ -10,6 +10,14 @@ struct WorkoutDetailView: View {
     let calc: HRZoneCalculator
     /// Number of 4×4 hard blocks (reduced on low-readiness days).
     var repeats: Int = Norwegian4x4.repeats
+    /// User's choice to run the full session despite a low-readiness reduction.
+    @State private var useFullRepeats = false
+
+    /// What actually gets built and started: the recommendation, unless the
+    /// athlete has explicitly overridden it for today.
+    private var effectiveRepeats: Int {
+        useFullRepeats ? Norwegian4x4.repeats : repeats
+    }
 
     var body: some View {
         ScrollView {
@@ -70,13 +78,24 @@ struct WorkoutDetailView: View {
             )
 
             if repeats < Norwegian4x4.repeats {
-                Label {
-                    Text("Readiness is low — today's session is reduced to \(repeats) hard blocks.")
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(Theme.warning)
-                        .fixedSize(horizontal: false, vertical: true)
-                } icon: {
-                    Image(systemName: "moon.fill").foregroundStyle(Theme.warning)
+                VStack(alignment: .leading, spacing: Spacing.sm) {
+                    Label {
+                        Text("Readiness is low — today's session is reduced to \(repeats) hard blocks.")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(Theme.warning)
+                            .fixedSize(horizontal: false, vertical: true)
+                    } icon: {
+                        Image(systemName: "moon.fill").foregroundStyle(Theme.warning)
+                    }
+
+                    Button {
+                        useFullRepeats.toggle()
+                    } label: {
+                        Text(useFullRepeats
+                             ? "Use reduced session (\(repeats))"
+                             : "Do the full 4×4 anyway")
+                    }
+                    .buttonStyle(SecondaryButton())
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -94,7 +113,7 @@ struct WorkoutDetailView: View {
             VStack(alignment: .leading, spacing: Spacing.sm) {
                 SectionHeader("Structure")
                 Card(padding: Spacing.xs) {
-                    let intervals = Norwegian4x4.build(using: calc, repeats: repeats)
+                    let intervals = Norwegian4x4.build(using: calc, repeats: effectiveRepeats)
                     VStack(spacing: 0) {
                         ForEach(Array(intervals.enumerated()), id: \.offset) { index, interval in
                             IntervalRow(interval: interval)
@@ -122,7 +141,7 @@ struct WorkoutDetailView: View {
     /// Starts the on-iPhone guided player for this workout.
     private var guidedSessionButton: some View {
         NavigationLink {
-            GuidedPlayerView(type: type, prescribedMinutes: prescribedMinutes, calc: calc)
+            GuidedPlayerView(type: type, prescribedMinutes: prescribedMinutes, calc: calc, repeats: effectiveRepeats)
         } label: {
             Label("Start guided session", systemImage: "play.circle.fill")
         }

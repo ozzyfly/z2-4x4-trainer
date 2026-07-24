@@ -81,6 +81,7 @@ struct WorkoutListView: View {
             ) {
                 Button("Do Zone 2 instead") { start(.zone2) }
                 Button("Reduced 4×4 anyway") { start(.fourByFour) }
+                Button("Full 4×4 anyway") { start(.fourByFour, repeatsOverride: Norwegian4x4.repeats) }
                 Button("Cancel", role: .cancel) {}
             } message: {
                 Text("Recovery looks limited today. An easy Zone 2 is recommended; a 4×4 runs reduced (3 intervals).")
@@ -122,10 +123,13 @@ struct WorkoutListView: View {
         }
     }
 
-    private func start(_ kind: WatchWorkoutKind) {
+    private func start(_ kind: WatchWorkoutKind, repeatsOverride: Int? = nil) {
         // Hand the freshest readiness to the session so the 4×4 rep reduction
-        // uses it even when the phone snapshot is stale.
+        // uses it even when the phone snapshot is stale. Always set (or clear)
+        // repeatsOverride so a prior session's explicit override can't leak
+        // into this one.
         manager.readinessOverride = effectiveReadiness
+        manager.repeatsOverride = repeatsOverride
         activeKind = kind
     }
 }

@@ -71,6 +71,10 @@ final class WorkoutSessionManager: NSObject, @unchecked Sendable {
     /// for the 4×4 rep reduction.
     @MainActor var readinessOverride: ReadinessLabel?
 
+    /// Explicit hard-block count set by the athlete, overriding the
+    /// readiness-driven recommendation for this one session.
+    @MainActor var repeatsOverride: Int?
+
     // MARK: HealthKit
     private let store = HKHealthStore()
     private var session: HKWorkoutSession?
@@ -187,7 +191,7 @@ final class WorkoutSessionManager: NSObject, @unchecked Sendable {
                 // guards. A watch-computed readiness (set by the list screen when
                 // the phone snapshot is stale) wins over the synced label.
                 let label = readinessOverride ?? WidgetSnapshotStore.read()?.readinessLabel
-                let reps = Norwegian4x4.recommendedRepeats(for: label)
+                let reps = repeatsOverride ?? Norwegian4x4.recommendedRepeats(for: label)
                 let engine = IntervalEngine(
                     calculator: calculator,
                     repeats: reps,
