@@ -1270,6 +1270,100 @@
           }
         }
       }
+    },
+    "Full 4×4 anyway" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trotzdem volles 4×4"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4×4 completo de todos modos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4×4 complet quand même"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "それでもフル4×4"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그래도 전체 4×4"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4×4 completo mesmo assim"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "還是做完整 4×4"
+          }
+        }
+      }
+    },
+    "Recovery looks limited today. An easy Zone 2 is recommended; a reduced 4×4 is the safer full-intensity option. \"Full 4×4 anyway\" skips the reduction — only choose it if you're confident today isn't a real recovery day." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Erholung scheint heute begrenzt. Ein leichtes Zone 2 wird empfohlen; ein reduziertes 4×4 ist die sicherere Option mit voller Intensität. „Trotzdem volles 4×4“ überspringt die Reduzierung — wähle das nur, wenn du sicher bist, dass heute kein echter Erholungstag ist."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La recuperación parece limitada hoy. Se recomienda una Zona 2 suave; un 4×4 reducido es la opción más segura a intensidad plena. «4×4 completo de todos modos» omite la reducción — elige esto solo si estás seguro de que hoy no es realmente un día de recuperación."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La récupération semble limitée aujourd'hui. Une Zone 2 facile est recommandée ; un 4×4 réduit est l'option pleine intensité la plus sûre. « 4×4 complet quand même » ignore la réduction — ne choisis cette option que si tu es sûr que ce n'est pas vraiment un jour de récupération."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日は回復力が限られているようです。楽なゾーン2をおすすめしますが、短縮版4×4はフル強度のより安全な選択肢です。「それでもフル4×4」は短縮をスキップします — 今日が本当に回復日でないと確信できる場合のみ選んでください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오늘은 회복력이 제한적으로 보입니다. 가벼운 존2를 권장하며, 축소된 4×4가 더 안전한 전체 강도 옵션입니다. \"그래도 전체 4×4\"는 축소를 건너뜁니다 — 오늘이 진짜 회복일이 아니라고 확신할 때만 선택하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A recuperação parece limitada hoje. Uma Zona 2 leve é recomendada; um 4×4 reduzido é a opção mais segura em intensidade total. \"4×4 completo mesmo assim\" pula a redução — escolha isso somente se tiver certeza de que hoje não é realmente um dia de recuperação."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今天恢復狀況看起來有限。建議做輕鬆的 Zone 2；減量版 4×4 是較安全的全強度選項。「還是做完整 4×4」會跳過減量 — 只有在你確定今天不是真的需要恢復的日子時才選這個。"
+          }
+        }
+      }
     }
   },
   "version" : "1.1"

@@ -192,6 +192,10 @@ final class WorkoutSessionManager: NSObject, @unchecked Sendable {
                 // the phone snapshot is stale) wins over the synced label.
                 let label = readinessOverride ?? WidgetSnapshotStore.read()?.readinessLabel
                 let reps = repeatsOverride ?? Norwegian4x4.recommendedRepeats(for: label)
+                // One-shot: consumed for this session only, so a future start()
+                // that doesn't go through the caller's set-before-start wrapper
+                // can't silently inherit a stale override.
+                repeatsOverride = nil
                 let engine = IntervalEngine(
                     calculator: calculator,
                     repeats: reps,

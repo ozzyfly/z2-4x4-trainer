@@ -84,7 +84,7 @@ struct WorkoutListView: View {
                 Button("Full 4×4 anyway") { start(.fourByFour, repeatsOverride: Norwegian4x4.repeats) }
                 Button("Cancel", role: .cancel) {}
             } message: {
-                Text("Recovery looks limited today. An easy Zone 2 is recommended; a 4×4 runs reduced (3 intervals).")
+                Text("Recovery looks limited today. An easy Zone 2 is recommended; a reduced 4×4 is the safer full-intensity option. \"Full 4×4 anyway\" skips the reduction — only choose it if you're confident today isn't a real recovery day.")
             }
             .task {
                 snapshot = WidgetSnapshotStore.read()

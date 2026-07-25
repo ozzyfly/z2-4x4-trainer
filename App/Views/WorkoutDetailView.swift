@@ -80,7 +80,9 @@ struct WorkoutDetailView: View {
             if repeats < Norwegian4x4.repeats {
                 VStack(alignment: .leading, spacing: Spacing.sm) {
                     Label {
-                        Text("Readiness is low — today's session is reduced to \(repeats) hard blocks.")
+                        Text(useFullRepeats
+                             ? "Readiness is low, but you're doing the full 4×4 today."
+                             : "Readiness is low — today's session is reduced to \(repeats) hard blocks.")
                             .font(.subheadline.weight(.semibold))
                             .foregroundStyle(Theme.warning)
                             .fixedSize(horizontal: false, vertical: true)
@@ -88,14 +90,7 @@ struct WorkoutDetailView: View {
                         Image(systemName: "moon.fill").foregroundStyle(Theme.warning)
                     }
 
-                    Button {
-                        useFullRepeats.toggle()
-                    } label: {
-                        Text(useFullRepeats
-                             ? "Use reduced session (\(repeats))"
-                             : "Do the full 4×4 anyway")
-                    }
-                    .buttonStyle(SecondaryButton())
+                    Toggle("Do the full 4×4 anyway", isOn: $useFullRepeats)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }

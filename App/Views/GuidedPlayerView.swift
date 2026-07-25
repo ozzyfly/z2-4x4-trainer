@@ -34,7 +34,8 @@ struct GuidedPlayerView: View {
         let logger = GuidedSessionLogger(context: context)
         if let log = logger.logWorkout(type: type, isFinished: engine.isFinished,
                                        elapsedSec: engine.elapsedSec,
-                                       prescribedMinutes: prescribedMinutes) {
+                                       prescribedMinutes: prescribedMinutes,
+                                       intervals: engine.intervals) {
             didLog = true
             loggedWorkout = log
             return log

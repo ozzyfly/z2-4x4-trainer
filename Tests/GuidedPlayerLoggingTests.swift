@@ -35,6 +35,18 @@ struct GuidedPlayerLoggingTests {
         #expect(mins == nil)
     }
 
+    @Test("a finished reduced 4×4 logs its actual reduced duration, not the full 4-block one")
+    func fourByFourReducedFinishedLogsActualTotal() {
+        let calc = HRZoneCalculator(profile: UserProfile(age: 30, sex: .male, weightKg: 80, heightCm: 180))
+        let intervals = Norwegian4x4.build(using: calc, repeats: 3)
+        let mins = GuidedSessionLogger.durationToLog(
+            type: .norwegian4x4, isFinished: true, elapsedSec: 0, prescribedMinutes: 0,
+            intervals: intervals)
+        let expected = intervals.reduce(0) { $0 + $1.durationSec } / 60
+        #expect(mins == expected)
+        #expect(mins != Norwegian4x4.totalDurationSec / 60)
+    }
+
     @Test("zone 2 at or beyond prescribed logs the elapsed minutes")
     func zone2AtOrBeyondPrescribed() {
         // exactly at the boundary

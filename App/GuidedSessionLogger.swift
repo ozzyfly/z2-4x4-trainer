@@ -20,16 +20,21 @@ struct GuidedSessionLogger {
     /// session does not qualify (cancelled early, or a rest day).
     ///
     /// - `.norwegian4x4`: the structured session only counts as complete when the
-    ///   engine reports `isFinished`; it always logs the full structured duration.
+    ///   engine reports `isFinished`; it logs the actual prescribed duration of
+    ///   `intervals` (which reflects a readiness-reduced block count), falling
+    ///   back to the full 4-block duration when the caller doesn't have them.
     /// - `.zone2`: open-ended, so it logs the actual elapsed minutes only once they
     ///   reach the prescribed duration. Below that the session is treated as cancelled.
     static func durationToLog(type: SessionType,
                               isFinished: Bool,
                               elapsedSec: Int,
-                              prescribedMinutes: Int) -> Int? {
+                              prescribedMinutes: Int,
+                              intervals: [WorkoutInterval] = []) -> Int? {
         switch type {
         case .norwegian4x4:
-            return isFinished ? Norwegian4x4.totalDurationSec / 60 : nil
+            guard isFinished else { return nil }
+            let totalSec = intervals.reduce(0) { $0 + $1.durationSec }
+            return (totalSec > 0 ? totalSec : Norwegian4x4.totalDurationSec) / 60
         case .zone2:
             let minutes = elapsedSec / 60
             return minutes >= prescribedMinutes ? minutes : nil
@@ -44,10 +49,12 @@ struct GuidedSessionLogger {
     func logWorkout(type: SessionType,
                     isFinished: Bool,
                     elapsedSec: Int,
-                    prescribedMinutes: Int) -> WorkoutLog? {
+                    prescribedMinutes: Int,
+                    intervals: [WorkoutInterval] = []) -> WorkoutLog? {
         guard let durationMin = Self.durationToLog(
             type: type, isFinished: isFinished,
-            elapsedSec: elapsedSec, prescribedMinutes: prescribedMinutes) else { return nil }
+            elapsedSec: elapsedSec, prescribedMinutes: prescribedMinutes,
+            intervals: intervals) else { return nil }
         let log = WorkoutLog(type: type, durationMin: durationMin, source: .guided)
         context.insert(log)
         WidgetSnapshotWriter.update(context: context)
@@ -60,8 +67,10 @@ struct GuidedSessionLogger {
     func log(type: SessionType,
              isFinished: Bool,
              elapsedSec: Int,
-             prescribedMinutes: Int) -> Bool {
+             prescribedMinutes: Int,
+             intervals: [WorkoutInterval] = []) -> Bool {
         logWorkout(type: type, isFinished: isFinished,
-                   elapsedSec: elapsedSec, prescribedMinutes: prescribedMinutes) != nil
+                   elapsedSec: elapsedSec, prescribedMinutes: prescribedMinutes,
+                   intervals: intervals) != nil
     }
 }

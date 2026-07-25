@@ -1,5 +1,69 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-07-24/25: 4×4 rep-count correctness pass + Training guide + offer-code redemption.**
+> Started from the user's question "why does the App Store version only run 3 of the Norwegian
+> 4×4?" — root-caused to `Norwegian4x4.recommendedRepeats(for:)` reducing to 3 hard blocks on a
+> low-readiness day (working as designed; the user's own History screen confirmed a 3-rep,
+> 29-min, quality-100 session). Investigating it surfaced two real bugs, both fixed:
+> (1) `WorkoutDetailView`'s guided-session button never forwarded `repeats` to
+> `GuidedPlayerView`, so the iPhone guided session always ran 4 blocks regardless of the
+> reduction banner shown above it (commit 53b4d2d); (2) `GuidedSessionLogger.durationToLog`
+> logged the fixed full 4-block duration (36 min) for *any* finished 4×4 — once bug (1) was
+> fixed and reduced sessions actually ran, a 3-block ~29-min session would have logged 36 min,
+> overstating weekly minutes/streaks/target progress. `durationToLog` now takes the engine's
+> actual `intervals` (test: `fourByFourReducedFinishedLogsActualTotal`, written failing first).
+> Also added: a manual override so the athlete can run the full 4×4 despite a reduction —
+> iPhone `Toggle` in `WorkoutDetailView` (matching SettingsView's existing override idiom) and
+> a "Full 4×4 anyway" option in the watch's low-readiness dialog, backed by a one-shot
+> `WorkoutSessionManager.repeatsOverride` that clears itself on consumption; `TodayView`'s
+> welcome card now routes through `WorkoutDetailView` so all entry points show the same
+> warning + override; new `App/Views/GuideView.swift` ("Training guide" under Settings → Learn)
+> explaining why Zone 2 and the 4×4 work and what the app does differently; StoreKit
+> `.offerCodeRedemption` "Redeem code" button on the paywall (for gifting Pro via App Store
+> Connect offer codes — the review-safe path, no custom unlock logic); new shared
+> `IconDetailRow` in the design system replacing the duplicated paywall/guide row helpers.
+> 36 new strings localized across de/es/fr/ja/ko/pt-BR/zh-Hant. Verified: SharedCore 117
+> tests, iOS 36 tests, both targets build, zh-Hant launch smoke-checked in the sim. NOT
+> verified: the reduced-4×4 banner + override UI wasn't visually driven (`-mockHealth` has no
+> low-readiness canned data), offer-code redemption needs a sandbox tester on device, and the
+> 7 non-English locales are machine-translated (terminology matched to existing catalog
+> entries) without native-speaker review. **Not yet shipped** — needs a new build + submission.
+> Still open from the original question: whether two consecutive `.easy` readiness days are a
+> correct read or a miscalibrated HRV/RHR baseline — needs the user's actual signal data.
+
+> **2026-07-08: 🚀 SUBMITTED — v1.0.1 (build 67) WAITING FOR REVIEW.** Final gate cleared and
+> submitted (agent-driven, user-authorized): availability re-enabled (all countries; 148 live
+> now, 27 EU pending the in-review DSA trader verification), first submit attempt blocked by
+> "binary supports Apple Watch → watch screenshots required" → captured the Ultra 3 sim's
+> Zone 2 live view (422×514, shows the new banked-time banner + 115 BPM in-zone) via the
+> watch scheme run + sim camera button, uploaded to the version's Apple Watch slot, saved,
+> re-submitted → **"已提交 1 個項目"**, sidebar shows 1.0.1 正在等待審查. Review ≤48h, email
+> notification. Submission contents: build 67 (monetization + 8 languages + all July fixes +
+> grandfatherCutoff 2026-07-07 so App Review sees the paywall), Pro Lifetime IAP riding along
+> (fully configured, review screenshot + notes). Business side complete same day: Paid Apps
+> Agreement Active, BMO bank account Active, GST/HST 506 + W-8BEN + foreign-status cert Active,
+> Income Tax Act Part XX Active; tax/entity decision: ship as individual, accountant consult at
+> first payout (options documented in chat 2026-07-07). Post-approval follow-ups: EU listing
+> returns when DSA verification completes; regulated-medical-device declaration due early 2027
+> (app is not a medical device — simple declaration on the App 資訊 page); consider ko/de/fr/pt
+> ASC metadata; native-speaker translation review for 1.2.
+> **2026-07-07/08: ASC submission prep COMPLETE (agent-driven via browser) — awaiting user's
+> submit click.** IAP created & fully configured: `ca.logolo.z24x4.pro.lifetime` (Apple ID
+> 6788572676), Non-Consumable, Family Sharing ON (irreversible, matches .storekit), $14.99 US
+> anchor → 175 regions, availability all countries, 4 localizations (en-US/zh-Hant/ja/es-ES),
+> review notes (how to reach the paywall), review screenshot = paywall-de.png (1206×2622).
+> **Version 1.0.1 created in ASC** (didn't exist — builds only lived in TestFlight): What's New
+> (Pro/8 languages/watch redesign/fixes), description updated with the FREE + OPTIONAL ONE-TIME
+> UPGRADE section (guideline 3.1.1), promotional text added, keywords swapped to the optimized
+> set, **build 67 attached** (contains grandfatherCutoff=2026-07-07 so App Review sees the
+> paywall), **IAP attached to the version** (first IAP must ride an app review). "新增以供審查"
+> is enabled — STOPPED there per plan. **User-side before submitting:** (1) Paid Apps Agreement
+> (商務 → 協議 shows 付費 App 協議 = 新/unsigned → 檢視並同意條款 + banking + tax forms; decision
+> recorded: sign as individual, bookkeeping options documented in chat — accountant at first
+> payout), (2) EU DSA trader-status compliance (red banner; likely why the app shows "removed
+> from App Store"), (3) 定價與供應狀況 → re-add the app for sale, else approval won't put it back
+> on the store, (4) click 新增以供審查 → submit. Ops notes: ASC custom selects need focus before
+> form_input sticks; verify with a11y read-back.
 > **2026-07-07: 4 new languages (ko/de/fr/pt-BR) + in-app language switcher — VERIFIED on Mac:**
 > iOS test 35/35, watch build OK; sim Today screen spot-checked in all 4 new languages
 > (-AppleLanguages) — tab bar, readiness, coach cards all localized, German fits without

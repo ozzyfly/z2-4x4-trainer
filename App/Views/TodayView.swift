@@ -111,11 +111,11 @@ struct TodayView: View {
                     .fixedSize(horizontal: false, vertical: true)
 
                 NavigationLink {
-                    GuidedPlayerView(type: isRest ? .zone2 : today.type,
-                                     prescribedMinutes: isRest ? Self.easyZone2Minutes : today.durationMin,
-                                     calc: calc, repeats: recommendedFourByFourRepeats)
+                    WorkoutDetailView(type: isRest ? .zone2 : today.type,
+                                      prescribedMinutes: isRest ? Self.easyZone2Minutes : today.durationMin,
+                                      calc: calc, repeats: recommendedFourByFourRepeats)
                 } label: {
-                    Label("Start guided session", systemImage: "play.fill")
+                    Label("Start workout", systemImage: "play.fill")
                 }
                 .buttonStyle(PrimaryButton())
 
