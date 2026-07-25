@@ -27,7 +27,18 @@
 > verified: the reduced-4×4 banner + override UI wasn't visually driven (`-mockHealth` has no
 > low-readiness canned data), offer-code redemption needs a sandbox tester on device, and the
 > 7 non-English locales are machine-translated (terminology matched to existing catalog
-> entries) without native-speaker review. **Not yet shipped** — needs a new build + submission.
+> entries) without native-speaker review.
+> **Release prep done, submission NOT done:** `MARKETING_VERSION` bumped 1.0.1 → 1.0.2 across
+> all four targets in `project.yml` (verified in the built Release bundle's
+> `CFBundleShortVersionString`); both targets build clean in Release configuration; the ASC
+> review screenshots that were loose in the repo root moved into
+> `docs/app-store/screenshots/` alongside the existing ones. The build number needs no manual
+> bump — `scripts/archive-and-export.sh` passes `CURRENT_PROJECT_VERSION=$(git rev-list --count
+> HEAD)` on the command line, which is now well past the submitted build 67. **User-side to
+> ship:** (1) `scripts/archive-and-export.sh --upload` with the four ASC env vars set (they are
+> deliberately not in the agent's environment), (2) create version 1.0.2 in ASC with What's New
+> + attach the build, (3) submit, (4) generate an offer code for the IAP so the new "Redeem
+> code" button has something to redeem.
 > Still open from the original question: whether two consecutive `.easy` readiness days are a
 > correct read or a miscalibrated HRV/RHR baseline — needs the user's actual signal data.
 
