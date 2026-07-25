@@ -141,6 +141,8 @@ struct SettingsView: View {
 
                     healthSection
 
+                    guideSection
+
                     languageSection
                 }
                 .padding(Spacing.lg)
@@ -550,6 +552,29 @@ struct SettingsView: View {
                             Label("Connect Apple Health", systemImage: "heart.fill")
                         }
                         .buttonStyle(PrimaryButton())
+                    }
+                }
+            }
+        }
+    }
+
+    private var guideSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader("Learn")
+            Card {
+                NavigationLink {
+                    GuideView()
+                } label: {
+                    HStack(spacing: Spacing.sm) {
+                        Image(systemName: "book.fill")
+                            .foregroundStyle(Theme.accent)
+                        Text("Training guide")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(Theme.label)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.caption2.weight(.semibold))
+                            .foregroundStyle(Theme.separator)
                     }
                 }
             }

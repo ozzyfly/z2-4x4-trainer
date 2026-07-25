@@ -1,4 +1,5 @@
 import SwiftUI
+import StoreKit
 import SharedCore
 
 /// The one-time Pro unlock sheet. Hermès restraint: serif headline, a short
@@ -6,6 +7,7 @@ import SharedCore
 struct ProPaywallView: View {
     @Environment(ProStore.self) private var pro
     @Environment(\.dismiss) private var dismiss
+    @State private var showsCodeRedemption = false
 
     var body: some View {
         NavigationStack {
@@ -65,6 +67,15 @@ struct ProPaywallView: View {
                         }
                         .disabled(pro.isPurchasing)
 
+                        Button {
+                            showsCodeRedemption = true
+                        } label: {
+                            Text("Redeem code")
+                                .font(.footnote.weight(.semibold))
+                                .foregroundStyle(Theme.accent)
+                        }
+                        .disabled(pro.isPurchasing)
+
                         Text("Everything you already use stays free: workouts on iPhone and Apple Watch, plans, zones, Apple Health sync.")
                             .font(.caption2)
                             .foregroundStyle(Theme.secondaryLabel)
@@ -82,26 +93,14 @@ struct ProPaywallView: View {
             }
         }
         .tint(Theme.accent)
+        .offerCodeRedemption(isPresented: $showsCodeRedemption)
+        .onChange(of: pro.isPro) { _, isPro in
+            if isPro { dismiss() }
+        }
     }
 
     private func featureRow(_ icon: String, _ title: LocalizedStringKey, _ detail: LocalizedStringKey) -> some View {
-        HStack(alignment: .top, spacing: Spacing.md) {
-            Image(systemName: icon)
-                .font(.title3)
-                .foregroundStyle(Theme.accent)
-                .frame(width: 30)
-                .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 2) {
-                Text(title)
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(Theme.label)
-                Text(detail)
-                    .font(.footnote)
-                    .foregroundStyle(Theme.secondaryLabel)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-        }
-        .accessibilityElement(children: .combine)
+        IconDetailRow(icon: icon, title: title, detail: detail)
     }
 }
 

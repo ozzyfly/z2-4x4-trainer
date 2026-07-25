@@ -14428,6 +14428,1651 @@
           }
         }
       }
+    },
+    "Redeem code" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code einlösen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canjear código"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utiliser un code"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コードを利用"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "코드 사용"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resgatar código"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "兌換代碼"
+          }
+        }
+      }
+    },
+    "Do the full 4×4 anyway" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trotzdem das volle 4×4 machen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hacer el 4×4 completo de todos modos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faire quand même le 4×4 complet"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "それでもフル4×4を行う"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그래도 전체 4×4 진행"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fazer o 4×4 completo mesmo assim"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "還是做完整 4×4"
+          }
+        }
+      }
+    },
+    "Use reduced session (%lld)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reduzierte Einheit nutzen (%lld)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usar sesión reducida (%lld)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utiliser la séance réduite (%lld)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "短縮セッションを使う（%lld）"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "축소 세션 사용(%lld)"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usar sessão reduzida (%lld)"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用減量課表（%lld）"
+          }
+        }
+      }
+    },
+    "Training guide" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trainingsleitfaden"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guía de entrenamiento"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guide d'entraînement"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "トレーニングガイド"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "트레이닝 가이드"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guia de treino"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練指南"
+          }
+        }
+      }
+    },
+    "Two sessions, one purpose: a bigger aerobic engine. Here's why each works, and what this app does differently." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zwei Einheiten, ein Ziel: ein größerer aerober Motor. Hier erfährst du, warum jede wirkt — und was diese App anders macht."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dos sesiones, un propósito: un motor aeróbico más grande. Aquí te explicamos por qué funciona cada una y qué hace diferente esta app."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deux séances, un seul objectif : un plus grand moteur aérobie. Voici pourquoi chacune fonctionne, et ce que cette appli fait différemment."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2つのセッション、目的はひとつ — より大きな有酸素エンジン。それぞれがなぜ効くのか、このアプリが何を変えているのかを解説します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 가지 세션, 하나의 목적: 더 큰 유산소 엔진. 각각이 왜 효과적인지, 이 앱이 무엇을 다르게 하는지 알아보세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duas sessões, um só propósito: um motor aeróbico maior. Veja por que cada uma funciona e o que este app faz de diferente."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "兩種課表，同一個目的：練出更強的有氧引擎。這裡說明每種為什麼有效，以及這個 app 做了哪些不一樣的事。"
+          }
+        }
+      }
+    },
+    "Guide" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leitfaden"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guía"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guide"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ガイド"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "가이드"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guia"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指南"
+          }
+        }
+      }
+    },
+    "Learn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wissen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aprender"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Découvrir"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "学ぶ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "배우기"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aprender"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "學習"
+          }
+        }
+      }
+    },
+    "Zone 2 — why it works" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 2 — warum es wirkt"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zona 2 — por qué funciona"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 2 — pourquoi ça marche"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ゾーン2 — なぜ効くのか"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "존2 — 효과가 있는 이유"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zona 2 — por que funciona"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zone 2 — 為什麼有效"
+          }
+        }
+      }
+    },
+    "A steady, conversational effort at roughly 60–70% max heart rate. It feels easy — that's the point." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein gleichmäßiges Tempo, bei dem du dich noch unterhalten kannst, bei etwa 60–70 % der maximalen Herzfrequenz. Es fühlt sich leicht an — das ist der Sinn."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un esfuerzo constante y conversacional a aproximadamente 60–70 % de la frecuencia cardíaca máxima. Se siente fácil — esa es la idea."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un effort régulier, où l'on peut encore parler, à environ 60–70 % de la fréquence cardiaque max. Ça paraît facile — c'est le but."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "会話ができる程度の一定の運動強度で、最大心拍数のおよそ60〜70%。楽に感じるのがポイントです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최대 심박수의 약 60~70%로, 대화가 가능한 꾸준한 강도. 쉽게 느껴지는 게 핵심입니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Um esforço constante, no qual dá para conversar, a cerca de 60–70% da frequência cardíaca máxima. Parece fácil — esse é o objetivo."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "維持在最大心率約 60–70%、能邊做邊講話的穩定強度。感覺輕鬆才是重點。"
+          }
+        }
+      }
+    },
+    "Builds the aerobic base" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baut die aerobe Basis auf"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Construye la base aeróbica"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Construit la base aérobie"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "有酸素の基礎を築く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유산소 기초를 다집니다"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Constrói a base aeróbica"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "建立有氧基礎"
+          }
+        }
+      }
+    },
+    "Trains your body to burn fat efficiently and grows the mitochondria and capillaries that power every other workout." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trainiert deinen Körper darauf, Fett effizient zu verbrennen, und lässt die Mitochondrien und Kapillaren wachsen, die jedes andere Training antreiben."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrena tu cuerpo para quemar grasa de forma eficiente y hace crecer las mitocondrias y capilares que impulsan cualquier otro entrenamiento."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entraîne ton corps à brûler les graisses efficacement et développe les mitochondries et capillaires qui alimentent tous tes autres entraînements."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "体を効率よく脂肪を燃やせるように鍛え、他のすべてのトレーニングを支えるミトコンドリアと毛細血管を増やします。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "몸이 지방을 효율적으로 태우도록 훈련시키고, 다른 모든 운동을 뒷받침하는 미토콘드리아와 모세혈관을 늘립니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Treina seu corpo para queimar gordura com eficiência e desenvolve as mitocôndrias e capilares que sustentam todos os outros treinos."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練身體更有效率地燃燒脂肪，並增生粒線體與微血管，撐起其他所有訓練的表現。"
+          }
+        }
+      }
+    },
+    "Recovers, doesn't drain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erholt, statt zu erschöpfen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recupera, no agota"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ça régénère, ça n'épuise pas"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "消耗せず回復を促す"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지치지 않고 회복시킵니다"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recupera, não esgota"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "恢復而非消耗"
+          }
+        }
+      }
+    },
+    "Low enough intensity to train often without digging a fatigue hole — the volume that actually moves fitness." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intensität niedrig genug, um oft zu trainieren, ohne ein Erschöpfungsloch zu graben — das Volumen, das Fitness wirklich voranbringt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intensidad lo bastante baja para entrenar seguido sin caer en un pozo de fatiga — el volumen que realmente mejora la forma física."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une intensité assez basse pour s'entraîner souvent sans creuser un trou de fatigue — le volume qui fait vraiment progresser la forme."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "疲労の穴を掘らずに何度も練習できるほど低い強度 — 実際にフィットネスを動かすのはこの量です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "피로의 구덩이를 파지 않고 자주 훈련할 수 있을 만큼 낮은 강도 — 실제로 체력을 끌어올리는 것은 이 볼륨입니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intensidade baixa o suficiente para treinar com frequência sem cavar um buraco de fadiga — o volume que realmente move o condicionamento."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "強度低到可以常常練、不會挖出疲勞坑 — 真正推動體能進步的是這個訓練量。"
+          }
+        }
+      }
+    },
+    "Raises the ceiling underneath" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hebt die Grundlage darunter an"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eleva el techo desde la base"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relève le plafond par en dessous"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "土台の上限を底上げする"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "밑에서부터 한계치를 끌어올립니다"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eleva o teto por baixo"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從底部墊高上限"
+          }
+        }
+      }
+    },
+    "A bigger base means harder efforts like the 4×4 start from a stronger foundation and recover faster between sessions." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine größere Basis bedeutet, dass härtere Einheiten wie das 4×4 auf einem stärkeren Fundament starten und sich zwischen den Einheiten schneller erholen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Una base más grande significa que esfuerzos más duros como el 4×4 parten de una base más sólida y se recuperan más rápido entre sesiones."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une base plus large signifie que des efforts plus durs comme le 4×4 partent d'une fondation plus solide et récupèrent plus vite entre les séances."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "土台が大きいほど、4×4のようなハードな取り組みもより強い基盤から始められ、セッション間の回復も速くなります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기초가 클수록 4×4 같은 고강도 운동도 더 튼튼한 토대에서 시작하고, 세션 사이 회복도 빨라집니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uma base maior significa que esforços mais duros, como o 4×4, partem de uma fundação mais forte e se recuperam mais rápido entre as sessões."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "基礎越大，像 4×4 這種高強度課表就能從更穩的地基出發，組間恢復也更快。"
+          }
+        }
+      }
+    },
+    "Norwegian 4×4 — why it works" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Norwegisches 4×4 — warum es wirkt"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4×4 noruego — por qué funciona"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4×4 norvégien — pourquoi ça marche"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ノルウェー式4×4 — なぜ効くのか"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "노르웨이식 4×4 — 효과가 있는 이유"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4×4 norueguês — por que funciona"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "挪威式 4×4 — 為什麼有效"
+          }
+        }
+      }
+    },
+    "Four 4-minute efforts at 85–95% max heart rate, each followed by 3 minutes of easy recovery. Hard, but controlled — not an all-out sprint." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vier 4-Minuten-Belastungen bei 85–95 % der maximalen Herzfrequenz, jeweils gefolgt von 3 Minuten leichter Erholung. Hart, aber kontrolliert — kein Vollsprint."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuatro esfuerzos de 4 minutos al 85–95 % de la frecuencia cardíaca máxima, cada uno seguido de 3 minutos de recuperación suave. Duro, pero controlado — no es un sprint a tope."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quatre efforts de 4 minutes à 85–95 % de la fréquence cardiaque max, chacun suivi de 3 minutes de récupération facile. Dur, mais maîtrisé — pas un sprint à fond."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最大心拍数の85〜95%で4分間の運動を4回、それぞれの後に3分間の楽な回復を挟みます。きついけれどコントロールされた強度 — 全力スプリントではありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최대 심박수의 85~95%로 4분씩 4회, 매회 후 3분의 가벼운 회복. 힘들지만 통제된 강도 — 전력 스프린트가 아닙니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quatro esforços de 4 minutos a 85–95% da frequência cardíaca máxima, cada um seguido de 3 minutos de recuperação leve. Difícil, mas controlado — não é um sprint total."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以最大心率 85–95% 進行 4 分鐘 × 4 趟，每趟後接 3 分鐘輕鬆恢復。強度高但可控 — 不是全力衝刺。"
+          }
+        }
+      }
+    },
+    "The most efficient way to raise VO₂max" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der effizienteste Weg, den VO₂max zu steigern"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La forma más eficiente de elevar el VO₂max"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le moyen le plus efficace d'augmenter le VO₂max"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VO₂maxを高める最も効率的な方法"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VO₂max를 높이는 가장 효율적인 방법"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A forma mais eficiente de elevar o VO₂max"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "提升 VO₂max 最有效率的方式"
+          }
+        }
+      }
+    },
+    "The interval length and intensity is the specific protocol shown to lift VO₂max — the single strongest predictor of long-term cardiovascular health — more per minute than steady running." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Intervalllänge und -intensität ist genau das Protokoll, das den VO₂max — den stärksten Einzelprädiktor für langfristige Herz-Kreislauf-Gesundheit — pro Minute stärker steigert als gleichmäßiges Laufen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La duración e intensidad de este intervalo es el protocolo específico que ha demostrado elevar el VO₂max — el predictor individual más fuerte de la salud cardiovascular a largo plazo — más por minuto que correr a ritmo constante."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette durée et cette intensité d'intervalle sont le protocole précis qui augmente le VO₂max — le meilleur prédicteur unique de la santé cardiovasculaire à long terme — plus par minute qu'une course régulière."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このインターバルの長さと強度は、長期的な心血管の健康を最も強く予測するVO₂maxを、一定ペースのランニングより1分あたり効率よく高めることが示されているプロトコルです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 인터벌의 길이와 강도는 장기적인 심혈관 건강을 가장 강력하게 예측하는 VO₂max를, 일정한 페이스의 달리기보다 분당 더 많이 높이는 것으로 입증된 프로토콜입니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A duração e a intensidade desse intervalo são o protocolo específico comprovado para elevar o VO₂max — o maior preditor isolado de saúde cardiovascular a longo prazo — mais por minuto do que a corrida em ritmo constante."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "這個間歇的長度與強度，正是經證實能提升 VO₂max（長期心血管健康最強的單一預測指標）的特定協定 — 每分鐘效益高於穩定配速跑步。"
+          }
+        }
+      }
+    },
+    "Recovery is part of the stimulus" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erholung ist Teil des Reizes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La recuperación es parte del estímulo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La récupération fait partie du stimulus"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復も刺激の一部"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "회복도 자극의 일부입니다"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A recuperação faz parte do estímulo"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "恢復也是刺激的一部分"
+          }
+        }
+      }
+    },
+    "The 3-minute drop lets heart rate fall before the next effort, so you can hold true hard intensity four times instead of fading by the second." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die 3-minütige Pause lässt die Herzfrequenz vor der nächsten Belastung sinken, sodass du viermal wirklich hart durchhalten kannst, statt schon beim zweiten Mal nachzulassen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La bajada de 3 minutos permite que la frecuencia cardíaca descienda antes del siguiente esfuerzo, así puedes mantener una intensidad realmente dura cuatro veces en lugar de flaquear en la segunda."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La baisse de 3 minutes laisse la fréquence cardiaque redescendre avant l'effort suivant, ce qui permet de tenir une vraie intensité dure quatre fois au lieu de faiblir dès la deuxième."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3分間の回復で次の運動前に心拍数を下げられるため、2回目で失速するのではなく、4回とも本当にハードな強度を保てます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3분의 회복으로 다음 운동 전에 심박수를 낮출 수 있어, 두 번째부터 처지는 대신 네 번 모두 진짜 고강도를 유지할 수 있습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A queda de 3 minutos permite que a frequência cardíaca baixe antes do próximo esforço, para que você consiga manter intensidade realmente forte quatro vezes, em vez de enfraquecer já na segunda."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 分鐘的降心率讓下一趟開始前心跳先降下來，所以能真正撐住高強度四趟，而不是第二趟就掉速。"
+          }
+        }
+      }
+    },
+    "A little goes a long way" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wenig bewirkt viel"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un poco rinde mucho"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un peu suffit largement"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "少ない頻度で十分効果がある"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "적은 빈도로도 충분합니다"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pouco já rende muito"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "少量就很有效"
+          }
+        }
+      }
+    },
+    "One or two sessions a week is enough — the adaptation happens in the recovery between sessions, not by doing it every day." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein bis zwei Einheiten pro Woche reichen — die Anpassung geschieht in der Erholung zwischen den Einheiten, nicht dadurch, es jeden Tag zu machen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Una o dos sesiones por semana bastan — la adaptación ocurre en la recuperación entre sesiones, no haciéndolo todos los días."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une ou deux séances par semaine suffisent — l'adaptation se produit pendant la récupération entre les séances, pas en le faisant tous les jours."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "週に1〜2回で十分です — 適応はセッション間の回復の中で起こるのであって、毎日行うことでは起こりません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주 1~2회면 충분합니다 — 적응은 세션 사이의 회복 중에 일어나며, 매일 하는 것으로 생기지 않습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uma ou duas sessões por semana bastam — a adaptação acontece na recuperação entre as sessões, não fazendo todos os dias."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一週一到兩次就夠 — 適應是在課表之間的恢復期發生，不是靠天天練出來的。"
+          }
+        }
+      }
+    },
+    "What this app does differently" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was diese App anders macht"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qué hace diferente esta app"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce que cette appli fait différemment"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このアプリが違う点"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 앱이 다른 점"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O que este app faz de diferente"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "這個 app 不一樣的地方"
+          }
+        }
+      }
+    },
+    "Heart-rate adaptive, not just a timer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herzfrequenzadaptiv, nicht nur ein Timer"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adaptado a la frecuencia cardíaca, no solo un temporizador"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adapté à la fréquence cardiaque, pas juste une minuterie"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "単なるタイマーではなく心拍数に適応"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단순 타이머가 아닌 심박수 적응형"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adaptado à frequência cardíaca, não só um cronômetro"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跟著心率走，不只是計時器"
+          }
+        }
+      }
+    },
+    "The 4×4 clock only counts down while you're actually in the target band — it banks in-zone time, not wall-clock minutes, so the workout reflects real effort." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die 4×4-Uhr zählt nur herunter, während du wirklich im Zielbereich bist — sie bankt Zeit in der Zone, nicht Wanduhrminuten, sodass das Training den tatsächlichen Einsatz widerspiegelt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El reloj del 4×4 solo cuenta hacia atrás mientras estás realmente en la banda objetivo — acumula tiempo en zona, no minutos de reloj, para que el entrenamiento refleje el esfuerzo real."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le chrono du 4×4 ne décompte que lorsque tu es réellement dans la zone cible — il comptabilise le temps en zone, pas les minutes d'horloge, pour que la séance reflète l'effort réel."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4×4のタイマーは実際にターゲット帯にいる間だけカウントダウンします — 時計上の分数ではなくゾーン内時間を積み上げるので、ワークアウトが実際の努力を反映します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4×4 타이머는 실제로 목표 구간에 있을 때만 카운트다운됩니다 — 시계상의 분이 아니라 존 안에 있던 시간을 적립하므로, 운동이 실제 노력을 반영합니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O cronômetro do 4×4 só conta enquanto você está realmente na faixa alvo — ele acumula tempo em zona, não minutos do relógio, para que o treino reflita o esforço real."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4×4 的計時只在真的落在目標心率區間時才倒數 — 累積的是「區間內時間」，不是單純的時鐘分鐘，讓課表反映真實努力程度。"
+          }
+        }
+      }
+    },
+    "Reads your readiness first" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liest zuerst deine Bereitschaft"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Primero lee tu preparación"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prend d'abord en compte ta forme"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "まずリカバリー状態を読み取る"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "먼저 준비도를 확인합니다"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Primeiro lê sua prontidão"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "先看你的 Readiness"
+          }
+        }
+      }
+    },
+    "HRV, resting heart rate, and sleep from Apple Health inform a daily readiness score that can reduce a hard day automatically — with your final say on whether to override it." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HRV, Ruheherzfrequenz und Schlaf aus Apple Health fließen in einen täglichen Bereitschaftswert ein, der einen harten Tag automatisch reduzieren kann — die letzte Entscheidung, ob du das überstimmst, triffst du."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La VFC, la frecuencia cardíaca en reposo y el sueño de Apple Salud alimentan una puntuación diaria de preparación que puede reducir automáticamente un día duro — con la última palabra siempre tuya sobre si anularlo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La VFC, la fréquence cardiaque au repos et le sommeil issus d'Apple Santé alimentent un score de forme quotidien qui peut réduire automatiquement une journée difficile — avec ton dernier mot sur la possibilité de l'annuler."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appleヘルスケアから得られるHRV、安静時心拍数、睡眠が日々のレディネススコアに反映され、ハードな日を自動的に短縮することがあります — それを上書きするかどうかは最終的にあなたが決めます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple 건강의 HRV, 안정 시 심박수, 수면 데이터가 일일 준비도 점수에 반영되어 힘든 날을 자동으로 줄일 수 있습니다 — 이를 무시할지는 최종적으로 당신이 결정합니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A VFC, a frequência cardíaca em repouso e o sono do Apple Saúde alimentam uma pontuação diária de prontidão que pode reduzir automaticamente um dia difícil — com a palavra final sempre sua sobre substituir isso."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "來自 Apple 健康的 HRV、靜止心率與睡眠會影響每日 Readiness 分數，可能自動把高強度日減量 — 但要不要覆寫，最終由你決定。"
+          }
+        }
+      }
+    },
+    "Runs standalone on Apple Watch" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Läuft eigenständig auf der Apple Watch"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funciona de forma independiente en el Apple Watch"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonctionne de façon autonome sur l'Apple Watch"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Watch単体で動作"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Watch에서 독립적으로 실행"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funciona de forma independente no Apple Watch"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Watch 可獨立運作"
+          }
+        }
+      }
+    },
+    "Start a session from your wrist with no phone nearby; heart rate, haptics, and coaching cues all work independently." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starte eine Einheit direkt vom Handgelenk aus, ganz ohne iPhone in der Nähe; Herzfrequenz, haptisches Feedback und Coaching-Hinweise funktionieren eigenständig."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicia una sesión desde tu muñeca sin el iPhone cerca; la frecuencia cardíaca, las vibraciones y los avisos de entrenamiento funcionan de forma independiente."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lance une séance depuis ton poignet sans iPhone à proximité ; fréquence cardiaque, retours haptiques et indices de coaching fonctionnent de façon autonome."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhoneが近くになくても手首だけでセッションを開始でき、心拍数・触覚フィードバック・コーチングの合図はすべて単独で動作します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰이 없어도 손목에서 바로 세션을 시작할 수 있으며, 심박수·햅틱·코칭 신호가 모두 독립적으로 작동합니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicie uma sessão pelo pulso sem o iPhone por perto; frequência cardíaca, feedback tátil e avisos de coaching funcionam de forma independente."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不用帶 iPhone，直接在手錶上開始課表；心率、震動提示與教練提示全部獨立運作。"
+          }
+        }
+      }
+    },
+    "Local-only, no account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur lokal, kein Konto"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo local, sin cuenta"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Local uniquement, sans compte"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ローカル完結、アカウント不要"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로컬 전용, 계정 불필요"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Somente local, sem conta"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "純本機，不用帳號"
+          }
+        }
+      }
+    },
+    "Everything lives on your device and syncs only through Apple Health and your own iCloud — no server, no sign-up, no ads." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles bleibt auf deinem Gerät und synchronisiert sich nur über Apple Health und deine eigene iCloud — kein Server, keine Anmeldung, keine Werbung."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todo vive en tu dispositivo y solo se sincroniza mediante Apple Salud y tu propia iCloud — sin servidor, sin registro, sin anuncios."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout reste sur ton appareil et ne se synchronise que via Apple Santé et ton propre iCloud — pas de serveur, pas d'inscription, pas de pub."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべてお使いのデバイス上にとどまり、同期はAppleヘルスケアとご自身のiCloudのみを通じて行われます — サーバーも、登録も、広告もありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 데이터가 기기에만 저장되며, 동기화는 Apple 건강과 본인의 iCloud를 통해서만 이루어집니다 — 서버도, 가입도, 광고도 없습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tudo fica no seu dispositivo e sincroniza somente pelo Apple Saúde e pelo seu próprio iCloud — sem servidor, sem cadastro, sem anúncios."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所有資料都留在你的裝置上，只透過 Apple 健康與你自己的 iCloud 同步 — 沒有伺服器、不用註冊、沒有廣告。"
+          }
+        }
+      }
+    },
+    "Your data, exportable anytime" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Daten, jederzeit exportierbar"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tus datos, exportables cuando quieras"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tes données, exportables à tout moment"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "あなたのデータ、いつでも書き出せます"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "내 데이터, 언제든 내보내기 가능"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seus dados, exportáveis quando quiser"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的資料，隨時可匯出"
+          }
+        }
+      }
+    },
+    "Full workout history as CSV or JSON whenever you want it — nothing locked in." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der komplette Trainingsverlauf als CSV oder JSON, wann immer du ihn möchtest — nichts ist eingesperrt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todo el historial de entrenamientos en CSV o JSON cuando lo quieras — nada queda encerrado."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'historique complet des entraînements en CSV ou JSON quand tu le souhaites — rien n'est enfermé."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "いつでもCSVまたはJSON形式で全トレーニング履歴を取得できます — 何も囲い込まれません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "언제든 CSV나 JSON으로 전체 운동 기록을 받을 수 있습니다 — 어디에도 갇히지 않습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todo o histórico de treinos em CSV ou JSON sempre que quiser — nada fica preso."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隨時可用 CSV 或 JSON 匯出完整運動紀錄 — 資料不會被鎖住。"
+          }
+        }
+      }
+    },
+    "Readiness is low, but you're doing the full 4×4 today." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bereitschaft ist niedrig, aber du machst heute trotzdem das volle 4×4."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La preparación es baja, pero hoy harás el 4×4 completo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La forme est basse, mais tu fais quand même le 4×4 complet aujourd'hui."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "レディネスは低めですが、今日はフル4×4を行います。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "준비도가 낮지만 오늘은 전체 4×4를 진행합니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A prontidão está baixa, mas hoje você vai fazer o 4×4 completo."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Readiness 偏低，但你今天選擇做完整 4×4。"
+          }
+        }
+      }
     }
   },
   "version" : "1.1"

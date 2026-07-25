@@ -66,6 +66,36 @@ struct SectionHeader: View {
     }
 }
 
+// MARK: - IconDetailRow
+
+/// Icon + bold title + secondary detail line, stacked horizontally — the
+/// standard row for feature/benefit lists (paywall, training guide).
+struct IconDetailRow: View {
+    let icon: String
+    let title: LocalizedStringKey
+    let detail: LocalizedStringKey
+
+    var body: some View {
+        HStack(alignment: .top, spacing: Spacing.md) {
+            Image(systemName: icon)
+                .font(.title3)
+                .foregroundStyle(Theme.accent)
+                .frame(width: 28)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(Theme.label)
+                Text(detail)
+                    .font(.footnote)
+                    .foregroundStyle(Theme.secondaryLabel)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .accessibilityElement(children: .combine)
+    }
+}
+
 // MARK: - TargetBar
 
 /// Sleek capsule progress bar with an animated accent fill.
