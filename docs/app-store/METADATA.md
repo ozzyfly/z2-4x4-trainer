@@ -176,6 +176,117 @@ Thanks for training with us. Questions or feedback? Email ozzyfly@logolo.ca.
 
 ---
 
+## "What's New in This Version" — v1.0.2 (max 4000 chars each)
+
+Paste each into its matching App Store Connect localization. English is the
+primary; the other seven mirror it.
+
+### en-US
+
+```
+New in 1.0.2:
+
+• Training guide — a new section under Settings explaining why Zone 2 and the Norwegian 4×4 work, and what this app does differently.
+• Your call on hard days — when low readiness reduces a 4×4 to three intervals, you can now choose to run the full session anyway, on both iPhone and Apple Watch.
+• More accurate history — a reduced 4×4 now logs its real duration instead of the full session's, so your weekly minutes and streaks reflect what you actually did.
+• Redeem an App Store code for Pro from the upgrade screen.
+
+Questions or feedback? Email ozzyfly@logolo.ca.
+```
+
+### de-DE
+
+```
+Neu in 1.0.2:
+
+• Trainingsleitfaden — ein neuer Bereich in den Einstellungen, der erklärt, warum Zone 2 und das norwegische 4×4 wirken und was diese App anders macht.
+• Du entscheidest an harten Tagen — wenn niedrige Bereitschaft ein 4×4 auf drei Intervalle reduziert, kannst du jetzt trotzdem die volle Einheit wählen, auf iPhone und Apple Watch.
+• Genauerer Verlauf — ein reduziertes 4×4 wird jetzt mit seiner tatsächlichen Dauer statt der vollen protokolliert, sodass deine Wochenminuten und Serien widerspiegeln, was du wirklich getan hast.
+• Löse einen App-Store-Code für Pro direkt im Upgrade-Bereich ein.
+
+Fragen oder Feedback? E-Mail an ozzyfly@logolo.ca.
+```
+
+### es-ES
+
+```
+Novedades en 1.0.2:
+
+• Guía de entrenamiento — una nueva sección en Ajustes que explica por qué funcionan la Zona 2 y el 4×4 noruego, y qué hace diferente esta app.
+• Tú decides en los días duros — cuando una preparación baja reduce un 4×4 a tres intervalos, ahora puedes elegir hacer la sesión completa de todos modos, en iPhone y Apple Watch.
+• Historial más preciso — un 4×4 reducido ahora registra su duración real en lugar de la de la sesión completa, así tus minutos semanales y tus rachas reflejan lo que de verdad hiciste.
+• Canjea un código del App Store para Pro desde la pantalla de mejora.
+
+¿Preguntas o comentarios? Escribe a ozzyfly@logolo.ca.
+```
+
+### fr-FR
+
+```
+Nouveautés de la version 1.0.2 :
+
+• Guide d'entraînement — une nouvelle section dans les Réglages qui explique pourquoi la Zone 2 et le 4×4 norvégien fonctionnent, et ce que cette appli fait différemment.
+• À toi de décider les jours difficiles — lorsqu'une forme basse réduit un 4×4 à trois intervalles, tu peux désormais choisir de faire quand même la séance complète, sur iPhone et Apple Watch.
+• Historique plus précis — un 4×4 réduit enregistre maintenant sa durée réelle au lieu de celle de la séance complète, pour que tes minutes hebdomadaires et tes séries reflètent ce que tu as vraiment fait.
+• Utilise un code App Store pour Pro depuis l'écran de mise à niveau.
+
+Des questions ou des remarques ? Écris à ozzyfly@logolo.ca.
+```
+
+### ja
+
+```
+1.0.2の新機能:
+
+• トレーニングガイド — 設定内の新しいセクションで、ゾーン2とノルウェー式4×4がなぜ効くのか、このアプリが何を変えているのかを解説します。
+• きつい日はあなたが決める — レディネスが低く4×4が3インターバルに短縮された場合でも、フルセッションを選べるようになりました（iPhoneとApple Watchの両方）。
+• より正確な履歴 — 短縮版4×4がフルセッションではなく実際の時間で記録されるようになり、週の運動時間や連続記録が実際に行った内容を反映します。
+• アップグレード画面からApp Storeコードを使ってProを利用できます。
+
+ご質問やご意見は ozzyfly@logolo.ca までお寄せください。
+```
+
+### ko
+
+```
+1.0.2의 새로운 기능:
+
+• 트레이닝 가이드 — 존2와 노르웨이식 4×4가 왜 효과적인지, 이 앱이 무엇을 다르게 하는지 설명하는 새 섹션이 설정에 추가되었습니다.
+• 힘든 날의 선택은 당신에게 — 준비도가 낮아 4×4가 3회로 축소되어도 이제 전체 세션을 진행하도록 선택할 수 있습니다(iPhone과 Apple Watch 모두).
+• 더 정확한 기록 — 축소된 4×4가 전체 세션이 아닌 실제 시간으로 기록되므로, 주간 운동 시간과 연속 기록이 실제로 한 운동을 반영합니다.
+• 업그레이드 화면에서 App Store 코드로 Pro를 사용할 수 있습니다.
+
+문의나 의견은 ozzyfly@logolo.ca 로 보내주세요.
+```
+
+### pt-BR
+
+```
+Novidades na 1.0.2:
+
+• Guia de treino — uma nova seção nos Ajustes explicando por que a Zona 2 e o 4×4 norueguês funcionam, e o que este app faz de diferente.
+• A decisão é sua nos dias difíceis — quando a prontidão baixa reduz um 4×4 a três intervalos, agora você pode escolher fazer a sessão completa mesmo assim, no iPhone e no Apple Watch.
+• Histórico mais preciso — um 4×4 reduzido agora registra sua duração real em vez da sessão completa, então seus minutos semanais e sequências refletem o que você realmente fez.
+• Resgate um código da App Store para o Pro na tela de upgrade.
+
+Dúvidas ou sugestões? Escreva para ozzyfly@logolo.ca.
+```
+
+### zh-Hant
+
+```
+1.0.2 新增內容：
+
+• 訓練指南 — 設定裡新增一個章節，說明 Zone 2 與挪威式 4×4 為什麼有效，以及這個 app 做了哪些不一樣的事。
+• 高強度日由你決定 — 當 Readiness 偏低把 4×4 減為三趟時，現在你可以選擇還是做完整課表，iPhone 與 Apple Watch 都支援。
+• 更準確的紀錄 — 減量版 4×4 現在會記錄實際時長，而不是完整課表的時長，讓每週訓練分鐘數與連續紀錄反映你真正做的量。
+• 可在升級畫面用 App Store 代碼兌換 Pro。
+
+有問題或建議？請寄到 ozzyfly@logolo.ca。
+```
+
+---
+
 ## Pricing / Availability (set in App Store Connect)
 
 - **Price:** Free (suggested for v1.0) — adjust as you wish.
