@@ -28,7 +28,17 @@
 > low-readiness canned data), offer-code redemption needs a sandbox tester on device, and the
 > 7 non-English locales are machine-translated (terminology matched to existing catalog
 > entries) without native-speaker review.
-> **Release prep done, submission NOT done:** `MARKETING_VERSION` bumped 1.0.1 → 1.0.2 across
+> **BUILD 77 UPLOADED to ASC 2026-07-25 21:54 (v1.0.2) — submission still pending.**
+> `scripts/archive-and-export.sh --upload` run agent-side with the user's ASC API key (key
+> referenced by path only, never read): ARCHIVE SUCCEEDED → "Upload succeeded" → "Uploaded
+> build 77". Note the build number is **77, not 76** — the What's New commit (8c891c2) landed
+> after the count was first checked, and the script derives `CURRENT_PROJECT_VERSION` from
+> `git rev-list --count HEAD`. Provisioning for all four targets was fetched automatically via
+> `-allowProvisioningUpdates`. **Remaining user-side steps in ASC:** create version 1.0.2,
+> paste the eight localized What's New blocks from `docs/app-store/METADATA.md`, attach build
+> 77 (after ~10–15 min of ASC processing), submit for review, and generate an offer code for
+> `ca.logolo.z24x4.pro.lifetime` so the new "Redeem code" button has something to redeem.
+> **Release prep done:** `MARKETING_VERSION` bumped 1.0.1 → 1.0.2 across
 > all four targets in `project.yml` (verified in the built Release bundle's
 > `CFBundleShortVersionString`); both targets build clean in Release configuration; the ASC
 > review screenshots that were loose in the repo root moved into
