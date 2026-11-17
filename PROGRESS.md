@@ -1,5 +1,21 @@
 # PROGRESS — Z2/4×4 Trainer
 
+> **2026-07-25: 🚀 SUBMITTED — v1.0.2 (build 77) WAITING FOR REVIEW.** Agent-driven in ASC:
+> version 1.0.2 created, English What's New pasted (Training guide / full-4×4 override /
+> accurate reduced-session logging / offer-code redemption), **build 77 attached** (App icon +
+> Apple Watch assets included), saved, submitted → "已提交 1 個項目", sidebar shows 1.0.2 正在等待
+> 審查. Review ≤48h, email notification. Review notes gained a paragraph explaining that the
+> low-readiness 4×4 reduction is intentional, has an in-app explanation banner and an override —
+> pre-empting the exact confusion the user hit. Also fixed while there: the **keywords field
+> still held the pre-1.0.1 string** (the optimized set never saved that round) — now
+> `vo2 max,heart rate,interval,hiit,norwegian,endurance,running,cycling,aerobic,base,fitness,zones`.
+> Screenshots/description/promo text/IAP carried over from 1.0.1 automatically. **Optional
+> follow-ups:** the seven non-English What's New blocks in `docs/app-store/METADATA.md` were NOT
+> pasted (all locales currently show the English text; What's New is editable without a new
+> review — paste them any time), and generate an offer code for
+> `ca.logolo.z24x4.pro.lifetime` so the new "Redeem code" button has something to redeem.
+> Ops note: the ASC tab was closed mid-session and the login had to be redone; work already
+> saved (version, What's New, keywords, review notes) survived.
 > **2026-07-24/25: 4×4 rep-count correctness pass + Training guide + offer-code redemption.**
 > Started from the user's question "why does the App Store version only run 3 of the Norwegian
 > 4×4?" — root-caused to `Norwegian4x4.recommendedRepeats(for:)` reducing to 3 hard blocks on a
